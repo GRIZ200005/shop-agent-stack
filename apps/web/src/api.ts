@@ -1,0 +1,123 @@
+export type Side = "portal" | "admin";
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    public code: number,
+  ) {
+    super(message);
+  }
+}
+export const token = (side: Side) =>
+  sessionStorage.getItem(`aster_${side}`) || "";
+export function saveToken(side: Side, value: string) {
+  sessionStorage.setItem(`aster_${side}`, value);
+}
+export function clearToken(side: Side) {
+  sessionStorage.removeItem(`aster_${side}`);
+}
+export async function api<T>(
+  side: Side,
+  path: string,
+  body?: unknown,
+  form = false,
+): Promise<T> {
+  const headers: Record<string, string> = {};
+  if (token(side)) headers.Authorization = token(side);
+  if (body !== undefined)
+    headers["Content-Type"] = form
+      ? "application/x-www-form-urlencoded"
+      : "application/json";
+  const response = await fetch(`/api/${side}${path}`, {
+    method: body === undefined ? "GET" : "POST",
+    headers,
+    body:
+      body === undefined
+        ? undefined
+        : form
+          ? new URLSearchParams(body as Record<string, string>)
+          : JSON.stringify(body),
+    signal: AbortSignal.timeout(20000),
+  });
+  const data = await response.json().catch(() => {
+    throw new ApiError("服务暂时不可用，请稍后重试", response.status);
+  });
+  if (data.code !== 200) {
+    if (data.code === 401) clearToken(side);
+    throw new ApiError(
+      data.message || "操作未完成",
+      data.code || response.status,
+    );
+  }
+  return data.data as T;
+}
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+  productSn: string;
+  brandName: string;
+  productCategoryId: number;
+  stock: number;
+}
+export interface Cart {
+  id: number;
+  productId: number;
+  productName: string;
+  quantity: number;
+  price: number;
+}
+export interface Order {
+  id: number;
+  orderSn: string;
+  status: number;
+  payAmount: number;
+  createTime: string;
+  orderItemList: {
+    productName: string;
+    productQuantity: number;
+    productId: number;
+  }[];
+}
+export interface Sale {
+  id: number;
+  order_id: number;
+  reason: string;
+  amount: number;
+  status: string;
+  assignee_id: number | null;
+  assignee_name?: string;
+  decision_note?: string;
+  refund_reference?: string;
+  created_at: string;
+  events?: { action: string; note: string; created_at: string }[];
+}
+export interface Policy {
+  id: number;
+  title: string;
+  content: string;
+  status: string;
+  version: number;
+}
+export interface Staff {
+  id: number;
+  username: string;
+  nick_name: string;
+  role: "ADMIN" | "SERVICE";
+}
+export const money = (n: number) =>
+  new Intl.NumberFormat("zh-CN", { style: "currency", currency: "CNY" }).format(
+    n,
+  );
+export const date = (s: string) =>
+  new Date(s).toLocaleString("zh-CN", {
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+export const saleLabels: Record<string, string> = {
+  SUBMITTED: "待领取",
+  CLAIMED: "人工处理中",
+  REFUNDED: "模拟退款完成",
+  REJECTED: "已拒绝",
+};

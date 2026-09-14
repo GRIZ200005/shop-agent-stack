@@ -1,0 +1,97 @@
+name: aster-p0
+
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: aster
+      MYSQL_USER: aster
+      MYSQL_PASSWORD: ${ASTER_DB_PASSWORD:?Run scripts/init-local.ps1}
+      MYSQL_ROOT_PASSWORD: ${ASTER_DB_ROOT_PASSWORD:?Run scripts/init-local.ps1}
+    ports: ["127.0.0.1:13316:3306"]
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", 'MYSQL_PWD="$$MYSQL_PASSWORD" mysql -uaster -Daster -e "SELECT 1" >/dev/null 2>&1']
+      interval: 5s
+      timeout: 5s
+      retries: 40
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes: ["redis_data:/data"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    environment:
+      RABBITMQ_DEFAULT_USER: aster
+      RABBITMQ_DEFAULT_PASS: ${ASTER_MQ_PASSWORD:?Run scripts/init-local.ps1}
+      RABBITMQ_DEFAULT_VHOST: /aster
+    volumes: ["rabbit_data:/var/lib/rabbitmq"]
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 10s
+      retries: 30
+  mongo:
+    image: mongo:7.0
+    volumes: ["mongo_data:/data/db"]
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+  portal:
+    image: maven:3.9.9-eclipse-temurin-17
+    working_dir: /app
+    command: ["java", "-Xms128m", "-Xmx512m", "-jar", "/app/app.jar", "--spring.config.additional-location=file:/config/", "--server.port=8085"]
+    environment: &app-env
+      ASTER_DB_PASSWORD: ${ASTER_DB_PASSWORD}
+      ASTER_MQ_PASSWORD: ${ASTER_MQ_PASSWORD}
+      ASTER_JWT_SECRET: ${ASTER_PORTAL_JWT_SECRET}
+    ports: ["127.0.0.1:18085:8085"]
+    volumes:
+      - ../services/commerce/mall-portal/target/mall-portal-1.0-SNAPSHOT.jar:/app/app.jar:ro
+      - ./config:/config:ro
+    depends_on:
+      mysql: {condition: service_healthy}
+      redis: {condition: service_healthy}
+      rabbitmq: {condition: service_healthy}
+      mongo: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "http://localhost:8085/actuator/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 40
+  admin:
+    image: maven:3.9.9-eclipse-temurin-17
+    working_dir: /app
+    command: ["java", "-Xms128m", "-Xmx512m", "-jar", "/app/app.jar", "--spring.config.additional-location=file:/config/", "--server.port=8080"]
+    environment:
+      <<: *app-env
+      ASTER_JWT_SECRET: ${ASTER_ADMIN_JWT_SECRET}
+      ASTER_BOOTSTRAP_ADMIN_PASSWORD: ${ASTER_BOOTSTRAP_ADMIN_PASSWORD:-}
+      ASTER_BOOTSTRAP_SERVICE_PASSWORD: ${ASTER_BOOTSTRAP_SERVICE_PASSWORD:-}
+    ports: ["127.0.0.1:18080:8080"]
+    volumes:
+      - ../services/commerce/mall-admin/target/mall-admin-1.0-SNAPSHOT.jar:/app/app.jar:ro
+      - ./config:/config:ro
+    depends_on:
+      mysql: {condition: service_healthy}
+      redis: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "http://localhost:8080/actuator/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 40
+
+volumes:
+  mysql_data:
+  redis_data:
+  rabbit_data:
+  mongo_data:

@@ -1,6 +1,6 @@
 # 仓库建立、来源与公开发布
 
-日期：2026-09-14。当前状态：本地目录尚未初始化 Git，未绑定远程仓库。本文记录操作步骤，不表示已完成仓库创建。
+日期：2026-09-14。当前状态：本地目录已初始化 Git，已绑定个人远程仓库，初始文档已推送。下方初始化命令供首次建立仓库参考，无需重复执行。P0 应用代码本轮在本地实现，是否提交或推送以 Git 实际状态为准。
 
 ## 1. 推荐流程
 
@@ -48,7 +48,7 @@ GitHub 的 noreply 邮箱从个人 Settings -> Emails 复制，不自行猜测�
 
 核对的上游：[macrozheng/mall](https://github.com/macrozheng/mall)。当前 LICENSE 为 [Apache License 2.0](https://github.com/macrozheng/mall/blob/master/LICENSE)。接入时再次核对固定提交以及实际引入的其他组件/素材许可证。
 
-接入时记录：upstream URL、commit/tag、引入目录、原始功能、改动范围和验证情况。目前尚未引入上游代码，README 应使用“计划基于”，不能描述为已经完成改造。
+已引入固定版本的五个上游模块。准确提交、引入范围及改动见根目录 THIRD_PARTY_NOTICES.md，实际验证见 07 文档。未完成的智能体、售后和前端功能仍应表述为计划。
 
 分发 mall 衍生代码时应：
 

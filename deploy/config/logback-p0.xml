@@ -1,0 +1,8 @@
+<configuration>
+    <!-- Upstream request logging includes passwords, OTPs and tokens. Disable payload logging. -->
+    <logger name="com.macro.mall.common.log.WebLogAspect" level="OFF"/>
+    <logger name="com.macro.mall.security.util.JwtTokenUtil" level="OFF"/>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <root level="INFO"><appender-ref ref="CONSOLE"/></root>
+</configuration>
