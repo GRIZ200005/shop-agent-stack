@@ -1,0 +1,52 @@
+# Local credentials and environment
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+
+# Dependencies and generated outputs
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+target/
+dist/
+build/
+coverage/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.tsbuildinfo
+
+# Runtime state and local datasets
+logs/
+*.log
+docker_volumes/
+volumes/
+data/private/
+data/raw/
+data/generated/
+backups/
+dumps/
+*.sqlite
+*.sqlite3
+*.db
+
+# Local editor and operating-system metadata
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.code-workspace
+
+# Local reports may contain request payloads; publish reviewed summaries separately
+evaluation/runs/
+test-results/
+playwright-report/
