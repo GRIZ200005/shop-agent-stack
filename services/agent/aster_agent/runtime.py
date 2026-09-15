@@ -34,6 +34,7 @@ class State(TypedDict):
     waiting: bool
     tokens: int
     halted: bool
+    repair: bool
 
 
 async def execute(store, run, member, execution, model_config=None, *, memory_enabled=True):
@@ -43,6 +44,8 @@ async def execute(store, run, member, execution, model_config=None, *, memory_en
     searched = False
     policy_searches = 0
     task = store.task_context(run["session_id"], member) if memory_enabled else task_context.empty()
+    searched = bool(task.get("recent_products"))
+    product_repairs = 0
     try:
         store.state(rid,"RUNNING","正在连接业务工具")
         async with asyncio.timeout(90):
@@ -56,6 +59,7 @@ async def execute(store, run, member, execution, model_config=None, *, memory_en
                 store.emit(rid,"status",{"message":"业务工具已连接，正在处理请求"})
 
                 async def model(state: State):
+                    nonlocal task, product_repairs
                     if state["rounds"] >= 4 or state["tokens"] >= TOKEN_THRESHOLD:
                         raise ValueError("已达到本次执行预算，请缩小问题范围")
                     mid = f"{rid}:{state['rounds']}"
@@ -86,10 +90,15 @@ async def execute(store, run, member, execution, model_config=None, *, memory_en
                         if not text:
                             raise ValueError("模型没有返回可用回答，请重试")
                         product_ids=set(re.findall(r"\[(G\d+)\]",text))
-                        if not product_ids <= product_evidence.keys() or len(product_ids)>5:
-                            raise ValueError("回答包含未核实的商品引用")
-                        if product_evidence and not product_ids:
-                            raise ValueError("回答未标注商品依据，请重新提问")
+                        invalid_product_refs = not product_ids <= product_evidence.keys() or len(product_ids)>5
+                        missing_product_refs = bool(product_evidence) and not product_ids
+                        if invalid_product_refs or missing_product_refs:
+                            if product_repairs == 0 and state["rounds"] < 3 and state["tokens"]+tokens < TOKEN_THRESHOLD:
+                                product_repairs += 1
+                                store.emit(rid,"status",{"message":"正在修正商品依据，尚未发布回答"})
+                                correction={"role":"system","content":"上一条草稿商品引用未通过校验，尚未向用户发布。只引用本轮查得的商品，最多5件。当前可用引用："+json.dumps(sorted(product_evidence))+"。如当前无结果，只说明查询范围内没有符合条件的商品，不复述历史商品价格、库存或旧引用。如要使用历史商品事实必须先重查。请修正，不可编造依据。"}
+                                return {**state,"messages":state["messages"]+[message,correction],"rounds":state["rounds"]+1,"tokens":state["tokens"]+tokens,"repair":True}
+                            raise ValueError("回答包含未核实的商品引用" if invalid_product_refs else "回答未标注商品依据，请重新提问")
                         product_sources=[]
                         for gid in sorted(product_ids):
                             if state["calls"]>=8:
@@ -119,8 +128,10 @@ async def execute(store, run, member, execution, model_config=None, *, memory_en
                             store.emit(rid,"citations",{"sources":sources})
                         if product_sources:
                             store.emit(rid,"product_sources",{"products":product_sources})
+                            if memory_enabled:
+                                task=task_context.observe_products(task,product_sources)
                         store.emit(rid,"assistant",{"message_id":mid,"text":text})
-                    return {**state,"messages":state["messages"]+[message],"rounds":state["rounds"]+1,"tokens":state["tokens"]+tokens}
+                    return {**state,"messages":state["messages"]+[message],"rounds":state["rounds"]+1,"tokens":state["tokens"]+tokens,"repair":False}
 
                 async def invoke(state: State):
                     nonlocal searched, policy_searches, task
@@ -212,12 +223,12 @@ async def execute(store, run, member, execution, model_config=None, *, memory_en
                 graph.add_node("model",model)
                 graph.add_node("tools",invoke)
                 graph.add_edge(START,"model")
-                graph.add_conditional_edges("model",lambda s:"tools" if s["messages"][-1].get("tool_calls") else END)
+                graph.add_conditional_edges("model",lambda s:"model" if s["repair"] else "tools" if s["messages"][-1].get("tool_calls") else END)
                 graph.add_conditional_edges("tools",lambda s:END if s["waiting"] or s["halted"] else "model")
                 context_messages, stats = task_context.build(store.history(run["session_id"],member,rid),task,run["input"],include_memory=memory_enabled)
                 store.emit(rid,"context",stats)
                 messages=[{"role":"system","content":SYSTEM+("\n"+task_context.INSTRUCTIONS if memory_enabled else "")}]+context_messages
-                state=await graph.compile().ainvoke({"messages":messages,"calls":0,"rounds":0,"waiting":False,"tokens":0,"halted":False},config={"recursion_limit":12})
+                state=await graph.compile().ainvoke({"messages":messages,"calls":0,"rounds":0,"waiting":False,"tokens":0,"halted":False,"repair":False},config={"recursion_limit":12})
                 store.finish_task(rid,member,task,"WAITING_CONFIRMATION" if state["waiting"] else "COMPLETED","请确认操作" if state["waiting"] else "回复已完成")
     except asyncio.CancelledError:
         store.state(rid,"STOPPED","已停止生成；不会撤销已提交业务")

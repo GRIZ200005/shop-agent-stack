@@ -31,6 +31,8 @@ async def test_product_answers_require_current_cited_evidence(tmp_path, monkeypa
     assert not any(e["kind"] == "assistant_delta" for e in run["events"])
     assert any(e["kind"] == "product_sources" for e in run["events"]) == (outcome == "valid")
     assert any(e["kind"] == "assistant" for e in run["events"]) == (outcome == "valid")
+    refs=store.task_context(run["session_id"],1).get("recent_products",[])
+    assert refs==([{"id":10001,"name":"合成杯"}] if outcome=="valid" else [])
 
 
 def test_snapshot_is_order_independent_and_detects_stock_change():

@@ -1,0 +1,12 @@
+{
+  "suite": "shopping-dialogues-v1.json",
+  "sha256": "da58d6a858b70c7764cefceffba820af547fd257065a68dde03e4ee763de0482",
+  "hash_format": "UTF-8 canonical JSON, sorted keys, compact separators, ensure_ascii=false; runtime manifests also retain raw file hashes",
+  "dev_scenarios": 6,
+  "reserved_scenarios": 6,
+  "turns_per_split": 12,
+  "frozen_on": "2026-09-15",
+  "reserved_model_runs": 0,
+  "independently_authored_or_blind": false,
+  "rule": "Do not tune against reserved cases. If used to diagnose or modify behavior, relabel them dev in a new version and create a new reserved set. This self-authored split is not a claim of independent answer accuracy."
+}
