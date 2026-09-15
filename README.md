@@ -4,7 +4,7 @@
 
 项目目录：`Aster-Commerce`。目标版本：v1.0。
 
-当前状态：P1 首个三侧业务闭环已运行验证。客户可以选购、下单、模拟支付与申请售后；客服可以领取、审核并模拟退款；管理员可以创建团队账号和发布政策。AI 尚未接入。实际范围与测试见 [P1 运行及验收](docs/08-p1-runbook-and-verification.md)。
+当前状态：三侧业务闭环、Agent/MCP、在线混合检索、短期任务上下文、异步模拟退款和内部对账已运行验证。已完成首轮真实模型开发场景对照，尚无独立留出集回答准确率或生产容量结论。最新证据见 [真实模型评测](docs/23-p3g-live-agent-evaluation.md)、[可靠异步退款](docs/25-p4a-reliable-refunds.md) 和 [退款监控](docs/26-p4b-refund-monitor.md)。
 
 核心组合：Java/Spring Boot 业务服务 + Python/LangGraph Agent + React/TypeScript 三侧工作台。基于公开 mall 项目建设订单与售后能力，核心差异化是受控 Agentic RAG、可靠工具执行、人工接管和可信评测。
 
@@ -19,18 +19,22 @@
 - [P0 验收记录](docs/07-p0-verification.md)：已验证内容和剩余边界。
 - [上游来源与改动](THIRD_PARTY_NOTICES.md)：mall 固定提交、Apache-2.0 许可证和自研范围。
 - [P1 三侧体验与验收](docs/08-p1-runbook-and-verification.md)：页面入口、账号、售后闭环、实际证据及限制。
+- [P2 助手与多模型接入](docs/09-p2-agent-runbook-and-verification.md)：真实 MCP、确认边界、模型配置、测试与未完成门槛。
+- [P2.1 账户与模型设置](docs/10-p21-account-and-model-settings.md)：独立登录、账户菜单、个人密钥加密与界面配置。
 
 ## 本地运行
 
 需要 Docker Desktop（Linux 容器）、PowerShell 7 和 Node.js 24；Java 17/Maven 在容器中运行，不修改本机 JDK。
 
 ```powershell
-./scripts/start-p1.ps1 -Build
+./scripts/start-p2.ps1 -Build
 ./scripts/smoke-p0.ps1
 ./scripts/verify-p0-data.ps1
 ```
 
 页面入口：客户 `http://127.0.0.1:18030/app`、客服 `/service`、管理员 `/admin`。客户可自行创建体验账号；本地管理和客服初始凭据在被 Git 忽略的 `.local/p1-accounts.json`，不要上传或分享。首次启动需要下载依赖，已有产物时可省略 `-Build`。停止用 `./scripts/stop-p0.ps1`，包含前端在内的服务会停止，数据卷保留。
+
+登录入口：`http://127.0.0.1:18030/login`；助手入口：`/app/assistant`。登录后从左下角账户菜单进入模型设置，支持 DeepSeek、OpenAI、Kimi 及自定义 Chat Completions 兼容接口，个人配置无需修改 `.env` 或重启；平台配置仍可由部署端初始化。
 
 客户 API 仍位于 `http://127.0.0.1:18085`，管理 API 位于 `http://127.0.0.1:18080`；浏览器经同源 Nginx 代理访问它们。浏览器测试运行方式见 P1 文档。
 
