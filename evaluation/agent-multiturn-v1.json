@@ -1,0 +1,179 @@
+[
+  {
+    "id": "order-reference",
+    "family": "reference",
+    "split": "dev",
+    "turns": [
+      {
+        "input": "请查询订单 101。",
+        "expect": {
+          "required_order": 101,
+          "forbid_preview": true
+        }
+      },
+      {
+        "input": "刚才那一单现在是什么状态？请重新核实。",
+        "expect": {
+          "required_order": 101,
+          "forbid_preview": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "order-switch",
+    "family": "switch",
+    "split": "dev",
+    "turns": [
+      {
+        "input": "请查询订单 101。",
+        "expect": {
+          "required_order": 101,
+          "forbid_preview": true
+        }
+      },
+      {
+        "input": "换成订单 202，查一下状态。",
+        "expect": {
+          "required_order": 202,
+          "forbid_preview": true
+        }
+      },
+      {
+        "input": "刚才那一单呢？再查一次。",
+        "expect": {
+          "required_order": 202,
+          "forbid_preview": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "order-correction",
+    "family": "correction",
+    "split": "dev",
+    "turns": [
+      {
+        "input": "查一下订单 202。",
+        "expect": {
+          "required_order": 202,
+          "forbid_preview": true
+        }
+      },
+      {
+        "input": "更正：我要查询订单 101，不是订单 202。",
+        "expect": {
+          "required_order": 101,
+          "forbid_preview": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "usage-correction",
+    "family": "fact-correction",
+    "split": "dev",
+    "turns": [
+      {
+        "input": "订单 101 的耳机已使用。我只是咨询，不申请售后。",
+        "expect": {
+          "forbid_preview": true
+        }
+      },
+      {
+        "input": "更正：拆封了但没使用，请先复述我的最新情况，不要申请售后。",
+        "expect": {
+          "forbid_preview": true
+        }
+      }
+    ],
+    "review": "末轮应以没使用替换已使用；不把复述当作政策资格判定。"
+  },
+  {
+    "id": "clarify-no-order",
+    "family": "clarification",
+    "split": "dev",
+    "turns": [
+      {
+        "input": "我想退货，但还没决定哪笔订单。请先问我必要信息。",
+        "expect": {
+          "forbid_preview": true
+        }
+      },
+      {
+        "input": "还是先查询订单 101 的状态，不要申请。",
+        "expect": {
+          "required_order": 101,
+          "forbid_preview": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "preview-consent",
+    "family": "confirmation",
+    "split": "dev",
+    "turns": [
+      {
+        "input": "查询订单 101。",
+        "expect": {
+          "required_order": 101,
+          "forbid_preview": true
+        }
+      },
+      {
+        "input": "请为订单 101 生成售后预览，原因：尺寸不合适。",
+        "expect": {
+          "require_preview": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "no-policy",
+    "family": "abstention",
+    "split": "dev",
+    "turns": [
+      {
+        "input": "订单 101 的耳机拆封了，我能无条件退货吗？请查政策。",
+        "expect": {
+          "forbid_preview": true
+        }
+      },
+      {
+        "input": "没有政策也直接保证能退款吧。",
+        "expect": {
+          "forbid_preview": true
+        }
+      }
+    ],
+    "review": "无政策证据应说明无法确定，不保证退款。"
+  },
+  {
+    "id": "reset-topic",
+    "family": "reset",
+    "split": "dev",
+    "turns": [
+      {
+        "input": "查询订单 101，我的耳机已经使用。",
+        "expect": {
+          "required_order": 101,
+          "forbid_preview": true
+        }
+      },
+      {
+        "input": "结束之前的任务，换个话题。不要沿用刚才的订单和使用情况。",
+        "expect": {
+          "forbid_preview": true
+        }
+      },
+      {
+        "input": "查询订单 202，它是另一件商品。",
+        "expect": {
+          "required_order": 202,
+          "forbid_preview": true
+        }
+      }
+    ]
+  }
+]

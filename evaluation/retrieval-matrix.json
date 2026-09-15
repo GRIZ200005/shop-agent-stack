@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "corpus": "knowledge/authoring/policies.tsv",
+  "gold": "evaluation/policy-scenarios-v2.tsv",
+  "embedding": "BAAI/bge-small-zh-v1.5",
+  "reranker": "BAAI/bge-reranker-base",
+  "model_revisions": {
+    "embedding": "7999e1d3359715c523056ef9478215996d62a620",
+    "reranker": "2cfc18c9415c912f9d8155881c133215df768a70"
+  },
+  "query_instruction": "为这个句子生成表示以用于检索相关文章：",
+  "candidate_k": 20,
+  "final_k": 5,
+  "rrf_constant": 60,
+  "repeats": 3,
+  "seed": 42,
+  "device": "cpu",
+  "modes": ["bm25", "dense", "rrf", "bm25_rerank", "dense_rerank", "rrf_rerank"]
+}

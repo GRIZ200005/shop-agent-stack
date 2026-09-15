@@ -1,0 +1,2411 @@
+{
+  "schema_version": 1,
+  "source": "aster-original-synthetic",
+  "documents": 96,
+  "clauses": 288,
+  "customer_documents": 80,
+  "staff_documents": 16,
+  "development_scenarios": 72,
+  "policies": [
+    {
+      "id": "POL-001",
+      "title": "星序商城整单售后申请范围指引",
+      "category": "退货",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-001-C1",
+          "sha256": "cc786682de62f98850d3b7c0db9304cb95c06d5a6007cc4d065fbaade9823b5c"
+        },
+        {
+          "id": "POL-001-C2",
+          "sha256": "4e31d62d59c6049ff387eb50f527546a718dbe6628e814b648bd1b78167f1d60"
+        },
+        {
+          "id": "POL-001-C3",
+          "sha256": "27c936443cc7db5813246defd4a794011ffb28778d6d6acfe138106878f40e57"
+        }
+      ]
+    },
+    {
+      "id": "POL-002",
+      "title": "星序商城售后预览与确认指引",
+      "category": "退货",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-002-C1",
+          "sha256": "75a8645b61f84dc4476e76c44224fe88fd94caae9d16e9e2850e78d4ff1a4ddb"
+        },
+        {
+          "id": "POL-002-C2",
+          "sha256": "1fd374d6dfeabfc06c0354943e77eef16f021213073b1254fb1d6ce077ec1625"
+        },
+        {
+          "id": "POL-002-C3",
+          "sha256": "7817dee77113233e3e6a0b68276dfbbd8eb62da46ab8fb38c8bc60160bc97175"
+        }
+      ]
+    },
+    {
+      "id": "POL-003",
+      "title": "星序商城耳机拆封与使用情况指引",
+      "category": "退货",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-003-C1",
+          "sha256": "bf3f92af4920ffe9fbb10b05993bdef938891f5f2362997d19180948072b8c11"
+        },
+        {
+          "id": "POL-003-C2",
+          "sha256": "a2361d9ee3d8dd04d675cdf390d6519064d4af8fab2c859b775dc2fefed0459e"
+        },
+        {
+          "id": "POL-003-C3",
+          "sha256": "111e4fb9fc73441326ef7e85481f6a4f4ce5f8fde2409f64e18ff75844cbfb38"
+        }
+      ]
+    },
+    {
+      "id": "POL-004",
+      "title": "星序商城包装配件缺失指引",
+      "category": "退货",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-004-C1",
+          "sha256": "6221a51ce9a0c663e9af01563ea8638d6eee777ae4f6e42aa29240549ad12d0d"
+        },
+        {
+          "id": "POL-004-C2",
+          "sha256": "79a8935a51cc1ffc6c28f902df0848baca14de5e0cb684f35e357c641cd93063"
+        },
+        {
+          "id": "POL-004-C3",
+          "sha256": "e399f20469dbf607e7182d9eaffaf1fddc8a6af3e62a2dbe4c7d3a4eab379eb1"
+        }
+      ]
+    },
+    {
+      "id": "POL-005",
+      "title": "星序商城尺寸或规格不合适指引",
+      "category": "退货",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-005-C1",
+          "sha256": "dc763a5d702561fac98961811de3f6228f9b28ae1529bc93519c0ab79c53f703"
+        },
+        {
+          "id": "POL-005-C2",
+          "sha256": "20966765177e42c03a9776e82119d54de3f9a6a74321cdebf68a08740d4e6b8a"
+        },
+        {
+          "id": "POL-005-C3",
+          "sha256": "6caa26c5a2a954d1068c9cca18c65c41b774a1daa3f5d564da03a4442edb21f5"
+        }
+      ]
+    },
+    {
+      "id": "POL-006",
+      "title": "星序商城到货破损处理指引",
+      "category": "退货",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-006-C1",
+          "sha256": "39aae122dee21d4d74d8c5413ddd965fcf2024b594899da781529f5cf9c114f7"
+        },
+        {
+          "id": "POL-006-C2",
+          "sha256": "ae564dde713c7c374acde5925d2e63a795dae45728cba9347bc2a11fc95cb32d"
+        },
+        {
+          "id": "POL-006-C3",
+          "sha256": "40d3bb19e310d5fb497803c04d55e099e45fb2c17d31d1edf082662eb53d7172"
+        }
+      ]
+    },
+    {
+      "id": "POL-007",
+      "title": "星序商城错发商品处理指引",
+      "category": "退货",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-007-C1",
+          "sha256": "012ec78867ef5b2439bd551c138763b09906e1f0695c13699f88cfcc3145e2c1"
+        },
+        {
+          "id": "POL-007-C2",
+          "sha256": "2c2801a028b19b2cd1651f71c363340cbcd74a2daa8ec48d40608adf76da402a"
+        },
+        {
+          "id": "POL-007-C3",
+          "sha256": "6e66756af1500645f55ccdcb6269b08b97e81c6da5c528eacfef2feca8bc3a00"
+        }
+      ]
+    },
+    {
+      "id": "POL-008",
+      "title": "星序商城退货期限不明确指引",
+      "category": "退货",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-008-C1",
+          "sha256": "34f3fdeaeec63d73b8aa31fcd61b10cea6244047bd94f2cc811338e0f1f612e2"
+        },
+        {
+          "id": "POL-008-C2",
+          "sha256": "b40ade61b64fa7ae3d0d7895c074f397b088b22f2cb04c518ab302701f720897"
+        },
+        {
+          "id": "POL-008-C3",
+          "sha256": "6b94076ef0ee12b75f1bd8e9aa98dffe1cab79bb606bf05db1d7690b42cce80f"
+        }
+      ]
+    },
+    {
+      "id": "POL-009",
+      "title": "星序商城退款状态区分指引",
+      "category": "退款",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-009-C1",
+          "sha256": "f91ad794b6e8c9c1bf6bedfe88a478c7a4f5b09c864f2d30ade6a28e498c552b"
+        },
+        {
+          "id": "POL-009-C2",
+          "sha256": "3f443c94b861d35d6d29502cc408d122a09786cdfe7c0e147d61fcf27d94d028"
+        },
+        {
+          "id": "POL-009-C3",
+          "sha256": "0cff0e9686488316dc3fdae4e7e5bea8ec4b4d4b30049529b438b90d6bf57833"
+        }
+      ]
+    },
+    {
+      "id": "POL-010",
+      "title": "星序商城模拟退款说明指引",
+      "category": "退款",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-010-C1",
+          "sha256": "771d0f378e92392afd254bdad13eab18bdd2511719c98b8eaab94fce6bb0d468"
+        },
+        {
+          "id": "POL-010-C2",
+          "sha256": "c1d97a7189f70d72dc6c5f3f6e24ba9437e510705b7859a10322cbd64fd0b310"
+        },
+        {
+          "id": "POL-010-C3",
+          "sha256": "7d5463756ed1bf254ce0b530966e7dbcabe55f0b0aa76cc0b9c939b910448f33"
+        }
+      ]
+    },
+    {
+      "id": "POL-011",
+      "title": "星序商城退款金额核对指引",
+      "category": "退款",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-011-C1",
+          "sha256": "0bc859208979c87c224fade8091ca7f969ea50aff38df67908eb30e144fedb40"
+        },
+        {
+          "id": "POL-011-C2",
+          "sha256": "d2fb43dce931a6d300463cfcd76755b1a4e18ed7f904cddc37e15946526c1b63"
+        },
+        {
+          "id": "POL-011-C3",
+          "sha256": "60a03d5f51b59fb04b354fc105bf5cbd77dd12bbda28f3bfe2b536611ad390fe"
+        }
+      ]
+    },
+    {
+      "id": "POL-012",
+      "title": "星序商城重复申请与结果核实指引",
+      "category": "退款",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-012-C1",
+          "sha256": "3ff71b2b7737679e474594a05d211919c9b6103c34fd5cf71c502fc3a62f4140"
+        },
+        {
+          "id": "POL-012-C2",
+          "sha256": "e2bd1dc6c9d8b891f436acc5afeea73c06fd375e547f758535fb2c15f369bdcc"
+        },
+        {
+          "id": "POL-012-C3",
+          "sha256": "25b6dfed878c3ef21b7f0faba21200f0bc5c52adbe1cd7ace658a90a3da53383"
+        }
+      ]
+    },
+    {
+      "id": "POL-013",
+      "title": "星序商城订单中文状态指引",
+      "category": "订单",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-013-C1",
+          "sha256": "40785db58e4db5d1ab1d766cd7337885bbf3fc83bef6b2affb99737fa1838253"
+        },
+        {
+          "id": "POL-013-C2",
+          "sha256": "d1cdc99fe6cad42ed067bb5c0480b60e5892d4695713b044a6938428269dfc5d"
+        },
+        {
+          "id": "POL-013-C3",
+          "sha256": "6fa5b50bc666bba9aba3951298d69ab69bf2aafa3f98d3f5bbcc1b5b55ed9360"
+        }
+      ]
+    },
+    {
+      "id": "POL-014",
+      "title": "星序商城订单归属指引",
+      "category": "订单",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-014-C1",
+          "sha256": "b32dc67bbec8dd3922b30c843ee011cb225080c4b8ad1fd05fb2e25bb7a63798"
+        },
+        {
+          "id": "POL-014-C2",
+          "sha256": "263df0d1441ef9eb37e8ac841e7fc23e55c0b3f9c261b5d3eeb5821c4cc485b8"
+        },
+        {
+          "id": "POL-014-C3",
+          "sha256": "404338a0ad852c1fed81fd5db84c02cc5b9b42704c76b4e7de1337e26210c938"
+        }
+      ]
+    },
+    {
+      "id": "POL-015",
+      "title": "星序商城订单列表与详情指引",
+      "category": "订单",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-015-C1",
+          "sha256": "34fdd8d398cc6c8d72de20f01faf747332a5c76c63084ad7ccc08e07f6803400"
+        },
+        {
+          "id": "POL-015-C2",
+          "sha256": "62407adf5fe7549ca3bf754dadf8955c78688b448bb5365bb1e2506dd1d0ddc8"
+        },
+        {
+          "id": "POL-015-C3",
+          "sha256": "dc01df9abfef3dcbbfc0890e92959bda0ca425f3075b5bb1d77f2f4efbaf665b"
+        }
+      ]
+    },
+    {
+      "id": "POL-016",
+      "title": "星序商城取消订单与停止回答指引",
+      "category": "订单",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-016-C1",
+          "sha256": "acce5d0725a24e42458e4c45a98f3d056a5d451afeee8071b5d5102b177815d2"
+        },
+        {
+          "id": "POL-016-C2",
+          "sha256": "2b3d4b345bd10056c9681f5a3eceffda6cbc339bbc170efb02b40d3bddb19536"
+        },
+        {
+          "id": "POL-016-C3",
+          "sha256": "a5b7aa26e72a2dbc75d058fea892de3a4a3ea0fcf5ddb70b8893a0e146bd4c48"
+        }
+      ]
+    },
+    {
+      "id": "POL-017",
+      "title": "星序商城修改商品与数量指引",
+      "category": "订单",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-017-C1",
+          "sha256": "5de602c67bfbd00ebd6d02021de3f751761a1043861e3d383e92165dbc451de8"
+        },
+        {
+          "id": "POL-017-C2",
+          "sha256": "f1b3f7faa171353f1fca143083839ce1b7c100d79e1cae4a70077b03ebe56484"
+        },
+        {
+          "id": "POL-017-C3",
+          "sha256": "4aacce4033f323bd3f2385811eddd9924fd4acbd285c10a7ee10e1c09387d835"
+        }
+      ]
+    },
+    {
+      "id": "POL-018",
+      "title": "星序商城查不到订单指引",
+      "category": "订单",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-018-C1",
+          "sha256": "dd732e21ab7379488225099b423726a649c5c827327803ddab32cb3e24d4ddef"
+        },
+        {
+          "id": "POL-018-C2",
+          "sha256": "d1ac258d28885225c9c58fe627b78461149a623dee3f5513487dd393a864af58"
+        },
+        {
+          "id": "POL-018-C3",
+          "sha256": "b277fdbaa395f08b5181e92e3d0902872c862349ace8c7d5a6c7f1d1dc223b1f"
+        }
+      ]
+    },
+    {
+      "id": "POL-019",
+      "title": "星序商城模拟支付与订单状态指引",
+      "category": "支付",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-019-C1",
+          "sha256": "2f66b50af4a81922c07f2d6fe0dee12a089fb357df326beecb0630799fb0f45f"
+        },
+        {
+          "id": "POL-019-C2",
+          "sha256": "63400b42a5aa3d91ab5f7ec76b14d46ac362967b6ac7daa4a075fbe0078aec05"
+        },
+        {
+          "id": "POL-019-C3",
+          "sha256": "1ef4a06184ceb228ed86cbff26c60ef048890696208144a77d07856e8d6bc284"
+        }
+      ]
+    },
+    {
+      "id": "POL-020",
+      "title": "星序商城支付凭据保护指引",
+      "category": "支付",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-020-C1",
+          "sha256": "c11e09a1f17babf551a3cd6175a0d041fb4abb2003e985eaaa4453a9ea96a392"
+        },
+        {
+          "id": "POL-020-C2",
+          "sha256": "393ffe9f645a077197a2fe4d06df5537a6977234deee074730ddc47f3662dec1"
+        },
+        {
+          "id": "POL-020-C3",
+          "sha256": "da36cb8ca268e23e116951bb7290b98326b472588ac0d6b3231fe0fbf3c3ff4e"
+        }
+      ]
+    },
+    {
+      "id": "POL-021",
+      "title": "星序商城优惠与实付金额指引",
+      "category": "支付",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-021-C1",
+          "sha256": "b443698ce3a8c1cdbe0a4c34b2f9dc5c87d219fc5a66440e8fa5b43720709c9f"
+        },
+        {
+          "id": "POL-021-C2",
+          "sha256": "41f5942ff2d2d6dae346f826f88047afff2d0f1c54161bbe0f40a93409670a9c"
+        },
+        {
+          "id": "POL-021-C3",
+          "sha256": "ba1a9040d5268c2d6d10aedb4b24d203b541284fb9fe58ed8095d7cf95358302"
+        }
+      ]
+    },
+    {
+      "id": "POL-022",
+      "title": "星序商城发票需求边界指引",
+      "category": "支付",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-022-C1",
+          "sha256": "aac5893d3eb56ce5009c041cf0bc230bea862ce39a3d08ef61c320bf2f785125"
+        },
+        {
+          "id": "POL-022-C2",
+          "sha256": "d05ab361454409c5936156bb4d520205196bce02ac62b60e389073130dd7b64c"
+        },
+        {
+          "id": "POL-022-C3",
+          "sha256": "919550b3c0d2a01ffe5cc38d6d2f6edfc66d07d89654586c42103a90d6acd796"
+        }
+      ]
+    },
+    {
+      "id": "POL-023",
+      "title": "星序商城物流轨迹查询范围指引",
+      "category": "物流",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-023-C1",
+          "sha256": "102204cf6f1cf8a257c6bd37431e11a4e805fcffa3cab89f81c0f6631bc127c9"
+        },
+        {
+          "id": "POL-023-C2",
+          "sha256": "e0bb8e085f3e3766bfc587495311fff153c5797492b2e8a015da50015943fe2e"
+        },
+        {
+          "id": "POL-023-C3",
+          "sha256": "0abd6eb9a5547a195e44025bf962810ac55c7e557d31d280f8ae137778cc22ff"
+        }
+      ]
+    },
+    {
+      "id": "POL-024",
+      "title": "星序商城修改收货地址指引",
+      "category": "物流",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-024-C1",
+          "sha256": "99943e83540e364ca9cbaf39f280b077f24df3a0c531bdd66f6fddca93697305"
+        },
+        {
+          "id": "POL-024-C2",
+          "sha256": "2950ee5b6d9efac4e22a098cc6a74d7a14144af4f0658407ba6079993963d747"
+        },
+        {
+          "id": "POL-024-C3",
+          "sha256": "ac15e676b3d045341e259c822fe0ef69ea3281169912d05d4a327d3412a718a4"
+        }
+      ]
+    },
+    {
+      "id": "POL-025",
+      "title": "星序商城配送时间承诺指引",
+      "category": "物流",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-025-C1",
+          "sha256": "045bb76221aac64c3ed9c69d6ee5fc4db38b74f0fdda3efdc903efc42b687139"
+        },
+        {
+          "id": "POL-025-C2",
+          "sha256": "c6f53c5f7473a6aceef6c1b7244bc73cbba6b64258de8b1ab24d3c0dfb050eae"
+        },
+        {
+          "id": "POL-025-C3",
+          "sha256": "7d6c8bd1aa36931bab55e3fc0915a9cf925d20b2ba4acb54ed9872f3e962c811"
+        }
+      ]
+    },
+    {
+      "id": "POL-026",
+      "title": "星序商城运费承担争议指引",
+      "category": "物流",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-026-C1",
+          "sha256": "e05f22a153214dc99ca446c797e1735cea33474ced517c8157215b496c3e4ac4"
+        },
+        {
+          "id": "POL-026-C2",
+          "sha256": "f758ebbeace7383bec668cebe8bcaad8e62e3027c540150d948ca760e44b6fcf"
+        },
+        {
+          "id": "POL-026-C3",
+          "sha256": "4cf37a02f9ab28c63d574ba931b7ddfdb8cf641f423b47dd025c4d6e05677a5f"
+        }
+      ]
+    },
+    {
+      "id": "POL-027",
+      "title": "星序商城显示签收但未收到指引",
+      "category": "物流",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-027-C1",
+          "sha256": "1127b16a8873cb4458367d891936adb0f2cab3e598f704fa95e25eb69f314c2b"
+        },
+        {
+          "id": "POL-027-C2",
+          "sha256": "f269b90a68cc67064bcb52315b9b2c51f1c1d355e89f58abd56c861c6fbfc6f1"
+        },
+        {
+          "id": "POL-027-C3",
+          "sha256": "02fd8933778507b3bd53aacb42c0155b2720f1696cd8aaaead5113488997359e"
+        }
+      ]
+    },
+    {
+      "id": "POL-028",
+      "title": "星序商城跨境与偏远地区配送指引",
+      "category": "物流",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-028-C1",
+          "sha256": "c9c0372794d90f6971d133c78ef56612267dc252b3daec15fdb107db4ed3cb36"
+        },
+        {
+          "id": "POL-028-C2",
+          "sha256": "cce8568904dd626cfcccac564bfe44a1d695876d7e5752ae37c648735a2a3946"
+        },
+        {
+          "id": "POL-028-C3",
+          "sha256": "a7a7fb9d14c3faf6331bc09ddac730bcc28a7bd8b08b86ce36b7fd1102256e80"
+        }
+      ]
+    },
+    {
+      "id": "POL-029",
+      "title": "星序商城USB-C 数据线兼容性指引",
+      "category": "商品",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-029-C1",
+          "sha256": "bbd8ece9b98e856b6d43e1d38bd5cd6b0e39a8d00c302c791b60bcc06aa81c21"
+        },
+        {
+          "id": "POL-029-C2",
+          "sha256": "edaf358e2e1e3f1c0c3ec93e3c92baf9df10122822e7a1ea12f0c62cafcdcf7e"
+        },
+        {
+          "id": "POL-029-C3",
+          "sha256": "3941555ddd6fe3392a45c502ec5419e7ca12a05d3ffd33e7e36b198a3ff6fa18"
+        }
+      ]
+    },
+    {
+      "id": "POL-030",
+      "title": "星序商城耳机连接与故障排查指引",
+      "category": "商品",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-030-C1",
+          "sha256": "60f2d6ab84500b4778fa13cfbeb81ce22016e9c04167c04d0213ea3d02ec3761"
+        },
+        {
+          "id": "POL-030-C2",
+          "sha256": "021a5092f215cd989f05d138a836ec72e272394fe15f4934afeab79f8df86f42"
+        },
+        {
+          "id": "POL-030-C3",
+          "sha256": "f3678904dc92a9f8daa191b5a441d6eaae5ee1b2736284908b7d3256f1c76bc1"
+        }
+      ]
+    },
+    {
+      "id": "POL-031",
+      "title": "星序商城充电设备功率选择指引",
+      "category": "商品",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-031-C1",
+          "sha256": "1f31827422241ddff41ff902e056d2aba9abb27a8705fe2a772dcf04cb823686"
+        },
+        {
+          "id": "POL-031-C2",
+          "sha256": "fad322842ea3e938158d2717e2e2171ce9167fb4df074ec7f6ae8d98a0bcc024"
+        },
+        {
+          "id": "POL-031-C3",
+          "sha256": "3bb660f59b25a67b8aa4178c8554dadfa68b0bc3b71a3601d8b1d8333fba03a2"
+        }
+      ]
+    },
+    {
+      "id": "POL-032",
+      "title": "星序商城商品库存与价格指引",
+      "category": "商品",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-032-C1",
+          "sha256": "a3823d3831bee8ee85aa2c0712f5eda1b017e5fb969474a21b2c514cb74b1a26"
+        },
+        {
+          "id": "POL-032-C2",
+          "sha256": "e3859d0ef6f36670ead936ea7ddf802873870befac353eda155663e1acfc8529"
+        },
+        {
+          "id": "POL-032-C3",
+          "sha256": "5875294a21cd23dc4e937163f1f4937db719d72de267c4710a79af96d0f31f4c"
+        }
+      ]
+    },
+    {
+      "id": "POL-033",
+      "title": "星序商城颜色型号与图片差异指引",
+      "category": "商品",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-033-C1",
+          "sha256": "a457461fff177512ef9a9ffb9b0ca7b497f8b626a304fb647fbc653639a86ed7"
+        },
+        {
+          "id": "POL-033-C2",
+          "sha256": "f4058e06c3cee352fe81bf8c43558003cfea51e0da6585bad47b45fcdc1cd8ae"
+        },
+        {
+          "id": "POL-033-C3",
+          "sha256": "6b6b6246101362672c066ebe504c0eb8093133782b474e3074830ae27c89a9e7"
+        }
+      ]
+    },
+    {
+      "id": "POL-034",
+      "title": "星序商城保修期限与维修指引",
+      "category": "商品",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-034-C1",
+          "sha256": "6a2a4d9f0902691c9b9917c9c391f0755c979951bad93fbc0c7846ca44f1ef83"
+        },
+        {
+          "id": "POL-034-C2",
+          "sha256": "4ecbc97c14bd6b6273e77c94e4e0f9275b8fb3814ba0268ad7c00771b22ec2d6"
+        },
+        {
+          "id": "POL-034-C3",
+          "sha256": "87057fc1fc9c920f96285b65169ce6c0ba3f93c79a3751ecfbd29b73d4904c55"
+        }
+      ]
+    },
+    {
+      "id": "POL-035",
+      "title": "星序商城切换账户后的数据指引",
+      "category": "账户",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-035-C1",
+          "sha256": "640d5ffbb3131d1b698c6d3649c200c4a41112bfaf8df36510836769b2fb82c6"
+        },
+        {
+          "id": "POL-035-C2",
+          "sha256": "3914d4c5be41ac208a7d29fefb836045449cac0661d453ad3e1f6d65097741df"
+        },
+        {
+          "id": "POL-035-C3",
+          "sha256": "c1f0eb1409b25985e1ccf3584c781e9be489e87e80bd83f00bf9fa128858cf74"
+        }
+      ]
+    },
+    {
+      "id": "POL-036",
+      "title": "星序商城模型密钥与聊天内容指引",
+      "category": "账户",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-036-C1",
+          "sha256": "42ed5f5596b74c35206d280880a7e3e9af51821ad740c6ddd66ce3fc3f1ece57"
+        },
+        {
+          "id": "POL-036-C2",
+          "sha256": "fd7938027368850052f1786c44f5c6e7cb0589b7ea8fd8884ce5978cef220e92"
+        },
+        {
+          "id": "POL-036-C3",
+          "sha256": "87293baa608db1e8b82001109427397e957ab097500b8785306b6dcb4f491c89"
+        }
+      ]
+    },
+    {
+      "id": "POL-037",
+      "title": "星序商城对话发送的数据范围指引",
+      "category": "账户",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-037-C1",
+          "sha256": "2a0eb3c33d2404ee1f5326e39e0ad282200f232f11e70603c26593de2a2aad6c"
+        },
+        {
+          "id": "POL-037-C2",
+          "sha256": "ef49a0603f98387ccb490603403c99e20b77a95b0acd14d857da66723ffe5c96"
+        },
+        {
+          "id": "POL-037-C3",
+          "sha256": "cc7c1121ac984f77ad9ce2c6556cec25b592fdbc60ff8ad39de5c4ada8863484"
+        }
+      ]
+    },
+    {
+      "id": "POL-038",
+      "title": "星序商城管理员与客服权限指引",
+      "category": "账户",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-038-C1",
+          "sha256": "93020d5a887d9635c3d79a427cc4f5537a6a51f27ce88ba2f20809e7c7a4cf67"
+        },
+        {
+          "id": "POL-038-C2",
+          "sha256": "997fde9d6b00571ebcf2739ae1ab38168b3a65f7247f7d27ed13a42737208f20"
+        },
+        {
+          "id": "POL-038-C3",
+          "sha256": "7c034d67898444ee990a7b784b9e325956276826a576103cd6ab8a8e40e3b277"
+        }
+      ]
+    },
+    {
+      "id": "POL-039",
+      "title": "星序商城领取与审核流程指引",
+      "category": "客服",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-039-C1",
+          "sha256": "016f1bd385038a86974faab9970cfdd9820fbcfd04efdd78cf39d816f33898b2"
+        },
+        {
+          "id": "POL-039-C2",
+          "sha256": "e162250dcf73c0466ae5ff3a17752cf83f61b0a10858e648bd1c8877347d273e"
+        },
+        {
+          "id": "POL-039-C3",
+          "sha256": "ecf7568360bc70899a04a85759891621e2aa9eabe5678982fd07355571d2d946"
+        }
+      ]
+    },
+    {
+      "id": "POL-040",
+      "title": "星序商城审核拒绝的解释指引",
+      "category": "客服",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-040-C1",
+          "sha256": "a7471138abdcbfb3f0ced4ed285813422ca5aa043a9d2337b058f6fc1c2f5b87"
+        },
+        {
+          "id": "POL-040-C2",
+          "sha256": "3b47676ea825aabe6ab2fe8dcb0fcd1aa0fc982bc8cd4804bdde27988eff4610"
+        },
+        {
+          "id": "POL-040-C3",
+          "sha256": "09f4f7e70fbc927e05e17a2ffa89665f9fd55fd20b36949ea78c919ec8ef913e"
+        }
+      ]
+    },
+    {
+      "id": "POL-041",
+      "title": "星序商城人工接管能力边界指引",
+      "category": "客服",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-041-C1",
+          "sha256": "a7d42e502c5e1cfab07864f70c3819da7cbfebab604e2078b64a58b617660892"
+        },
+        {
+          "id": "POL-041-C2",
+          "sha256": "17f2ea7806f7cd8c5773ffb3bfeee25877dac27ff093d8516065a6f0652d81b3"
+        },
+        {
+          "id": "POL-041-C3",
+          "sha256": "a16413e785a82a9dc55f1a25db2760dc65eda107df81b39454cc375be8c7ca08"
+        }
+      ]
+    },
+    {
+      "id": "POL-042",
+      "title": "星序商城处理时间与催单指引",
+      "category": "客服",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-042-C1",
+          "sha256": "04a4aeee3cbe75d5db445cb9cfb1ebb327393d334a23ab7fb861a3843bc0dc88"
+        },
+        {
+          "id": "POL-042-C2",
+          "sha256": "3747bbc163c06e6bfb0b60dd194dbe56bd595f2dfb1eade6c7759fab590f143c"
+        },
+        {
+          "id": "POL-042-C3",
+          "sha256": "439b9b1551216aa9098d39607e4fd1d78fd9656d339e287c1d3bfd94cc1c4a2f"
+        }
+      ]
+    },
+    {
+      "id": "POL-043",
+      "title": "星序商城政策引用与适用范围指引",
+      "category": "知识",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-043-C1",
+          "sha256": "31ff9a1bae710778bc45e5f0158bbc74c74b7c387163c0037d1a064952236990"
+        },
+        {
+          "id": "POL-043-C2",
+          "sha256": "2e28083d3048a1da1f1ee69f989a09375bc23a0c87159cb6cb9bde37d047a2f7"
+        },
+        {
+          "id": "POL-043-C3",
+          "sha256": "29d5595356e7484af451e2d889c04b76702486242399a5bc8d6f4fd25a097fd9"
+        }
+      ]
+    },
+    {
+      "id": "POL-044",
+      "title": "星序商城政策发布与撤回指引",
+      "category": "知识",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-044-C1",
+          "sha256": "69b0c12af1bd3ece480735962af1f72bd905ae7dfdcaf849c864614001434de1"
+        },
+        {
+          "id": "POL-044-C2",
+          "sha256": "bf77f65700ba1ca981735630c39b55b8f82ba45e34db77299d4986ff94d1bb8b"
+        },
+        {
+          "id": "POL-044-C3",
+          "sha256": "5e96b439167eae717897c7ee44cd32c717e4a3e6d46a6cc2fd15ac27c98c0319"
+        }
+      ]
+    },
+    {
+      "id": "POL-045",
+      "title": "星序商城历史订单适用政策指引",
+      "category": "知识",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-045-C1",
+          "sha256": "00120289389eb00c22c8f6e3b7c6eb27729586f336f5b7bc1dd3987b57eef719"
+        },
+        {
+          "id": "POL-045-C2",
+          "sha256": "55b4a02cd88c68ab6be2de7d1904f39edff2bcf19fcf4c5e4a8e54b85000523a"
+        },
+        {
+          "id": "POL-045-C3",
+          "sha256": "e3f196c697d3f7f56155b8cf31462665e105723e245f1282a4b61f4f4c01aa2b"
+        }
+      ]
+    },
+    {
+      "id": "POL-046",
+      "title": "星序商城外部搜索与本店政策指引",
+      "category": "知识",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-046-C1",
+          "sha256": "ff6ba39f5e6a1e04ee7d6b084f8070629110b1f025b5b1e06174157b2a95e6d2"
+        },
+        {
+          "id": "POL-046-C2",
+          "sha256": "033728b413a5b23d5a76a06e67054865db53424dc26d02e97d2bcd5bed93518b"
+        },
+        {
+          "id": "POL-046-C3",
+          "sha256": "956a99aea4886be7a1e0423ded392289a15e90f12db178f816ac99a7dd896d17"
+        }
+      ]
+    },
+    {
+      "id": "POL-047",
+      "title": "星序商城证据不足与补问指引",
+      "category": "知识",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-047-C1",
+          "sha256": "6779f1b1cded84b1a295324d320455fa8425d2ba20bf94b7e1c3da57d83d0d0a"
+        },
+        {
+          "id": "POL-047-C2",
+          "sha256": "e6c802f1f07e11e590f5b898639c22446f99aa0de5ee61b1c47564c559a67bed"
+        },
+        {
+          "id": "POL-047-C3",
+          "sha256": "d4dde1414564be639506ef89add5d75b69159440c97329ba4826d17b647c4580"
+        }
+      ]
+    },
+    {
+      "id": "POL-048",
+      "title": "星序商城材料中的恶意指令指引",
+      "category": "知识",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-048-C1",
+          "sha256": "a09616dbb5ba6d1a500bcc7ccbee440531150a4a49b6a60af28213c256b0b702"
+        },
+        {
+          "id": "POL-048-C2",
+          "sha256": "dc5102ef11ab2a1d89c67b442f4b5ebe9a9c6a08dd78659eb5abf40bf18a9b6f"
+        },
+        {
+          "id": "POL-048-C3",
+          "sha256": "7bb1d999604d78cfcf0b563ef519e85f1d4eba0270c53e5dea740ca3783bda9a"
+        }
+      ]
+    },
+    {
+      "id": "POL-049",
+      "title": "星序商城订单标识与查询指引",
+      "category": "订单",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-049-C1",
+          "sha256": "52eb0625580bb2234e3c5c93b92b4fe2ca3992062025b2edfd75c5d66f9ea6bd"
+        },
+        {
+          "id": "POL-049-C2",
+          "sha256": "23f64fa0d1efe342659356afd52ee3cf545b3a1208cc86a7bc05b87c061cdfe0"
+        },
+        {
+          "id": "POL-049-C3",
+          "sha256": "3a3d5978eeed45135c10dc794e0a4238cbe9c1a7232b9e42b6e88af8756714d8"
+        }
+      ]
+    },
+    {
+      "id": "POL-050",
+      "title": "星序商城多订单售后办理规则",
+      "category": "订单",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-050-C1",
+          "sha256": "01c1c67357a25bceb6cca0b4205dd36a51c9f1a5d6133e96a1bdfa477f0193ed"
+        },
+        {
+          "id": "POL-050-C2",
+          "sha256": "ee2c85fdbf8b5dbd094c27afb242ad38eaa2ec9063e6168eaf638c7f9f17e613"
+        },
+        {
+          "id": "POL-050-C3",
+          "sha256": "48282d32aaa3cba089f280c492554a49e7ca3d9664b4f9e082293e3a771f953d"
+        }
+      ]
+    },
+    {
+      "id": "POL-051",
+      "title": "星序商城购物袋与订单确认指引",
+      "category": "订单",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-051-C1",
+          "sha256": "a8787fced9d26098db573ecafab3185bc193e3c8b38ee6ccca3aa380284e1e99"
+        },
+        {
+          "id": "POL-051-C2",
+          "sha256": "3cfb4932f23090f5e0468dd18d3d334d568dfb5862bd83b954f27063303fc897"
+        },
+        {
+          "id": "POL-051-C3",
+          "sha256": "70e5b9b27497ff4ffa2753c54d402de7c8065116cfdc5dff5b8afc53da4bd27a"
+        }
+      ]
+    },
+    {
+      "id": "POL-052",
+      "title": "星序商城订单记录与购买凭证说明",
+      "category": "订单",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-052-C1",
+          "sha256": "345054e5ac50cd37750e92f9e56410e290e9afacccd67f312eead6faff21f0a7"
+        },
+        {
+          "id": "POL-052-C2",
+          "sha256": "64b0e63a94d35922d3e68703faac2f725e4259db687490e5db4969cbe745cb44"
+        },
+        {
+          "id": "POL-052-C3",
+          "sha256": "f904c6d75c818c8a638b7e1e8d77c74f3ff41014793d2980dfc1a4d8948b8b46"
+        }
+      ]
+    },
+    {
+      "id": "POL-053",
+      "title": "星序商城重复支付操作处理说明",
+      "category": "支付",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-053-C1",
+          "sha256": "6d3b872857f109d16907476ec5a540bdc08b246f033eeb620e403bcf19106aea"
+        },
+        {
+          "id": "POL-053-C2",
+          "sha256": "44afdfeaffb886907cb0fa5f0269e3680143705fa38bf899a8b621c01511c91d"
+        },
+        {
+          "id": "POL-053-C3",
+          "sha256": "dcb728670e7006f9f71aea2499855de3a1566ddef9ae6d459abe20d47e99d86c"
+        }
+      ]
+    },
+    {
+      "id": "POL-054",
+      "title": "星序商城支付异常核实指引",
+      "category": "支付",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-054-C1",
+          "sha256": "f4a7dc960842816210c0ee0729df9f7145deb1e305c86815d22fc0ba2f94a797"
+        },
+        {
+          "id": "POL-054-C2",
+          "sha256": "8f93541487378ef332fe80d3102e0c16b9b7393bca405dd373e26dd71ea55163"
+        },
+        {
+          "id": "POL-054-C3",
+          "sha256": "e09bca8604496e9a39db26c6faf178a94240ae3f41bd4db39afc78647382f412"
+        }
+      ]
+    },
+    {
+      "id": "POL-055",
+      "title": "星序商城售后申请资格说明",
+      "category": "退货",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-055-C1",
+          "sha256": "b391efb24a13535f1e4d3ac2a1a28099eaf27c5be758a769b9a45b0e60d0689f"
+        },
+        {
+          "id": "POL-055-C2",
+          "sha256": "8385bf58c567f8ca07d43eb94231ac6cc41f895840b5c15f444b978267e4afc3"
+        },
+        {
+          "id": "POL-055-C3",
+          "sha256": "af2e5898016f61c04a60aba62975887ed03ac89c1caca7ca4de1a2c10d9592ce"
+        }
+      ]
+    },
+    {
+      "id": "POL-056",
+      "title": "星序商城售后原因填写规范",
+      "category": "退货",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-056-C1",
+          "sha256": "c7810e588675736a635ba0757e8506cfa761b87b501197603b43629b4874eb23"
+        },
+        {
+          "id": "POL-056-C2",
+          "sha256": "3203229982e459a79af5ef59b147f8bd5e912cccb1f5c746bfcd63083118d20b"
+        },
+        {
+          "id": "POL-056-C3",
+          "sha256": "fec63d810c5e4a053f1be3b5d6f92d92e83cba77dd4e992080ef2bfed9d38cfd"
+        }
+      ]
+    },
+    {
+      "id": "POL-057",
+      "title": "星序商城售后预览金额变更规则",
+      "category": "退货",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-057-C1",
+          "sha256": "38dbcee1719cac1f0ae379abfa7bcb4d1532a15e2578ccc2a06acf949892d872"
+        },
+        {
+          "id": "POL-057-C2",
+          "sha256": "a034be17792cec5e74c264adaac33cbd4604ca328c5c27f9b6b59e784a92cd26"
+        },
+        {
+          "id": "POL-057-C3",
+          "sha256": "7b03bbff24e3a38b1020e1cc96fa8c97856f836a78ce3c603b34f73fef8ef0b8"
+        }
+      ]
+    },
+    {
+      "id": "POL-058",
+      "title": "星序商城售后预览取消指引",
+      "category": "退货",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-058-C1",
+          "sha256": "dbcace08d1ddaff63c783ff838b16aff45c348f55d4c4f4c796fe2c178cc04cb"
+        },
+        {
+          "id": "POL-058-C2",
+          "sha256": "7ab7910c81872e9494f3cf6e9cbfceea107fa7205bbd0d44bd344fba8a656ba2"
+        },
+        {
+          "id": "POL-058-C3",
+          "sha256": "efa6a75c2917458f48f4c9f59496cbf3a45a46c41fb32f4f7b0ebb562c899acd"
+        }
+      ]
+    },
+    {
+      "id": "POL-059",
+      "title": "星序商城售后确认信息使用规则",
+      "category": "退货",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-059-C1",
+          "sha256": "4702cde47699af63fc641290fd222ddec5fa76a95987de02ec35d2f03d2a2bda"
+        },
+        {
+          "id": "POL-059-C2",
+          "sha256": "9fe5f46c40780cadfa85786f9500eb66f96d30e17bda351f3b1baf6b7ef04c96"
+        },
+        {
+          "id": "POL-059-C3",
+          "sha256": "62906671863687e4762101403fe5dcf4ebf3654f6b46492735fb8cf6f630bafd"
+        }
+      ]
+    },
+    {
+      "id": "POL-060",
+      "title": "星序商城售后处理状态说明",
+      "category": "客服",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-060-C1",
+          "sha256": "28deadbd9e8a8dc05d02c1aa4ae7938fe09f02d71493c15a7bb2171620d33fdb"
+        },
+        {
+          "id": "POL-060-C2",
+          "sha256": "4b73e4d1c2f668ab6fc69914e4650fdc616c3214485ec571f2f93f55704f4b27"
+        },
+        {
+          "id": "POL-060-C3",
+          "sha256": "9be7f1b56c12890305f605543ffe49ad0bbe4a54f2cbfe6abe2c92233a3906ca"
+        }
+      ]
+    },
+    {
+      "id": "POL-061",
+      "title": "星序商城模拟退款完成后的订单说明",
+      "category": "退款",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-061-C1",
+          "sha256": "f73d5355b76f8b483190a3e3c70be061dd3be67fde51584df09d11a9e1ea0b80"
+        },
+        {
+          "id": "POL-061-C2",
+          "sha256": "3ef08681d5b029821839c0e39f4e80740ddcb7fcb7cf27d82541d5301ea7673b"
+        },
+        {
+          "id": "POL-061-C3",
+          "sha256": "93aefdd56d1c517ca91d9c4a345a5c53134777b19cd1ebb8fffe5cd872830557"
+        }
+      ]
+    },
+    {
+      "id": "POL-062",
+      "title": "星序商城退款金额异常处理规则",
+      "category": "退款",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-062-C1",
+          "sha256": "e54927ed9ab4b9c4412f7cf4821831ec2cb084eacf391adf465dda63140c3ba4"
+        },
+        {
+          "id": "POL-062-C2",
+          "sha256": "4b3b94faf82504bdaa92e3b8654c4f9f8e5f65933583e0789290214b47224ea3"
+        },
+        {
+          "id": "POL-062-C3",
+          "sha256": "4db278140469f8ecd76d31263789e76b0dbb6c65a78cc617098ee582c5b940ec"
+        }
+      ]
+    },
+    {
+      "id": "POL-063",
+      "title": "星序商城退款结果与参考编号说明",
+      "category": "退款",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-063-C1",
+          "sha256": "f50ea90af768d0f3dc00b4ed9a687ee6ef4aadd207bb5acf5bc58c6290997553"
+        },
+        {
+          "id": "POL-063-C2",
+          "sha256": "e600ae00e8fb7275919f5c1e603ac71db9af85583bfcb363e7df0ddc28374b73"
+        },
+        {
+          "id": "POL-063-C3",
+          "sha256": "ad12d6c95a5d2144851d482c038774aa17751289d1c74cac366072f9daa5a302"
+        }
+      ]
+    },
+    {
+      "id": "POL-064",
+      "title": "星序商城售后审核说明查阅指引",
+      "category": "客服",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-064-C1",
+          "sha256": "33873207af0495f4ad29c54bff364ce78267c4b46759ae74f2c9be37d2514c7c"
+        },
+        {
+          "id": "POL-064-C2",
+          "sha256": "2fb5203f2f8e311eca8c63b6e8dc4ace887ee23821e53cc446a6134c77e1be3b"
+        },
+        {
+          "id": "POL-064-C3",
+          "sha256": "9c1e010a0559fe323665172ce797bf676b15a5e201e57052dbfcf88dc15ef9ae"
+        }
+      ]
+    },
+    {
+      "id": "POL-065",
+      "title": "星序商城重复咨询与申请进度指引",
+      "category": "客服",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-065-C1",
+          "sha256": "7d8738f734583137c32dc376160d4ba5bcd14bd6c2d36cb65e59f50c5faa53ab"
+        },
+        {
+          "id": "POL-065-C2",
+          "sha256": "1cddbb7e2238d38b01a963accad54f48ec2d755db8a1f39f45d159812a9b1421"
+        },
+        {
+          "id": "POL-065-C3",
+          "sha256": "8b1a708986848c25145c430c286d74496a850d2ad97c82cb4c6f197083778be1"
+        }
+      ]
+    },
+    {
+      "id": "POL-066",
+      "title": "星序商城服务渠道与通知说明",
+      "category": "客服",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-066-C1",
+          "sha256": "9800de3ad990c1c74ae7690d53c48d60f30e69573575515155cbc22ae88e94dc"
+        },
+        {
+          "id": "POL-066-C2",
+          "sha256": "118a9a40b35ede585d7e2e2de65789fd6efc49a551b6f297813ecc44ebd6ae55"
+        },
+        {
+          "id": "POL-066-C3",
+          "sha256": "453f6c59a7d326a5d12261fdba3b83a5c2f0775bd96db93b3142c1bd1c42d053"
+        }
+      ]
+    },
+    {
+      "id": "POL-067",
+      "title": "星序商城寄回地址与退件安排说明",
+      "category": "物流",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-067-C1",
+          "sha256": "537d138f68f953894a6760701c76c9d8e5fd01cce56aa9200fd65c4cb7948ade"
+        },
+        {
+          "id": "POL-067-C2",
+          "sha256": "0f8912eb64efb360c891d7778a73e9421a34ea2e882f64c51019b989d9ca9353"
+        },
+        {
+          "id": "POL-067-C3",
+          "sha256": "69b40cf4cbb67cafbdffdda3ffc1870c45a449d259576bef92c1c24f1ab72dff"
+        }
+      ]
+    },
+    {
+      "id": "POL-068",
+      "title": "星序商城拆单发货与包裹查询说明",
+      "category": "物流",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-068-C1",
+          "sha256": "2e6642b3ac8aea6c89056585c09ee15bdb124910db7c3f6ff1baf233b8d17ab7"
+        },
+        {
+          "id": "POL-068-C2",
+          "sha256": "e1069244c2a421db9d64ded18cca3d4208d891dd0ca2a24a3267342fb837c93a"
+        },
+        {
+          "id": "POL-068-C3",
+          "sha256": "8b78240720ad91acfc6c10abbb3edcfbd6569945c69fa4dfac71358101f4540a"
+        }
+      ]
+    },
+    {
+      "id": "POL-069",
+      "title": "星序商城商品规格证据使用规范",
+      "category": "商品",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-069-C1",
+          "sha256": "4319ac61aa346efaa21a2e3f6bfc09b86c8c03e9d8862261282688be5ad0c834"
+        },
+        {
+          "id": "POL-069-C2",
+          "sha256": "844deb5aa89f38ca46f5f76172e2782ee5380f08abc8825f71018c985d0ee3bc"
+        },
+        {
+          "id": "POL-069-C3",
+          "sha256": "42328cd8c0a17f32db5e47345488c0627d26956995db55207e837b356d6b4e6e"
+        }
+      ]
+    },
+    {
+      "id": "POL-070",
+      "title": "星序商城套餐与赠品核实说明",
+      "category": "商品",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-070-C1",
+          "sha256": "856b23e806c4a0aa27f3547acaa6deae7cb96848eb6f6c724bc5498d6d342b09"
+        },
+        {
+          "id": "POL-070-C2",
+          "sha256": "ea3fc347735bd920ae3a7b8f1b2f44e2d8334108ce51e51169ad6ee587e89cfd"
+        },
+        {
+          "id": "POL-070-C3",
+          "sha256": "950624f78ef656c2aa1aa338b7b5be494fd3940d97194782d55be3a45db5d24c"
+        }
+      ]
+    },
+    {
+      "id": "POL-071",
+      "title": "星序商城价格差异与活动说明",
+      "category": "商品",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-071-C1",
+          "sha256": "2a6abd50adcd08b4cd653f3dc4d0cd0168f938c4a9bd189faa32932e77dc4688"
+        },
+        {
+          "id": "POL-071-C2",
+          "sha256": "82d1b0bcfbe04fbe2830b8009a5c9871a34a813cab31f76375ad6f0bc7d1237e"
+        },
+        {
+          "id": "POL-071-C3",
+          "sha256": "c4f67e9a256dbc7354860bda8b47e948ef8a2e9d8f98b376cec7a97053d4b85b"
+        }
+      ]
+    },
+    {
+      "id": "POL-072",
+      "title": "星序商城登录状态与业务办理说明",
+      "category": "账户",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-072-C1",
+          "sha256": "512976c252ff6e3b798ccc201b59e798f64a0fe4f8a8f525a8901d68df8171f8"
+        },
+        {
+          "id": "POL-072-C2",
+          "sha256": "b72d69c5bd8708012fa90e10979ce89e05a1cf4fc9287981fb63ad41de29f166"
+        },
+        {
+          "id": "POL-072-C3",
+          "sha256": "e4596d59ab0fe59ca7cba9e63a37e9169be75bc7836c3aa77d202a82b0e27c1a"
+        }
+      ]
+    },
+    {
+      "id": "POL-073",
+      "title": "星序商城个人模型连接使用说明",
+      "category": "账户",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-073-C1",
+          "sha256": "c84f6111a5706839a2392af243798d7bde853db818cf607682f6a3337e8f44bf"
+        },
+        {
+          "id": "POL-073-C2",
+          "sha256": "10fa17febbbbedd84ad82ac44098862809850b446748789242f805189b3d36b1"
+        },
+        {
+          "id": "POL-073-C3",
+          "sha256": "bb1a4f5304d7d161aad87458d2cf052a245cb97cfccf92742aa1b69393c5bcfc"
+        }
+      ]
+    },
+    {
+      "id": "POL-074",
+      "title": "星序商城模型选择与服务权限说明",
+      "category": "账户",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-074-C1",
+          "sha256": "d051c6fac64dd76424e863fc1738309df4c379e2564fde13016c7f96aa6e2d0f"
+        },
+        {
+          "id": "POL-074-C2",
+          "sha256": "d496cfe3d41df3af0fc5a451880c151a574e50b354ca0c2bc1f983250077ba6e"
+        },
+        {
+          "id": "POL-074-C3",
+          "sha256": "496d9116ba2794405b55f2c90ebff7649de5ed6c177f985715e8259978b3b546"
+        }
+      ]
+    },
+    {
+      "id": "POL-075",
+      "title": "星序商城密钥异常处置指引",
+      "category": "账户",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-075-C1",
+          "sha256": "9ba795c3e02f778b90d2843254a03d1ba4d5f65d6b2618f7377ffcf530f829c2"
+        },
+        {
+          "id": "POL-075-C2",
+          "sha256": "53df43567e69c680ec6be54754a3a99064aefc8b878fa015648432e1ebc0279c"
+        },
+        {
+          "id": "POL-075-C3",
+          "sha256": "012e1dfba67204780366a3be154012fbf619a9319bf106341836af09eae1cf4b"
+        }
+      ]
+    },
+    {
+      "id": "POL-076",
+      "title": "星序商城政策原文与历史回答说明",
+      "category": "知识",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-076-C1",
+          "sha256": "f6223b5b76abb9774075e0aeafd2960f827cdd52e7da023da5fc16c28b0856a9"
+        },
+        {
+          "id": "POL-076-C2",
+          "sha256": "1466106af40d39d567515229239c2cd1d4006055c10cb04ee576cf5e0184106b"
+        },
+        {
+          "id": "POL-076-C3",
+          "sha256": "4f7768c1245f2ff68155eeaccd2d1c68b3caa864c81c8b38a3f8ff130c7fcfdd"
+        }
+      ]
+    },
+    {
+      "id": "POL-077",
+      "title": "星序商城政策与个案结果适用说明",
+      "category": "知识",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-077-C1",
+          "sha256": "85b7db7af445a5d9e2ea0946e5a3340380bc17a3a99f03f7e549ddfccba24710"
+        },
+        {
+          "id": "POL-077-C2",
+          "sha256": "f67f661e420c25d7a80686f392da534a1a165ea3a578ef98d617c4b704a6e494"
+        },
+        {
+          "id": "POL-077-C3",
+          "sha256": "131268caec819d136728a9e2a96b3b88147069fd4eae08d0cb53c6b944d8077e"
+        }
+      ]
+    },
+    {
+      "id": "POL-078",
+      "title": "星序商城政策范围与未约定事项说明",
+      "category": "知识",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-078-C1",
+          "sha256": "eeab8901826a9a98c3c4a4bf7b908b28ad7c18e5d6d3d962891968f7d80a0abe"
+        },
+        {
+          "id": "POL-078-C2",
+          "sha256": "1ca1428a7a439575a97641a14ffc101f601045b31f6225253308193e03d6af60"
+        },
+        {
+          "id": "POL-078-C3",
+          "sha256": "b67e9f4bdd6c404b21c4dc0b80b32046d13be1ffab46b93102eb45ca17c127f3"
+        }
+      ]
+    },
+    {
+      "id": "POL-079",
+      "title": "星序商城商品资料与服务规则区分说明",
+      "category": "知识",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-079-C1",
+          "sha256": "59a20dd368b21a7a486cbf78c3436c564b9abe0356646d4ce8c6f24cb11d1023"
+        },
+        {
+          "id": "POL-079-C2",
+          "sha256": "447b580d4ab6e1526f0fd91bbe45bf767d4a099f76b2f8bb593dcae88df7bc24"
+        },
+        {
+          "id": "POL-079-C3",
+          "sha256": "178f3b98c47e586a37c73e880cbc80798f12dbd5171611711e1fb7ab1046ce10"
+        }
+      ]
+    },
+    {
+      "id": "POL-080",
+      "title": "星序商城服务异常反馈规范",
+      "category": "客服",
+      "visibility": "CUSTOMER",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/policies.tsv",
+      "clauses": [
+        {
+          "id": "POL-080-C1",
+          "sha256": "480f820c93eb481ff5f6431106bb698157b20358a974ef7795f03e5693a0ca2b"
+        },
+        {
+          "id": "POL-080-C2",
+          "sha256": "d398cac01fcfc65bcf23eea45a2c9a2338bd70682abd4ff853c28460d39511c2"
+        },
+        {
+          "id": "POL-080-C3",
+          "sha256": "312579486b328b10c36c8baccb966cca5cad92ffdd491a1913b05fea7eaf5f49"
+        }
+      ]
+    },
+    {
+      "id": "SOP-001",
+      "title": "星序客服工单领取规范",
+      "category": "客服作业",
+      "visibility": "STAFF",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/staff-policies.tsv",
+      "clauses": [
+        {
+          "id": "SOP-001-C1",
+          "sha256": "4e41c34896b65bc28d67f12d30b9084c0d0aaad8fdb95429bea5c70a13126f61"
+        },
+        {
+          "id": "SOP-001-C2",
+          "sha256": "764a22cf496552a9dd047cecad4c641823fb21a749b275749caa758863c3895b"
+        },
+        {
+          "id": "SOP-001-C3",
+          "sha256": "7b01dd037ef76f2aefde277ce04f568de0b7d5b8fdb91b5921e38779f73af3c0"
+        }
+      ]
+    },
+    {
+      "id": "SOP-002",
+      "title": "星序客服审核前核对清单",
+      "category": "客服作业",
+      "visibility": "STAFF",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/staff-policies.tsv",
+      "clauses": [
+        {
+          "id": "SOP-002-C1",
+          "sha256": "4ec7a840c8e509daa92d72c079481c25d89be316eee1939f46fea96d2a899eaf"
+        },
+        {
+          "id": "SOP-002-C2",
+          "sha256": "16e1ab55fc399ee2e14c93a98aa2297136298b4bb2feb1bbcecf30a7565df138"
+        },
+        {
+          "id": "SOP-002-C3",
+          "sha256": "354413da5c8138b5728c0a67a581ebc6b91d229380ab5a45d69e24f3ba3745b6"
+        }
+      ]
+    },
+    {
+      "id": "SOP-003",
+      "title": "星序客服审核结论记录规范",
+      "category": "客服作业",
+      "visibility": "STAFF",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/staff-policies.tsv",
+      "clauses": [
+        {
+          "id": "SOP-003-C1",
+          "sha256": "ab994b00d09b457de06bc68f4fd79973b72b353064d0968bc8422ca1dee39e8b"
+        },
+        {
+          "id": "SOP-003-C2",
+          "sha256": "b6ee5a53e255c57338995d790170ef83a66761958114a02f335cb55db038e1dc"
+        },
+        {
+          "id": "SOP-003-C3",
+          "sha256": "40a2b028c0a1086a988fb1476fc26e124316b74f9c02e3b66ba50ee40c91766a"
+        }
+      ]
+    },
+    {
+      "id": "SOP-004",
+      "title": "星序客服退款执行核实规范",
+      "category": "客服作业",
+      "visibility": "STAFF",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/staff-policies.tsv",
+      "clauses": [
+        {
+          "id": "SOP-004-C1",
+          "sha256": "8bbcf7bd372ddc433570f35fef3490f22e7debf7045d38ca56d620cfc522726b"
+        },
+        {
+          "id": "SOP-004-C2",
+          "sha256": "25b2dbab8626d3fa25f91d8f351273da580066cb55a2b5767ba00279934d8939"
+        },
+        {
+          "id": "SOP-004-C3",
+          "sha256": "97e7311fe2cf6b96feadf99a0611c4e23ea707c7941ef62ab9680759b22158f1"
+        }
+      ]
+    },
+    {
+      "id": "SOP-005",
+      "title": "星序客服重复请求处理规范",
+      "category": "客服作业",
+      "visibility": "STAFF",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/staff-policies.tsv",
+      "clauses": [
+        {
+          "id": "SOP-005-C1",
+          "sha256": "cd6e16e877b2e35c55d0ff4d1ba91a98eceaa83284533d93abafa45ecbd1bb11"
+        },
+        {
+          "id": "SOP-005-C2",
+          "sha256": "d24064db34515f231e14be569b2f530ae13724775b92e84d3b5ece822584f744"
+        },
+        {
+          "id": "SOP-005-C3",
+          "sha256": "cfa75f1c42fd6c0a248aa7db4bf1e5d723026c590548118d453004c422b2ce14"
+        }
+      ]
+    },
+    {
+      "id": "SOP-006",
+      "title": "星序客服事实不足处理规范",
+      "category": "客服作业",
+      "visibility": "STAFF",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/staff-policies.tsv",
+      "clauses": [
+        {
+          "id": "SOP-006-C1",
+          "sha256": "b45a3ee8125d140978373a0ea2fdb4ab69b85ac055ab7a67a15d7d659812bd31"
+        },
+        {
+          "id": "SOP-006-C2",
+          "sha256": "8fd50f73f72c932f020144d37a1fc93a912d66ea364d1580055026fed9ebe0ed"
+        },
+        {
+          "id": "SOP-006-C3",
+          "sha256": "a35103af3a69921d359f071cd8ed8aff1acec5734971d1caddba9037bff0cf10"
+        }
+      ]
+    },
+    {
+      "id": "SOP-007",
+      "title": "星序客服拒绝结果说明规范",
+      "category": "客服作业",
+      "visibility": "STAFF",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/staff-policies.tsv",
+      "clauses": [
+        {
+          "id": "SOP-007-C1",
+          "sha256": "b66b7284865cb418d0f7304f02abd300859bf79ec73e30375d0bd9d733ff5638"
+        },
+        {
+          "id": "SOP-007-C2",
+          "sha256": "527ca3a15ea307819552578189bca7ea4274dede9799929fd7122a22da1047b2"
+        },
+        {
+          "id": "SOP-007-C3",
+          "sha256": "48b72284283d859c7fbbdeca7d222e14a2ae15bfce1ff91bdd23f3bdaabdfa82"
+        }
+      ]
+    },
+    {
+      "id": "SOP-008",
+      "title": "星序客服数据最小化规范",
+      "category": "客服作业",
+      "visibility": "STAFF",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/staff-policies.tsv",
+      "clauses": [
+        {
+          "id": "SOP-008-C1",
+          "sha256": "ac2f2990c83e4f3a584b2fac448947d9d6a6f3e5df471b3c5878b511350d1282"
+        },
+        {
+          "id": "SOP-008-C2",
+          "sha256": "94f429fd7cc522c57a1d35fb54021da836a8130b7674d5dd263bf8f30b551454"
+        },
+        {
+          "id": "SOP-008-C3",
+          "sha256": "36049e6dd03d8f40d205cba08f6a66f4af0f2381cb5ee758141cdb8ebaf461be"
+        }
+      ]
+    },
+    {
+      "id": "SOP-009",
+      "title": "星序政策编写与能力核对规范",
+      "category": "政策管理",
+      "visibility": "STAFF",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/staff-policies.tsv",
+      "clauses": [
+        {
+          "id": "SOP-009-C1",
+          "sha256": "ed8cfa034a8945206d4a366c3e9a6bec5f12c492a4754fde57de75163df1a8d5"
+        },
+        {
+          "id": "SOP-009-C2",
+          "sha256": "e591ca8892904bf67933850c0ae05f0b87bb856d2bda45a4b7d94daf4446e929"
+        },
+        {
+          "id": "SOP-009-C3",
+          "sha256": "2d4eac1c4f9c001bd12b1dcbfeb025afd0ad75162c197e981f7ac5c268e91d58"
+        }
+      ]
+    },
+    {
+      "id": "SOP-010",
+      "title": "星序政策发布前检查规范",
+      "category": "政策管理",
+      "visibility": "STAFF",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/staff-policies.tsv",
+      "clauses": [
+        {
+          "id": "SOP-010-C1",
+          "sha256": "660797e91e803fcd1dc82ceca6702e3c07a7a77f38ebbe02055cf080b78b2740"
+        },
+        {
+          "id": "SOP-010-C2",
+          "sha256": "ae7b43c01d0b5bbee40f48349d40cc96084a411f3a7f872821d64b3af7ae5c25"
+        },
+        {
+          "id": "SOP-010-C3",
+          "sha256": "7135b38b49695aeaabb5b6d7aa858625021eed4a38e49c48815cf107bbd97293"
+        }
+      ]
+    },
+    {
+      "id": "SOP-011",
+      "title": "星序政策修订与替代规范",
+      "category": "政策管理",
+      "visibility": "STAFF",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/staff-policies.tsv",
+      "clauses": [
+        {
+          "id": "SOP-011-C1",
+          "sha256": "46bb9c0e2c9a041cb5c526ff31ac1507aef2181ef06823fd2777894281d7f8ce"
+        },
+        {
+          "id": "SOP-011-C2",
+          "sha256": "09d126ca5e1f33927b2575132c5f352d393433f1834ff7776351bc7a7c992be4"
+        },
+        {
+          "id": "SOP-011-C3",
+          "sha256": "cf461fb723336aa9e026956e6a26a94c62510e8e67e76e37745834e28abca96c"
+        }
+      ]
+    },
+    {
+      "id": "SOP-012",
+      "title": "星序政策撤回与引用检查规范",
+      "category": "政策管理",
+      "visibility": "STAFF",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/staff-policies.tsv",
+      "clauses": [
+        {
+          "id": "SOP-012-C1",
+          "sha256": "ed2989174e4b64d77df1fb3550c0d4445b476a6fd309a6ecc878b52a56c16ff7"
+        },
+        {
+          "id": "SOP-012-C2",
+          "sha256": "7f349ad8a909ebb8a4c5456024695da1c7c14f44aa4c3ce99774849a37d258f0"
+        },
+        {
+          "id": "SOP-012-C3",
+          "sha256": "83a5c42156e75a49270129066b902dfa8ccb8d1877692d2325aa015ed645c4e9"
+        }
+      ]
+    },
+    {
+      "id": "SOP-013",
+      "title": "星序知识条款标注规范",
+      "category": "知识维护",
+      "visibility": "STAFF",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/staff-policies.tsv",
+      "clauses": [
+        {
+          "id": "SOP-013-C1",
+          "sha256": "0ad5f2e51d0d0224f4249cefb7366898c0c9ce8783463eb3f7acb2e999b6850f"
+        },
+        {
+          "id": "SOP-013-C2",
+          "sha256": "7df3adf864e0255591f004dbb05513f45ab6d4aa8ec180aa0f52c46a687b2f47"
+        },
+        {
+          "id": "SOP-013-C3",
+          "sha256": "09f16a5346d0698d19331b98a2f4bd1a4ba4461b79ba7ff7a641fb17909b0ac7"
+        }
+      ]
+    },
+    {
+      "id": "SOP-014",
+      "title": "星序知识评测结果使用规范",
+      "category": "知识维护",
+      "visibility": "STAFF",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/staff-policies.tsv",
+      "clauses": [
+        {
+          "id": "SOP-014-C1",
+          "sha256": "ad5b62f7e1d934cb09d5dfe1081a1c3b9c86f357999680bb046bbcecbcc4cbf8"
+        },
+        {
+          "id": "SOP-014-C2",
+          "sha256": "6a6129e31f194c1f1f6ab347440fae70cee783769268d55c563dfcf71680a3dc"
+        },
+        {
+          "id": "SOP-014-C3",
+          "sha256": "3f426e1cdaa6b69bf0a8bf5ab99e8f6bab637e9121b117a67188fbd46d73625e"
+        }
+      ]
+    },
+    {
+      "id": "SOP-015",
+      "title": "星序知识无答案与越权验收规范",
+      "category": "知识维护",
+      "visibility": "STAFF",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/staff-policies.tsv",
+      "clauses": [
+        {
+          "id": "SOP-015-C1",
+          "sha256": "27dd1f637cdd56fbbbf8f88569f22a363270fa12dfccbefce35b956db2c4e0b9"
+        },
+        {
+          "id": "SOP-015-C2",
+          "sha256": "8a937f2f61eb8bd3f3c25020517879f8539a762189fc139103d40ca48acb93fb"
+        },
+        {
+          "id": "SOP-015-C3",
+          "sha256": "86b09046623f0f62d29af1cd8088ea714a7d49461650064864f376fef8c8453c"
+        }
+      ]
+    },
+    {
+      "id": "SOP-016",
+      "title": "星序测试政策隔离规范",
+      "category": "知识维护",
+      "visibility": "STAFF",
+      "content_version": 2,
+      "publication_status": "DRAFT",
+      "review_status": "AI_AUTHORED_REQUIRES_HUMAN_REVIEW",
+      "effective_from": null,
+      "source": "knowledge/authoring/staff-policies.tsv",
+      "clauses": [
+        {
+          "id": "SOP-016-C1",
+          "sha256": "32287075302263807b25bba43d87bc6427b4cebfee4aa1ca98e6f4c3e55620c1"
+        },
+        {
+          "id": "SOP-016-C2",
+          "sha256": "422489554814e9db49fc5da10b20bf87b19773df1a475b19b9fa3fbfea347559"
+        },
+        {
+          "id": "SOP-016-C3",
+          "sha256": "72c5d47a87de070cf0f7dfe6d2f1d041093dd4aff61457ead1f26a41ea4334dc"
+        }
+      ]
+    }
+  ]
+}
