@@ -67,7 +67,8 @@ public class UmsMemberController {
             return CommonResult.unauthorized(null);
         }
         UmsMember member = memberService.getCurrentMember();
-        return CommonResult.success(member);
+        // Modified by Aster: account UI needs public identity only, never password hashes.
+        return CommonResult.success(java.util.Map.of("id", member.getId(), "username", member.getUsername(), "nickName", member.getNickname() == null ? "" : member.getNickname()));
     }
 
     @Operation(summary = "获取验证码")

@@ -1,0 +1,458 @@
+.auth-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #fff;
+}
+.auth-story {
+  padding: 45px 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background:
+    radial-gradient(ellipse at 65% 40%, #e5ddff 0, transparent 60%), #f4f3fa;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+.auth-story > .brand {
+  position: relative;
+  z-index: 2;
+}
+.auth-story h2 {
+  font-size: 44px;
+  line-height: 1.4;
+  letter-spacing: -1.5px;
+  margin: 18px 0;
+}
+.auth-story p {
+  color: #86829a;
+  line-height: 1.9;
+  font-size: 14px;
+}
+.auth-story > small {
+  margin-top: 30px;
+  color: #a29aad;
+  font-size: 10px;
+}
+.auth-art {
+  height: 260px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  color: #8b78cd;
+}
+.auth-ring {
+  position: absolute;
+  border: 1px solid #fff9;
+  border-radius: 50%;
+  width: 220px;
+  height: 220px;
+  transform: rotate(-25deg);
+  box-shadow:
+    inset 0 0 65px #ffffff44,
+    0 12px 50px #8777b517;
+}
+.ring-two {
+  width: 280px;
+  height: 150px;
+  transform: rotate(35deg);
+}
+.auth-chip {
+  position: absolute;
+  padding: 12px 18px;
+  background: #ffffffa8;
+  border: 1px solid white;
+  border-radius: 14px;
+  font-size: 12px;
+  color: #766792;
+  box-shadow: 0 8px 30px #7766950a;
+}
+.chip-one {
+  top: 50px;
+  left: 4%;
+}
+.chip-two {
+  bottom: 30px;
+  right: 0;
+}
+.auth-panel {
+  padding: 55px 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.auth-role {
+  align-self: flex-start;
+  background: #f3f0fb;
+  border-radius: 20px;
+  color: #7862b8;
+  font-size: 12px;
+  padding: 7px 14px;
+  margin-bottom: 35px;
+}
+.auth-card h1 {
+  font-size: 29px;
+  margin: 14px 0;
+}
+.auth-card > .muted {
+  margin-bottom: 28px;
+  line-height: 1.8;
+  font-size: 13px;
+}
+.auth-card .form-stack {
+  gap: 20px;
+}
+.auth-card input {
+  padding: 13px;
+}
+.auth-role-links {
+  display: flex;
+  gap: 22px;
+  justify-content: center;
+  border-top: 1px solid #efedf4;
+  margin-top: 32px;
+  padding-top: 25px;
+  font-size: 12px;
+  color: #81798f;
+}
+.auth-foot {
+  text-align: center;
+  color: #b2aabb;
+  font-size: 9px;
+  margin-top: 35px;
+}
+.auth-loading {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  min-height: 100vh;
+  color: #92859f;
+}
+.account-anchor {
+  position: relative;
+  margin-top: 18px;
+}
+.account-trigger {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  background: #f8f7fb;
+  border: 1px solid #eeebf4;
+  border-radius: 12px;
+  width: 100%;
+  padding: 11px;
+  text-align: left;
+  cursor: pointer;
+  color: #504666;
+}
+.account-avatar {
+  width: 33px;
+  height: 33px;
+  flex-shrink: 0;
+  border-radius: 11px;
+  background: #e8e2f8;
+  color: #7960b4;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+.account-trigger > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+.account-trigger strong {
+  font-size: 12px;
+  font-weight: 600;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.account-trigger small {
+  display: block;
+  color: #a49aaf;
+  font-size: 10px;
+  margin-top: 4px;
+}
+.account-dismiss {
+  position: fixed;
+  inset: 0;
+  z-index: 39;
+  border: 0;
+  background: transparent;
+  cursor: default;
+}
+.account-dropdown {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  padding: 8px;
+  background: white;
+  border: 1px solid #e8e3ef;
+  border-radius: 13px;
+  box-shadow: 0 8px 35px #34224416;
+  z-index: 40;
+}
+.account-dropdown > small {
+  display: block;
+  padding: 8px 10px;
+  color: #a79caf;
+  font-size: 10px;
+}
+.account-dropdown > a,
+.account-dropdown > button {
+  border: 0;
+  background: transparent;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 10px;
+  font: inherit;
+  font-size: 12px;
+  color: #766a87;
+  cursor: pointer;
+  border-radius: 7px;
+  text-decoration: none;
+}
+.account-dropdown > a:hover,
+.account-dropdown > button:hover {
+  background: #f4f0fa;
+}
+.settings-page > h1 {
+  font-size: 29px;
+}
+.settings-layout {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 720px);
+  gap: 30px;
+  margin-top: 36px;
+}
+.settings-tabs {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+.settings-tabs button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  padding: 13px;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  color: #8a8198;
+  cursor: pointer;
+}
+.settings-tabs button.active {
+  background: #eee9f9;
+  color: #7457ab;
+}
+.settings-card {
+  background: #fff;
+  border: 1px solid #e9e5f0;
+  border-radius: 18px;
+  padding: 30px;
+  min-width: 0;
+}
+.settings-card h2 {
+  font-size: 22px;
+  margin: 10px 0;
+}
+.settings-card > .muted {
+  font-size: 13px;
+  line-height: 1.8;
+}
+.settings-card-title {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+.settings-card-title h2 {
+  font-size: 20px;
+  margin: 0;
+}
+.settings-card-title p {
+  font-size: 12px;
+  color: #aa9eb4;
+}
+.account-avatar.large {
+  height: 58px;
+  width: 58px;
+  font-size: 24px;
+  border-radius: 18px;
+}
+.settings-card select {
+  padding: 12px;
+  border: 1px solid #ddd9e8;
+  border-radius: 8px;
+  background: white;
+  font: inherit;
+  color: #72667f;
+  width: 100%;
+}
+.preference-toggle {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.preference-toggle small {
+  display: block;
+  color: #a59bad;
+  font-size: 11px;
+  margin-top: 7px;
+}
+.preference-toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: #7660bd;
+}
+.settings-account-actions {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+  border-top: 1px solid #f0edf5;
+  padding-top: 24px;
+}
+.provider-choices {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 25px 0;
+}
+.provider-choices button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #e7e2ef;
+  background: white;
+  padding: 10px 14px;
+  border-radius: 9px;
+  color: #8c809b;
+  cursor: pointer;
+}
+.provider-choices button.active {
+  background: #f2edfb;
+  border-color: #cbbbe5;
+  color: #735aa9;
+}
+.settings-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.settings-note {
+  display: flex;
+  gap: 10px;
+  background: #f9f7fc;
+  border-radius: 10px;
+  padding: 15px;
+  color: #a397b0;
+  font-size: 11px;
+  margin-top: 25px;
+  align-items: center;
+}
+.settings-note svg {
+  flex-shrink: 0;
+}
+.settings-note p {
+  margin: 0;
+  line-height: 1.8;
+}
+.saved-key {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #6a9479;
+  font-size: 11px;
+}
+.remove-config {
+  border-top: 1px solid #f0edf5;
+  padding-top: 20px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 12px;
+  color: #9f7e8a;
+}
+.settings-success {
+  background: #eff8f1;
+  color: #598066;
+  padding: 12px 15px;
+  font-size: 13px;
+  line-height: 1.7;
+  border-radius: 9px;
+}
+.compact-mode .agent-messages {
+  padding: 12px;
+}
+.compact-mode .agent-answer {
+  margin-bottom: 16px;
+}
+.compact-mode .sidebar nav a {
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+@media (max-width: 1000px) {
+  .auth-panel {
+    padding: 40px 8%;
+  }
+  .auth-story {
+    padding: 35px 8%;
+  }
+  .auth-story h2 {
+    font-size: 34px;
+  }
+  .settings-layout {
+    grid-template-columns: 130px minmax(0, 1fr);
+    gap: 18px;
+  }
+}
+@media (max-width: 760px) {
+  .auth-page {
+    grid-template-columns: 1fr;
+  }
+  .auth-story {
+    min-height: 0;
+    padding: 26px;
+  }
+  .auth-story > div:not(.brand),
+  .auth-story > small {
+    display: none;
+  }
+  .auth-panel {
+    padding: 26px 28px 40px;
+  }
+  .auth-role {
+    margin-bottom: 20px;
+  }
+  .auth-card h1 {
+    font-size: 27px;
+  }
+  .settings-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .settings-tabs {
+    display: flex;
+  }
+  .settings-card {
+    padding: 22px 18px;
+  }
+  .settings-page > h1 {
+    font-size: 25px;
+  }
+  .account-dropdown {
+    bottom: calc(100% + 8px);
+  }
+}

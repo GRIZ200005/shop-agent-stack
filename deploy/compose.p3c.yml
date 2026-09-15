@@ -1,0 +1,34 @@
+services:
+  portal:
+    volumes:
+      - ../.local/policy-index.key:/run/secrets/index_key:ro
+  retrieval-worker:
+    image: aster-retrieval:eval
+    working_dir: /workspace
+    command: ["python", "services/retrieval/online.py"]
+    environment:
+      HF_HOME: /models
+      TOKENIZERS_PARALLELISM: "false"
+      OMP_NUM_THREADS: "4"
+    volumes:
+      - ../services/agent:/workspace/services/agent:ro
+      - ../services/retrieval:/workspace/services/retrieval:ro
+      - ../evaluation/retrieval-matrix.json:/workspace/evaluation/retrieval-matrix.json:ro
+      - ../.local/policy-index.key:/run/secrets/index_key:ro
+      - retrieval_models:/models:ro
+    networks: [default, retrieval]
+    depends_on:
+      portal: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8020/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+networks:
+  retrieval:
+    external: true
+    name: aster-retrieval_default
+volumes:
+  retrieval_models:
+    external: true
+    name: aster-retrieval_models

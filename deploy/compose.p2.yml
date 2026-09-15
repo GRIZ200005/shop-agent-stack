@@ -1,0 +1,48 @@
+services:
+  commerce-mcp:
+    image: aster-agent:p2
+    build: ../services/agent
+    command: ["uvicorn","aster_agent.mcp_server:app","--host","0.0.0.0","--port","8011","--no-access-log"]
+    environment:
+      ASTER_PORTAL_URL: http://portal:8085
+      ASTER_RETRIEVAL_MODE: ${ASTER_RETRIEVAL_MODE:-hybrid}
+    volumes:
+      - ../.local/policy-index.key:/run/secrets/index_key:ro
+    depends_on:
+      portal: {condition: service_healthy}
+  agent:
+    image: aster-agent:p2
+    build: ../services/agent
+    environment:
+      ASTER_PORTAL_URL: http://portal:8085
+      ASTER_MCP_URL: http://commerce-mcp:8011/mcp
+      ASTER_ENABLE_TEST_PROVIDER: "false"
+      ASTER_DEEPSEEK_API_KEY: ${ASTER_DEEPSEEK_API_KEY:-}
+      ASTER_DEEPSEEK_MODEL: ${ASTER_DEEPSEEK_MODEL:-}
+      ASTER_DEEPSEEK_BASE_URL: ${ASTER_DEEPSEEK_BASE_URL:-}
+      ASTER_OPENAI_API_KEY: ${ASTER_OPENAI_API_KEY:-}
+      ASTER_OPENAI_MODEL: ${ASTER_OPENAI_MODEL:-}
+      ASTER_OPENAI_BASE_URL: ${ASTER_OPENAI_BASE_URL:-}
+      ASTER_KIMI_API_KEY: ${ASTER_KIMI_API_KEY:-}
+      ASTER_KIMI_MODEL: ${ASTER_KIMI_MODEL:-}
+      ASTER_KIMI_BASE_URL: ${ASTER_KIMI_BASE_URL:-}
+      ASTER_CUSTOM_API_KEY: ${ASTER_CUSTOM_API_KEY:-}
+      ASTER_CUSTOM_MODEL: ${ASTER_CUSTOM_MODEL:-}
+      ASTER_CUSTOM_BASE_URL: ${ASTER_CUSTOM_BASE_URL:-}
+    volumes:
+      - agent_data:/data
+      - ../.local/agent-encryption.key:/run/secrets/agent_key:ro
+    depends_on:
+      commerce-mcp: {condition: service_started}
+    healthcheck:
+      test: ["CMD","python","-c","import urllib.request; urllib.request.urlopen('http://127.0.0.1:8010/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  web:
+    volumes:
+      - ./nginx/aster-p2.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      agent: {condition: service_healthy}
+volumes:
+  agent_data:

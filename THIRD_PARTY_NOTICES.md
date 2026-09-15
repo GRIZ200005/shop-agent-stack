@@ -32,3 +32,57 @@ The upstream provides the existing commerce functionality. AI workflows, three-r
 - Original migration `003-p1.sql`, Nginx config and scripts. Local logging disables upstream payload/invalid-token loggers to avoid retaining credentials in new request logs.
 
 Frontend runtime dependencies include React, React DOM, Scheduler (MIT) and Lucide (ISC and included notices). Their supplied license texts are copied to `apps/web/public/licenses` and distributed at `/licenses/*.txt` with the frontend. Exact dependency versions are in `apps/web/package-lock.json`. Build/test dependencies retain their own licenses. No root license for all new work is selected by this attribution document.
+
+## P2 additions and modifications
+
+- Original `AgentOperationService`, `AgentOperationTest` and portal `AsterAgentController`: short execution grants, persisted previews, owner-bound confirmation, row locks, expiry and atomic operation consumption. Original module test dependency added. Modified upstream `SecurityConfig` allows internal Aster handlers to authenticate their execution header; all business handlers still validate the grant and ownership.
+- Original `services/agent`: FastAPI sessions and SSE, LangGraph orchestration, multi-provider Chat Completions adapter, official MCP SDK transport, isolated SQLite event store and tests. No private source, prompts or metadata imported.
+- Original React assistant workspace, P2 SQL migration, Compose/proxy configuration and run/verification scripts.
+- Python dependencies are installed from the pinned `services/agent/requirements.lock`, not copied from a reference application. FastAPI, LangGraph, MCP Python SDK and HTTPX retain their MIT notices inside installed distributions; all transitive/build/test dependencies retain their own licenses. The MCP dependency is explicitly on the v1 maintenance line (`mcp==1.30.0`), not a claim of using the v2 API. Container redistribution must retain installed package notices.
+
+## P2.1 additions and modifications
+
+- Original React login page, account menu, preferences/model settings and their styling/tests; no imported product assets.
+- Original encrypted personal model preferences and public-only pinned outbound HTTP transport. Uses the existing locked cryptography package under its supplied Apache-2.0/BSD notices.
+- Modified upstream `UmsMemberController.info` to return only public account identity fields, preserving author notices.
+- Startup creates an ignored separate deployment encryption key; no credentials or generated key files are distributed with the source.
+
+## Assistant streaming and Markdown rendering
+
+- Original viewport chat layout, observable tool progress, incremental provider SSE adapter and regression tests.
+- React Markdown and remark-gfm render responses without raw HTML. Their supplied licenses, along with all installed production transitive dependencies, are collected during the frontend build into `apps/web/public/licenses/runtime-dependencies.txt` and distributed at `/licenses/runtime-dependencies.txt`. Exact versions remain in the npm lockfile.
+
+## P3a policy knowledge
+
+- Original `PolicyService`, policy migration 005, MCP policy retrieval, source validation, administrator revision/withdrawal and customer citation UI. Original Aster controllers now delegate policy operations to the dedicated service; the original AfterSaleService no longer contains the old publication path.
+- Original synthetic authoring drafts, lexical baseline, development labels and verification scripts. LangChain Core Document uses the existing pinned dependency; no private source data, embeddings, models or reference code were imported.
+
+## P3b retrieval experiments
+
+- Milvus (Apache-2.0), etcd (Apache-2.0), and MinIO (AGPL-3.0) run as separate upstream containers; this repository contains original local deployment configuration, not redistributed modified server binaries. Preserve upstream notices when distributing images.
+- BAAI/bge-small-zh-v1.5 and BAAI/bge-reranker-base are downloaded from their public Hugging Face model repositories, whose model cards identify the MIT license. Model cards and pinned revisions remain in the local cache and experiment manifests; model weights are not committed or bundled into this repository. Review and include the supplied license before redistributing weights.
+- PyTorch, Sentence Transformers, Transformers and PyMilvus are installed in an isolated evaluation image. Exact resolved package versions are recorded per run. The RRF implementation, evaluation orchestration, synthetic questions and reports are original Aster work; no private prompts or company metadata are used.
+
+## P3c online policy retrieval
+
+- Original Aster transactional index outbox, authenticated index endpoints, single-worker generation builds, snapshot digests, MCP hybrid selection/fallback and UI retrieval status. Reuses the pinned public P3b models and dependencies; no additional private source or model data imported. Formal and experimental Milvus collections have separate ownership prefixes.
+
+## P3d policy evidence gate
+
+- Original assessment prompt, bounded LangGraph subgraph, fixed clarification messages, runtime budget integration and deterministic branch tests. Reuses existing pinned LangGraph and provider integrations; no private reference prompts or company materials imported.
+
+## P3e session task context
+
+- Original bounded context builder, user-quote task memory tool, owner-scoped SQLite snapshots, runtime integration and synthetic multi-turn tests. Uses existing dependencies; no private reference code, prompts or datasets imported.
+
+## P3f Agent evaluation
+
+- Original synthetic multi-turn development scenarios, isolated tool adapter, history/task ablation, contract scorer and experiment reporting. Uses existing dependencies; no external benchmark or private customer data imported.
+
+## P4a asynchronous simulated refunds
+
+- Original refund outbox schema, dispatcher/consumer, local simulator ledger, state transitions, UI polling and recovery tests. Uses Spring AMQP under the existing Spring Boot dependency management; H2 is added only for tests. This is not an external payment SDK or proprietary channel integration.
+
+## P4b refund diagnostics
+
+- Original read-only reconciliation rules, staff monitoring UI, controlled consumer error persistence and tests. Reuses current dependencies and synthetic fixtures; no external payment records imported.

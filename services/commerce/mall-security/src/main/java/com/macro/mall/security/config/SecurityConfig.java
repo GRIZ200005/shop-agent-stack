@@ -45,6 +45,8 @@ public class SecurityConfig {
                 registry.requestMatchers(url).permitAll();
             }
             //允许跨域请求的OPTIONS请求
+            // Internal Agent routes validate a short-lived execution grant in every handler.
+            registry.requestMatchers("/aster/internal/agent/**").permitAll();
             registry.requestMatchers("/aster/**").authenticated();
             registry.requestMatchers(HttpMethod.OPTIONS).permitAll();
             //任何请求需要身份认证

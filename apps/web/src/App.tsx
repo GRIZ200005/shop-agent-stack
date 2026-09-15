@@ -1,6 +1,5 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState } from "react";
 import {
-  ArrowUpRight,
   ShoppingBag,
   Grid2X2,
   ReceiptText,
@@ -12,25 +11,186 @@ import {
   ShieldCheck,
   Headphones,
   Sparkles,
+  Settings,
+  ChevronsUpDown,
+  ArrowRightLeft,
 } from "lucide-react";
-import { api, clearToken, saveToken, token, type Side } from "./api";
-import { Modal } from "./ui";
+import { api, token, type Side } from "./api";
 import { Customer } from "./Customer";
 import { StaffWorkspace } from "./StaffWorkspace";
+import { AgentWorkspace } from "./AgentWorkspace";
+import { Login } from "./Login";
+import { AccountSettings, accountApi } from "./AccountSettings";
+import "./account.css";
 
+function safeNext(value: string | null) {
+  try {
+    if (value && !value.includes("\\")) {
+      const target = new URL(value, location.origin);
+      if (
+        target.origin === location.origin &&
+        /^\/(app|service|admin)(\/|$)/.test(target.pathname)
+      )
+        return target.pathname + target.search;
+    }
+  } catch {
+    /* Invalid return targets go to the default workspace. */
+  }
+  return "/app/assistant";
+}
+function leave(next: string) {
+  Object.keys(sessionStorage)
+    .filter((k) => k.startsWith("aster_"))
+    .forEach((k) => sessionStorage.removeItem(k));
+  location.replace("/login?next=" + encodeURIComponent(next));
+}
 export function App() {
-  const path = location.pathname;
+  const path = location.pathname,
+    loginPage = path === "/login";
+  const destination = loginPage
+    ? safeNext(new URLSearchParams(location.search).get("next"))
+    : path === "/"
+      ? "/app/assistant"
+      : path;
   const side: Side =
-    path.startsWith("/service") || path.startsWith("/admin")
+    destination.startsWith("/service") || destination.startsWith("/admin")
       ? "admin"
       : "portal";
-  const [signed, setSigned] = useState(!!token(side));
-  const [login, setLogin] = useState(false);
-  const [menu, setMenu] = useState(false);
-  const isAdmin = path.startsWith("/admin");
+  const [ready, setReady] = useState(false),
+    [failure, setFailure] = useState("");
+  const [menu, setMenu] = useState(false),
+    [accountMenu, setAccountMenu] = useState(false);
+  const [name, setName] = useState(
+    sessionStorage.getItem(`aster_name_${side}`) || "星序用户",
+  );
+  const [compact, setCompact] = useState(false);
+  const isAdmin = destination.startsWith("/admin");
+  useEffect(() => {
+    if (loginPage) return;
+    if (!token(side)) {
+      leave(destination + location.search);
+      return;
+    }
+    let cancelled = false;
+    api<Record<string, unknown>>(
+      side,
+      side === "portal" ? "/sso/info" : "/admin/info",
+    )
+      .then((info) => {
+        if (cancelled) return;
+        setName(String(info.username || info.nickName || "星序用户"));
+        sessionStorage.setItem(
+          `aster_name_${side}`,
+          String(info.username || "星序用户"),
+        );
+        setReady(true);
+        if (side === "portal")
+          accountApi<{ nickname: string; compact: boolean }>("/settings")
+            .then((p) => {
+              if (!cancelled) {
+                if (p.nickname) setName(p.nickname);
+                setCompact(p.compact);
+              }
+            })
+            .catch(() => {});
+      })
+      .catch((e) => {
+        if (e.code === 401 || e.code === 403) leave(destination);
+        else setFailure("暂时无法验证登录状态，请检查服务后重试。");
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [side, destination, loginPage]);
+  useEffect(() => {
+    function expired() {
+      if (!loginPage) leave(destination + location.search);
+    }
+    window.addEventListener("aster-session-expired", expired);
+    return () => window.removeEventListener("aster-session-expired", expired);
+  }, [destination, loginPage]);
+  useEffect(() => {
+    const close = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setAccountMenu(false);
+        setMenu(false);
+      }
+    };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, []);
+  if (loginPage)
+    return (
+      <div className="auth-page">
+        <div className="auth-story">
+          <a className="brand" href="/login">
+            <span className="brand-mark">✳</span>
+            <div>
+              ASTER<span>COMMERCE · 星序</span>
+            </div>
+          </a>
+          <div className="auth-art">
+            <div className="auth-ring ring-one" />
+            <div className="auth-ring ring-two" />
+            <Sparkles size={58} />
+            <span className="auth-chip chip-one">更自然的对话</span>
+            <span className="auth-chip chip-two">更有序的服务</span>
+          </div>
+          <div>
+            <div className="eyebrow">LESS FRICTION. MORE POSSIBILITY.</div>
+            <h2>
+              日常所需，
+              <br />
+              尽在你的星序。
+            </h2>
+            <p>
+              从一件好物，到一次安心的回应。
+              <br />
+              登录，让每一次连接更简单。
+            </p>
+          </div>
+          <small>独立学习项目 · 合成商品与模拟交易</small>
+        </div>
+        <div className="auth-panel">
+          <div className="auth-role">
+            {side === "portal"
+              ? "客户空间"
+              : isAdmin
+                ? "管理员空间"
+                : "客服空间"}
+          </div>
+          <Login
+            side={side}
+            onClose={() => {}}
+            onSuccess={() => location.replace(destination)}
+          />
+          <div className="auth-role-links">
+            <a href="/login?next=/app/assistant">客户登录</a>
+            <a href="/login?next=/service">客服登录</a>
+            <a href="/login?next=/admin">管理员登录</a>
+          </div>
+          <small className="auth-foot">
+            ASTER COMMERCE · 让选购简单，让服务有序
+          </small>
+        </div>
+      </div>
+    );
+  if (!ready)
+    return (
+      <div className="auth-loading" role="status">
+        <Sparkles />
+        <p>{failure || "正在验证登录状态…"}</p>
+        {failure && (
+          <button className="button" onClick={() => location.reload()}>
+            重新连接
+          </button>
+        )}
+      </div>
+    );
   const links =
     side === "portal"
       ? ([
+          [Sparkles, "星序助手", "/app/assistant"],
           [Grid2X2, "发现好物", "/app"],
           [ShoppingBag, "购物袋", "/app/cart"],
           [ReceiptText, "我的订单", "/app/orders"],
@@ -42,9 +202,11 @@ export function App() {
           [ShieldCheck, "管理中心", "/admin"],
         ] as const);
   return (
-    <div className="shell">
+    <div
+      className={`shell ${compact ? "compact-mode" : ""} ${side === "portal" && (path === "/" || path === "/app/assistant") ? "assistant-shell" : ""}`}
+    >
       <aside className={`sidebar ${menu ? "open" : ""}`}>
-        <a className="brand" href="/app">
+        <a className="brand" href="/app/assistant">
           <span className="brand-mark">✳</span>
           <div>
             ASTER<span>COMMERCE · 星序</span>
@@ -58,17 +220,13 @@ export function App() {
           <X />
         </button>
         <div className="workspace-label">
-          {side === "portal" ? "YOUR EVERYDAY, REFINED" : "WORKSPACE"}
+          {side === "portal" ? "YOUR PERSONAL SPACE" : "WORKSPACE"}
         </div>
         <nav>
           {links.map(([Icon, label, href]) => (
             <a
               key={href}
-              className={
-                path === href || (path === "/" && href === "/app")
-                  ? "active"
-                  : ""
-              }
+              className={destination === href ? "active" : ""}
               href={href}
             >
               <Icon size={19} />
@@ -76,27 +234,69 @@ export function App() {
             </a>
           ))}
         </nav>
-        {side === "portal" && (
-          <div className="coming">
-            <Sparkles size={20} />
-            <strong>下一站，更懂你的星序</strong>
-            <p>
-              智能选购与服务助手
-              <br />
-              正在准备中。
-            </p>
-            <span>即将到来</span>
-          </div>
-        )}
         <div className="sidebar-bottom">
           <div className="environment">
             <i />
             体验环境 · 无真实支付
           </div>
-          <div className="role-links">
-            <a href="/app">客户</a>
-            <a href="/service">客服</a>
-            <a href="/admin">管理员</a>
+          <div className="account-anchor">
+            {accountMenu && (
+              <>
+                <button
+                  className="account-dismiss"
+                  aria-label="关闭账户菜单"
+                  onClick={() => setAccountMenu(false)}
+                />
+                <div className="account-dropdown">
+                  <small>{side === "portal" ? "我的账户" : "工作账户"}</small>
+                  <a
+                    href={
+                      side === "portal"
+                        ? "/app/settings"
+                        : `${isAdmin ? "/admin" : "/service"}/settings`
+                    }
+                  >
+                    <Settings size={16} />
+                    个人设置
+                  </a>
+                  {side === "portal" && (
+                    <a href="/app/settings?tab=models">
+                      <Sparkles size={16} />
+                      模型设置
+                    </a>
+                  )}
+                  <button onClick={() => leave(destination)}>
+                    <ArrowRightLeft size={16} />
+                    切换账户
+                  </button>
+                  <button
+                    onClick={() =>
+                      leave(side === "portal" ? "/app/assistant" : destination)
+                    }
+                  >
+                    <LogOut size={16} />
+                    退出登录
+                  </button>
+                </div>
+              </>
+            )}
+            <button
+              className="account-trigger"
+              aria-label="账户菜单"
+              aria-expanded={accountMenu}
+              onClick={() => setAccountMenu(!accountMenu)}
+            >
+              <span className="account-avatar">
+                {name.slice(0, 1).toUpperCase()}
+              </span>
+              <span>
+                <strong>{name}</strong>
+                <small>
+                  {side === "portal" ? "个人账户" : isAdmin ? "管理员" : "客服"}
+                </small>
+              </span>
+              <ChevronsUpDown size={16} />
+            </button>
           </div>
         </div>
       </aside>
@@ -125,53 +325,36 @@ export function App() {
                   : "客户服务"}
             </span>
             <span className="slash">/</span>
-            <small>
-              {side === "portal"
-                ? "为日常，多一点恰到好处"
-                : "让每一次服务都有回应"}
-            </small>
+            <small>欢迎回来，{name}</small>
           </div>
-          <div className="topbar-right">
-            <span className="local-tag">ASTER LAB</span>
-            {signed ? (
-              <button
-                className="text-button"
-                onClick={() => {
-                  clearToken(side);
-                  setSigned(false);
-                  location.reload();
-                }}
-              >
-                <LogOut size={16} />
-                退出登录
-              </button>
-            ) : (
-              <button className="button small" onClick={() => setLogin(true)}>
-                登录账户 <ArrowUpRight size={15} />
-              </button>
-            )}
-          </div>
+          <span className="local-tag">ASTER LAB</span>
         </header>
         <main>
-          {side === "portal" ? (
+          {destination.endsWith("/settings") ? (
+            <AccountSettings
+              name={name}
+              side={side}
+              onProfile={(nickname, dense) => {
+                setName(
+                  nickname ||
+                    sessionStorage.getItem(`aster_name_${side}`) ||
+                    "星序用户",
+                );
+                setCompact(dense);
+              }}
+              onLeave={() => leave(destination)}
+            />
+          ) : side === "portal" &&
+            (path === "/" || path === "/app/assistant") ? (
+            <AgentWorkspace signed requestLogin={() => leave(destination)} />
+          ) : side === "portal" ? (
             <Customer
               path={path}
-              signed={signed}
-              requestLogin={() => setLogin(true)}
+              signed
+              requestLogin={() => leave(destination)}
             />
-          ) : signed ? (
-            <StaffWorkspace adminView={isAdmin} />
           ) : (
-            <div className="staff-welcome">
-              <div className="eyebrow">ASTER WORKSPACE</div>
-              <h1>
-                {isAdmin ? "管理有序，服务有度。" : "每一份信任，都值得回应。"}
-              </h1>
-              <p>登录{isAdmin ? "管理员" : "客服"}账户，开始今天的工作。</p>
-              <button className="button" onClick={() => setLogin(true)}>
-                登录工作台 <ArrowUpRight size={17} />
-              </button>
-            </div>
+            <StaffWorkspace adminView={isAdmin} />
           )}
         </main>
         <footer>
@@ -180,171 +363,6 @@ export function App() {
           <small>独立学习项目 · 合成商品与模拟交易</small>
         </footer>
       </div>
-      {login && (
-        <Login
-          side={side}
-          onClose={() => setLogin(false)}
-          onSuccess={() => {
-            setSigned(true);
-            setLogin(false);
-          }}
-        />
-      )}
     </div>
-  );
-}
-function Login({
-  side,
-  onClose,
-  onSuccess,
-}: {
-  side: Side;
-  onClose: () => void;
-  onSuccess: () => void;
-}) {
-  const [register, setRegister] = useState(false),
-    [error, setError] = useState(""),
-    [busy, setBusy] = useState(false),
-    [username, setUsername] = useState(""),
-    [password, setPassword] = useState(""),
-    [phone, setPhone] = useState(""),
-    [otp, setOtp] = useState("");
-  async function submit(e: FormEvent) {
-    e.preventDefault();
-    setBusy(true);
-    setError("");
-    try {
-      if (register)
-        await api(
-          side,
-          "/sso/register",
-          { username, password, telephone: phone, authCode: otp },
-          true,
-        );
-      const data = await api<{ token: string; tokenHead: string }>(
-        side,
-        side === "portal" ? "/sso/login" : "/admin/login",
-        { username, password },
-        side === "portal",
-      );
-      saveToken(side, data.tokenHead + data.token);
-      onSuccess();
-    } catch (e) {
-      setError((e as Error).message);
-    } finally {
-      setBusy(false);
-    }
-  }
-  return (
-    <Modal
-      title={
-        register
-          ? "创建你的星序账户"
-          : side === "portal"
-            ? "欢迎回到星序"
-            : "登录工作台"
-      }
-      onClose={onClose}
-    >
-      <p className="muted">
-        {side === "portal"
-          ? "收藏日常所需，安心管理每一笔订单。"
-          : "使用本地配置的客服或管理员账户。"}
-      </p>
-      <form onSubmit={submit} className="form-stack">
-        <label>
-          用户名
-          <input
-            autoComplete="username"
-            required
-            minLength={4}
-            maxLength={32}
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </label>
-        <label>
-          密码
-          <input
-            type="password"
-            autoComplete={register ? "new-password" : "current-password"}
-            required
-            minLength={register ? 8 : 1}
-            maxLength={64}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        {register && (
-          <>
-            <label>
-              测试手机号
-              <input
-                required
-                pattern="[0-9]{11}"
-                placeholder="使用虚拟号码，例如 00000000001"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </label>
-            <label>
-              体验验证码
-              <div className="input-row">
-                <input
-                  required
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                />
-                <button
-                  type="button"
-                  className="button secondary"
-                  disabled={!/^\d{11}$/.test(phone) || busy}
-                  onClick={async () => {
-                    setBusy(true);
-                    try {
-                      setOtp(
-                        await api<string>(
-                          side,
-                          `/sso/getAuthCode?telephone=${encodeURIComponent(phone)}`,
-                        ),
-                      );
-                    } catch (e) {
-                      setError((e as Error).message);
-                    } finally {
-                      setBusy(false);
-                    }
-                  }}
-                >
-                  获取验证码
-                </button>
-              </div>
-            </label>
-            <small className="muted">
-              本地体验验证码自动填入，不会发送真实短信。
-            </small>
-          </>
-        )}
-        {error && (
-          <div className="error" role="alert">
-            {error}
-          </div>
-        )}
-        <button disabled={busy} className="button wide">
-          {busy ? "正在处理…" : register ? "注册并登录" : "登录"}
-        </button>
-        {side === "portal" && (
-          <button
-            type="button"
-            className="text-button centered"
-            onClick={() => {
-              setRegister(!register);
-              setError("");
-            }}
-          >
-            {register ? "已有账户？去登录" : "还没有账户？创建账户"}
-          </button>
-        )}
-      </form>
-    </Modal>
   );
 }

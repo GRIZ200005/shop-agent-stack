@@ -1,0 +1,5 @@
+# Explicit integration-test mode only. No external LLM calls; uses the real Java/MCP chain.
+services:
+  agent:
+    environment:
+      ASTER_ENABLE_TEST_PROVIDER: "true"

@@ -77,6 +77,7 @@ services:
       ASTER_JWT_SECRET: ${ASTER_ADMIN_JWT_SECRET}
       ASTER_BOOTSTRAP_ADMIN_PASSWORD: ${ASTER_BOOTSTRAP_ADMIN_PASSWORD:-}
       ASTER_BOOTSTRAP_SERVICE_PASSWORD: ${ASTER_BOOTSTRAP_SERVICE_PASSWORD:-}
+      ASTER_REFUND_ENABLED: "true"
     ports: ["127.0.0.1:18080:8080"]
     volumes:
       - ../services/commerce/mall-admin/target/mall-admin-1.0-SNAPSHOT.jar:/app/app.jar:ro

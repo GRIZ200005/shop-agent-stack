@@ -19,6 +19,8 @@ import {
 } from "./api";
 import { Empty, Loading, Modal } from "./ui";
 import { SaleTimeline } from "./Customer";
+import { PolicyPages, loadPolicies } from "./PolicyPages";
+import { RefundMonitor } from "./RefundMonitor";
 
 export function StaffWorkspace({ adminView }: { adminView: boolean }) {
   const [me, setMe] = useState<Staff | null>(null),
@@ -32,6 +34,7 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
     [filter, setFilter] = useState("ALL"),
     [tab, setTab] = useState("policies"),
     [form, setForm] = useState(false);
+  const [revision, setRevision] = useState<Policy | null>(null);
   async function load() {
     setError("");
     try {
@@ -39,7 +42,7 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
       setMe(identity);
       if (adminView && identity.role !== "ADMIN") return;
       if (adminView) {
-        setPolicies(await api<Policy[]>("admin", "/aster/policies"));
+        setPolicies(await loadPolicies("admin"));
         setAccounts(await api<Staff[]>("admin", "/aster/staff"));
       } else setSales(await api<Sale[]>("admin", "/aster/after-sales"));
     } catch (e) {
@@ -51,6 +54,20 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
   useEffect(() => {
     void load();
   }, [adminView]);
+  useEffect(() => {
+    if (detail?.status !== "REFUNDING") return;
+    let cancelled = false, fetching = false;
+    const timer = setInterval(async () => {
+      if (fetching) return;
+      fetching = true;
+      try {
+        const next = await api<Sale>("admin", `/aster/after-sales/${detail.id}`);
+        if (!cancelled) { setDetail(next); setSales(items => items.map(s => s.id === next.id ? next : s)); }
+      } catch (e) { if (!cancelled) setError((e as Error).message); }
+      finally { fetching = false; }
+    }, 2000);
+    return () => { cancelled = true; clearInterval(timer); };
+  }, [detail?.id, detail?.status]);
   async function run(action: () => Promise<void>) {
     setBusy(true);
     setError("");
@@ -106,6 +123,7 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
           {error}
         </div>
       )}
+      <RefundMonitor />
       {adminView ? (
         <>
           <div className="metrics">
@@ -150,15 +168,22 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
             </button>
           </div>
           {tab === "policies" ? (
-            <div className="stack">
-              {policies.map((p) => (
+            <PolicyPages policies={policies}>
+              {(p) => (
                 <article className="panel policy" key={p.id}>
                   <div className="between">
                     <span
                       className={`pill ${p.status === "PUBLISHED" ? "green" : "amber"}`}
                     >
-                      {p.status === "PUBLISHED" ? "已发布" : "草稿"} · V
-                      {p.version}
+                      {(
+                        {
+                          PUBLISHED: "已发布",
+                          DRAFT: "草稿",
+                          WITHDRAWN: "已撤回",
+                          SUPERSEDED: "已被新版替代",
+                        } as Record<string, string>
+                      )[p.status] || p.status}{" "}
+                      · V{p.version}
                     </span>
                     {p.status === "DRAFT" && (
                       <button
@@ -178,11 +203,48 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
                       </button>
                     )}
                   </div>
+                  <p className="muted">
+                    {p.visibility === "STAFF" ? "仅内部可见" : "客户可见"} ·{" "}
+                    {p.index_status === "READY"
+                      ? `条款索引就绪 · ${p.clause_count || 0} 条`
+                      : p.index_status === "WITHDRAWN"
+                        ? "已从检索移除"
+                        : "未进入正式检索"}
+                  </p>
                   <h2>{p.title}</h2>
                   <p>{p.content}</p>
+                  <div className="input-row">
+                    <button
+                      className="button secondary"
+                      disabled={busy}
+                      onClick={() => {
+                        setRevision(p);
+                        setForm(true);
+                      }}
+                    >
+                      修订政策
+                    </button>
+                    {p.status === "PUBLISHED" && (
+                      <button
+                        className="button secondary"
+                        disabled={busy}
+                        onClick={() =>
+                          void run(async () => {
+                            await api(
+                              "admin",
+                              `/aster/policies/${p.id}/withdraw`,
+                              {},
+                            );
+                          })
+                        }
+                      >
+                        撤回政策
+                      </button>
+                    )}
+                  </div>
                 </article>
-              ))}
-            </div>
+              )}
+            </PolicyPages>
           ) : (
             <div className="panel table-wrap">
               <table>
@@ -253,6 +315,8 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
                 ["SUBMITTED", "待领取"],
                 ["MINE", "我的工单"],
                 ["REFUNDED", "已退款"],
+                ["REFUNDING", "退款处理中"],
+                ["REFUND_REVIEW", "退款待核实"],
               ].map(([value, label]) => (
                 <button
                   key={value}
@@ -368,8 +432,8 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
                 />
               </label>
               <p className="muted">
-                通过后将立即记录 {money(detail.amount)}{" "}
-                的整单模拟退款，不发生真实资金流转。
+                通过后将排队处理 {money(detail.amount)}{" "}
+                的整单模拟退款，完成前显示处理中，不发生真实资金流转。
               </p>
               <div className="input-row">
                 <button
@@ -386,15 +450,27 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
             </form>
           ) : detail.status === "CLAIMED" ? (
             <p className="notice">该工单由其他客服处理，你可以查看进度。</p>
+          ) : detail.status === "REFUNDING" ? (
+            <p className="notice">退款任务已排队，系统会自动更新结果；请勿重复申请。</p>
+          ) : detail.status === "REFUND_REVIEW" && detail.assignee_id === me?.id ? (
+            <button className="button" disabled={busy} onClick={() => void run(async () => {
+              await api("admin", `/aster/after-sales/${detail.id}/refund-retry`, {});
+              setDetail(await api<Sale>("admin", `/aster/after-sales/${detail.id}`));
+            })}>已核实，重试模拟退款</button>
           ) : null}
         </Modal>
       )}
       {form && (
         <AdminForm
           kind={tab}
-          onClose={() => setForm(false)}
+          revision={revision}
+          onClose={() => {
+            setForm(false);
+            setRevision(null);
+          }}
           onDone={() => {
             setForm(false);
+            setRevision(null);
             void load();
           }}
         />
@@ -407,10 +483,12 @@ function BookIcon() {
 }
 function AdminForm({
   kind,
+  revision,
   onClose,
   onDone,
 }: {
   kind: string;
+  revision: Policy | null;
   onClose: () => void;
   onDone: () => void;
 }) {
@@ -418,7 +496,13 @@ function AdminForm({
     [error, setError] = useState("");
   return (
     <Modal
-      title={kind === "policies" ? "新建政策草稿" : "创建团队账号"}
+      title={
+        kind === "policies"
+          ? revision
+            ? "修订政策草稿"
+            : "新建政策草稿"
+          : "创建团队账号"
+      }
       onClose={onClose}
     >
       <form
@@ -431,7 +515,11 @@ function AdminForm({
           try {
             await api(
               "admin",
-              kind === "policies" ? "/aster/policies" : "/aster/staff",
+              kind === "policies"
+                ? revision
+                  ? `/aster/policies/${revision.id}/revise`
+                  : "/aster/policies"
+                : "/aster/staff",
               Object.fromEntries(f),
             );
             onDone();
@@ -446,11 +534,34 @@ function AdminForm({
           <>
             <label>
               政策标题
-              <input name="title" required maxLength={120} />
+              <input
+                name="title"
+                aria-label="政策标题"
+                required
+                maxLength={120}
+                defaultValue={revision?.title}
+              />
             </label>
             <label>
               政策正文
-              <textarea name="content" required maxLength={20000} rows={7} />
+              <textarea
+                name="content"
+                aria-label="政策正文"
+                required
+                maxLength={20000}
+                rows={7}
+                defaultValue={revision?.content}
+              />
+            </label>
+            <label>
+              可见范围
+              <select
+                name="visibility"
+                defaultValue={revision?.visibility || "CUSTOMER"}
+              >
+                <option value="CUSTOMER">客户可见</option>
+                <option value="STAFF">仅内部可见</option>
+              </select>
             </label>
             <p className="muted">
               保存为草稿后，需要管理员发布才会对客户可见。

@@ -16,6 +16,20 @@ const accounts = JSON.parse(
 const admin = accounts.find((a) => a.role === "ADMIN")!,
   service = accounts.find((a) => a.role === "SERVICE")!;
 const tag = () => Math.random().toString(36).slice(2, 12);
+const publishedFixtureTitles: string[] = [];
+test.afterEach(async ({ request }) => {
+  if (!publishedFixtureTitles.length) return;
+  const token = await loginApi(request, "admin", admin);
+  const policies = await call(request, "admin", "/aster/policies", token);
+  expect(policies.code).toBe(200);
+  for (const title of publishedFixtureTitles.splice(0)) {
+    const policy = policies.data.find((p: { title: string }) => p.title === title);
+    if (policy?.status === "PUBLISHED") {
+      const result = await call(request, "admin", `/aster/policies/${policy.id}/withdraw`, token, {});
+      expect(result.code, "Withdraw this test's published policy").toBe(200);
+    }
+  }
+});
 async function call(
   request: APIRequestContext,
   side: string,
@@ -77,15 +91,11 @@ async function loginUi(
   user: { username: string; password: string },
 ) {
   await page.goto(path);
-  await page
-    .getByRole("button", { name: "登录账户", exact: true })
-    .first()
-    .click();
-  const dialog = page.getByRole("dialog");
-  await dialog.getByLabel("用户名", { exact: true }).fill(user.username);
-  await dialog.getByLabel("密码", { exact: true }).fill(user.password);
-  await dialog.getByRole("button", { name: "登录", exact: true }).click();
-  await expect(dialog).not.toBeVisible();
+  await expect(page).toHaveURL(/\/login/);
+  await page.getByLabel("用户名", { exact: true }).fill(user.username);
+  await page.getByLabel("密码", { exact: true }).fill(user.password);
+  await page.getByRole("button", { name: "登录", exact: true }).click();
+  await expect(page).not.toHaveURL(/\/login/);
 }
 async function order(request: APIRequestContext, token: string) {
   let r = await call(request, "portal", "/member/address/add", token, {
@@ -173,11 +183,29 @@ test("three-role browser journey: purchase, review, refund, publish policy", asy
   await staffPage.getByRole("button", { name: "通过并模拟退款" }).click();
   await expect(
     staffPage.getByRole("dialog").getByText("模拟退款完成", { exact: true }),
-  ).toBeVisible();
+  ).toBeVisible({ timeout: 45000 });
   await staffPage.screenshot({
     path: resolve(local, "screenshots/p1-service.png"),
     fullPage: true,
   });
+  await staffPage.getByRole("button", { name: "关闭" }).click();
+  await staffPage.getByText("退款监控与对账", { exact: true }).click();
+  await expect(staffPage.getByText("账目一致", { exact: true }).first()).toBeVisible();
+  const monitor = await call(request, "admin", "/aster/refunds/monitor", await loginApi(request, "admin", service));
+  expect(monitor.code).toBe(200);
+  expect(monitor.data.scope).toBe("P4_ASYNC_SIMULATOR");
+  const latest = monitor.data.rows[0];
+  await staffPage.getByRole("button", { name: `核对 #${latest.case_id}`, exact: true }).click();
+  await expect(staffPage.getByText(`售后 #${latest.case_id}：账目一致。本次核查未修改任何账目。`, { exact: true })).toBeVisible();
+  const anonymous = await request.get("/api/admin/aster/refunds/monitor");
+  const anonymousBody = await anonymous.json();
+  expect([401,403]).toContain(anonymousBody.code);
+  expect(anonymousBody.data?.rows).toBeUndefined();
+  const customerDenied = await request.get("/api/admin/aster/refunds/monitor", { headers: { Authorization: user.token } });
+  const customerBody = await customerDenied.json();
+  expect([401,403]).toContain(customerBody.code);
+  expect(customerBody.data?.rows).toBeUndefined();
+  await staffPage.screenshot({ path: resolve(local, "screenshots/p4b-refund-monitor.png"), fullPage: true });
   await page.reload();
   await page
     .getByRole("button")
@@ -200,6 +228,7 @@ test("three-role browser journey: purchase, review, refund, publish policy", asy
     .getByRole("button", { name: "新建政策", exact: true })
     .click();
   const title = "售后体验政策 " + tag();
+  publishedFixtureTitles.push(title);
   await adminPage.getByLabel("政策标题").fill(title);
   await adminPage
     .getByLabel("政策正文")
@@ -446,25 +475,12 @@ test("mobile navigation, real registration, empty state and service failure", as
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/app");
-  await expect(
-    page.getByRole("heading", { name: "好物，让日常恰到好处." }),
-  ).toBeVisible();
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= innerWidth,
-    ),
-  ).toBe(true);
+  await page.goto("/app/orders");
+  await expect(page).toHaveURL(/\/login/);
   await page.screenshot({
     path: resolve(local, "screenshots/p1-mobile.png"),
     fullPage: true,
   });
-  await page.getByRole("button", { name: "展开导航" }).click();
-  await page.getByRole("link", { name: "我的订单", exact: true }).click();
-  await page
-    .getByRole("button", { name: "登录账户", exact: true })
-    .first()
-    .click();
   await page.getByRole("button", { name: "还没有账户？创建账户" }).click();
   await page.getByLabel("用户名", { exact: true }).fill("mobile_" + tag());
   await page.getByLabel("密码", { exact: true }).fill("Synthetic!" + tag());

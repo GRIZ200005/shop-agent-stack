@@ -42,7 +42,11 @@ export async function api<T>(
     throw new ApiError("服务暂时不可用，请稍后重试", response.status);
   });
   if (data.code !== 200) {
-    if (data.code === 401) clearToken(side);
+    if (data.code === 401) {
+      clearToken(side);
+      if (location.pathname !== "/login")
+        window.dispatchEvent(new Event("aster-session-expired"));
+    }
     throw new ApiError(
       data.message || "操作未完成",
       data.code || response.status,
@@ -97,6 +101,10 @@ export interface Policy {
   content: string;
   status: string;
   version: number;
+  visibility?: string;
+  index_status?: string;
+  clause_count?: number;
+  clauses?: { clause_no: number; content: string; content_hash: string }[];
 }
 export interface Staff {
   id: number;
@@ -118,6 +126,8 @@ export const date = (s: string) =>
 export const saleLabels: Record<string, string> = {
   SUBMITTED: "待领取",
   CLAIMED: "人工处理中",
+  REFUNDING: "模拟退款处理中",
+  REFUND_REVIEW: "退款待核实",
   REFUNDED: "模拟退款完成",
   REJECTED: "已拒绝",
 };

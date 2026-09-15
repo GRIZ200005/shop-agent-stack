@@ -6,6 +6,7 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     proxy: {
+      "/api/agent": { target: "http://127.0.0.1:18030" },
       "/api/portal": {
         target: "http://127.0.0.1:18085",
         rewrite: (p) => p.replace("/api/portal", ""),

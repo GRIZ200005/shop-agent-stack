@@ -24,6 +24,7 @@ import {
   type Policy,
 } from "./api";
 import { Empty, Loading, Modal, ProductArt } from "./ui";
+import { PolicyPages, loadPolicies } from "./PolicyPages";
 
 export function Customer({
   path,
@@ -76,8 +77,21 @@ export function Customer({
           );
         if (path.endsWith("/after-sales"))
           setSales(await api<Sale[]>("portal", "/aster/after-sales"));
-        if (path.endsWith("/policies"))
-          setPolicies(await api<Policy[]>("portal", "/aster/policies"));
+        if (path.endsWith("/policies")) {
+          const query = new URLSearchParams(window.location.search);
+          const id = query.get("policy"),
+            version = query.get("version");
+          setPolicies(
+            id && version
+              ? [
+                  await api<Policy>(
+                    "portal",
+                    `/aster/policies/${encodeURIComponent(id)}?version=${encodeURIComponent(version)}`,
+                  ),
+                ]
+              : await loadPolicies("portal"),
+          );
+        }
       }
     } catch (e) {
       setError((e as Error).message);
@@ -88,6 +102,20 @@ export function Customer({
   useEffect(() => {
     void load();
   }, [path, signed, sort]);
+  useEffect(() => {
+    if (!signed || detail?.status !== "REFUNDING") return;
+    let cancelled = false, fetching = false;
+    const timer = setInterval(async () => {
+      if (fetching) return;
+      fetching = true;
+      try {
+        const next = await api<Sale>("portal", `/aster/after-sales/${detail.id}`);
+        if (!cancelled) { setDetail(next); setSales(items => items.map(s => s.id === next.id ? next : s)); }
+      } catch (e) { if (!cancelled) setError((e as Error).message); }
+      finally { fetching = false; }
+    }, 2000);
+    return () => { cancelled = true; clearInterval(timer); };
+  }, [signed, detail?.id, detail?.status]);
   async function run(action: () => Promise<void>, message = "操作已完成") {
     setBusy(true);
     setError("");
@@ -522,15 +550,26 @@ export function Customer({
           )}
         </div>
       ) : (
-        <div className="stack">
-          {policies.map((p) => (
+        <PolicyPages policies={policies}>
+          {(p) => (
             <article className="panel policy" key={p.id}>
               <span className="pill">已发布 · V{p.version}</span>
               <h2>{p.title}</h2>
-              <p>{p.content}</p>
+              {p.clauses ? (
+                p.clauses.map((c) => (
+                  <section key={c.clause_no} id={`clause-${c.clause_no}`}>
+                    <small>
+                      条款 {c.clause_no} · P{p.id}V{p.version}C{c.clause_no}
+                    </small>
+                    <p>{c.content}</p>
+                  </section>
+                ))
+              ) : (
+                <p>{p.content}</p>
+              )}
             </article>
-          ))}
-        </div>
+          )}
+        </PolicyPages>
       )}
       {checkout && (
         <Checkout

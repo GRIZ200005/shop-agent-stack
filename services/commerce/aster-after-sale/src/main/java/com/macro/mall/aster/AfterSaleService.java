@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
-/** Original Aster domain. P1 simulator records a local refund in the same transaction. */
+/** Original Aster domain. Approval and refund outbox are committed atomically. */
 @Service
 public class AfterSaleService {
     private final JdbcTemplate db;
@@ -70,22 +70,13 @@ public class AfterSaleService {
         var item=rows.get(0);
         if(!"CLAIMED".equals(item.get("status")) || item.get("assignee_id")==null || ((Number)item.get("assignee_id")).longValue()!=staffId) Asserts.fail("仅领取该工单的客服可审核，且不能重复审核");
         if(approved) {
-            if(db.update("UPDATE oms_order SET status=4,note='Aster simulated refund completed' WHERE id=? AND status IN (1,2,3)",item.get("order_id"))!=1) Asserts.fail("订单状态已变化，不能退款");
-            db.update("UPDATE aster_after_sale SET status='REFUNDED',decision_note=?,refund_reference=? WHERE id=?",note.trim(),"SIM-ASTER-"+id,id);
+            db.update("UPDATE aster_after_sale SET status='REFUNDING',decision_note=? WHERE id=?",note.trim(),id);
+            db.update("INSERT INTO aster_refund_job(case_id) VALUES(?)",id);
             event(id,"staff:"+staffId,"APPROVED",note.trim());
-            event(id,"simulator","REFUNDED","模拟退款已完成，无真实资金流转");
         } else {
             db.update("UPDATE aster_after_sale SET status='REJECTED',decision_note=? WHERE id=?",note.trim(),id);
             event(id,"staff:"+staffId,"REJECTED",note.trim());
         }
     }
     private void event(long id,String actor,String action,String note) { db.update("INSERT INTO aster_after_sale_event(case_id,actor,action,note) VALUES(?,?,?,?)",id,actor,action,note); }
-    public List<Map<String,Object>> policies(boolean staff) { return db.queryForList("SELECT id,title,content,status,version,created_at,published_at FROM aster_policy"+(staff?"":" WHERE status='PUBLISHED'")+" ORDER BY id DESC LIMIT 100"); }
-    public void draft(String title,String content,long authorId) {
-        if(title==null || title.isBlank() || title.length()>120 || content==null || content.isBlank() || content.length()>20000) Asserts.fail("政策标题或正文长度不合法");
-        db.update("INSERT INTO aster_policy(title,content,author_id) VALUES(?,?,?)",title.trim(),content.trim(),authorId);
-    }
-    public void publish(long id) {
-        if(db.update("UPDATE aster_policy SET status='PUBLISHED',published_at=NOW() WHERE id=? AND status='DRAFT'",id)!=1) Asserts.fail("政策不存在或已发布");
-    }
 }
