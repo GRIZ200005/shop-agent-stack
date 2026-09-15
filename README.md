@@ -10,6 +10,7 @@
 
 ## 文档
 
+- [P4c 只读性能基线](docs/27-read-performance-baseline.md)：并发短测、SQL 执行计划与数据规模限制。
 - [最终项目计划](docs/01-product-and-architecture.md)：产品范围、三侧体验、架构、Agentic RAG、网络搜索、MCP。
 - [Agent 与前端机制研究](docs/02-runtime-and-ux-design.md)：基于本地参考代码的机制分析与独立实现方案。
 - [数据、评测与个人贡献](docs/03-data-evaluation-and-contribution.md)：数据来源、实验方法、验收口径。
