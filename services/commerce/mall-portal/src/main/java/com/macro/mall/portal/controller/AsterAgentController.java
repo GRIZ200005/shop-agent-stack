@@ -3,6 +3,7 @@ package com.macro.mall.portal.controller;
 import com.macro.mall.aster.AgentOperationService;
 import com.macro.mall.aster.AfterSaleService;
 import com.macro.mall.aster.PolicyService;
+import com.macro.mall.aster.ProductQueryService;
 import com.macro.mall.common.api.CommonResult;
 import com.macro.mall.portal.service.UmsMemberService;
 import jakarta.validation.Valid;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.*;
 public class AsterAgentController {
     private final AgentOperationService ops; private final UmsMemberService members; private final AfterSaleService sales;
     private final PolicyService policies;
-    public AsterAgentController(AgentOperationService ops,UmsMemberService members,AfterSaleService sales,PolicyService policies){this.ops=ops;this.members=members;this.sales=sales;this.policies=policies;}
+    private final ProductQueryService products;
+    public AsterAgentController(AgentOperationService ops,UmsMemberService members,AfterSaleService sales,PolicyService policies,ProductQueryService products){this.ops=ops;this.members=members;this.sales=sales;this.policies=policies;this.products=products;}
+    @PostMapping("/internal/agent/products/search") public CommonResult<?> products(@RequestHeader("X-Aster-Execution") String token,@RequestBody ProductQueryService.Query query){ops.identify(token);return CommonResult.success(products.search(query));}
+    @GetMapping("/internal/agent/products/{id}") public CommonResult<?> product(@RequestHeader("X-Aster-Execution") String token,@PathVariable long id){ops.identify(token);return CommonResult.success(products.detail(id));}
     private void indexAuth(String supplied) {
         try {
             String expected=java.nio.file.Files.readString(java.nio.file.Path.of("/run/secrets/index_key")).trim();

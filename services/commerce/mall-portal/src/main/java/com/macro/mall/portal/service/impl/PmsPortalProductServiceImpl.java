@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
 import com.macro.mall.mapper.*;
+import com.macro.mall.common.exception.Asserts;
 import com.macro.mall.model.*;
 import com.macro.mall.portal.dao.PortalProductDao;
 import com.macro.mall.portal.domain.PmsPortalProductDetail;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 /**
  * 前台订单管理Service实现类
  * Created by macro on 2020/4/6.
- * Modified by Aster: deterministic ordering for paginated catalog browsing.
+ * Modified by Aster: deterministic catalog pagination and published-only detail access.
  */
 @Service
 public class PmsPortalProductServiceImpl implements PmsPortalProductService {
@@ -89,6 +90,7 @@ public class PmsPortalProductServiceImpl implements PmsPortalProductService {
         PmsPortalProductDetail result = new PmsPortalProductDetail();
         //获取商品信息
         PmsProduct product = productMapper.selectByPrimaryKey(id);
+        if(product==null || !Integer.valueOf(0).equals(product.getDeleteStatus()) || !Integer.valueOf(1).equals(product.getPublishStatus())) Asserts.fail("商品不存在或当前未上架");
         result.setProduct(product);
         //获取品牌信息
         PmsBrand brand = brandMapper.selectByPrimaryKey(product.getBrandId());

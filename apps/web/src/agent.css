@@ -532,6 +532,8 @@
   text-decoration: none;
   color: #494158;
 }
+.assistant-shell .agent-product-card { width: 200px; }
+.agent-product-card .product-art { height: 140px; width: 100%; border-radius: 10px; }
 .agent-data-card small {
   color: #968a9e;
   font-size: 11px;

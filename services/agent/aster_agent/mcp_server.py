@@ -64,7 +64,7 @@ async def submit_after_sale(operation_id: str, ctx: Context) -> dict:
 
 @mcp.tool()
 async def search_policies(query: str, ctx: Context) -> dict:
-    """检索当前已发布、客户可见的星序政策。只输入政策问题，不包含姓名、地址或电话。返回条款 citation_id；回答须用 [citation_id] 标注依据。零结果或相近条款不代表资格成立或被拒绝。"""
+    """仅检索退换资格、退款期限、服务责任等当前有效的星序服务政策。商品接口/兼容性/尺寸/材质/养护不是政策，请用 search_products/get_product，不要同时调用本工具。只输入政策问题，不包含姓名、地址或电话。返回条款 citation_id；回答须用 [citation_id] 标注依据。零结果或相近条款不代表资格成立或被拒绝。"""
     import time
     from datetime import date
     from langchain_core.documents import Document
@@ -124,6 +124,27 @@ async def search_policies(query: str, ctx: Context) -> dict:
 async def get_policy_source(policy_id: int, version: int, ctx: Context) -> dict:
     """宿主引用校验：重新读取仍然有效的客户政策，草稿、撤回与旧版本拒绝访问。"""
     return {"policy":await invoke(ctx,f"/policies/{policy_id}?version={version}")}
+
+
+@mcp.tool()
+async def search_products(ctx: Context, query: str = "", category: str = "", min_price: float | None = None, max_price: float | None = None, after: int = 0) -> dict:
+    """查询当前上架商品及实时SKU可售库存。query用最多4个空格分隔的短关键词（各词AND，匹配名称/材质规格/用途），不要传整句问话；如'玻璃 杯'。category为可选精确分类名，价格范围为含边界的人民币标价，不是结算报价。每页最多5件，has_more为真可用next_after续查。零结果可简化关键词，不得编造商品。返回的evidence_id用于[G商品ID]引用。"""
+    import math
+    from .catalog import with_snapshot
+    if len(query)>80 or len(query.split())>4 or len(category)>64 or after<0:
+        raise ToolError("请使用最多四个短关键词及有效分类查询商品")
+    if any(v is not None and (not math.isfinite(v) or v<0 or v>99999999.99) for v in (min_price,max_price)):
+        raise ToolError("价格范围不合法")
+    result=await invoke(ctx,"/products/search",{"query":query,"category":category,"minPrice":min_price,"maxPrice":max_price,"after":after})
+    return {**result,"products":[with_snapshot(p) for p in result["products"]]}
+
+
+@mcp.tool()
+async def get_product(product_id: int, ctx: Context) -> dict:
+    """读取当前上架商品的详情、材质规格、注意事项、标价和SKU可售库存。先搜索取得ID，不猜测ID。兼容性、用途、养护问题用商品详情，而非政策检索。图片不是认证或实测证据；标价不是最终结算报价。回答只使用返回事实并标注[G商品ID]。"""
+    from .catalog import with_snapshot
+    if product_id<=0: raise ToolError("商品编号不合法")
+    return {"product":with_snapshot(await invoke(ctx,f"/products/{product_id}"))}
 
 
 app = mcp.streamable_http_app()

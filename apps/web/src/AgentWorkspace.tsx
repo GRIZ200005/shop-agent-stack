@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ArrowUp, Plus, Sparkles, Square, RefreshCw } from "lucide-react";
 import { token } from "./api";
+import { ProductArt } from "./ui";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import "./agent.css";
@@ -42,6 +43,8 @@ const toolNames: Record<string, string> = {
   preview_after_sale: "生成售后预览",
   get_operation_status: "核实操作状态",
   search_policies: "检索已发布政策",
+  search_products: "查找商品与价格",
+  get_product: "核对商品详情与库存",
 };
 async function agent<T>(path: string, body?: unknown): Promise<T> {
   const res = await fetch("/api/agent" + path, {
@@ -73,8 +76,15 @@ function BusinessCards({ data }: { data: Record<string, unknown> }) {
     unknown
   >[];
   const sales = (data.after_sales || []) as Record<string, unknown>[];
+  const products = (data.products || []) as Record<string, unknown>[];
   return (
     <div className="agent-cards">
+      {products.map(p => <a className="agent-data-card agent-product-card" key={String(p.id)} href={`/app?product=${Number(p.id)}`}>
+        <ProductArt id={Number(p.id)} src={String(p.pic || "")} alt={String(p.name)} />
+        <small>商品依据 {String(p.evidence_id)}</small>
+        <span>{String(p.name)}</span><strong>{money(p.price)}</strong>
+        <small>查看商品与当前规格 →</small>
+      </a>)}
       {orders.map((o) => (
         <a className="agent-data-card" key={String(o.id)} href="/app/orders">
           <small>订单 #{String(o.id)}</small>
@@ -127,8 +137,10 @@ function Reply({ run }: { run: Run }) {
   const messages = new Map<string, string>();
   const orders = new Map<string, Record<string, unknown>>();
   const sales = new Map<string, Record<string, unknown>>();
+  const products = new Map<string, Record<string, unknown>>();
   const steps: { name: string; id: string; complete: boolean }[] = [];
   for (const e of run.events) {
+    if (e.kind === "product_sources") for (const p of (e.data.products || []) as Record<string, unknown>[]) products.set(String(p.id),p);
     if (e.kind === "assistant" || e.kind === "assistant_delta") {
       const id = String(e.data.message_id || e.id);
       messages.set(
@@ -224,11 +236,12 @@ function Reply({ run }: { run: Run }) {
             以上是已收到的部分内容，本次回答未完整结束。
           </p>
         )}
-      {(orders.size > 0 || sales.size > 0) && (
+      {(orders.size > 0 || sales.size > 0 || products.size > 0) && (
         <BusinessCards
           data={{
             ...(orders.size ? { orders: [...orders.values()] } : {}),
             ...(sales.size ? { after_sales: [...sales.values()] } : {}),
+            ...(products.size ? { products: [...products.values()] } : {}),
           }}
         />
       )}

@@ -92,3 +92,7 @@ Frontend runtime dependencies include React, React DOM, Scheduler (MIT) and Luci
 The original catalog expansion adds independently authored synthetic product records and AI-generated product illustrations (see `catalog/image-manifest.json` for prompts and hashes). These are fictional goods, not third-party merchant inventory or product photography. PNG originals remain local; the repository uses WebP encodings. No private reference assets are included.
 
 `mall-portal/.../PmsPortalProductServiceImpl.java` is additionally modified to give default and equal-price search results deterministic ordering for pagination; the upstream author notice is retained. Original frontend code now displays product pictures, category filters, pages and product details.
+
+## Product Agent integration
+
+Original `ProductQueryService`, MCP product tools, snapshot validation, Agent product cards, development evaluation runner and tests connect the synthetic catalog to the existing Agent. The upstream-derived `PmsPortalProductServiceImpl.java` additionally rejects missing, deleted or unpublished product details; its author and modification notices are preserved. No new external source code or private data is imported.

@@ -46,6 +46,16 @@ export function Customer({
   >([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const loadSequence = useRef(0);
+  useEffect(() => {
+    let active=true;
+    const id=new URLSearchParams(location.search).get("product");
+    if(catalog && signed && id && /^[1-9]\d{0,14}$/.test(id)) {
+      void api<{product:Product}>("portal",`/product/detail/${id}`)
+        .then(result=>{if(active)setSelectedProduct(result.product);})
+        .catch(e=>{if(active)setError((e as Error).message);});
+    }
+    return ()=>{active=false;};
+  },[catalog,signed]);
   const [products, setProducts] = useState<Product[]>([]),
     [cart, setCart] = useState<Cart[]>([]),
     [orders, setOrders] = useState<Order[]>([]),

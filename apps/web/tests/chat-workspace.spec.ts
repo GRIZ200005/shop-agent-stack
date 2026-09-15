@@ -101,6 +101,13 @@ test("streaming workspace renders Markdown, deduplicates results and restores hi
   });
   await expect(page.locator(".agent-text li")).toHaveCount(2);
   await expect(page.locator(".agent-data-card")).toHaveCount(1);
+  const product = {id:10001,name:"晨白 陶瓷马克杯",price:39,pic:"/products/catalog-v1/ivory-mug.webp",evidence_id:"G10001"};
+  await emit("business", {products:[product]});
+  await expect(page.locator(".agent-product-card")).toHaveCount(0);
+  await emit("product_sources", {products:[product,product]});
+  await expect(page.locator(".agent-product-card")).toHaveCount(1);
+  await expect(page.locator(".agent-product-card")).toHaveAttribute("href", "/app?product=10001");
+  await expect(page.locator(".agent-product-card img")).toHaveAttribute("src", product.pic);
   await expect(page.locator(".agent-tool")).not.toBeVisible();
   await page.locator(".agent-process summary").click();
   await expect(page.locator(".agent-tool")).toHaveText("✓ 查询我的订单");
@@ -114,7 +121,7 @@ test("streaming workspace renders Markdown, deduplicates results and restores hi
   await expect(page.locator(".agent-state")).toContainText("本次回复已完成");
   await page.reload();
   await expect(page.locator(".agent-text strong")).toHaveText("1 笔订单");
-  await expect(page.locator(".agent-data-card")).toHaveCount(1);
+  await expect(page.locator(".agent-data-card")).toHaveCount(2);
   for (const width of [1920, 390]) {
     await page.setViewportSize({ width, height: 900 });
     await expect(page.getByLabel("发送给星序助手")).toBeInViewport();

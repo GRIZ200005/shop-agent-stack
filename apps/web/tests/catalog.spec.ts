@@ -162,7 +162,9 @@ test("catalog: customer browsing, detail, cart image and mobile layout", async (
         },
       });
     }, item.id);
-  await page.goto("/app");
+  await page.goto("/app?product=10001");
+  await expect(page.getByRole("dialog")).toContainText("晨白 陶瓷马克杯");
+  await page.getByRole("dialog").getByRole("button", { name: "关闭", exact: true }).click();
   await expect(page.locator(".product-card")).toHaveCount(20);
   await page.screenshot({
     path: resolve("../../.local/screenshots/catalog-desktop.png"),

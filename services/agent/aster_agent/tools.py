@@ -5,7 +5,7 @@ import httpx
 from mcp import ClientSession
 from mcp.client.streamable_http import streamable_http_client
 
-MODEL_TOOLS = {"list_my_orders", "get_my_order", "list_my_after_sales", "preview_after_sale", "get_operation_status", "search_policies"}
+MODEL_TOOLS = {"list_my_orders", "get_my_order", "list_my_after_sales", "preview_after_sale", "get_operation_status", "search_policies", "search_products", "get_product"}
 
 
 @asynccontextmanager
