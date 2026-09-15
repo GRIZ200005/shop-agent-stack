@@ -10,6 +10,7 @@
 
 ## 文档
 
+- [100 件原创商品目录](docs/28-product-catalog.md)：独立配图、可重复导入、分类分页与商品测试。
 - [P4c 只读性能基线](docs/27-read-performance-baseline.md)：并发短测、SQL 执行计划与数据规模限制。
 - [最终项目计划](docs/01-product-and-architecture.md)：产品范围、三侧体验、架构、Agentic RAG、网络搜索、MCP。
 - [Agent 与前端机制研究](docs/02-runtime-and-ux-design.md)：基于本地参考代码的机制分析与独立实现方案。

@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { X, PackageOpen, LoaderCircle } from "lucide-react";
 export function Empty({
   title,
@@ -61,10 +61,39 @@ export function Modal({
 export function ProductArt({
   id = 1,
   large = false,
+  src,
+  alt = "商品图片",
 }: {
   id?: number;
   large?: boolean;
+  src?: string;
+  alt?: string;
 }) {
+  const [failed, setFailed] = useState(false);
+  useEffect(() => setFailed(false), [src]);
+  if (src && !failed)
+    return (
+      <div className={`product-art product-photo ${large ? "large" : ""}`}>
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          onError={() => setFailed(true)}
+        />
+      </div>
+    );
+  if (![1, 101, 102, 103].includes(id))
+    return (
+      <div
+        className="product-art product-photo product-photo-empty"
+        role="img"
+        aria-label={`${alt}暂不可用`}
+      >
+        <PackageOpen size={36} />
+        <span>图片暂不可用</span>
+      </div>
+    );
   const kind =
     id === 1
       ? "cable"

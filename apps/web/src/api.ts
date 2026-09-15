@@ -62,6 +62,11 @@ export interface Product {
   brandName: string;
   productCategoryId: number;
   stock: number;
+  pic?: string;
+  productCategoryName?: string;
+  subTitle?: string;
+  description?: string;
+  detailDesc?: string;
 }
 export interface Cart {
   id: number;
@@ -69,6 +74,7 @@ export interface Cart {
   productName: string;
   quantity: number;
   price: number;
+  productPic?: string;
 }
 export interface Order {
   id: number;
@@ -80,6 +86,7 @@ export interface Order {
     productName: string;
     productQuantity: number;
     productId: number;
+    productPic?: string;
   }[];
 }
 export interface Sale {

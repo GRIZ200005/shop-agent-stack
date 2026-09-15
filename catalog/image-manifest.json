@@ -1,0 +1,1007 @@
+{
+  "generator": "built-in image_gen",
+  "kind": "AI-generated fictional product illustrations",
+  "transform": "WebP quality 0.86; max edge 800; no visual retouching",
+  "assets": [
+    {
+      "slug": "ivory-mug",
+      "path": "/products/catalog-v1/ivory-mug.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 10054,
+      "sha256": "e48ff78db66b4350902c0aaa53f2e63d551b024ccaaac09da58819192f996736",
+      "sourceSha256": "4e811d80a7043158b3aa7053c962f77df83d96b90fe084fa19ad9045ee4fe0a0",
+      "prompt": "Use case: product-mockup. Create one square catalog product photograph for Aster Commerce fictional personal demo store. Subject: a single matte warm ivory ceramic coffee mug with large rounded handle, straight slightly tapered walls, no saucer, 350 ml proportions. Background seamless pale warm gray, soft daylight studio shadows, premium editorial ecommerce photography, product centered fully visible with comfortable margin, realistic ceramic texture. No writing, no logo, no watermark, no extra objects, no collage. Image must show only this one product. Save generated asset for integration into project."
+    },
+    {
+      "slug": "glass-tumbler",
+      "path": "/products/catalog-v1/glass-tumbler.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 17956,
+      "sha256": "cb1888283920325afe0468e176644f8bd244b38f1fbe6e6543de24127ade2a78",
+      "sourceSha256": "f86cf1f4f6462fb89dfacbea58dd491684d7f90afc9f26f7c8180215bbb5f7e6",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one clear straight sided drinking glass tumbler without handle. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "insulated-bottle",
+      "path": "/products/catalog-v1/insulated-bottle.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 10696,
+      "sha256": "5850c9b06b3b57fd1092be9f620a7a2d7c2e0d42366ffd224fa26124531c02f0",
+      "sourceSha256": "b57ba51c126f87110709a3779f1452596d08d06070a70aa169c89db61570012c",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one sage green stainless steel insulated bottle with screw cap, slim shape. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "tea-pot",
+      "path": "/products/catalog-v1/tea-pot.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 40382,
+      "sha256": "8d9856d974886aa5f12645a475ac764199ffa63b578dab8b0cb624c9c4fcc7c9",
+      "sourceSha256": "ccc148d29009fbfa52eab26c98467d45fb958521c1869089619646ddfdcdf62a",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one transparent glass teapot with cylindrical stainless steel infuser and clear handle. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "travel-cup",
+      "path": "/products/catalog-v1/travel-cup.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 15022,
+      "sha256": "e4494f870b6a9541ac8ed0787c6e8049c13e9796bcad4f217e39fdb06a5ba222",
+      "sourceSha256": "9bbbb0ff097d24087d1824a3dfbc95e804f0a3d7f4563fdaf77f3aa6bf4642eb",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one sand beige travel coffee tumbler with black flip lid, short cylindrical body. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "cold-carafe",
+      "path": "/products/catalog-v1/cold-carafe.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 22400,
+      "sha256": "63ce2362ce8a1f886423c78cd587f86c64868d9588e2edf7a87ee095731ff858",
+      "sourceSha256": "7668d4a79a92d668f97a324d19393fb1bc66ea5e5d5e287a6b21ec62466b2f82",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one clear glass water pitcher with handle and round bamboo lid. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "espresso-cup",
+      "path": "/products/catalog-v1/espresso-cup.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 22170,
+      "sha256": "fbd0701cd6dc79a6d334210d152f80b10a9ed66449aaa445c66b4f5533cbe377",
+      "sourceSha256": "24d4770aa39d6274c3476687c00491394ab39d0a993dad78edfa98f7ef9f62d1",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one charcoal grey small espresso ceramic cup on matching saucer. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "water-bottle",
+      "path": "/products/catalog-v1/water-bottle.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 13458,
+      "sha256": "3bd3e2531b3c48c857493872ceee1ba6ffc9fd38efabd32e0769508cbc9f54ee",
+      "sourceSha256": "bed323e7032ef2344882531e9f57eb523e8c138fa3de9b22238578dedd6e866b",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one translucent smoky grey plastic sports water bottle with loop screw cap, no printed markings. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "tea-strainer",
+      "path": "/products/catalog-v1/tea-strainer.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 36316,
+      "sha256": "3e54372dfea4e3629dd9c860893c8aeab895aedda1122865eb79015c3c05e0bf",
+      "sourceSha256": "a7c2b5802151b7c4fde666c4c8b0b72d5992f879ec42f93c92dc261a9bce4d54",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one stainless steel fine mesh tea strainer with long slim handle. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "cup-brush",
+      "path": "/products/catalog-v1/cup-brush.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 18422,
+      "sha256": "f9579e9de11d9cde04ec404acaeeed3b722e456a9c745fce77de46ec95ec1f20",
+      "sourceSha256": "0daea8458528b949c69cbef6624b839f2aabdebd727168da758d32a28f19d09e",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one bamboo handled bottle cleaning brush with cream cylindrical bristles. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "rice-bowl",
+      "path": "/products/catalog-v1/rice-bowl.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 10996,
+      "sha256": "b7c2d28cd50564619ce9a66191ba091fa9198cfd91d503a5de7c529442f30734",
+      "sourceSha256": "cbe0ff8defe40c5f5a595754881fdaeb6f6ebaf48ac99232e15eb3b856ab6a51",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one simple off white ceramic rice bowl. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "dinner-plate",
+      "path": "/products/catalog-v1/dinner-plate.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 8070,
+      "sha256": "25e1577d7f6bbbe895aeb99253aeb0225b4ff3561d778cab5a0dc5c859bb3c47",
+      "sourceSha256": "83c9c2bee63453bea8d88b83b20737f400f27d5013b3bb6f479498a0ab513564",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one large flat ivory ceramic dinner plate with subtle raised rim. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "salad-bowl",
+      "path": "/products/catalog-v1/salad-bowl.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 26840,
+      "sha256": "37336929c9d0d77d7cfcc99856761c852a7704ca3d9c93a28e8dfbf6db06986b",
+      "sourceSha256": "f8cb14c2ac77568053a306a07acdf24716f8758b4a82b6008086f2818b047cdd",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one deep sage green ceramic salad bowl. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "chopping-board",
+      "path": "/products/catalog-v1/chopping-board.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 47748,
+      "sha256": "eba047759fc526c8eaf13881c505c44ea1eda178f10420b0c031899d712bc36f",
+      "sourceSha256": "f453a3ca426a5c9a9f75f1ea07779765842afb91eb86204ca296db67882982f2",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one rectangular beech wood chopping board with rounded corners and handle hole. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "silicone-spatula",
+      "path": "/products/catalog-v1/silicone-spatula.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 9008,
+      "sha256": "85cc67c7857d840c095b7546e54976499d421884bdbcd1779747a7c9c094d716",
+      "sourceSha256": "6b0fa77d920e315688c9ab73d42c462b8d956807508502079d2a0968cf47df53",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one cream silicone baking spatula with natural wooden handle. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "food-container",
+      "path": "/products/catalog-v1/food-container.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 18758,
+      "sha256": "e73f23e4b4824592d672faf5c807974178262f1f410104f76513d210851e4260",
+      "sourceSha256": "557ea25000ac9a2957e43e1af600221a1a31ecb150ea6159237d42fd17edd52f",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one rectangular clear glass food storage container with translucent snap lock lid. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "cutlery-set",
+      "path": "/products/catalog-v1/cutlery-set.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 17806,
+      "sha256": "8c0f9b280ec4194bb71444fbfecea717f2c58f263126124e49aee588bea9f9d5",
+      "sourceSha256": "fde51503f7537830528235ab85ef8d72e84a722aab8d7f6bfd0286d0d95caa41",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one three piece brushed stainless steel cutlery set, fork spoon and rounded table knife aligned. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "colander",
+      "path": "/products/catalog-v1/colander.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 29944,
+      "sha256": "95c4806f571c503d4902a2af14b906dc1d460514fbc86fe77970e39c35d55e15",
+      "sourceSha256": "39f0fab5696f34f7f47a31aef516f83c28a4e4aec9f3df8aa5451154688939c9",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one stainless steel perforated kitchen colander with two side handles. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "oil-bottle",
+      "path": "/products/catalog-v1/oil-bottle.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 13580,
+      "sha256": "b0373b03283b0aff8f119b473b8e520b3024ff0096e67cd97649c7741ecea6cb",
+      "sourceSha256": "d9c59877506672ea24ad9da1c33234cfae05b4948bcc238fad524904cafcdef6",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one clear glass olive oil dispenser bottle with slim stainless pouring spout, no label. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "kitchen-scale",
+      "path": "/products/catalog-v1/kitchen-scale.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 21762,
+      "sha256": "180297da95d13471d57d2551970c3154d79c7ab2aecf9f1492a113c1ab491bc4",
+      "sourceSha256": "fb96bcf12fbf6b2719901d86fc76e5da9db1311ecbec1b1f1700132dfb23d23f",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one slim digital kitchen scale with brushed steel rectangular platform and unlit small display. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "storage-box",
+      "path": "/products/catalog-v1/storage-box.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 8262,
+      "sha256": "9174aa49b369b34aeb071f94ae2014681dc413efcd3ef2970bf8034938a2d842",
+      "sourceSha256": "a6e558dd3b21cc77e359126be7978c0e9bc5c346ae278965b4df2c825a915bdc",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one ivory opaque rectangular plastic storage box with fitted lid. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "woven-basket",
+      "path": "/products/catalog-v1/woven-basket.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 90618,
+      "sha256": "7fd269badf2332ed4a377856b3e88877ffb36edc32c4e047d1a6a07ae900ce48",
+      "sourceSha256": "c55bbcdcc6c4d12f6481ced1b0769ef030a18981673a1fc469915e9772069efa",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one natural tan woven rectangular storage basket with cutout side handles. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "drawer-dividers",
+      "path": "/products/catalog-v1/drawer-dividers.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 40552,
+      "sha256": "f1f6c21eda9922f0f4406dca1f215dce56d79f37167752c522d8b1cde6774b74",
+      "sourceSha256": "d96587ccfc559948c23ffd3bc617537428c57f99d8baf3fae7cf79973b998638",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: four simple straight bamboo drawer divider slats neatly arranged. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "shoe-box",
+      "path": "/products/catalog-v1/shoe-box.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 16258,
+      "sha256": "359267130ae7d8ef56d0f4ae295954edc634d1ad565118fc09181385f2d8a937",
+      "sourceSha256": "e93fa259f715f49ba3006df1d0a53f6325f0defd84ee932a942b3671f2ef283e",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one translucent shoe storage box with clear front drop door, empty. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "jewelry-tray",
+      "path": "/products/catalog-v1/jewelry-tray.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 58850,
+      "sha256": "bc7ef973d6770bc018dc6d4f208e207d278492d7bf552491e12e3232c8675e12",
+      "sourceSha256": "40d1e2b6c41cecd8ebd5656ef96bdc165aab718a6ab472ef9f7d3242dc9115e0",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one pale grey velvet jewelry organizer tray with empty compartments and ring slots. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "cable-box",
+      "path": "/products/catalog-v1/cable-box.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 8682,
+      "sha256": "c8e861d8cbcc1a628335f7e600b2fd533d058a8b5bbae399a97d0d13eb08baa7",
+      "sourceSha256": "8915064b0f0c362fb7e73d9f69a3427fe267e367c767361c4b5fdfbec4e5ca59",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one white rectangular desktop cable management box with side cable slots and lid. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "laundry-basket",
+      "path": "/products/catalog-v1/laundry-basket.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 57182,
+      "sha256": "af2f211adfa7f1bd64ac7b42ed45640c0a6439b7faf03365e362d554498e5077",
+      "sourceSha256": "c2d22aaa278e2c366b868d108548f8379b7ddeab53f8f40c38728b096613d2f4",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one natural linen fabric laundry hamper with two handles and open oval top. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "desk-organizer",
+      "path": "/products/catalog-v1/desk-organizer.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 53236,
+      "sha256": "de6c4ab4959288181f37fa76ef9abde7fc1c5b7683be7c8bcaf906567e846eac",
+      "sourceSha256": "edc989c921ef11159123011000479a8c3dd002e9da66f1576d81b94cec37fa0b",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one bamboo desktop organizer with several empty pen and note compartments. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "vacuum-bags",
+      "path": "/products/catalog-v1/vacuum-bags.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 26074,
+      "sha256": "98df3cce98358b1b22321f8a46ae80d7237a1ea050d49869fa42263119874c00",
+      "sourceSha256": "4b50fc04d147823f44e09ddc64450124ebc72517d6cbdff78746efb5307112ad",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: two folded transparent vacuum clothes storage bags with small grey valves, empty. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "wall-hooks",
+      "path": "/products/catalog-v1/wall-hooks.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 18098,
+      "sha256": "0bd4a3bfecc4e13d9614ea85f22f15ad8d5353e3830e673dfd826c0821af1212",
+      "sourceSha256": "db33e8ab858056d78914fbf8447a3ae3a7e5fe3c4a7544fc117c2f9b6b91dc8f",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one natural beech wood wall rack with three rounded wooden hooks. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "hand-towel",
+      "path": "/products/catalog-v1/hand-towel.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 41666,
+      "sha256": "e5083c9091aad4145c8cf57a41572420e2d3f4b8f59bc5fdd9c6402ed94dc514",
+      "sourceSha256": "42a5114248a0bf6e3787cbdadbca39be095d09d96d53b913f93133256751cf46",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one neatly folded cream white cotton terry hand towel. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "bath-towel",
+      "path": "/products/catalog-v1/bath-towel.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 87916,
+      "sha256": "f40efa3b2aeb645655b4eb22aeb6e193412e0d5c630a1cd8b2ab21e86653cbe1",
+      "sourceSha256": "76d0b132e1f34ceba1b0c79273d94736a0d174bb79ad2f28740a53b640c0872c",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one folded warm grey large cotton terry bath towel. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "cushion-cover",
+      "path": "/products/catalog-v1/cushion-cover.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 85762,
+      "sha256": "b2b9dc55cd3428e49e64000628b25d85f38dd0e35bd1a47d1cc4ee9a292deb94",
+      "sourceSha256": "d2b052d19c2f73391035c3903b9942a33c03bc1b344bb9bbe45f200c41ad6298",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one oatmeal textured linen cushion cover displayed flat with gentle folds, no cushion filling. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "throw-blanket",
+      "path": "/products/catalog-v1/throw-blanket.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 70470,
+      "sha256": "2c6fd6edf02c733b3995138b916b2ed2717caf27a0ad3fc332d00d5344e2fcf3",
+      "sourceSha256": "45b10b84cdcf0354f591644afe855540365012e1fb1cae10062eed2121938b98",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one folded light greige knitted throw blanket with soft tassel fringe. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "bed-sheet",
+      "path": "/products/catalog-v1/bed-sheet.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 19832,
+      "sha256": "c4d7be58f71bc9ee275efb77cf9691f6bf94b5e40c6c394edd46e91adf8111ae",
+      "sourceSha256": "00fa5408750393df3650c1c1db069ba35442d5cde0c308e7e59a028900c246ab",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one neatly folded pale grey cotton flat bed sheet, plain fabric. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "pillowcases",
+      "path": "/products/catalog-v1/pillowcases.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 26796,
+      "sha256": "38726187f1d85192a9dab92b196b18a22eae002f8c02a372311301f5c6d7b36e",
+      "sourceSha256": "1d39f6f38fad0671f486ffd17aee30f97d57622cbf5c33f433aafd0e5954a3aa",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: two folded dusty blue cotton pillowcases stacked, envelope style. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "table-runner",
+      "path": "/products/catalog-v1/table-runner.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 84688,
+      "sha256": "a30fa319193c86286a0ca691621f165d033cf514708bf5cb13946a60370aa3f7",
+      "sourceSha256": "bceabd4609760d95e1a9e79adf6c3b64a13db20159eb15252d131764028487e3",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one natural linen table runner loosely folded with narrow fringed ends. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "apron",
+      "path": "/products/catalog-v1/apron.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 34796,
+      "sha256": "b1a11fdbeca9bc0912e8e8700aec4eb4ac44655b6e3816a870c91f52daff9478",
+      "sourceSha256": "be5da3af0fddb1f9ea9cd2ca82b1a3abbf8735f7c7b8cdd125c89102c394f483",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one forest green cotton kitchen apron with front pocket laid neatly flat. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "placemats",
+      "path": "/products/catalog-v1/placemats.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 116194,
+      "sha256": "8556ae7894db2d5064192ec3bb62f505b22b9797d477beb7d2b16d7f159402da",
+      "sourceSha256": "44be771a437a364ad4fd1b52de9b1ca83fcf1a845a31fae42b7fbf5bac635f63",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: two round beige woven cotton placemats partially overlapping. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "sleep-mask",
+      "path": "/products/catalog-v1/sleep-mask.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 35890,
+      "sha256": "7f3feaf0a3b46a4786dc7b48e5e5d7577f5d47724324715d9d56347cb8b69e91",
+      "sourceSha256": "8c8031603ec580fd074d9faefa6692ef4b189590fe145983607f32ac3c1fce83",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one graphite grey contoured sleep eye mask with adjustable elastic strap. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "notebook",
+      "path": "/products/catalog-v1/notebook.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 74576,
+      "sha256": "297ca2a4e34e0eb41ac5f6a43d28d57bb30cb92d666f19869b824787b5ba3baf",
+      "sourceSha256": "276e4f5bf6e822e28207646f9e4943d691f882a7b325ec365c6437aacdd2988d",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one slate blue cloth covered A5 notebook closed with elastic band, no text. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "gel-pens",
+      "path": "/products/catalog-v1/gel-pens.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 9868,
+      "sha256": "1705c20bf42842f8ef1d87cf0a0c38dd1810e777c73c7a0b9284e8d24e17baf6",
+      "sourceSha256": "1befda6d8bc04a9ec12fd0c044db9a1fc88fd1f285b9b696cb2ffe93b26387ae",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: three matte black gel pens with caps neatly aligned, no branding. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "pen-cup",
+      "path": "/products/catalog-v1/pen-cup.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 6892,
+      "sha256": "edabf4c27b327a26190a084c6592ffb071300c833c49ddce6e0ed099202dc295",
+      "sourceSha256": "4e9c0846da4a32a0c982cff714418197dfe887558c2fecf3f597094525bfd2af",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one cream white cylindrical metal pen cup empty. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "desk-mat",
+      "path": "/products/catalog-v1/desk-mat.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 8344,
+      "sha256": "481310c25cf75bfd9db48cc6185b21078b0c38ce8ef20b800797d7cd88aa739f",
+      "sourceSha256": "e8fb6cbe57cc72aaa1d9ff440901e02fb08def6a0eb14a5e18647159dd17d448",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one large tan rectangular desk mat with rounded corners and visible cork edge, no objects. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "bookends",
+      "path": "/products/catalog-v1/bookends.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 15790,
+      "sha256": "3df645a7c1fcf8ae3fe54181b8caab7534be5cd998294cfd32f0f752846026dd",
+      "sourceSha256": "deaebbb1267c6cbe67ab4ee6a4c3b0c7dfbf7a3e8c68f483f1099afbcf0f67ca",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: a pair of dusty blue L shaped metal bookends without books. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "document-folder",
+      "path": "/products/catalog-v1/document-folder.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 43036,
+      "sha256": "c382657e34961ac9fcde971187505b3c58a10bd53d07629c887e9c7585951493",
+      "sourceSha256": "992dd6c19ecf9d801ed1de9d35b418d60d7bacf08a2983b10fc511ad275bb495",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one dark grey expanding accordion document folder slightly open showing compartments, no labels. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "sticky-notes",
+      "path": "/products/catalog-v1/sticky-notes.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 23186,
+      "sha256": "2dc88cf0eae54d9477b4b3cd5dcb724c9b349fc0dcc8c314cb4d83c313ce563a",
+      "sourceSha256": "1a94cafbdaaa18ce4d569db09d73351c84dd6532fbcf1bfee303a980f500a019",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: four small square pastel sticky note pads in cream lavender sage and pink, no writing. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "book-stand",
+      "path": "/products/catalog-v1/book-stand.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 45828,
+      "sha256": "d77a832434f12f98cfe34d5a6b806d503969f5a6c63b0bbeff269fd23f092891",
+      "sourceSha256": "9d112d187426d58e10a0001b32a1223b936e8a427d1c7d3fdcefa88b1a079f28",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one adjustable bamboo tabletop book stand with page clips, empty and unfolded. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "scissors",
+      "path": "/products/catalog-v1/scissors.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 12492,
+      "sha256": "d5176e1125df3507ee6d7566aba1bd0915c72d030fa839ffe6c45f0191d61434",
+      "sourceSha256": "6c816cd4b23622d75a997014b17c08549d42b09cda80f38006ef5572a8ae180d",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one pair of office scissors with grey handles and stainless steel blades, closed. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "desk-clock",
+      "path": "/products/catalog-v1/desk-clock.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 15358,
+      "sha256": "e57ef409ccf993503e7967fbb994ab9f0b8a1b1390f055889c14aece982ae86b",
+      "sourceSha256": "1083bdf1c5754449911699d2dca3f8c7c412ce6586f771a0fb180c6a8a3d11d5",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one small cream round analog desk clock with simple black hands and minimalist tick marks, no numbers or words. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "wireless-mouse",
+      "path": "/products/catalog-v1/wireless-mouse.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 35580,
+      "sha256": "2d641cd90e08aa5514a0480cbb4af7194686b2e75c31b2c8bf5b9c047485f66d",
+      "sourceSha256": "7168bceae8e9abed8559e2cda8cc8db7b993afcb9093863c1bafd62dd9ac8f52",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one graphite grey wireless computer mouse with scroll wheel and tiny USB receiver beside it. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "keyboard",
+      "path": "/products/catalog-v1/keyboard.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 25624,
+      "sha256": "16a0cf69fdec4638a63230212c714ecd3a437b9cdcf51267d83fad309971c250",
+      "sourceSha256": "f50dac0d6950a748a677b0a00e7886f962d624cbfc4b8e19f30549795120f25a",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one compact light grey wired computer keyboard with blank keycaps and simple USB cable. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "usb-hub",
+      "path": "/products/catalog-v1/usb-hub.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 21568,
+      "sha256": "a265bfb6e4c8bbcde334b8d9dae609a3db0a1abc52800d3b4aa2a43f7b42204b",
+      "sourceSha256": "db228c9133b96040b7d7fd13b8f4af67d9e190ddef6321ceb30d6658300e8a05",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one slim space grey aluminum USB C hub with short attached cable, two USB A ports and one HDMI port. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "laptop-stand",
+      "path": "/products/catalog-v1/laptop-stand.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 21534,
+      "sha256": "06b7d4162755dc02d9a901bc90eb37b9e82deee237d7a3dfdd5829313f3bbd5e",
+      "sourceSha256": "eac7d533bff518b0730813d9c2b68888b136486ecac91e97ced5b31f37af581a",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one silver aluminum folding laptop stand with two supporting rails, no laptop. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "phone-stand",
+      "path": "/products/catalog-v1/phone-stand.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 29062,
+      "sha256": "a87eff868f9706eecbb4f5017a63252752a1fac6d40a1e37405bd87c3dc67b7e",
+      "sourceSha256": "7812b14adbfd8318357e849d7a5ef49a3875313fcc4a39704e37b380bee7529b",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one small silver aluminum folding phone stand with black rubber pads, no phone. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "usb-c-cable",
+      "path": "/products/catalog-v1/usb-c-cable.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 55876,
+      "sha256": "e6ad0be83dcedd7217252d638ff90d767b0bb1e4ffda28415fe642e453708350",
+      "sourceSha256": "4e30460b61dabd7060f3102b3c712488cb9be7cb4faf3776e15a814d8bb2a254",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one coiled dark grey braided USB C to USB C cable, both connectors visible. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "laptop-sleeve",
+      "path": "/products/catalog-v1/laptop-sleeve.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 87434,
+      "sha256": "52f63fbe07684998546a74647e3280a127f4c8ebb5c483559474702ab39ba882",
+      "sourceSha256": "bd13818eb3da5eec9bff3e4af27f3a411e316eda5b0711630838be09f197995b",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one light grey fabric slim laptop sleeve with zipper, no laptop. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "headphone-stand",
+      "path": "/products/catalog-v1/headphone-stand.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 11498,
+      "sha256": "36f2aaf56ce3628b47464d14800401eb02d71e54b8e81d653827f25e756ae61a",
+      "sourceSha256": "d97f939d830c1222c9cc0b06d794fb72f2c3974f30e627ea80ec5822fbd86e2d",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one matte black minimalist over ear headphone stand, empty with curved top and round base. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "screen-cloth",
+      "path": "/products/catalog-v1/screen-cloth.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 119252,
+      "sha256": "fbd73665fb830772b1ed87d5c4f822060ba05a5a861330e5f597b7a013b1a97e",
+      "sourceSha256": "9f3bc89ec8e687abeac72a4c14b5b8fc3211068a59b227f07f86f34b8ff5543c",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: two folded grey microfiber screen cleaning cloths with neatly finished edges. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "cable-clips",
+      "path": "/products/catalog-v1/cable-clips.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 10640,
+      "sha256": "2f5a70e299e4fe1de3d639ced3d106894ec6a7074df7ceb22a44a999a2b60f85",
+      "sourceSha256": "f25e7cc34776d743b69ce29a22cb14900b686b684323ff10e09ea39e173043f7",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one dark grey silicone desktop cable holder with five rounded cable slots. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "canvas-tote",
+      "path": "/products/catalog-v1/canvas-tote.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 30516,
+      "sha256": "4ae02c4e17fdc15df967de7d7ec0821e91f482e32ba137e49440356592ee58e1",
+      "sourceSha256": "a60339d3479ef90f713dc567c9577f65eb2b114b944be4bb67d183496b4a242a",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one natural off white cotton canvas tote bag with two shoulder handles, no print. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "daypack",
+      "path": "/products/catalog-v1/daypack.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 44866,
+      "sha256": "f04ac8294cc3db5bc288daa7cb195b262f3cb117bb1aa23a21bd46d67676aaab",
+      "sourceSha256": "1eecd2bb4eaebaa1b17488e63f00ca650db34c0eac389cd20548245dfca554dd",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one forest green minimalist day backpack with front zipper pocket and two shoulder straps. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "crossbody-bag",
+      "path": "/products/catalog-v1/crossbody-bag.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 38196,
+      "sha256": "a402a624ceec0a4c9ca89dfb6a6f25389486927a5e2000527a9dc3dd36d33269",
+      "sourceSha256": "6499fcbade242e3d8a31d7f8226e74bf5bc6928bcf15390cfa2ec280b1dd99a3",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one small black nylon crossbody bag with adjustable shoulder strap and zipper. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "travel-pouch",
+      "path": "/products/catalog-v1/travel-pouch.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 75394,
+      "sha256": "8bb4e03a906860016f301afe0e1522c1dc787fafcf52b8beb6ee949c56a37334",
+      "sourceSha256": "c6e5ea8e44263690aaceafdde046e4c3acd641a72e7c38ccf3fe094e6118da6d",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one dusty blue rectangular toiletry travel pouch with zipper and side handle. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "packing-cubes",
+      "path": "/products/catalog-v1/packing-cubes.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 86310,
+      "sha256": "e4b98e3bcf5223b2181c4b45ca2d4d7401d7819b3247f77acce07d7cc2f898ab",
+      "sourceSha256": "d3f9949c313fa6587974a88fd534d81998092e47ce469d1b364d7d2f513f6038",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: three grey travel packing cubes of different sizes with mesh top panels. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "folding-umbrella",
+      "path": "/products/catalog-v1/folding-umbrella.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 21044,
+      "sha256": "3dcef174e64070309484343932d8d159a707cefad0ee7e9e7ac5ea7c58d9059b",
+      "sourceSha256": "591992f6c57f87f85b453759f5df267d24c1d026efe61f09cf09defe25b747ed",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one navy blue compact folding umbrella partially open, plain canopy and black handle. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "neck-pillow",
+      "path": "/products/catalog-v1/neck-pillow.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 52558,
+      "sha256": "d7f0b71130d9217b996d6c29ed4cc59a61945b30faecf245cce334adcb84702e",
+      "sourceSha256": "6747c4095a5aa99af184a22ab190abcaa5633ffde5f63cfff9fd9ab643566321",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one dark grey U shaped travel neck pillow with smooth fabric cover. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "luggage-tag",
+      "path": "/products/catalog-v1/luggage-tag.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 37970,
+      "sha256": "be5905540f98f29ec01f3270d6e02e652f1c4a7688fa0a425d4c5e185dfcb0f0",
+      "sourceSha256": "8609595e0e6f4a8487cc6a6c85bdfe2436e43328a1de5b68d0aaeebfe5475c6b",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one caramel brown leatherette luggage tag with strap, blank covered card window. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "passport-wallet",
+      "path": "/products/catalog-v1/passport-wallet.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 68012,
+      "sha256": "548fe978e7ad5a2f00ae5e9f1fb61b1c6ab792644c831eb8666939068f45e6de",
+      "sourceSha256": "36fc5c984a2019f6a6d2d8fcb2dda0edfc8c632ca88bde460ee5dbf029c4edb5",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one dark brown faux leather passport wallet open with empty slots, no documents. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "folding-duffel",
+      "path": "/products/catalog-v1/folding-duffel.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 51276,
+      "sha256": "07db90191421dde76734f71dcacff6a708c27e4e0e3a575b110103d3f04d5242",
+      "sourceSha256": "e2e2cb1cfdd801fab9bcd0ccd182651eca4de9c8cf80173e771d8ab93e30687d",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one graphite grey lightweight duffel travel bag with two handles and shoulder strap. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "yoga-mat",
+      "path": "/products/catalog-v1/yoga-mat.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 62004,
+      "sha256": "a19278db9cac38f4c1da46fc71b4dda6435897782b2d99fcb59e54df33c8e220",
+      "sourceSha256": "27685c6a988ef51554010ba95147abf17d95774a2b0cdc28f0f19e03b5352844",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one lavender yoga mat partly rolled with subtle textured surface. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "yoga-block",
+      "path": "/products/catalog-v1/yoga-block.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 36772,
+      "sha256": "720a0fb64f1ee81a73dcb209412755bbdd1d8a3deae683691fdfd8254177b937",
+      "sourceSha256": "7d58bb38d412c491a44c85ba58cd96b9bf837b1e71e37ffb9b7379a79c94252e",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one sage green rectangular yoga block with rounded edges. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "resistance-band",
+      "path": "/products/catalog-v1/resistance-band.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 10916,
+      "sha256": "78d1ae053c610cdef215041ef3922ff537a5cbfc21c093fe8c972859add73c62",
+      "sourceSha256": "a1d1fd288f04edce2b9681b3c1a4f754856692168e03af9d5e0419a78a74f333",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one long lavender flat exercise resistance band loosely folded without handles. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "foam-roller",
+      "path": "/products/catalog-v1/foam-roller.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 55090,
+      "sha256": "f11f9f4697025168e57ae7b3987d1e899ab0e418eefe38aba925afa78859dbae",
+      "sourceSha256": "724209faf19ec74c5d22fc6a47edf99c1e98d8684e500b42a42583fb7f4851c9",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one grey cylindrical foam exercise roller with fine texture, no spikes. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "jump-rope",
+      "path": "/products/catalog-v1/jump-rope.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 30400,
+      "sha256": "846532061b09f26375d37382ca460a5468e7c49b9bae0096178cdf4246914e25",
+      "sourceSha256": "f09b2cdd6708e545ad6d40dd8f54fc345684bc1630ba7e653672ee7acaac8c0e",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one black skipping rope with two simple handles and loosely coiled cable. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "gym-towel",
+      "path": "/products/catalog-v1/gym-towel.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 89104,
+      "sha256": "a42047b3c49318eed5f9c37b172ac28cdced768d138192d9b58e1b43a1fae5e4",
+      "sourceSha256": "ae93453f9cb2271f14b084d4cc18350e9427eb539c1b74d7f3b4ae02f9bf6aca",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one folded dusty blue microfiber sports towel with small hanging loop. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "picnic-mat",
+      "path": "/products/catalog-v1/picnic-mat.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 94292,
+      "sha256": "141ddfee49518653a42155533e9889d68a3402f1749ca16c3500a5261056b847",
+      "sourceSha256": "6b52e753eab196addb91388fe9a5ff2bcb7a59257423674c83d8e77a4a34c400",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one sage and cream checkered picnic blanket folded with tan carry handle. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "camping-stool",
+      "path": "/products/catalog-v1/camping-stool.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 36568,
+      "sha256": "689219c97346c6df5ec6fb0dec199e79a2157047c18ed111740ecb9aba6e1d1c",
+      "sourceSha256": "6addf865e2ce1370e343c71f4a2c486b0e8807e32b42aaa09e9711db4d4abac5",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one small black folding camping stool with fabric seat and crossed metal legs. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "dry-bag",
+      "path": "/products/catalog-v1/dry-bag.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 16554,
+      "sha256": "83c411890c69dd62666d716250b30aae725b3dcab1ca13a3154b5d059437058e",
+      "sourceSha256": "24c192e1f85f6936f55775294ee447ee803b09fd451d62e890eef3fc7895cec0",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one orange roll top dry bag with black buckle closure, no branding. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "camping-lantern",
+      "path": "/products/catalog-v1/camping-lantern.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 15714,
+      "sha256": "cefe83586a8bd386af571f021c7e2cf2cb3807eeba7eecd13601f1e56874c0fd",
+      "sourceSha256": "1ca408b9a4276835551df5ac0d99b57827bab37aafe02e0474f3399d2d2de174",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one sage green portable camping lantern with carry handle and warm frosted light panel. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "ceramic-vase",
+      "path": "/products/catalog-v1/ceramic-vase.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 8894,
+      "sha256": "f9655824fc027c3670e1f0159c19ecfe6dd0db9b2ca6af7feba6592fa68bcc56",
+      "sourceSha256": "cf70bcae72c0c596f219618a0aa4d46041dc920a5a0fc92b4b68230e21794a22",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one ivory ceramic narrow neck vase with rounded body, empty. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "candle",
+      "path": "/products/catalog-v1/candle.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 20364,
+      "sha256": "ff79b4f25f4532baeb9b2e83dec212ee9e8518acdf3224232d0cd6c48fe0a6c1",
+      "sourceSha256": "9b151577dbd2b9cae1b42c51a43c917c7b207f5dcb6b100864e78f313c4ee199",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one amber glass jar candle with cream wax and unlit wick, no label. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "photo-frame",
+      "path": "/products/catalog-v1/photo-frame.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 26570,
+      "sha256": "7dc25f6315db88dd435805e3fca682e4d9fa8e7b9918665e639fe1eddc7099e3",
+      "sourceSha256": "6453aa6e223f0dec4399ebd5ea6420511ea219601a106b21c158094f6b553ca9",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one natural wood photo frame with blank cream insert and tabletop stand, no photo. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "round-mirror",
+      "path": "/products/catalog-v1/round-mirror.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 13568,
+      "sha256": "6fba45d3f10ad8af7dd6901391ff7f06430d343852c2486fdb2b2c0270e44413",
+      "sourceSha256": "6fe683c1b6ca76bac6c0326493dc86ead8c3b164e6aeec0a481f281b3608c992",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one small round tabletop mirror with cream metal stem and circular base. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "tissue-box",
+      "path": "/products/catalog-v1/tissue-box.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 11750,
+      "sha256": "9fb4a22f5235418362345ad154f90ebec9c0b2f1956a05cd1dcfb8747eaec991",
+      "sourceSha256": "254ff5f58eb87355f8d62904323117860dee99f521be68d79f97f7e2e473d650",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one white rectangular tissue box with bamboo lid and a single white tissue emerging. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "soap-dispenser",
+      "path": "/products/catalog-v1/soap-dispenser.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 17128,
+      "sha256": "dc45c81aa82e8151f4cd7d6f98f0a4f4eb03c6c2539b30b84685cb2c54603eec",
+      "sourceSha256": "80106cea043c0137b7f9cd4300c90706cced7127e36a4fef3c5afee291d31163",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one sage grey ceramic soap dispenser with matte black pump. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "toothbrush-cup",
+      "path": "/products/catalog-v1/toothbrush-cup.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 16678,
+      "sha256": "adf8cd3bf4e34c9ebe55a954e2aeb2208136c74b6757fe3bef3665eba004eff5",
+      "sourceSha256": "4fa8a534f76e7763f283330561002f9bde98bb5ef3c8e28ab2d09d36b4ff2cc9",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one pale grey ceramic bathroom tumbler without handle, empty. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "door-mat",
+      "path": "/products/catalog-v1/door-mat.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 121834,
+      "sha256": "7d3069be55314a4c7337fb98976c2c36bae1e7d9e5b02fca6fe86899ec447bbc",
+      "sourceSha256": "b8c3510f662033f9d5405bc390aa4019d252c93170f9eecce252d3ac2c523ac1",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one rectangular beige grey striped indoor doormat with low pile texture. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "wooden-hangers",
+      "path": "/products/catalog-v1/wooden-hangers.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 34592,
+      "sha256": "9803451714d5c7e6b1a13cf963ca7a7289fe7f02906ac95af75f171005442d78",
+      "sourceSha256": "ebf7035cedfa99f5dfd3e532ad6a39bd331921ff88e92bd30b09a87d666a6b42",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: five natural wooden clothes hangers with silver hooks neatly stacked. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "door-stop",
+      "path": "/products/catalog-v1/door-stop.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 14056,
+      "sha256": "3701644d556f1ea3b850d73728fcf8101b5e9f2e6ba11ace70e65444f44ee019",
+      "sourceSha256": "cb0f8f768f796a738b7533d15841bce67ff0e96ac14193cd69307b16ba5a861b",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one light grey silicone wedge door stop with ridged surface. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "plant-pot",
+      "path": "/products/catalog-v1/plant-pot.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 8432,
+      "sha256": "7d210a97e1d3467dbbc55ac88acb8bc48418766bc26660bd3d7ca65e6f37c404",
+      "sourceSha256": "1d4ad685c04ec53f247ae4a00bf7a8437e00226b9e6904e0a4a4900d6f6d6b85",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one white cylindrical ceramic plant pot with matching saucer, empty. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "watering-can",
+      "path": "/products/catalog-v1/watering-can.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 14206,
+      "sha256": "fa3cbec62bdec14063b816277356d4e6ec015913d77908061267b34d0898aef2",
+      "sourceSha256": "7829db830074a18b6ec8dbe1644870cdcf32bbd954ddeb94640c5493156a658d",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one sage green metal indoor watering can with long narrow spout and top handle. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "plant-mister",
+      "path": "/products/catalog-v1/plant-mister.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 31260,
+      "sha256": "8f8b9604763faaa8ed955485ca2d9f5a439cd838fbfeccec5e0155805fb3242b",
+      "sourceSha256": "f3cfdf2ec402d604dd0cbfeb45eaf4576945ae20586b0be7c5f88ee6da3541a5",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one clear ribbed glass plant mister with brass colored pump and curved finger handle. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "garden-trowel",
+      "path": "/products/catalog-v1/garden-trowel.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 13880,
+      "sha256": "5a96bb7085a53c7ea96e04b5c4ff788e2cea6b1c4c2f02d234f746be4de522a9",
+      "sourceSha256": "0e87f5aa690ad8cc8003d25c0f23f1d313f4e8d7caef9e627e6ec87030449ca4",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one small garden hand trowel with stainless steel scoop and wooden handle. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "pruning-shears",
+      "path": "/products/catalog-v1/pruning-shears.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 22030,
+      "sha256": "3b85dcfee3f1d74dd58208931553119abf087e13a2fa3d847f10980ef7562f3c",
+      "sourceSha256": "8897bcc830ecb1661d0048469550828040a4d33d1a0ce112cd0247da84003b1e",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one green handled garden pruning shear closed with safety catch, small curved steel blades. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "gardening-gloves",
+      "path": "/products/catalog-v1/gardening-gloves.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 100330,
+      "sha256": "3ae9af5c5da2850148a6c161370ccf1299d59cbc9b0425901384b6b083e9fdad",
+      "sourceSha256": "5f0e3e0d942aafcd1222af928239763c5adc30da87d8b99b2742a11887406360",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one pair of green fabric gardening gloves with darker coated palms. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "plant-labels",
+      "path": "/products/catalog-v1/plant-labels.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 23874,
+      "sha256": "6f2df70f13e6a23ea1eef332cdc0fec6d8f0db1a24464bf7a9e181411638d3d3",
+      "sourceSha256": "9f7ae0d585429ebd329bff78a263b6972450895465ce934d4924466aa1d189a8",
+      "prompt": "Use case: product-mockup. One square ecommerce studio photograph of EXACTLY TEN identical blank natural bamboo plant label stakes. Arrange in TWO PARALLEL ROWS of FIVE stakes, laid flat on a pale warm grey background. Each stake has one small rectangular blank label head and a pointed narrow stem. Exactly five separate fully visible stakes in the top row and exactly five in the bottom row. No overlap, no fan arrangement, all ten can be counted. Soft diffuse studio daylight, realistic bamboo wood grain, minimal premium editorial product photography. No text, no logos, no additional stakes, no decorative objects. The entire set centered with comfortable margins."
+    },
+    {
+      "slug": "plant-stand",
+      "path": "/products/catalog-v1/plant-stand.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 22862,
+      "sha256": "6f3233ad3c1c5ddb6f904992a5f16ffdc8aac4c9753d754787d17b3c98f2bac8",
+      "sourceSha256": "3dc3591877db6955976828de4f65f21bcb1b2d0b2de0a6ff34d968d8ebf7705c",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one natural wooden mid century style low plant stand with four legs, empty. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "seedling-tray",
+      "path": "/products/catalog-v1/seedling-tray.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 27738,
+      "sha256": "23083332cb3461bf33bdd724fa2c2fa8a9f7cc9f34e18d8d6926ca80722eebf5",
+      "sourceSha256": "cbe9bd396afd8a196ec634fbcd6b176487258bfd7a23a4ac5d1006679fd32345",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one dark green twelve cell seed starting tray with clear transparent dome lid. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    },
+    {
+      "slug": "jute-twine",
+      "path": "/products/catalog-v1/jute-twine.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 73886,
+      "sha256": "06b44e75aedcd759bee5eb808953926a82df8c84738ab979c6eaca1a5d0772aa",
+      "sourceSha256": "1e6cb2ac1eb11c70190d28ce45f89ea4d3f48b81ec1e4699f91c5202aa3f1b99",
+      "prompt": "Use case: product-mockup. Create one square individual product catalog photograph for Aster Commerce, a fictional demo store. Subject: one spool of natural jute garden twine with loose short end. Premium realistic editorial ecommerce product photography, seamless pale warm grey background, soft diffuse studio daylight with subtle shadow, product centered and fully visible with comfortable margins. Show exactly the described product or set only. Accurate materials and construction, understated minimalist design. No brand logos, no writing or labels, no watermarks, no decorative props, no collage, no people."
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "kind": "catalog functional acceptance, not semantic RAG evaluation",
+  "scope": "Aster Studio brand 101",
+  "cases": [
+    {"query":"陶瓷","expectedIds":[10001,10011,10081,10086,10087,10091]},
+    {"query":"玻璃","expectedIds":[10002,10004,10016,10019,10093]},
+    {"query":"纯棉","expectedIds":[10031,10032,10035,10036]},
+    {"query":"USB-C","expectedIds":[10053,10056]},
+    {"query":"瑜伽","expectedIds":[10071,10072]},
+    {"query":"不存在的月球发动机","expectedIds":[]}
+  ],
+  "futureAgentScenarios": [
+    {"question":"晨白杯能装多少水，能直接加热吗？","evidenceIds":[10001],"expected":"容量350mL；目录没有直接加热能力的承诺，不应推断可明火加热。"},
+    {"question":"推荐50元以内的玻璃杯。","evidenceIds":[10002],"expected":"29元澄光直身玻璃杯；不能把79元随手杯当成玻璃材质。"},
+    {"question":"我想买能明火烧水的玻璃壶。","evidenceIds":[10004,10006],"expected":"目录两种壶均不支持该要求；不可虚构适用性。"},
+    {"question":"一个人装午饭需要什么保鲜盒？","evidenceIds":[10016],"expected":"鲜存玻璃保鲜盒800mL，49元；加热前取下盒盖。"},
+    {"question":"榉木切菜板可以放洗碗机吗？","evidenceIds":[10014],"expected":"不可以；手洗后立放晾干。"},
+    {"question":"有带前开门的透明鞋盒吗？","evidenceIds":[10024],"expected":"步藏透明鞋盒，34×24×14cm，39元。"},
+    {"question":"45厘米靠垫套包含枕芯吗？","evidenceIds":[10033],"expected":"织间靠垫套不含芯，尺寸45×45cm。"},
+    {"question":"200元以内，想买一条毯子在空调房用。","evidenceIds":[10034],"expected":"午后针织盖毯159元，130×170cm。"},
+    {"question":"枕套一份是几只？","evidenceIds":[10036],"expected":"安枕纯棉枕套2只装，69元。"},
+    {"question":"这款灰色键盘是蓝牙的吗？","evidenceIds":[10052],"expected":"不是；方寸键盘为USB-A有线。"},
+    {"question":"任何USB-C电脑插扩展坞都能连接显示器吗？","evidenceIds":[10053],"expected":"不能保证；主机接口需要支持视频输出。"},
+    {"question":"我的电脑机身34×24cm，可以装进护行内胆包吗？","evidenceIds":[10057],"expected":"不建议；目录内尺寸33×23cm，小于设备。"},
+    {"question":"我要一个100元以内能装A4笔记的日常布包。","evidenceIds":[10061],"expected":"日携帆布托特包79元，36×32×10cm；说明以实际物品尺寸核对。"},
+    {"question":"城市双肩包可以作为专业登山装备吗？","evidenceIds":[10062],"expected":"不可以这样承诺；目录为18L日常通勤包。"},
+    {"question":"岸行袋可以放相机潜水吗？","evidenceIds":[10079],"expected":"不可以；不用于水下存放贵重物品。"},
+    {"question":"泡沫滚轴能治疗我的腰伤吗？","evidenceIds":[10074],"expected":"不作治疗承诺；目录明确不用于伤处或治疗。"},
+    {"question":"灯和桌钟有没有附送电池？","evidenceIds":[10080,10050],"expected":"两者均电池另配。"},
+    {"question":"烛光杯蜡是薰衣草香的吗？","evidenceIds":[10082],"expected":"不是；目录为无香杯蜡。"},
+    {"question":"育苗盘一盘可以放几份？","evidenceIds":[10099],"expected":"12格，含透明盖；不保证发芽率。"},
+    {"question":"这些产品有真实认证检测报告吗？","evidenceIds":[],"expected":"这是原创合成体验商品目录，不能编造认证、实测性能或真实发货。"}
+  ]
+}

@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -36,6 +36,16 @@ export function Customer({
   requestLogin: () => void;
 }) {
   const catalog = path === "/app" || path === "/";
+  const [page, setPage] = useState(1),
+    [total, setTotal] = useState(0),
+    [pages, setPages] = useState(1);
+  const [category, setCategory] = useState(""),
+    [keyword, setKeyword] = useState("");
+  const [categories, setCategories] = useState<
+    { id: number; name: string; showStatus: number }[]
+  >([]);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const loadSequence = useRef(0);
   const [products, setProducts] = useState<Product[]>([]),
     [cart, setCart] = useState<Cart[]>([]),
     [orders, setOrders] = useState<Order[]>([]),
@@ -51,19 +61,24 @@ export function Customer({
     [returnOrder, setReturnOrder] = useState<Order | null>(null),
     [detail, setDetail] = useState<Sale | null>(null);
   async function load() {
+    const sequence = ++loadSequence.current;
     setLoading(true);
     setError("");
     try {
-      if (catalog)
-        setProducts(
-          (
-            await api<{ list: Product[] }>(
-              "portal",
-              `/product/search?pageNum=1&pageSize=40&sort=${sort}&keyword=${encodeURIComponent(search)}`,
-            )
-          ).list || [],
+      if (catalog) {
+        const result = await api<{
+          list: Product[];
+          total: number;
+          totalPage: number;
+        }>(
+          "portal",
+          `/product/search?pageNum=${page}&pageSize=20&sort=${sort}&keyword=${encodeURIComponent(keyword)}${category ? `&productCategoryId=${category}` : ""}`,
         );
-      else if (signed) {
+        if (sequence !== loadSequence.current) return;
+        setProducts(result.list || []);
+        setTotal(result.total);
+        setPages(Math.max(1, result.totalPage));
+      } else if (signed) {
         if (path.endsWith("/cart"))
           setCart(await api<Cart[]>("portal", "/cart/list/promotion"));
         if (path.endsWith("/orders"))
@@ -94,27 +109,60 @@ export function Customer({
         }
       }
     } catch (e) {
-      setError((e as Error).message);
+      if (sequence === loadSequence.current) setError((e as Error).message);
     } finally {
-      setLoading(false);
+      if (sequence === loadSequence.current) setLoading(false);
     }
   }
   useEffect(() => {
     void load();
-  }, [path, signed, sort]);
+    return () => {
+      loadSequence.current++;
+    };
+  }, [path, signed, sort, page, category, keyword]);
+  useEffect(() => {
+    let current = true;
+    if (catalog)
+      void api<{ id: number; name: string; showStatus: number }[]>(
+        "portal",
+        "/product/categoryTreeList",
+      )
+        .then((rows) => {
+          if (current) setCategories(rows.filter((c) => c.showStatus === 1));
+        })
+        .catch(() => {
+          if (current) setCategories([]);
+        });
+    return () => {
+      current = false;
+    };
+  }, [catalog]);
   useEffect(() => {
     if (!signed || detail?.status !== "REFUNDING") return;
-    let cancelled = false, fetching = false;
+    let cancelled = false,
+      fetching = false;
     const timer = setInterval(async () => {
       if (fetching) return;
       fetching = true;
       try {
-        const next = await api<Sale>("portal", `/aster/after-sales/${detail.id}`);
-        if (!cancelled) { setDetail(next); setSales(items => items.map(s => s.id === next.id ? next : s)); }
-      } catch (e) { if (!cancelled) setError((e as Error).message); }
-      finally { fetching = false; }
+        const next = await api<Sale>(
+          "portal",
+          `/aster/after-sales/${detail.id}`,
+        );
+        if (!cancelled) {
+          setDetail(next);
+          setSales((items) => items.map((s) => (s.id === next.id ? next : s)));
+        }
+      } catch (e) {
+        if (!cancelled) setError((e as Error).message);
+      } finally {
+        fetching = false;
+      }
     }, 2000);
-    return () => { cancelled = true; clearInterval(timer); };
+    return () => {
+      cancelled = true;
+      clearInterval(timer);
+    };
   }, [signed, detail?.id, detail?.status]);
   async function run(action: () => Promise<void>, message = "操作已完成") {
     setBusy(true);
@@ -146,6 +194,7 @@ export function Customer({
         quantity: 1,
         price: sku.price,
         productName: product.name,
+        productPic: product.pic,
         productSkuCode: sku.skuCode,
         productCategoryId: product.productCategoryId,
         productBrand: product.brandName,
@@ -191,12 +240,12 @@ export function Customer({
             <div className="hero-copy">
               <span className="pill light">ASTER ESSENTIALS</span>
               <h2>
-                连接生活的
+                收集日常的
                 <br />
-                每一种可能。
+                每一份美好。
               </h2>
               <p>
-                从一根线开始，整理你的数字日常。
+                从晨间的一杯咖啡，到周末的一次出行。
                 <br />
                 少一点繁杂，多一点从容。
               </p>
@@ -208,8 +257,13 @@ export function Customer({
             <div className="hero-art">
               <div className="orbit one" />
               <div className="orbit two" />
-              <ProductArt large />
-              <span className="hero-caption">Aster Essentials · USB-C</span>
+              <ProductArt
+                id={10001}
+                src="/products/catalog-v1/ivory-mug.webp"
+                alt="晨白陶瓷马克杯 · AI 商品示意图"
+                large
+              />
+              <span className="hero-caption">Aster Studio · 日常生活图录</span>
             </div>
           </div>
           <div className="benefits">
@@ -230,15 +284,18 @@ export function Customer({
             <div>
               <div className="eyebrow">CURATED FOR YOU</div>
               <h2>
-                日常精选{" "}
-                <span>{products.length.toString().padStart(2, "0")}</span>
+                日常精选 <span>共 {total} 件</span>
               </h2>
             </div>
             <form
               className="search"
               onSubmit={(e) => {
                 e.preventDefault();
-                void load();
+                if (page === 1 && keyword === search.trim()) void load();
+                else {
+                  setPage(1);
+                  setKeyword(search.trim());
+                }
               }}
             >
               <Search size={18} />
@@ -255,12 +312,42 @@ export function Customer({
             <select
               aria-label="商品排序"
               value={sort}
-              onChange={(e) => setSort(e.target.value)}
+              onChange={(e) => {
+                setSort(e.target.value);
+                setPage(1);
+              }}
             >
               <option value="0">精选推荐</option>
               <option value="3">价格从低到高</option>
               <option value="4">价格从高到低</option>
             </select>
+          </div>
+          <div
+            className="catalog-categories"
+            role="group"
+            aria-label="商品分类"
+          >
+            <button
+              className={category === "" ? "active" : ""}
+              onClick={() => {
+                setCategory("");
+                setPage(1);
+              }}
+            >
+              全部好物
+            </button>
+            {categories.map((c) => (
+              <button
+                key={c.id}
+                className={category === String(c.id) ? "active" : ""}
+                onClick={() => {
+                  setCategory(String(c.id));
+                  setPage(1);
+                }}
+              >
+                {c.name === "Test Accessories" ? "初始体验商品" : c.name}
+              </button>
+            ))}
           </div>
         </>
       ) : (
@@ -313,36 +400,80 @@ export function Customer({
       {loading ? (
         <Loading />
       ) : catalog ? (
-        <div className="product-grid">
-          {products.map((p, i) => (
-            <article className="product-card" key={p.id}>
-              <div className="art-wrap">
-                <ProductArt id={p.id} />
-                <span className="product-tag">
-                  {i === 0 ? "日常之选" : "ASTER LAB"}
-                </span>
-              </div>
-              <div className="product-meta">
-                <span>数码生活 / 合成体验商品</span>
-                <h3>{p.name}</h3>
-                <div className="product-bottom">
-                  <strong>{money(p.price)}</strong>
+        <>
+          <div className="product-grid">
+            {products.map((p) => (
+              <article className="product-card" key={p.id}>
+                <div className="art-wrap">
                   <button
-                    className="add-button"
-                    disabled={busy}
-                    onClick={() => void add(p)}
-                    aria-label={`加入购物袋 ${p.name}`}
+                    className="product-image-button"
+                    aria-label={`查看商品 ${p.name}`}
+                    onClick={() => setSelectedProduct(p)}
                   >
-                    <Plus size={18} />
+                    <ProductArt
+                      id={p.id}
+                      src={p.pic}
+                      alt={`${p.name} · 商品示意图`}
+                    />
                   </button>
+                  <span className="product-tag">{p.brandName}</span>
                 </div>
-              </div>
-            </article>
-          ))}
-          {products.length === 0 && (
-            <Empty title="暂时没有匹配的商品">试试其他关键词。</Empty>
+                <div className="product-meta">
+                  <span>
+                    {p.productCategoryName === "Test Accessories"
+                      ? "数码生活"
+                      : p.productCategoryName}{" "}
+                    / 商品示意图
+                  </span>
+                  <h3>
+                    <button
+                      className="product-title-button"
+                      onClick={() => setSelectedProduct(p)}
+                    >
+                      {p.name}
+                    </button>
+                  </h3>
+                  <p className="product-spec">{p.subTitle || "日常实用之选"}</p>
+                  <div className="product-bottom">
+                    <strong>{money(p.price)}</strong>
+                    <button
+                      className="add-button"
+                      disabled={busy}
+                      onClick={() => void add(p)}
+                      aria-label={`加入购物袋 ${p.name}`}
+                    >
+                      <Plus size={18} />
+                    </button>
+                  </div>
+                </div>
+              </article>
+            ))}
+            {products.length === 0 && (
+              <Empty title="暂时没有匹配的商品">试试其他关键词。</Empty>
+            )}
+          </div>
+          {total > 0 && (
+            <nav className="catalog-pagination" aria-label="商品分页">
+              <button
+                className="button secondary"
+                disabled={page <= 1}
+                onClick={() => setPage((p) => p - 1)}
+              >
+                上一页
+              </button>
+              <span>
+                第 {page} / {pages} 页 · 共 {total} 件
+              </span>
+              <button
+                className="button secondary"
+                disabled={page >= pages}
+                onClick={() => setPage((p) => p + 1)}
+              >
+                下一页
+              </button>
+            </nav>
           )}
-        </div>
+        </>
       ) : path.endsWith("/cart") ? (
         <>
           {cart.length === 0 ? (
@@ -354,7 +485,11 @@ export function Customer({
               <div className="panel">
                 {cart.map((item) => (
                   <div className="cart-row" key={item.id}>
-                    <ProductArt id={item.productId} />
+                    <ProductArt
+                      id={item.productId}
+                      src={item.productPic}
+                      alt={item.productName}
+                    />
                     <div className="grow">
                       <h3>{item.productName}</h3>
                       <p>{money(item.price)} / 件</p>
@@ -465,7 +600,11 @@ export function Customer({
                 </div>
                 {o.orderItemList.map((item, i) => (
                   <div className="order-item" key={i}>
-                    <ProductArt id={item.productId} />
+                    <ProductArt
+                      id={item.productId}
+                      src={item.productPic}
+                      alt={item.productName}
+                    />
                     <div>
                       <h3>{item.productName}</h3>
                       <p>数量 {item.productQuantity}</p>
@@ -580,6 +719,14 @@ export function Customer({
           }}
         />
       )}
+      {selectedProduct && (
+        <ProductDetails
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+          onAdd={add}
+          busy={busy}
+        />
+      )}
       {returnOrder && (
         <ReturnForm order={returnOrder} onClose={() => setReturnOrder(null)} />
       )}
@@ -589,6 +736,86 @@ export function Customer({
         </Modal>
       )}
     </section>
+  );
+}
+function ProductDetails({
+  product,
+  onClose,
+  onAdd,
+  busy,
+}: {
+  product: Product;
+  onClose: () => void;
+  onAdd: (product: Product) => Promise<void>;
+  busy: boolean;
+}) {
+  const [data, setData] = useState<{
+    product: Product;
+    skuStockList: { stock: number; lockStock: number }[];
+  } | null>(null);
+  const [error, setError] = useState("");
+  useEffect(() => {
+    let active = true;
+    void api<{
+      product: Product;
+      skuStockList: { stock: number; lockStock: number }[];
+    }>("portal", `/product/detail/${product.id}`)
+      .then((result) => {
+        if (active) setData(result);
+      })
+      .catch((e) => {
+        if (active) setError((e as Error).message);
+      });
+    return () => {
+      active = false;
+    };
+  }, [product.id]);
+  const p = data?.product || product;
+  const available = data?.skuStockList[0]
+    ? Math.max(
+        0,
+        data.skuStockList[0].stock - (data.skuStockList[0].lockStock || 0),
+      )
+    : 0;
+  return (
+    <Modal title={product.name} onClose={onClose}>
+      <div className="catalog-detail">
+        <ProductArt id={p.id} src={p.pic} alt={`${p.name} · AI 商品示意图`} />
+        <span className="muted">
+          {p.brandName} · {p.productCategoryName}
+        </span>
+        <div className="between">
+          <strong className="catalog-detail-price">{money(p.price)}</strong>
+          {data && (
+            <span>
+              {available > 0 ? `可售库存 ${available} 件` : "暂时缺货"}
+            </span>
+          )}
+        </div>
+        <p>{p.description || p.subTitle}</p>
+        {error ? (
+          <p className="error" role="alert">
+            {error}
+          </p>
+        ) : !data ? (
+          <Loading />
+        ) : (
+          <p className="catalog-detail-specs">
+            {p.detailDesc || p.subTitle || "请咨询客服了解商品详情。"}
+          </p>
+        )}
+        <button
+          className="button wide"
+          disabled={busy || !data || available <= 0}
+          onClick={() => {
+            onClose();
+            void onAdd(p);
+          }}
+        >
+          加入购物袋
+        </button>
+      </div>
+    </Modal>
   );
 }
 function Checkout({

@@ -29,7 +29,7 @@ SELECT 'pms_product' table_name,COUNT(*) row_count FROM pms_product UNION ALL SE
 SELECT 'catalog_count' plan_label;
 EXPLAIN ANALYZE SELECT COUNT(*) FROM pms_product WHERE delete_status=0 AND publish_status=1;
 SELECT 'catalog_page' plan_label;
-EXPLAIN ANALYZE SELECT $columns FROM pms_product WHERE delete_status=0 AND publish_status=1 LIMIT 20;
+EXPLAIN ANALYZE SELECT $columns FROM pms_product WHERE delete_status=0 AND publish_status=1 ORDER BY sort DESC,id DESC LIMIT 20;
 SELECT 'refund_summary' plan_label;
 EXPLAIN ANALYZE $summary;
 SELECT 'refund_page' plan_label;

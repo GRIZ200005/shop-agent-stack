@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 /**
  * 前台订单管理Service实现类
  * Created by macro on 2020/4/6.
+ * Modified by Aster: deterministic ordering for paginated catalog browsing.
  */
 @Service
 public class PmsPortalProductServiceImpl implements PmsPortalProductService {
@@ -61,11 +62,13 @@ public class PmsPortalProductServiceImpl implements PmsPortalProductService {
         if (sort == 1) {
             example.setOrderByClause("id desc");
         } else if (sort == 2) {
-            example.setOrderByClause("sale desc");
+            example.setOrderByClause("sale desc, id desc");
         } else if (sort == 3) {
-            example.setOrderByClause("price asc");
+            example.setOrderByClause("price asc, id asc");
         } else if (sort == 4) {
-            example.setOrderByClause("price desc");
+            example.setOrderByClause("price desc, id desc");
+        } else {
+            example.setOrderByClause("sort desc, id desc");
         }
         return productMapper.selectByExample(example);
     }
