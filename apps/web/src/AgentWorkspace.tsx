@@ -5,6 +5,7 @@ import { ProductArt } from "./ui";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import "./agent.css";
+import { HandoffButton } from "./Support";
 
 type Event = { id: number; kind: string; data: Record<string, unknown> };
 type Run = {
@@ -79,12 +80,23 @@ function BusinessCards({ data }: { data: Record<string, unknown> }) {
   const products = (data.products || []) as Record<string, unknown>[];
   return (
     <div className="agent-cards">
-      {products.map(p => <a className="agent-data-card agent-product-card" key={String(p.id)} href={`/app?product=${Number(p.id)}`}>
-        <ProductArt id={Number(p.id)} src={String(p.pic || "")} alt={String(p.name)} />
-        <small>商品依据 {String(p.evidence_id)}</small>
-        <span>{String(p.name)}</span><strong>{money(p.price)}</strong>
-        <small>查看商品与当前规格 →</small>
-      </a>)}
+      {products.map((p) => (
+        <a
+          className="agent-data-card agent-product-card"
+          key={String(p.id)}
+          href={`/app?product=${Number(p.id)}`}
+        >
+          <ProductArt
+            id={Number(p.id)}
+            src={String(p.pic || "")}
+            alt={String(p.name)}
+          />
+          <small>商品依据 {String(p.evidence_id)}</small>
+          <span>{String(p.name)}</span>
+          <strong>{money(p.price)}</strong>
+          <small>查看商品与当前规格 →</small>
+        </a>
+      ))}
       {orders.map((o) => (
         <a className="agent-data-card" key={String(o.id)} href="/app/orders">
           <small>订单 #{String(o.id)}</small>
@@ -140,7 +152,9 @@ function Reply({ run }: { run: Run }) {
   const products = new Map<string, Record<string, unknown>>();
   const steps: { name: string; id: string; complete: boolean }[] = [];
   for (const e of run.events) {
-    if (e.kind === "product_sources") for (const p of (e.data.products || []) as Record<string, unknown>[]) products.set(String(p.id),p);
+    if (e.kind === "product_sources")
+      for (const p of (e.data.products || []) as Record<string, unknown>[])
+        products.set(String(p.id), p);
     if (e.kind === "assistant" || e.kind === "assistant_delta") {
       const id = String(e.data.message_id || e.id);
       messages.set(
@@ -178,18 +192,52 @@ function Reply({ run }: { run: Run }) {
         </summary>
         <div className="agent-process-body">
           <p>展示业务工具的执行状态与结果，不展示模型内部推理。</p>
-          {run.events.filter(e => e.kind === "context").map(e => (
-            <p key={e.id}>已接续当前会话{Number(e.data.dropped_messages) > 0 ? "，较早的对话已省略；缺少信息时会再次询问。" : "。"}</p>
-          ))}
-          {run.events.filter(e => e.kind === "context_update").map(e => (
-            <p key={e.id}>{e.data.reset ? "已在本轮重置任务信息。" : "已在本轮整理用户补充的信息，业务结果仍需核实。"}</p>
-          ))}
-          {run.events.filter(e => e.kind === "policy_check").map(e => (
-            <p key={e.id}>证据检查 · 第 {String(e.data.attempt)} 次：{({sufficient:"证据可用于回答，仍需校验引用",retry:"需要补查相关政策",clarify:"需要补充适用信息",insufficient:"现有依据不足"} as Record<string,string>)[String(e.data.decision)] || "检查结束"}</p>
-          ))}
-          {run.events.filter(e => e.kind === "retrieval").map(e => (
-            <p key={e.id}>政策检索：{e.data.method === "HYBRID_RRF_RERANK" ? "混合检索与精排" : "关键词检索"} · {String(e.data.count ?? 0)} 条证据 · {String(e.data.elapsed_ms ?? 0)} ms</p>
-          ))}
+          {run.events
+            .filter((e) => e.kind === "context")
+            .map((e) => (
+              <p key={e.id}>
+                已接续当前会话
+                {Number(e.data.dropped_messages) > 0
+                  ? "，较早的对话已省略；缺少信息时会再次询问。"
+                  : "。"}
+              </p>
+            ))}
+          {run.events
+            .filter((e) => e.kind === "context_update")
+            .map((e) => (
+              <p key={e.id}>
+                {e.data.reset
+                  ? "已在本轮重置任务信息。"
+                  : "已在本轮整理用户补充的信息，业务结果仍需核实。"}
+              </p>
+            ))}
+          {run.events
+            .filter((e) => e.kind === "policy_check")
+            .map((e) => (
+              <p key={e.id}>
+                证据检查 · 第 {String(e.data.attempt)} 次：
+                {(
+                  {
+                    sufficient: "证据可用于回答，仍需校验引用",
+                    retry: "需要补查相关政策",
+                    clarify: "需要补充适用信息",
+                    insufficient: "现有依据不足",
+                  } as Record<string, string>
+                )[String(e.data.decision)] || "检查结束"}
+              </p>
+            ))}
+          {run.events
+            .filter((e) => e.kind === "retrieval")
+            .map((e) => (
+              <p key={e.id}>
+                政策检索：
+                {e.data.method === "HYBRID_RRF_RERANK"
+                  ? "混合检索与精排"
+                  : "关键词检索"}{" "}
+                · {String(e.data.count ?? 0)} 条证据 ·{" "}
+                {String(e.data.elapsed_ms ?? 0)} ms
+              </p>
+            ))}
           {steps.map((s, i) => (
             <div className="agent-tool" key={i}>
               {s.complete ? "✓" : active(run) ? "◌" : "–"}{" "}
@@ -204,8 +252,10 @@ function Reply({ run }: { run: Run }) {
           )}
         </div>
       </details>
-      {run.events.some(e => e.kind === "retrieval" && e.data.degraded) && (
-        <p className="agent-partial" role="status">混合检索暂不可用，本次已使用当前有效政策的关键词检索。</p>
+      {run.events.some((e) => e.kind === "retrieval" && e.data.degraded) && (
+        <p className="agent-partial" role="status">
+          混合检索暂不可用，本次已使用当前有效政策的关键词检索。
+        </p>
       )}
       {[...messages].map(([id, text]) => (
         <div className="agent-text" key={id}>
@@ -517,6 +567,20 @@ export function AgentWorkspace({
             <div className="agent-toolbar">
               <Sparkles size={18} />
               <strong>星序助手</strong>
+              <HandoffButton
+                initialTitle={runs.at(-1)?.input || ""}
+                excerpt={runs
+                  .slice(-3)
+                  .map(
+                    (r) =>
+                      `客户：${r.input}\n助手：${r.events
+                        .filter((e) => e.kind === "assistant")
+                        .map((e) => String(e.data.text))
+                        .join("\n")}`,
+                  )
+                  .join("\n\n")
+                  .slice(0, 6000)}
+              />
               <label>
                 模型
                 <select

@@ -1,0 +1,154 @@
+.support-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.support-grid {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+.support-list,
+.support-conversation {
+  background: white;
+  border: 1px solid #e5e2ef;
+  border-radius: 18px;
+  padding: 20px;
+  min-width: 0;
+}
+.support-ticket {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 8px;
+  color: #333344;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.support-ticket.selected {
+  background: #f1edfc;
+  border-color: #cec4ee;
+}
+.support-ticket small,
+.support-context small,
+.support-message small {
+  color: #74748b;
+}
+.support-detail-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
+  border-bottom: 1px solid #efedf5;
+  padding-bottom: 16px;
+}
+.support-detail-header h2 {
+  overflow-wrap: anywhere;
+  font-size: 22px;
+}
+.support-context {
+  background: #f8f7fc;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 20px 0;
+}
+.support-context summary {
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.support-context p,
+.support-message p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.75;
+}
+.support-context p {
+  max-height: 260px;
+  overflow: auto;
+  font-size: 14px;
+}
+.support-message {
+  border: 1px solid #e9e5f2;
+  border-radius: 14px;
+  margin: 12px 0;
+  padding: 16px;
+}
+.support-message.staff {
+  background: #f3effd;
+}
+.support-message.system {
+  background: #fafafa;
+  border-style: dashed;
+  font-size: 13px;
+}
+.support-message p {
+  margin: 8px 0 0;
+  color: #30313c;
+}
+.support-form {
+  display: grid;
+  gap: 16px;
+}
+.support-form label {
+  display: grid;
+  gap: 8px;
+}
+.support-form input,
+.support-form textarea {
+  width: 100%;
+  border: 1px solid #d9d3e6;
+  border-radius: 12px;
+  padding: 13px;
+  font: inherit;
+  color: #252638;
+  background: white;
+  box-sizing: border-box;
+}
+.support-form textarea {
+  resize: vertical;
+}
+.support-form .button {
+  justify-self: end;
+}
+.support-form small {
+  line-height: 1.7;
+  color: #767386;
+}
+.support-reply {
+  margin-top: 24px;
+  border-top: 1px solid #ebe7f2;
+  padding-top: 18px;
+}
+.support-empty {
+  text-align: center;
+  padding: 90px 20px;
+  color: #89819f;
+}
+.support-closed {
+  background: #f3f7f4;
+  border-radius: 12px;
+  padding: 18px;
+  color: #426349;
+}
+@media (max-width: 800px) {
+  .support-grid {
+    grid-template-columns: 1fr;
+  }
+  .support-detail-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .support-list {
+    max-height: 300px;
+    overflow: auto;
+  }
+}

@@ -22,6 +22,7 @@ import { AgentWorkspace } from "./AgentWorkspace";
 import { Login } from "./Login";
 import { AccountSettings, accountApi } from "./AccountSettings";
 import "./account.css";
+import { SupportWorkspace } from "./Support";
 
 function safeNext(value: string | null) {
   try {
@@ -195,10 +196,12 @@ export function App() {
           [ShoppingBag, "购物袋", "/app/cart"],
           [ReceiptText, "我的订单", "/app/orders"],
           [LifeBuoy, "售后服务", "/app/after-sales"],
+          [Headphones, "人工咨询", "/app/support"],
           [BookOpen, "服务政策", "/app/policies"],
         ] as const)
       : ([
           [Headphones, "售后工作台", "/service"],
+          [Headphones, "人工咨询", "/service/support"],
           [ShieldCheck, "管理中心", "/admin"],
         ] as const);
   return (
@@ -330,7 +333,9 @@ export function App() {
           <span className="local-tag">ASTER LAB</span>
         </header>
         <main>
-          {destination.endsWith("/settings") ? (
+          {destination.endsWith("/support") ? (
+            <SupportWorkspace staff={side === "admin"} />
+          ) : destination.endsWith("/settings") ? (
             <AccountSettings
               name={name}
               side={side}

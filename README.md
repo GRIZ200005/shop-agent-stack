@@ -10,6 +10,7 @@
 
 ## 文档
 
+- [人工咨询闭环](docs/31-human-support.md)：客户转人工、客服领取回复、事务并发控制与使用步骤。
 - [多轮选购与混合问题评测](docs/30-multiturn-shopping-evaluation.md)：偏好记忆、商品指代、开发/预留分组及真实调用结果。
 - [商品 Agent 与真实模型验证](docs/29-product-agent-live-evaluation.md)：实时商品工具、引用复核、失败诊断及开发烟测。
 - [100 件原创商品目录](docs/28-product-catalog.md)：独立配图、可重复导入、分类分页与商品测试。
