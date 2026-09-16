@@ -140,6 +140,9 @@ test("three-role browser journey: purchase, review, refund, publish policy", asy
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await loginUi(page, "/app", user);
+  // The expanded catalog is paginated; locate the fixture instead of assuming it is on page one.
+  await page.getByRole("textbox", { name: "搜索商品", exact: true }).fill("Aster USB-C Cable");
+  await page.getByRole("button", { name: "搜索", exact: true }).click();
   await expect(
     page.getByRole("heading", { name: "Aster USB-C Cable" }),
   ).toBeVisible();
