@@ -1,0 +1,188 @@
+.fulfillment-page {
+  max-width: 1200px;
+}
+.fulfillment-page h1 {
+  margin: 10px 0;
+}
+.fulfillment-page > .between p {
+  color: #777187;
+}
+.fulfillment-banner {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 25px;
+  border: 1px solid #e5def6;
+  background: #f1eefb;
+  border-radius: 18px;
+  color: #5d51ad;
+  margin: 24px 0;
+}
+.fulfillment-banner p {
+  margin: 8px 0 0;
+  font-size: 13px;
+}
+.fulfillment-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.fulfillment-filters input {
+  flex: 1;
+  min-width: 0;
+}
+.fulfillment-filters input,
+.fulfillment-filters select,
+.shipment-actions textarea {
+  padding: 12px;
+  border: 1px solid #e2dced;
+  border-radius: 10px;
+  font: inherit;
+  background: white;
+  color: #403a50;
+}
+.fulfillment-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.fulfillment-row > div {
+  flex: 1;
+}
+.fulfillment-row h3 {
+  margin: 6px 0;
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+.fulfillment-row small,
+.fulfillment-row div > span {
+  color: #797185;
+  font-size: 12px;
+}
+.fulfillment-pages {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  font-size: 13px;
+}
+.shipment-state {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #6657b9;
+}
+.shipment-state > div {
+  flex: 1;
+}
+.shipment-state strong {
+  font-size: 20px;
+}
+.shipment-state small {
+  display: block;
+  margin-top: 7px;
+  color: #837c92;
+  overflow-wrap: anywhere;
+}
+.shipment-address {
+  padding: 16px;
+  background: #f7f5fb;
+  border-radius: 12px;
+  margin: 20px 0;
+  font-size: 14px;
+}
+.shipment-address p {
+  margin-bottom: 0;
+  color: #766e82;
+}
+.shipment-product {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin: 14px 0;
+  font-size: 14px;
+}
+.shipment-product .product-art {
+  width: 58px;
+  height: 58px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.shipment-product p {
+  margin: 6px 0;
+  color: #8b8195;
+}
+.shipment-tracking {
+  padding: 12px 0;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.shipment-timeline {
+  list-style: none;
+  padding: 0;
+}
+.shipment-timeline li {
+  border-left: 2px solid #d8d0ef;
+  padding: 2px 0 2px 18px;
+  margin: 18px 0;
+}
+.shipment-timeline small {
+  display: block;
+  font-size: 12px;
+  color: #8a8396;
+  margin-top: 5px;
+}
+.shipment-timeline p {
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.shipment-actions {
+  margin: 20px 0;
+}
+.shipment-actions label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+.shipment-actions .button {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+.shipment-error {
+  background: #fff0f1;
+  color: #aa4051;
+  padding: 12px;
+  border-radius: 10px;
+}
+.shipment-hint {
+  background: #fff6e6;
+  color: #8b672c;
+  padding: 14px;
+  font-size: 14px;
+  border-radius: 10px;
+}
+.order-bottom {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+@media (max-width: 650px) {
+  .fulfillment-row {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .fulfillment-row > div {
+    flex-basis: 100%;
+  }
+  .fulfillment-filters {
+    flex-wrap: wrap;
+  }
+  .fulfillment-filters input {
+    flex-basis: 100%;
+  }
+  .shipment-state {
+    flex-wrap: wrap;
+  }
+}

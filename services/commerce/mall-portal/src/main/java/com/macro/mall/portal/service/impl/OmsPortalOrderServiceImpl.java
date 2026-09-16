@@ -30,9 +30,12 @@ import java.util.stream.Collectors;
  * Created by macro on 2018/8/30.
  * Modified by Aster Commerce: validate order/address ownership and non-empty carts for P0.
  * Modified by Aster Commerce: reserve stock atomically and reject downlisted products at checkout.
+ * Modified by Aster Commerce: route customer receipt confirmation through the owned fulfillment state machine.
  */
 @Service
 public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
+    @Autowired
+    private com.macro.mall.aster.FulfillmentService fulfillmentService;
     @Autowired
     private com.macro.mall.aster.CatalogManagementService catalogManagementService;
     @Autowired
@@ -346,18 +349,7 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
 
     @Override
     public void confirmReceiveOrder(Long orderId) {
-        UmsMember member = memberService.getCurrentMember();
-        OmsOrder order = orderMapper.selectByPrimaryKey(orderId);
-        if(!member.getId().equals(order.getMemberId())){
-            Asserts.fail("不能确认他人订单！");
-        }
-        if(order.getStatus()!=2){
-            Asserts.fail("该订单还未发货！");
-        }
-        order.setStatus(3);
-        order.setConfirmStatus(1);
-        order.setReceiveTime(new Date());
-        orderMapper.updateByPrimaryKey(order);
+        fulfillmentService.receive(orderId, memberService.getCurrentMember().getId());
     }
 
     @Override

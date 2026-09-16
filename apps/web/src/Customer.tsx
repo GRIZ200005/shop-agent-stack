@@ -25,6 +25,7 @@ import {
 } from "./api";
 import { Empty, Loading, Modal, ProductArt } from "./ui";
 import { PolicyPages, loadPolicies } from "./PolicyPages";
+import { ShipmentButton } from "./Fulfillment";
 
 export function Customer({
   path,
@@ -625,6 +626,9 @@ export function Customer({
                   <span>
                     合计 <strong>{money(o.payAmount)}</strong>
                   </span>
+                  <ShipmentButton id={o.id} onChanged={() => {
+                    void api<{list:Order[]}>("portal", "/order/list?status=-1&pageSize=100").then(r => setOrders(r.list || [])).catch(e => setError(e.message));
+                  }} />
                   {o.status === 0 ? (
                     <button
                       disabled={busy}

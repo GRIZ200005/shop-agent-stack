@@ -25,6 +25,7 @@ import { AccountSettings, accountApi } from "./AccountSettings";
 import "./account.css";
 import { SupportWorkspace } from "./Support";
 import { ProductManagement } from "./ProductManagement";
+import { FulfillmentWorkspace } from "./Fulfillment";
 
 function safeNext(value: string | null) {
   try {
@@ -206,6 +207,7 @@ export function App() {
           [Headphones, "人工咨询", "/service/support"],
           [ShieldCheck, "管理中心", "/admin"],
           [PackageIcon, "商品管理", "/admin/products"],
+          [ReceiptText, "订单履约", "/admin/orders"],
         ] as const);
   return (
     <div
@@ -336,7 +338,9 @@ export function App() {
           <span className="local-tag">ASTER LAB</span>
         </header>
         <main>
-          {destination === "/admin/products" ? (
+          {destination === "/admin/orders" ? (
+            <FulfillmentWorkspace />
+          ) : destination === "/admin/products" ? (
             <ProductManagement />
           ) : destination.endsWith("/support") ? (
             <SupportWorkspace staff={side === "admin"} />

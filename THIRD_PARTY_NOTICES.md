@@ -100,3 +100,7 @@ Original `ProductQueryService`, MCP product tools, snapshot validation, Agent pr
 ## Catalog management
 
 Original administrator catalog UI, role-checked API, inventory adjustment audit and focused tests reuse existing dependencies. The mall-derived `OmsPortalOrderServiceImpl.java` now delegates stock reservation to the original Aster service for live publication checks and atomic conditional inventory updates, in stable product/SKU order. Upstream authorship is preserved and the modification is marked in the file. No private data or reference implementation is imported.
+
+## Simulated order fulfillment
+
+Original fulfillment service, two role-scoped controllers, shipment event schema, frontend and tests use existing dependencies. The mall-derived `OmsPortalOrderServiceImpl.java` additionally delegates receipt confirmation to the original Aster fulfillment state machine. Its upstream authorship and modification notice are retained. No carrier SDK, external shipment data or private implementation is imported.
