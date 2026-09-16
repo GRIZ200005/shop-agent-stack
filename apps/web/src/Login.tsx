@@ -74,7 +74,7 @@ export function Login({
       <p className="muted">
         {side === "portal"
           ? "收藏日常所需，安心管理每一笔订单。"
-          : "使用本地配置的客服或管理员账户。"}
+          : "使用已分配的客服或管理员账户登录。"}
       </p>
       <form onSubmit={submit} className="form-stack">
         <label>

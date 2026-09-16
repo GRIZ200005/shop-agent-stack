@@ -26,22 +26,38 @@ QUESTIONS = {
 
 
 def parse_assessment(content, evidence):
+    validation_error = "json_format"
     try:
+        # Accept a single JSON code fence, never extract JSON from surrounding prose.
+        if isinstance(content, str):
+            content = content.strip()
+            fenced = re.fullmatch(r"```(?:json)?\s*\n(.*?)\n```", content, re.S | re.I)
+            if fenced:
+                content = fenced.group(1).strip()
         result = json.loads(content)
+        validation_error = "object_required"
+        if not isinstance(result, dict):
+            raise ValueError()
+        validation_error = "decision"
         decision = result["decision"]
         ids = result.get("evidence_ids", [])
         fields = result.get("missing_fields", [])
         query = result.get("query", "")
         if decision not in {"sufficient", "retry", "clarify", "insufficient"}:
             raise ValueError()
+        validation_error = "evidence_ids"
         if not isinstance(ids, list) or not all(isinstance(x, str) for x in ids) or not set(ids) <= {h["citation_id"] for h in evidence}:
             raise ValueError()
+        validation_error = "missing_fields"
         if not isinstance(fields, list) or not all(isinstance(x, str) and x in QUESTIONS for x in fields):
             raise ValueError()
+        validation_error = "required_evidence"
         if decision == "sufficient" and not ids:
             raise ValueError()
+        validation_error = "required_fields"
         if decision == "clarify" and not fields:
             raise ValueError()
+        validation_error = "query"
         if not isinstance(query, str) or len(query) > 500:
             raise ValueError()
         if decision == "retry" and not query.strip():
@@ -51,7 +67,8 @@ def parse_assessment(content, evidence):
         return {"decision":decision,"evidence_ids":list(dict.fromkeys(ids)),
                 "missing_fields":list(dict.fromkeys(fields)),"query":query.strip(),"reason":"assessed"}
     except (ValueError, TypeError, KeyError):
-        return {"decision":"insufficient","evidence_ids":[],"missing_fields":[],"query":"","reason":"invalid_assessment"}
+        return {"decision":"insufficient","evidence_ids":[],"missing_fields":[],"query":"","reason":"invalid_assessment",
+                "validation_error":validation_error}
 
 
 class GateState(TypedDict):
@@ -72,7 +89,8 @@ async def assess_with_retry(question, context, initial, initial_query, judge, re
         result = parse_assessment(raw, state["evidence"])
         if result["decision"] == "retry" and (state["attempts"] >= 2 or not allow_retry or result["query"] == state["query"]):
             result.update(decision="insufficient", reason="retry_budget_exhausted")
-        emit({"decision":result["decision"],"attempt":state["attempts"],"reason":result["reason"]})
+        emit({"decision":result["decision"],"attempt":state["attempts"],"reason":result["reason"],
+              **({"validation_error":result["validation_error"]} if "validation_error" in result else {})})
         return result
 
     async def retry(state):

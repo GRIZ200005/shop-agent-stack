@@ -29,7 +29,7 @@ def public_providers():
     return result
 
 
-async def complete(provider: str, messages: list, tools: list, config=None, on_delta=None):
+async def complete(provider: str, messages: list, tools: list, config=None, on_delta=None, max_output_tokens=1024):
     if provider == "fixture":
         if os.getenv("ASTER_ENABLE_TEST_PROVIDER") != "true":
             raise ValueError("测试引擎未启用")
@@ -46,7 +46,9 @@ async def complete(provider: str, messages: list, tools: list, config=None, on_d
     body = {"model": config["model"], "messages": messages}
     if tools:
         body.update(tools=tools, tool_choice="auto")
-    body["max_completion_tokens" if provider == "openai" else "max_tokens"] = 1024
+    if not isinstance(max_output_tokens, int) or not 1 <= max_output_tokens <= 4096:
+        raise ValueError("模型输出预算必须在 1 到 4096 之间")
+    body["max_completion_tokens" if provider == "openai" else "max_tokens"] = max_output_tokens
     if provider == "openai":
         body["store"] = False
     from .outbound import PublicTransport
@@ -68,7 +70,9 @@ async def complete(provider: str, messages: list, tools: list, config=None, on_d
     raw = choice["message"]
     # Provider reasoning state, when required for tool round trips, stays in memory and is never displayed or persisted.
     message = {k: raw[k] for k in ("role", "content", "tool_calls", "reasoning_content") if k in raw}
-    return message, data.get("usage", {})
+    usage = dict(data.get("usage") or {})
+    usage["finish_reason"] = choice.get("finish_reason")
+    return message, usage
 
 
 async def read_stream(response, on_delta):

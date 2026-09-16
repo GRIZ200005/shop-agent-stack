@@ -5,6 +5,20 @@ from aster_agent import providers
 
 
 @pytest.mark.asyncio
+async def test_assessment_budget_and_finish_reason_are_not_chat_fields(monkeypatch):
+    original = httpx.AsyncClient
+    def response(request):
+        assert json.loads(request.content)["max_tokens"] == 4096
+        return httpx.Response(200, json={"choices": [{"finish_reason": "length", "message": {
+            "role": "assistant", "content": None}}], "usage": {"total_tokens": 4096}})
+    monkeypatch.setattr(providers.httpx, "AsyncClient", lambda **kw: original(transport=httpx.MockTransport(response), **kw))
+    message, usage = await providers.complete("deepseek", [], [], config={
+        "key": "synthetic-secret", "model": "test-model", "url": "https://model.example"}, max_output_tokens=4096)
+    assert usage["finish_reason"] == "length" and usage["total_tokens"] == 4096
+    assert "finish_reason" not in message
+
+
+@pytest.mark.asyncio
 @pytest.mark.parametrize("name",["deepseek","openai","kimi","custom"])
 async def test_provider_wire_contract(monkeypatch,name):
     prefix="ASTER_"+name.upper()

@@ -7,7 +7,8 @@
     "dev": "vite --host 127.0.0.1",
     "build": "node scripts/runtime-notices.mjs && tsc --noEmit && vite build",
     "test:e2e": "playwright test",
-    "test:v1": "playwright test tests/p1.spec.ts tests/p21.spec.ts tests/catalog.spec.ts tests/catalog-management.spec.ts tests/fulfillment.spec.ts tests/support.spec.ts tests/chat-workspace.spec.ts tests/model-picker.spec.ts"
+    "test:v1": "playwright test tests/p1.spec.ts tests/p21.spec.ts tests/catalog.spec.ts tests/catalog-management.spec.ts tests/fulfillment.spec.ts tests/support.spec.ts tests/chat-workspace.spec.ts tests/model-picker.spec.ts",
+    "test:unit": "node --test --test-isolation=none unit/datetime.test.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.577.0",

@@ -395,6 +395,20 @@
   color: #888;
   padding: 8px;
 }
+.agent-session-row {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  border-radius: 10px;
+}
+.agent-session-row.selected { background: #eceaf8; color: #5546a6; }
+.agent-session-row button { border: 0; background: transparent; color: inherit; cursor: pointer; }
+.agent-session-title { flex: 1; min-width: 0; text-align: left; padding: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.agent-session-delete { display: grid; place-items: center; flex-shrink: 0; width: 32px; height: 32px; border-radius: 8px; margin-right: 4px; color: #777184; }
+.agent-session-delete:hover { background: #fce8eb; color: #ab3348; }
+.agent-session-row button:focus-visible { outline: 2px solid #7663cf; outline-offset: -2px; }
+.agent-session-row button:disabled { opacity: .45; cursor: not-allowed; }
+@media (max-width: 760px) { .agent-session-row { flex-shrink: 0; max-width: 190px; } }
 .agent-conversation {
   border: 1px solid #e8e6ef;
   border-radius: 20px;

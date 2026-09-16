@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { ArrowUp, Plus, Sparkles, Square, RefreshCw } from "lucide-react";
+import { ArrowUp, Plus, Sparkles, Square, RefreshCw, Trash2 } from "lucide-react";
 import { token } from "./api";
-import { ProductArt } from "./ui";
+import { ProductArt, Modal } from "./ui";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import "./agent.css";
@@ -47,9 +47,9 @@ const toolNames: Record<string, string> = {
   search_products: "查找商品与价格",
   get_product: "核对商品详情与库存",
 };
-async function agent<T>(path: string, body?: unknown): Promise<T> {
+async function agent<T>(path: string, body?: unknown, method?: string): Promise<T> {
   const res = await fetch("/api/agent" + path, {
-    method: body === undefined ? "GET" : "POST",
+    method: method || (body === undefined ? "GET" : "POST"),
     headers: {
       Authorization: token("portal"),
       "Content-Type": "application/json",
@@ -310,6 +310,8 @@ export function AgentWorkspace({
     [provider, setProvider] = useState("");
   const [sessions, setSessions] = useState<Session[]>([]),
     [session, setSession] = useState<Session | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<Session | null>(null);
+  const [deleteError, setDeleteError] = useState("");
   const [message, setMessage] = useState(""),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
@@ -341,6 +343,28 @@ export function AgentWorkspace({
         ? { ...s, runs: (s.runs || []).map((r) => (r.id === run.id ? run : r)) }
         : s,
     );
+  }
+  async function removeSession() {
+    if (!deleteTarget) return;
+    setBusy(true);
+    setDeleteError("");
+    try {
+      await agent("/sessions/" + deleteTarget.id, undefined, "DELETE");
+      setSessions((items) => items.filter((s) => s.id !== deleteTarget.id));
+      if (session?.id === deleteTarget.id) {
+        setSession(null);
+        setMessage("");
+        pendingRequest.current = null;
+        setError("");
+      }
+      if (sessionStorage.getItem("aster_agent_session") === deleteTarget.id)
+        sessionStorage.removeItem("aster_agent_session");
+      setDeleteTarget(null);
+    } catch (e) {
+      setDeleteError((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
   }
   async function select(id: string) {
     try {
@@ -552,14 +576,21 @@ export function AgentWorkspace({
             </button>
             <small>最近对话</small>
             {sessions.map((s) => (
+              <div key={s.id} className={`agent-session-row ${s.id === session?.id ? "selected" : ""}`}>
               <button
-                key={s.id}
                 disabled={busy}
-                className={s.id === session?.id ? "selected" : ""}
+                className="agent-session-title"
+                title={s.title}
                 onClick={() => void select(s.id)}
               >
                 {s.title}
               </button>
+              <button className="agent-session-delete" aria-label={`删除对话：${s.title}`}
+                title="删除对话" disabled={busy || (s.id === session?.id && executing)}
+                onClick={() => { setDeleteError(""); setDeleteTarget(s); }}>
+                <Trash2 size={15} />
+              </button>
+              </div>
             ))}
             {!sessions.length && <p>你的对话会保存在这里。</p>}
           </aside>
@@ -812,6 +843,17 @@ export function AgentWorkspace({
             </small>
           </section>
         </div>
+      )}
+      {deleteTarget && (
+        <Modal title="删除对话" onClose={() => { if (!busy) setDeleteTarget(null); }}>
+          <p>确定删除“{deleteTarget.title}”吗？</p>
+          <p className="muted">将删除这段对话的消息、执行记录与会话记忆，无法恢复。已创建的订单、售后和人工咨询不受影响。</p>
+          {deleteError && <p className="error" role="alert">{deleteError}</p>}
+          <div className="input-row">
+            <button className="button secondary" disabled={busy} onClick={() => setDeleteTarget(null)}>取消</button>
+            <button className="button" disabled={busy} onClick={() => void removeSession()}>{busy ? "正在删除…" : "确认删除"}</button>
+          </div>
+        </Modal>
       )}
     </div>
   );

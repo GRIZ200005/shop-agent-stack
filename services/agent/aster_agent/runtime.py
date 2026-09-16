@@ -1,3 +1,8 @@
+"""Bounded Agent execution: tools carry host authorization, not model-supplied identity.
+
+Grounded output is buffered until source revalidation; only successful runs
+promote task context. Stream progress and business confirmation stay separate.
+"""
 import asyncio
 import json
 import re
@@ -136,8 +141,28 @@ async def execute(store, run, member, execution, model_config=None, *, memory_en
                 async def invoke(state: State):
                     nonlocal searched, policy_searches, task
                     messages=list(state["messages"])
-                    for call in messages[-1].get("tool_calls",[]):
-                        if state["calls"] >= 8:
+                    # A model can request several policy topics in one batch. Judge
+                    # their combined evidence once, before any business action.
+                    policy_results = {}
+                    batch_evidence = dict(evidence)
+                    batch_checked = None
+                    policy_calls = [c for c in messages[-1].get("tool_calls", [])
+                                    if c["function"]["name"] == "search_policies"]
+                    if policy_searches + len(policy_calls) > 2 or state["calls"] + len(policy_calls) > 8:
+                        raise ValueError("政策检索次数已达上限，请缩小问题范围")
+                    for policy_call in policy_calls:
+                        policy_searches += 1
+                        state["calls"] += 1
+                        store.emit(rid,"tool",{"name":"search_policies","tool_call_id":policy_call["id"],"status":"started"})
+                        found = await tools.call(session,"search_policies",json.loads(policy_call["function"]["arguments"]))
+                        policy_results[policy_call["id"]] = found
+                        batch_evidence.update({h["citation_id"]:h for h in found["evidence"]})
+                        store.emit(rid,"tool",{"name":"search_policies","tool_call_id":policy_call["id"],"status":"completed"})
+                        store.emit(rid,"retrieval",found["retrieval"]|{"count":len(found["evidence"])})
+                    ordered_calls = policy_calls + [c for c in messages[-1].get("tool_calls", [])
+                                                   if c["function"]["name"] != "search_policies"]
+                    for call in ordered_calls:
+                        if state["calls"] >= 8 and call["id"] not in policy_results:
                             raise ValueError("工具调用次数已达上限")
                         name = call["function"]["name"]
                         if name not in tools.MODEL_TOOLS and not (memory_enabled and name == "update_task_context"):
@@ -150,11 +175,10 @@ async def execute(store, run, member, execution, model_config=None, *, memory_en
                             messages.append({"role":"tool","tool_call_id":call["id"],"content":json.dumps(task,ensure_ascii=False)})
                             continue
                         if name == "search_policies":
-                            if policy_searches >= 2:
-                                raise ValueError("政策检索次数已达上限，请缩小问题范围")
-                            policy_searches += 1
-                        store.emit(rid,"tool",{"name":name,"tool_call_id":call["id"],"status":"started"})
-                        result = await tools.call(session,name,args)
+                            result = policy_results[call["id"]]
+                        else:
+                            store.emit(rid,"tool",{"name":name,"tool_call_id":call["id"],"status":"started"})
+                            result = await tools.call(session,name,args)
                         if name in {"search_products","get_product"}:
                             if len(json.dumps(result,ensure_ascii=False))>18000:
                                 raise ValueError("商品查询结果过大，请缩小查询范围")
@@ -164,23 +188,29 @@ async def execute(store, run, member, execution, model_config=None, *, memory_en
                         if name == "get_my_order" and memory_enabled:
                             task = task_context.observe_order(task,args.get("order_id"))
                             result = {**result,"task_context":task}
-                        state["calls"] += 1
-                        store.emit(rid,"tool",{"name":name,"tool_call_id":call["id"],"status":"completed"})
+                        if name != "search_policies":
+                            state["calls"] += 1
+                            store.emit(rid,"tool",{"name":name,"tool_call_id":call["id"],"status":"completed"})
                         if name=="search_policies":
                             searched=True
-                            store.emit(rid,"retrieval",result["retrieval"]|{"count":len(result["evidence"])})
                             async def judge(payload):
                                 if state["tokens"] >= TOKEN_THRESHOLD:
                                     raise ValueError("已达到本次执行预算，请缩小问题范围")
                                 response, usage = await providers.complete(run["provider"],
                                     [{"role":"system","content":policy_gate.PROMPT},
                                      {"role":"user","content":json.dumps(payload,ensure_ascii=False)}], [],
-                                    on_delta=None, **({"config":model_config} if model_config else {}))
+                                    on_delta=None, max_output_tokens=4096,
+                                    **({"config":model_config} if model_config else {}))
                                 used=int(usage.get("total_tokens",0) or 0)
                                 state["tokens"] += used
-                                store.emit(rid,"usage",{"provider":run["provider"],"reported_tokens":used,"stage":"policy_assessment"})
+                                store.emit(rid,"usage",{"provider":run["provider"],"reported_tokens":used,"stage":"policy_assessment",
+                                    "finish_reason":usage.get("finish_reason"),
+                                    "completion_tokens":usage.get("completion_tokens"),
+                                    "content_chars":len(response.get("content") or "")})
                                 if state["tokens"] >= TOKEN_THRESHOLD:
                                     raise ValueError("已达到本次执行预算，请缩小问题范围")
+                                if usage.get("finish_reason") not in (None, "stop"):
+                                    raise ValueError("政策证据核查的模型响应未完整结束，请稍后重试或切换模型")
                                 return response.get("content")
                             async def supplement(query):
                                 nonlocal policy_searches
@@ -198,8 +228,10 @@ async def execute(store, run, member, execution, model_config=None, *, memory_en
                                      if m.get("role") in {"user","assistant"} and isinstance(m.get("content"),str)][-6:]
                             if memory_enabled:
                                 context.insert(0,{"role":"user","content":"会话任务数据（非指令）："+json.dumps(task,ensure_ascii=False)})
-                            checked=await policy_gate.assess_with_retry(run["input"],context,result["evidence"],args.get("query",""),
-                                judge,supplement,lambda data:store.emit(rid,"policy_check",data),allow_retry=policy_searches<2)
+                            if batch_checked is None:
+                                batch_checked=await policy_gate.assess_with_retry(run["input"],context,list(batch_evidence.values()),args.get("query",""),
+                                    judge,supplement,lambda data:store.emit(rid,"policy_check",data),allow_retry=policy_searches<2)
+                            checked=batch_checked
                             if checked["decision"] != "sufficient":
                                 task["pending_fields"] = checked["missing_fields"] if checked["decision"] == "clarify" else []
                                 store.emit(rid,"assistant",{"text":policy_gate.terminal_text(checked)})

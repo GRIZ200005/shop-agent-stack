@@ -4,6 +4,36 @@ from aster_agent.store import Store, StoreError
 from aster_agent.providers import public_providers, complete
 
 
+def test_delete_session_is_owner_scoped_and_removes_history(tmp_path):
+    store = Store(str(tmp_path / "delete.sqlite"))
+    sid = store.new_session(1)["id"]
+    other = store.new_session(2)["id"]
+    rid, _ = store.create_run(sid, 1, "r", "hello", "fixture")
+    store.state(rid, "COMPLETED")
+    with store.db() as db:
+        db.execute("INSERT INTO task_context VALUES (?,?)", (sid, '{}'))
+    with pytest.raises(StoreError) as exc:
+        store.delete_session(sid, 2)
+    assert exc.value.code == 404
+    assert store.delete_session(sid, 1) == {"deleted": True}
+    assert store.sessions(1) == [] and store.session(other, 2)
+    with store.db() as db:
+        assert not db.execute("SELECT 1 FROM events WHERE run_id=?", (rid,)).fetchone()
+        assert not db.execute("SELECT 1 FROM task_context WHERE session_id=?", (sid,)).fetchone()
+    with pytest.raises(StoreError): store.create_run(sid, 1, "new", "hello", "fixture")
+
+
+@pytest.mark.parametrize("status", ["QUEUED", "RUNNING", "STOPPING", "WAITING_CONFIRMATION", "CONFIRMING", "UNCERTAIN"])
+def test_delete_refuses_active_or_unresolved_operations(tmp_path, status):
+    store = Store(str(tmp_path / "protected.sqlite"))
+    sid = store.new_session(1)["id"]
+    rid, _ = store.create_run(sid, 1, "r", "hello", "fixture")
+    store.state(rid, status)
+    with pytest.raises(StoreError) as exc: store.delete_session(sid, 1)
+    assert exc.value.code == 409
+    assert store.run(rid, 1)["status"] == status
+
+
 def test_isolation_idempotency_and_single_active_run(tmp_path):
     store=Store(str(tmp_path/"test.sqlite"))
     sid=store.new_session(1)["id"]

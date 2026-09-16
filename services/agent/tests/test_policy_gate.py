@@ -11,6 +11,14 @@ def test_invalid_or_unsafe_judgment_never_authorizes_answer(value):
     assert parse_assessment(value,[HIT])["decision"] == "insufficient"
 
 
+def test_single_json_fence_preserves_evidence_validation():
+    valid = '{"decision":"sufficient","evidence_ids":["P1V1C1"]}'
+    assert parse_assessment('```json\n' + valid + '\n```', [HIT])["decision"] == "sufficient"
+    assert parse_assessment('```json\n' + valid.replace('P1V1C1', 'P999V1C1') + '\n```', [HIT])["reason"] == "invalid_assessment"
+    for value in [None, 'null', '1', '"text"', 'Explanation\n' + valid, valid[:-1]]:
+        assert parse_assessment(value, [HIT])["reason"] == "invalid_assessment"
+
+
 @pytest.mark.asyncio
 async def test_retry_merges_evidence_and_stops_after_one_supplement():
     searches=[]; events=[]; judges=[]

@@ -41,6 +41,7 @@ public class FulfillmentService {
  private boolean has(long id,String stage){return db.queryForObject("SELECT COUNT(*) FROM aster_shipment_event WHERE order_id=? AND stage=?",Long.class,id,stage)>0;}
  @Transactional
  public void advance(long id,long admin,String stage,String note){
+  // Lock the order before checking stage replay or after-sale conflicts.
   if((!"SHIPPED".equals(stage) && !"DELIVERING".equals(stage)) || note==null || note.isBlank() || note.length()>300) Asserts.fail("请填写1–300字的配送备注");
   var row=order(id,null,true);
   var previous=db.queryForList("SELECT actor_id,note FROM aster_shipment_event WHERE order_id=? AND stage=?",id,stage);
@@ -58,6 +59,7 @@ public class FulfillmentService {
  }
  @Transactional
  public void receive(long id,long member){
+  // Receipt and its event commit together; retrying a completed receipt is harmless.
   var row=order(id,member,true);
   if(has(id,"RECEIVED")) return;
   allowed(id);

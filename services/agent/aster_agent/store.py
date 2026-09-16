@@ -56,6 +56,20 @@ class Store:
             db.execute("INSERT INTO sessions VALUES(?,?,?,?)",(sid,member,"新对话",time.time()))
         return {"id":sid,"title":"新对话"}
 
+    def delete_session(self, sid, member):
+        # Serialize deletion with run creation and confirmation transitions.
+        with self.db() as db:
+            db.execute("BEGIN IMMEDIATE")
+            if not db.execute("SELECT 1 FROM sessions WHERE id=? AND member_id=?", (sid, member)).fetchone():
+                raise StoreError("会话不存在或无权访问", 404)
+            if db.execute("SELECT 1 FROM runs WHERE session_id=? AND status NOT IN ('COMPLETED','FAILED','STOPPED','INTERRUPTED')", (sid,)).fetchone():
+                raise StoreError("请先停止执行、取消待确认操作，或核实业务提交结果后再删除对话", 409)
+            db.execute("DELETE FROM events WHERE run_id IN (SELECT id FROM runs WHERE session_id=?)", (sid,))
+            db.execute("DELETE FROM task_context WHERE session_id=?", (sid,))
+            db.execute("DELETE FROM runs WHERE session_id=?", (sid,))
+            db.execute("DELETE FROM sessions WHERE id=? AND member_id=?", (sid, member))
+        return {"deleted": True}
+
     def session(self, sid, member):
         with self.db() as db:
             row = db.execute("SELECT * FROM sessions WHERE id=? AND member_id=?",(sid,member)).fetchone()

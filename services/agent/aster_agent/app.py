@@ -130,6 +130,12 @@ async def get_session(sid: str, authorization: str=Header(default="")):
     return store.session(sid,auth["memberId"])
 
 
+@app.delete("/sessions/{sid}")
+async def delete_session(sid: str, authorization: str=Header(default="")):
+    auth=await identity(authorization)
+    return store.delete_session(sid, auth["memberId"])
+
+
 class Message(BaseModel):
     message: str=Field(min_length=1,max_length=2000)
     provider: str=Field(max_length=30)

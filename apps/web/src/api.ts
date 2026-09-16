@@ -123,13 +123,7 @@ export const money = (n: number) =>
   new Intl.NumberFormat("zh-CN", { style: "currency", currency: "CNY" }).format(
     n,
   );
-export const date = (s: string) =>
-  new Date(s).toLocaleString("zh-CN", {
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+export { date } from "./datetime";
 export const saleLabels: Record<string, string> = {
   SUBMITTED: "待领取",
   CLAIMED: "人工处理中",

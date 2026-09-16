@@ -153,7 +153,7 @@ export function App() {
               登录，让每一次连接更简单。
             </p>
           </div>
-          <small>独立学习项目 · 合成商品与模拟交易</small>
+          <small>合成商品 · 模拟交易体验</small>
         </div>
         <div className="auth-panel">
           <div className="auth-role">
@@ -374,7 +374,7 @@ export function App() {
         <footer>
           <span>ASTER COMMERCE</span>
           <span>让选购简单，让服务有序。</span>
-          <small>独立学习项目 · 合成商品与模拟交易</small>
+          <small>合成商品 · 模拟交易体验</small>
         </footer>
       </div>
     </div>
