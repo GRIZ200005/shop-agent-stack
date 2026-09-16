@@ -1,0 +1,101 @@
+{
+  "captured_on": "2026-09-16",
+  "source": "Project maintainer supplied screenshots of the running local application",
+  "data": "Synthetic customers, catalog, policies and simulated transactions",
+  "files": [
+    {
+      "file": "customer-storefront.png",
+      "route": "/app",
+      "source": "project_maintainer_supplied",
+      "received_on": "2026-09-16",
+      "model_calls": "not_independently_verified",
+      "media_type": "image/png",
+      "bytes": 874354,
+      "sha256": "5e7a950771d9bafc7c21b10a3ec0519a020bed93b1c9f6201830f67a633c82e8"
+    },
+    {
+      "file": "customer-agent.png",
+      "route": "/app/assistant",
+      "source": "project_maintainer_supplied",
+      "received_on": "2026-09-16",
+      "model_calls": "not_independently_verified",
+      "media_type": "image/png",
+      "bytes": 363932,
+      "sha256": "fdc273aad4ddc297b9fd49ba175f735212f970f67ac5c921012511a6bfb887ac"
+    },
+    {
+      "file": "service-consultation.png",
+      "route": "/service/support",
+      "source": "project_maintainer_supplied",
+      "received_on": "2026-09-16",
+      "model_calls": "not_independently_verified",
+      "media_type": "image/png",
+      "bytes": 217750,
+      "sha256": "f856d6a2a5b90fbb7219aee3977c9936640bc3dda9d07a38db9c9f75cafa9dd3"
+    },
+    {
+      "file": "admin-inventory.png",
+      "route": "/admin/products",
+      "source": "project_maintainer_supplied",
+      "received_on": "2026-09-16",
+      "model_calls": "not_independently_verified",
+      "media_type": "image/png",
+      "bytes": 511229,
+      "sha256": "73a6d8323d9bf94e19ff1336cfdac5ab03ffd71d0a3a8ff4b9acc1376bfdb193"
+    },
+    {
+      "file": "admin-policy.png",
+      "route": "/admin",
+      "source": "project_maintainer_supplied",
+      "received_on": "2026-09-16",
+      "media_type": "image/png",
+      "bytes": 161644,
+      "sha256": "d88d8d1aec8c9f6a0ffa26ac7f69479d1dfe5d30e8cc804874a4ecec95dc9bfe"
+    },
+    {
+      "file": "admin-fulfillment-completed.png",
+      "route": "/admin/orders",
+      "source": "project_maintainer_supplied",
+      "received_on": "2026-09-16",
+      "media_type": "image/png",
+      "bytes": 288552,
+      "sha256": "da1297b39a42843fa0ecd8399d324bb97e1f7df433622eb52591e4a627f1112d"
+    },
+    {
+      "file": "customer-after-sale-completed.png",
+      "route": "/app/after-sales",
+      "source": "project_maintainer_supplied",
+      "received_on": "2026-09-16",
+      "media_type": "image/png",
+      "bytes": 269117,
+      "sha256": "ceac33e254a558ab1a5293dd497af6f072c85509cfac6ee1c7b11cc8c9283d08"
+    },
+    {
+      "file": "service-after-sale-review.png",
+      "route": "/service",
+      "source": "project_maintainer_supplied",
+      "received_on": "2026-09-16",
+      "media_type": "image/png",
+      "bytes": 417337,
+      "sha256": "12395c1216aa21a2dd112ab40f0295ad6302eae379b6ac85d7993f5f4023052d"
+    },
+    {
+      "file": "service-after-sale-completed.png",
+      "route": "/service",
+      "source": "project_maintainer_supplied",
+      "received_on": "2026-09-16",
+      "media_type": "image/png",
+      "bytes": 415893,
+      "sha256": "8883c855556093b2fd7257f0d309a8ea88147f288569f1791b926efff9a9a604"
+    },
+    {
+      "file": "customer-policy-rag.png",
+      "route": "/app/assistant",
+      "source": "project_maintainer_supplied",
+      "received_on": "2026-09-16",
+      "media_type": "image/png",
+      "bytes": 344841,
+      "sha256": "a12c58e3a8d0444835bab0a556fa6eaf4faec745ef89c543354eb3be5d1a6f3c"
+    }
+  ]
+}
