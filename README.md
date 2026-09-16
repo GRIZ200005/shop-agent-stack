@@ -125,45 +125,9 @@ FastAPI 接收会话请求，LangGraph 组织有界工具循环，自建 MCP 连
 
 ### 有版本的政策 Agentic RAG
 
-```mermaid
-flowchart TB
-    Q([用户问题]):::entry --> S[政策搜索请求]:::agent
+[![政策 Agentic RAG：混合检索、证据检查与来源复核](docs/assets/diagrams/policy-agentic-rag.svg)](docs/assets/diagrams/policy-agentic-rag.svg)
 
-    subgraph RETRIEVE[01 · 混合检索]
-        B[BM25<br/>关键词召回]:::search
-        V[Milvus + BGE Embedding<br/>向量召回]:::search
-        F[RRF 排名融合<br/>BGE Rerank 精排]:::search
-        B --> F
-        V --> F
-    end
-    S --> B
-    S --> V
-
-    subgraph EVIDENCE[02 · 有界证据检查]
-        E[合并同轮搜索证据]:::agent --> G{证据是否足够？}:::gate
-    end
-    F --> E
-    G -->|足够| C[最终来源复核<br/>发布状态 · 可见性 · 版本]:::authority
-    G -.->|需要补查且未达两次搜索上限| S
-    G -->|需澄清或预算耗尽| U[补问或说明证据缺口]:::fallback
-    C -->|通过| A([回答 + 条款引用 + 原文卡片]):::success
-    C -->|未通过| U
-
-    D[(MySQL<br/>权威政策条款)]:::authority -.->|核对当前来源| C
-    D -.->|事务 Outbox · 索引更新| V
-
-    classDef entry fill:#eef2ff,stroke:#6366f1,color:#312e81,stroke-width:2px
-    classDef search fill:#eff6ff,stroke:#60a5fa,color:#1e3a8a
-    classDef agent fill:#f5f3ff,stroke:#a78bfa,color:#4c1d95
-    classDef gate fill:#faf5ff,stroke:#8b5cf6,color:#4c1d95,stroke-width:2px
-    classDef authority fill:#ecfdf5,stroke:#34d399,color:#064e3b
-    classDef fallback fill:#fffbeb,stroke:#fbbf24,color:#78350f
-    classDef success fill:#ecfdf5,stroke:#10b981,color:#064e3b,stroke-width:2px
-    style RETRIEVE fill:#f8fafc,stroke:#cbd5e1,color:#334155
-    style EVIDENCE fill:#faf8ff,stroke:#ddd6fe,color:#4c1d95
-```
-
-蓝色表示检索，紫色表示 Agent 编排，绿色表示权威来源与已核验输出，黄色表示需要用户补充或无法确认的结果。虚线表示补查或索引维护，不代表每次问答都会触发。
+点击图片查看矢量大图。蓝色表示检索，紫色表示证据编排，绿色表示来源复核与回答，琥珀色表示补查或证据缺口。索引维护单独列出，避免与单次问答流程混淆。
 
 政策发布与索引任务使用事务 Outbox。MySQL 保存权威条款，Milvus 保存派生索引；检索按可见性、版本和代际约束，索引不可用时明确降级。同轮多条搜索先合并证据再统一核查，整个运行最多执行两次政策搜索。最终回答再次复核政策来源；模型的语义判断与来源一致性分别验证。
 
@@ -183,56 +147,9 @@ flowchart TB
 
 ## 系统架构
 
-```mermaid
-flowchart TB
-    UI[React / TypeScript<br/>客户商城 · 客服工作台 · 管理中心]:::client
-    UI --> N[Nginx · 同源入口]:::client
+[![系统架构：三端交互、业务服务、Agent 与异步退款](docs/assets/diagrams/system-architecture.svg)](docs/assets/diagrams/system-architecture.svg)
 
-    subgraph APPLICATION[应用服务 · 业务与 AI 分工]
-        J[Java / Spring Boot<br/>Portal + Admin<br/>权限 · 商品 · 订单 · 售后 · 政策]:::business
-        A[Python / FastAPI / LangGraph<br/>会话 · 上下文 · 工具循环 · SSE]:::agent
-        M[MCP 工具服务<br/>业务查询 · 政策检索 · 确认预览]:::agent
-        R[政策检索服务<br/>BM25 · RRF · BGE Rerank]:::search
-        A --> M
-        M -->|授权业务调用| J
-        M --> R
-        R -->|条款目录与来源核验| J
-    end
-    N -->|REST API| J
-    N -->|会话 API / SSE| A
-
-    subgraph DATA[数据与运行状态]
-        D[(MySQL<br/>业务数据 · 政策 · Outbox)]:::store
-        C[(Redis<br/>缓存与认证相关状态)]:::store
-        S[(SQLite<br/>会话 · 事件 · 任务快照)]:::store
-        V[(Milvus<br/>政策向量索引)]:::store
-    end
-    J --> D
-    J --> C
-    A --> S
-    R --> V
-
-    subgraph ASYNC[异步模拟退款 · 至少一次投递]
-        P[Outbox 发布器]:::async --> Q[RabbitMQ]:::async
-        Q --> W[幂等消费者<br/>模拟账本 · 重试 · 人工核实]:::async
-    end
-    D -.->|待投递事件| P
-    W -->|事务写入结果| D
-    A --> L[外部模型服务<br/>DeepSeek · OpenAI · Kimi · 自定义]:::external
-
-    classDef client fill:#eef2ff,stroke:#6366f1,color:#312e81,stroke-width:2px
-    classDef business fill:#eff6ff,stroke:#60a5fa,color:#1e3a8a
-    classDef agent fill:#f5f3ff,stroke:#a78bfa,color:#4c1d95
-    classDef search fill:#ecfeff,stroke:#22d3ee,color:#164e63
-    classDef store fill:#ecfdf5,stroke:#34d399,color:#064e3b
-    classDef async fill:#fffbeb,stroke:#fbbf24,color:#78350f
-    classDef external fill:#f8fafc,stroke:#94a3b8,color:#334155,stroke-dasharray:5 5
-    style APPLICATION fill:#f8fafc,stroke:#cbd5e1,color:#334155
-    style DATA fill:#f7fcfa,stroke:#a7f3d0,color:#065f46
-    style ASYNC fill:#fffdf5,stroke:#fde68a,color:#92400e
-```
-
-图中按职责组织模块，不表示每个节点都是独立部署的微服务；退款发布器与消费者运行在 Admin 应用内。实线表示请求或数据访问，虚线表示异步事件读取。Java 持有业务事务，Agent 不直接修改业务数据库；检索发布链路详见[系统架构文档](docs/architecture.md)。
+图中按职责组织模块，不表示每个节点都是独立部署的微服务；退款发布器与消费者运行在 Admin 应用内。图中省略部分交叉调用，按卡片和连线说明阅读；完整请求与索引维护链路见工程文档。Java 持有业务事务，Agent 不直接修改业务数据库；检索发布链路详见[系统架构文档](docs/architecture.md)。
 
 | 层次 | 技术与职责 |
 |---|---|
