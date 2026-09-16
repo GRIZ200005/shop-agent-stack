@@ -19,7 +19,7 @@ Aster Commerce includes code derived from [macrozheng/mall](https://github.com/m
 - `OrderOwnershipTest.java` and `CartPricingTest.java`: independently written regression tests.
 - `deploy`, scripts and synthetic seed: independently written local baseline and verification workflow, except the attributed schema extraction.
 
-The upstream provides the existing commerce functionality. AI workflows, three-role interfaces and production reliability enhancements are planned; they are not completed contributions in P0. Dependency licenses remain applicable independently of this source license.
+The upstream provides the existing commerce foundation. The P0 list above is a historical baseline; later sections record implemented Aster additions. These changes do not constitute a production-readiness claim. Original Aster code and documentation are licensed under the root Apache-2.0 LICENSE. Dependency licenses remain applicable independently.
 
 ## P1 additions and modifications
 
@@ -31,7 +31,7 @@ The upstream provides the existing commerce functionality. AI workflows, three-r
 - Original `apps/web`: React/TypeScript frontend, inline SVG product illustrations, CSS, API client and browser/API integration tests. No private reference source or proprietary assets imported.
 - Original migration `003-p1.sql`, Nginx config and scripts. Local logging disables upstream payload/invalid-token loggers to avoid retaining credentials in new request logs.
 
-Frontend runtime dependencies include React, React DOM, Scheduler (MIT) and Lucide (ISC and included notices). Their supplied license texts are copied to `apps/web/public/licenses` and distributed at `/licenses/*.txt` with the frontend. Exact dependency versions are in `apps/web/package-lock.json`. Build/test dependencies retain their own licenses. No root license for all new work is selected by this attribution document.
+Frontend runtime dependencies include React, React DOM, Scheduler (MIT) and Lucide (ISC and included notices). Their supplied license texts are copied to `apps/web/public/licenses` and distributed at `/licenses/*.txt` with the frontend. Exact dependency versions are in `apps/web/package-lock.json`. Build/test dependencies retain their own licenses. Original Aster work is covered by the root Apache-2.0 LICENSE; this does not replace third-party license terms.
 
 ## P2 additions and modifications
 
