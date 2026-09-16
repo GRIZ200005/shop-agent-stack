@@ -143,7 +143,7 @@ test("catalog: customer browsing, detail, cart image and mobile layout", async (
     "/products/catalog-v1/ivory-mug.webp",
   );
   const cart = await page.evaluate(async () => {
-    const token = sessionStorage.getItem("aster_portal");
+    const token = sessionStorage.getItem("shop_agent_stack_portal");
     return (
       await (
         await fetch("/api/portal/cart/list/promotion", {
@@ -158,7 +158,7 @@ test("catalog: customer browsing, detail, cart image and mobile layout", async (
       await fetch("/api/portal/cart/delete?ids=" + id, {
         method: "POST",
         headers: {
-          Authorization: sessionStorage.getItem("aster_portal") || "",
+          Authorization: sessionStorage.getItem("shop_agent_stack_portal") || "",
         },
       });
     }, item.id);

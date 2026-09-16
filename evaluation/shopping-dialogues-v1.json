@@ -12,7 +12,7 @@
       {"input":"刚才那款能放进微波炉吗？","expect":{"products":[10003]},"rubric":"先重查同一商品，明确不可放微波炉。"}
     ]},
     {"id":"dev-mixed","split":"dev","family":"product-policy","turns":[
-      {"input":"查一下茶间玻璃滤茶壶容量；另外只问流程，生成售后预览会直接退款吗？","expect":{"products":[10004],"policy_titles":["星序商城售后预览与确认指引"]},"rubric":"600mL；预览不提交、不退款，须页面确认。两部分都有对应依据，不创建售后。"},
+      {"input":"查一下茶间玻璃滤茶壶容量；另外只问流程，生成售后预览会直接退款吗？","expect":{"products":[10004],"policy_titles":["ShopAgentStack 商城售后预览与确认指引"]},"rubric":"600mL；预览不提交、不退款，须页面确认。两部分都有对应依据，不创建售后。"},
       {"input":"这把壶可以明火烧水吗？不用再讲售后。","expect":{"products":[10004],"forbid_policy":true},"rubric":"重查茶间壶，明确不可明火加热；不继续之前的政策话题。"}
     ]},
     {"id":"dev-switch","split":"dev","family":"topic-reset","turns":[
@@ -36,7 +36,7 @@
       {"input":"改成100元以内，这件还在预算内吗？","expect":{"products":[10034]},"rubric":"明确159元不在100元预算内，不虚构折扣；引用价格可超预算，但不可推荐为符合预算。"}
     ]},
     {"id":"reserved-textile-mixed","split":"reserved","family":"textile-policy","turns":[
-      {"input":"织间靠垫套含枕芯吗？如果尺寸不合适会自动换货吗？","expect":{"products":[10033],"policy_titles":["星序商城尺寸或规格不合适指引"]},"rubric":"不含芯，45×45cm；不会自动建换货单，不能许诺批准。"},
+      {"input":"织间靠垫套含枕芯吗？如果尺寸不合适会自动换货吗？","expect":{"products":[10033],"policy_titles":["ShopAgentStack 商城尺寸或规格不合适指引"]},"rubric":"不含芯，45×45cm；不会自动建换货单，不能许诺批准。"},
       {"input":"只讲这件商品应该怎么洗。","expect":{"products":[10033],"forbid_policy":true},"rubric":"轻柔冷水洗涤，自然晾干；不继续退款推断。"}
     ]},
     {"id":"reserved-office-switch","split":"reserved","family":"office-switch","turns":[

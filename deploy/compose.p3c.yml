@@ -3,7 +3,7 @@ services:
     volumes:
       - ../.local/policy-index.key:/run/secrets/index_key:ro
   retrieval-worker:
-    image: aster-retrieval:eval
+    image: shop_agent_stack-retrieval:eval
     working_dir: /workspace
     command: ["python", "services/retrieval/online.py"]
     environment:
@@ -27,8 +27,8 @@ services:
 networks:
   retrieval:
     external: true
-    name: aster-retrieval_default
+    name: shop_agent_stack-retrieval_default
 volumes:
   retrieval_models:
     external: true
-    name: aster-retrieval_models
+    name: shop_agent_stack-retrieval_models

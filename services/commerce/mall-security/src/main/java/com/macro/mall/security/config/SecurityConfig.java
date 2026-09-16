@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 /**
  * SpringSecurity相关配置，仅用于配置SecurityFilterChain
  * Created by macro on 2019/11/5.
- * Modified by Aster Commerce: authenticated Aster routes enforce domain roles in their controllers.
+ * Modified by ShopAgentStack: authenticated ShopAgentStack routes enforce domain roles in their controllers.
  */
 @Configuration
 @EnableWebSecurity
@@ -46,8 +46,8 @@ public class SecurityConfig {
             }
             //允许跨域请求的OPTIONS请求
             // Internal Agent routes validate a short-lived execution grant in every handler.
-            registry.requestMatchers("/aster/internal/agent/**").permitAll();
-            registry.requestMatchers("/aster/**").authenticated();
+            registry.requestMatchers("/shop_agent_stack/internal/agent/**").permitAll();
+            registry.requestMatchers("/shop_agent_stack/**").authenticated();
             registry.requestMatchers(HttpMethod.OPTIONS).permitAll();
             //任何请求需要身份认证
         })

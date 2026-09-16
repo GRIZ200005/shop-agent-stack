@@ -8,7 +8,7 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(root / "services/agent"))
-from aster_agent.knowledge import LexicalIndex, load_drafts
+from shop_agent_stack.knowledge import LexicalIndex, load_drafts
 
 corpus = root / "knowledge/authoring/policies.tsv"
 gold = root / "evaluation/policy-scenarios-v2.tsv"

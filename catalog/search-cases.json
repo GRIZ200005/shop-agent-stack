@@ -1,6 +1,6 @@
 {
   "kind": "catalog functional acceptance, not semantic RAG evaluation",
-  "scope": "Aster Studio brand 101",
+  "scope": "ShopAgentStack Studio brand 101",
   "cases": [
     {"query":"陶瓷","expectedIds":[10001,10011,10081,10086,10087,10091]},
     {"query":"玻璃","expectedIds":[10002,10004,10016,10019,10093]},

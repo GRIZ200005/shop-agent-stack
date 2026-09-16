@@ -5,7 +5,7 @@ $out=[IO.Path]::GetFullPath($OutputDirectory)
 $allowed=[IO.Path]::GetFullPath((Join-Path $root 'evaluation/runs/performance'))+[IO.Path]::DirectorySeparatorChar
 if(-not $out.StartsWith($allowed,[StringComparison]::OrdinalIgnoreCase) -or -not (Test-Path -LiteralPath $out)){throw 'Output must be an existing local performance run directory'}
 if(Test-Path (Join-Path $out 'sql-plans.txt')){throw 'Do not overwrite an existing plan capture'}
-$sourcePath=Join-Path $root 'services/commerce/aster-after-sale/src/main/java/com/macro/mall/aster/RefundDiagnostics.java'
+$sourcePath=Join-Path $root 'services/commerce/shop-agent-stack-after-sale/src/main/java/com/macro/mall/shop_agent_stack/RefundDiagnostics.java'
 $source=Get-Content -LiteralPath $sourcePath -Raw
 $constants=@{}
 $constants.SOURCE=[regex]::Match($source,'(?s)SOURCE="""(.*?)""";').Groups[1].Value
@@ -25,7 +25,7 @@ if(-not $columns -or $columns.Contains('<')){throw 'Mapper projection extraction
 $sql=@"
 SET SESSION TRANSACTION READ ONLY;
 SELECT VERSION() mysql_version,@@innodb_buffer_pool_size buffer_pool_bytes,@@max_connections max_connections;
-SELECT 'pms_product' table_name,COUNT(*) row_count FROM pms_product UNION ALL SELECT 'aster_after_sale',COUNT(*) FROM aster_after_sale UNION ALL SELECT 'aster_refund_job',COUNT(*) FROM aster_refund_job UNION ALL SELECT 'aster_simulated_refund',COUNT(*) FROM aster_simulated_refund UNION ALL SELECT 'aster_after_sale_event',COUNT(*) FROM aster_after_sale_event;
+SELECT 'pms_product' table_name,COUNT(*) row_count FROM pms_product UNION ALL SELECT 'shop_agent_stack_after_sale',COUNT(*) FROM shop_agent_stack_after_sale UNION ALL SELECT 'shop_agent_stack_refund_job',COUNT(*) FROM shop_agent_stack_refund_job UNION ALL SELECT 'shop_agent_stack_simulated_refund',COUNT(*) FROM shop_agent_stack_simulated_refund UNION ALL SELECT 'shop_agent_stack_after_sale_event',COUNT(*) FROM shop_agent_stack_after_sale_event;
 SELECT 'catalog_count' plan_label;
 EXPLAIN ANALYZE SELECT COUNT(*) FROM pms_product WHERE delete_status=0 AND publish_status=1;
 SELECT 'catalog_page' plan_label;
@@ -36,7 +36,7 @@ SELECT 'refund_page' plan_label;
 EXPLAIN ANALYZE $page;
 "@
 $sql | Set-Content -Encoding utf8 (Join-Path $out 'queries.sql')
-$plans=$sql | docker compose --env-file "$root/.env" -f "$root/deploy/compose.p0.yml" exec -T mysql sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" mysql --default-character-set=utf8mb4 -uaster -Daster --raw'
+$plans=$sql | docker compose --env-file "$root/.env" -f "$root/deploy/compose.p0.yml" exec -T mysql sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" mysql --default-character-set=utf8mb4 -ushop_agent_stack -Dshop_agent_stack --raw'
 if($LASTEXITCODE -ne 0){throw 'Read-only execution plan capture failed'}
 $plans | Set-Content -Encoding utf8 (Join-Path $out 'sql-plans.txt')
 @{diagnostics_sha256=(Get-FileHash $sourcePath -Algorithm SHA256).Hash;mapper_sha256=(Get-FileHash $mapperPath -Algorithm SHA256).Hash;queries_sha256=(Get-FileHash (Join-Path $out 'queries.sql') -Algorithm SHA256).Hash;captured_at=[DateTime]::UtcNow.ToString('o');kind='EXPLAIN ANALYZE on existing local data; no slow query log enabled'} | ConvertTo-Json | Set-Content (Join-Path $out 'plans-manifest.json')

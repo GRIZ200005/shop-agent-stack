@@ -1,5 +1,5 @@
 import pytest
-from aster_agent import runtime, tools
+from shop_agent_stack import runtime, tools
 from test_runtime import setup_runtime
 
 
@@ -11,7 +11,7 @@ async def test_policy_answer_is_released_only_after_revalidation(tmp_path, monke
     count=0
     async def model(*args,on_delta,**kwargs):
         nonlocal count
-        if args[1][0]["content"].startswith("ASTER_POLICY_ASSESSMENT_V1"):
+        if args[1][0]["content"].startswith("SHOP_AGENT_STACK_POLICY_ASSESSMENT_V1"):
             return {"role":"assistant","content":'{"decision":"sufficient","evidence_ids":["P1V1C1"]}'},{}
         count+=1
         if count==1:

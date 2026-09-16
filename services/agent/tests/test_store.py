@@ -1,7 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor
 import pytest
-from aster_agent.store import Store, StoreError
-from aster_agent.providers import public_providers, complete
+from shop_agent_stack.store import Store, StoreError
+from shop_agent_stack.providers import public_providers, complete
 
 
 def test_delete_session_is_owner_scoped_and_removes_history(tmp_path):
@@ -82,8 +82,8 @@ def test_restart_does_not_replay_writes(tmp_path):
 
 @pytest.mark.asyncio
 async def test_no_silent_test_fallback(monkeypatch):
-    monkeypatch.delenv("ASTER_ENABLE_TEST_PROVIDER",raising=False)
-    monkeypatch.setenv("ASTER_OPENAI_API_KEY","synthetic-secret-do-not-expose")
+    monkeypatch.delenv("SHOP_AGENT_STACK_ENABLE_TEST_PROVIDER",raising=False)
+    monkeypatch.setenv("SHOP_AGENT_STACK_OPENAI_API_KEY","synthetic-secret-do-not-expose")
     public=public_providers()
     assert not any(p["id"]=="fixture" for p in public)
     assert "synthetic-secret" not in str(public)

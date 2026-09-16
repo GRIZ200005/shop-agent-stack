@@ -6,7 +6,7 @@ import httpx
 import pytest
 from test_mcp_integration import customer, paid_order
 
-PROVIDER=os.getenv("ASTER_LIVE_PROVIDER","")
+PROVIDER=os.getenv("SHOP_AGENT_STACK_LIVE_PROVIDER","")
 pytestmark=[pytest.mark.asyncio,pytest.mark.skipif(PROVIDER not in {"deepseek","openai","kimi","custom"},reason="requires explicit real provider selection and credentials")]
 
 

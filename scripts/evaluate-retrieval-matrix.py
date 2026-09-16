@@ -18,8 +18,8 @@ from uuid import uuid4
 
 root = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(root / "services/agent"))
-from aster_agent.knowledge import LexicalIndex, load_drafts
-from aster_agent.retrieval_metrics import rrf, metrics
+from shop_agent_stack.knowledge import LexicalIndex, load_drafts
+from shop_agent_stack.retrieval_metrics import rrf, metrics
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--config", default="evaluation/retrieval-matrix.json")
@@ -40,14 +40,14 @@ def write(name, value):
 manifest = {"run_id": run_id, "status": "RUNNING", "split": "observed-synthetic-development",
     "config": config, "python": platform.python_version(), "platform": platform.platform(),
     "code_sha256": {p: digest(root / p) for p in ["scripts/evaluate-retrieval-matrix.py",
-        "services/agent/aster_agent/knowledge.py", "services/agent/aster_agent/retrieval_metrics.py"]},
+        "services/agent/shop_agent_stack/knowledge.py", "services/agent/shop_agent_stack/retrieval_metrics.py"]},
     "corpus_sha256": digest(root / config["corpus"]), "gold_sha256": digest(root / config["gold"]),
     "timing_scope": "sequential CPU component timings; sum for composed modes, not production p95",
     "answer_evaluation": "NOT_RUN", "live_policy_mutations": False}
 write("manifest.json", manifest)
 print(f"Run {run_id}: preparing models and isolated Milvus collection", flush=True)
 client = None
-collection = "aster_eval_" + uuid4().hex
+collection = "shop_agent_stack_eval_" + uuid4().hex
 try:
     import numpy as np
     import torch

@@ -1,8 +1,8 @@
 import httpx
 import pytest
 from pathlib import Path
-from aster_agent import mcp_server
-from aster_agent.policy_snapshot import snapshot_digest
+from shop_agent_stack import mcp_server
+from shop_agent_stack.policy_snapshot import snapshot_digest
 
 ROW = {"policy_id": 1, "version": 1, "clause_no": 1, "title": "退款", "content": "退款按实付金额办理。",
        "content_hash": "abc", "family_id": 1}
@@ -18,7 +18,7 @@ async def test_hybrid_validates_generation_and_fails_safe(monkeypatch, mode):
         return {"epoch": 2 if mode == "changed" and calls >= 3 else 1,
                 "items": [ROW], "next": 1, "more": False}
     monkeypatch.setattr(mcp_server, "invoke", invoke)
-    monkeypatch.setenv("ASTER_RETRIEVAL_MODE", "hybrid")
+    monkeypatch.setenv("SHOP_AGENT_STACK_RETRIEVAL_MODE", "hybrid")
     monkeypatch.setattr(Path, "read_text", lambda *a, **k: "local-test-key")
     original = httpx.AsyncClient
     def handler(request):

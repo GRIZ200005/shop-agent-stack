@@ -1,6 +1,6 @@
 import json
 import pytest
-from aster_agent.policy_gate import assess_with_retry, parse_assessment
+from shop_agent_stack.policy_gate import assess_with_retry, parse_assessment
 
 HIT={"citation_id":"P1V1C1","text":"模拟退款不转账","title":"退款"}
 

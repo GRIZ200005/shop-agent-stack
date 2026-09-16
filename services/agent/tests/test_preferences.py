@@ -3,9 +3,9 @@ import socket
 import httpx
 import pytest
 from cryptography.fernet import Fernet
-from aster_agent.preferences import Preferences
-from aster_agent.store import Store, StoreError
-from aster_agent.outbound import validate_url, PublicTransport
+from shop_agent_stack.preferences import Preferences
+from shop_agent_stack.store import Store, StoreError
+from shop_agent_stack.outbound import validate_url, PublicTransport
 
 
 @pytest.fixture
@@ -68,10 +68,10 @@ async def test_dns_is_pinned_and_tls_hostname_preserved(monkeypatch):
 
 @pytest.mark.asyncio
 async def test_settings_http_auth_and_validation_never_echo_keys(prefs,monkeypatch):
-    from aster_agent import app as module
+    from shop_agent_stack import app as module
     async def identity(value):
         if value not in ("Bearer one","Bearer two"):
-            from aster_agent.business import BusinessError
+            from shop_agent_stack.business import BusinessError
             raise BusinessError("Login required",401)
         return {"memberId":1 if value=="Bearer one" else 2,"executionToken":"synthetic"}
     monkeypatch.setattr(module,"preferences",prefs,raising=False)

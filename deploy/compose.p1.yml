@@ -4,7 +4,7 @@ services:
     ports: ["127.0.0.1:18030:80"]
     volumes:
       - ../apps/web/dist:/usr/share/nginx/html:ro
-      - ./nginx/aster.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/shop_agent_stack.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       portal: {condition: service_healthy}
       admin: {condition: service_healthy}

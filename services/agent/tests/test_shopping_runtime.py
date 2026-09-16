@@ -1,7 +1,7 @@
 import json
 import pytest
-from aster_agent import context, runtime, tools
-from aster_agent.catalog import with_snapshot
+from shop_agent_stack import context, runtime, tools
+from shop_agent_stack.catalog import with_snapshot
 from test_runtime import setup_runtime
 
 
@@ -40,7 +40,7 @@ async def test_mixed_answer_revalidates_both_sources_before_promotion(tmp_path,m
     step=0
     async def model(provider,messages,definitions,**kwargs):
         nonlocal step
-        if messages[0]["content"].startswith("ASTER_POLICY_ASSESSMENT_V1"):
+        if messages[0]["content"].startswith("SHOP_AGENT_STACK_POLICY_ASSESSMENT_V1"):
             return {"role":"assistant","content":'{"decision":"sufficient","evidence_ids":["P1V1C1"]}'},{}
         step+=1
         if step==1:

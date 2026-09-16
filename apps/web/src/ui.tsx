@@ -162,7 +162,7 @@ export function ProductArt({
               fontSize="12"
               letterSpacing="4"
             >
-              ASTER
+              SHOP
             </text>
           </g>
         ) : kind === "headphones" ? (

@@ -1,7 +1,7 @@
 import json
 import httpx
 import pytest
-from aster_agent import providers, runtime
+from shop_agent_stack import providers, runtime
 from test_runtime import setup_runtime
 
 

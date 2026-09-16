@@ -73,12 +73,12 @@ test("support ownership, duplicate requests and competing staff claim", async ({
     title: "并发领取验证",
     context: "合成咨询，仅测试人工服务流程",
   };
-  const created = await call(request, "portal", "/aster/support", owner, body);
+  const created = await call(request, "portal", "/shop_agent_stack/support", owner, body);
   expect(created.code).toBe(200);
   expect(
-    (await call(request, "portal", "/aster/support", owner, body)).data.id,
+    (await call(request, "portal", "/shop_agent_stack/support", owner, body)).data.id,
   ).toBe(created.data.id);
-  const path = "/aster/support/" + created.data.id;
+  const path = "/shop_agent_stack/support/" + created.data.id;
   expect((await call(request, "portal", path, other)).code).not.toBe(200);
   expect(
     (
@@ -143,7 +143,7 @@ test("customer handoff, staff reply, polling and resolution", async ({
       accounts.find((u: any) => u.role === "SERVICE"),
     );
   await page.addInitScript(
-    (t) => sessionStorage.setItem("aster_portal", t),
+    (t) => sessionStorage.setItem("shop_agent_stack_portal", t),
     owner,
   );
   await page.goto("/app/assistant");
@@ -168,7 +168,7 @@ test("customer handoff, staff reply, polling and resolution", async ({
   const worker = await browser.newPage({ baseURL: "http://127.0.0.1:18030" });
   try {
     await worker.addInitScript(
-      (t) => sessionStorage.setItem("aster_admin", t),
+      (t) => sessionStorage.setItem("shop_agent_stack_admin", t),
       staff,
     );
     await worker.goto("/service/support?ticket=" + id);

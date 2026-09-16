@@ -14,7 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-/** Aster regression tests for server-side checkout pricing. */
+/** ShopAgentStack regression tests for server-side checkout pricing. */
 class CartPricingTest {
     private OmsPromotionServiceImpl service;
     private OmsCartItem cart;

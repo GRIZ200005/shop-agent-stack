@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source": "aster-original-synthetic",
+  "source": "shop_agent_stack-original-synthetic",
   "documents": 96,
   "clauses": 288,
   "customer_documents": 80,
@@ -9,7 +9,7 @@
   "policies": [
     {
       "id": "POL-001",
-      "title": "星序商城整单售后申请范围指引",
+      "title": "ShopAgentStack 商城整单售后申请范围指引",
       "category": "退货",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -20,7 +20,7 @@
       "clauses": [
         {
           "id": "POL-001-C1",
-          "sha256": "cc786682de62f98850d3b7c0db9304cb95c06d5a6007cc4d065fbaade9823b5c"
+          "sha256": "ed3053ab2316ed56f4819af788ee226cb2851d8012e6aa89e0e146845887df4b"
         },
         {
           "id": "POL-001-C2",
@@ -34,7 +34,7 @@
     },
     {
       "id": "POL-002",
-      "title": "星序商城售后预览与确认指引",
+      "title": "ShopAgentStack 商城售后预览与确认指引",
       "category": "退货",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -59,7 +59,7 @@
     },
     {
       "id": "POL-003",
-      "title": "星序商城耳机拆封与使用情况指引",
+      "title": "ShopAgentStack 商城耳机拆封与使用情况指引",
       "category": "退货",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -84,7 +84,7 @@
     },
     {
       "id": "POL-004",
-      "title": "星序商城包装配件缺失指引",
+      "title": "ShopAgentStack 商城包装配件缺失指引",
       "category": "退货",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -109,7 +109,7 @@
     },
     {
       "id": "POL-005",
-      "title": "星序商城尺寸或规格不合适指引",
+      "title": "ShopAgentStack 商城尺寸或规格不合适指引",
       "category": "退货",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -134,7 +134,7 @@
     },
     {
       "id": "POL-006",
-      "title": "星序商城到货破损处理指引",
+      "title": "ShopAgentStack 商城到货破损处理指引",
       "category": "退货",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -159,7 +159,7 @@
     },
     {
       "id": "POL-007",
-      "title": "星序商城错发商品处理指引",
+      "title": "ShopAgentStack 商城错发商品处理指引",
       "category": "退货",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -184,7 +184,7 @@
     },
     {
       "id": "POL-008",
-      "title": "星序商城退货期限不明确指引",
+      "title": "ShopAgentStack 商城退货期限不明确指引",
       "category": "退货",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -209,7 +209,7 @@
     },
     {
       "id": "POL-009",
-      "title": "星序商城退款状态区分指引",
+      "title": "ShopAgentStack 商城退款状态区分指引",
       "category": "退款",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -234,7 +234,7 @@
     },
     {
       "id": "POL-010",
-      "title": "星序商城模拟退款说明指引",
+      "title": "ShopAgentStack 商城模拟退款说明指引",
       "category": "退款",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -245,7 +245,7 @@
       "clauses": [
         {
           "id": "POL-010-C1",
-          "sha256": "771d0f378e92392afd254bdad13eab18bdd2511719c98b8eaab94fce6bb0d468"
+          "sha256": "d23127ef7acef6c339afabf4069a9cfc295b3d84faac5b9ecbb0d275f1cac5b2"
         },
         {
           "id": "POL-010-C2",
@@ -259,7 +259,7 @@
     },
     {
       "id": "POL-011",
-      "title": "星序商城退款金额核对指引",
+      "title": "ShopAgentStack 商城退款金额核对指引",
       "category": "退款",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -284,7 +284,7 @@
     },
     {
       "id": "POL-012",
-      "title": "星序商城重复申请与结果核实指引",
+      "title": "ShopAgentStack 商城重复申请与结果核实指引",
       "category": "退款",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -309,7 +309,7 @@
     },
     {
       "id": "POL-013",
-      "title": "星序商城订单中文状态指引",
+      "title": "ShopAgentStack 商城订单中文状态指引",
       "category": "订单",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -334,7 +334,7 @@
     },
     {
       "id": "POL-014",
-      "title": "星序商城订单归属指引",
+      "title": "ShopAgentStack 商城订单归属指引",
       "category": "订单",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -359,7 +359,7 @@
     },
     {
       "id": "POL-015",
-      "title": "星序商城订单列表与详情指引",
+      "title": "ShopAgentStack 商城订单列表与详情指引",
       "category": "订单",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -384,7 +384,7 @@
     },
     {
       "id": "POL-016",
-      "title": "星序商城取消订单与停止回答指引",
+      "title": "ShopAgentStack 商城取消订单与停止回答指引",
       "category": "订单",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -409,7 +409,7 @@
     },
     {
       "id": "POL-017",
-      "title": "星序商城修改商品与数量指引",
+      "title": "ShopAgentStack 商城修改商品与数量指引",
       "category": "订单",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -434,7 +434,7 @@
     },
     {
       "id": "POL-018",
-      "title": "星序商城查不到订单指引",
+      "title": "ShopAgentStack 商城查不到订单指引",
       "category": "订单",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -459,7 +459,7 @@
     },
     {
       "id": "POL-019",
-      "title": "星序商城模拟支付与订单状态指引",
+      "title": "ShopAgentStack 商城模拟支付与订单状态指引",
       "category": "支付",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -484,7 +484,7 @@
     },
     {
       "id": "POL-020",
-      "title": "星序商城支付凭据保护指引",
+      "title": "ShopAgentStack 商城支付凭据保护指引",
       "category": "支付",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -509,7 +509,7 @@
     },
     {
       "id": "POL-021",
-      "title": "星序商城优惠与实付金额指引",
+      "title": "ShopAgentStack 商城优惠与实付金额指引",
       "category": "支付",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -534,7 +534,7 @@
     },
     {
       "id": "POL-022",
-      "title": "星序商城发票需求边界指引",
+      "title": "ShopAgentStack 商城发票需求边界指引",
       "category": "支付",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -559,7 +559,7 @@
     },
     {
       "id": "POL-023",
-      "title": "星序商城物流轨迹查询范围指引",
+      "title": "ShopAgentStack 商城物流轨迹查询范围指引",
       "category": "物流",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -584,7 +584,7 @@
     },
     {
       "id": "POL-024",
-      "title": "星序商城修改收货地址指引",
+      "title": "ShopAgentStack 商城修改收货地址指引",
       "category": "物流",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -609,7 +609,7 @@
     },
     {
       "id": "POL-025",
-      "title": "星序商城配送时间承诺指引",
+      "title": "ShopAgentStack 商城配送时间承诺指引",
       "category": "物流",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -634,7 +634,7 @@
     },
     {
       "id": "POL-026",
-      "title": "星序商城运费承担争议指引",
+      "title": "ShopAgentStack 商城运费承担争议指引",
       "category": "物流",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -653,13 +653,13 @@
         },
         {
           "id": "POL-026-C3",
-          "sha256": "4cf37a02f9ab28c63d574ba931b7ddfdb8cf641f423b47dd025c4d6e05677a5f"
+          "sha256": "3460161c71d355f9067c77e73c6241f1f7b4f2c35df78bfbc0715437992b9191"
         }
       ]
     },
     {
       "id": "POL-027",
-      "title": "星序商城显示签收但未收到指引",
+      "title": "ShopAgentStack 商城显示签收但未收到指引",
       "category": "物流",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -684,7 +684,7 @@
     },
     {
       "id": "POL-028",
-      "title": "星序商城跨境与偏远地区配送指引",
+      "title": "ShopAgentStack 商城跨境与偏远地区配送指引",
       "category": "物流",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -709,7 +709,7 @@
     },
     {
       "id": "POL-029",
-      "title": "星序商城USB-C 数据线兼容性指引",
+      "title": "ShopAgentStack 商城USB-C 数据线兼容性指引",
       "category": "商品",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -734,7 +734,7 @@
     },
     {
       "id": "POL-030",
-      "title": "星序商城耳机连接与故障排查指引",
+      "title": "ShopAgentStack 商城耳机连接与故障排查指引",
       "category": "商品",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -759,7 +759,7 @@
     },
     {
       "id": "POL-031",
-      "title": "星序商城充电设备功率选择指引",
+      "title": "ShopAgentStack 商城充电设备功率选择指引",
       "category": "商品",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -784,7 +784,7 @@
     },
     {
       "id": "POL-032",
-      "title": "星序商城商品库存与价格指引",
+      "title": "ShopAgentStack 商城商品库存与价格指引",
       "category": "商品",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -809,7 +809,7 @@
     },
     {
       "id": "POL-033",
-      "title": "星序商城颜色型号与图片差异指引",
+      "title": "ShopAgentStack 商城颜色型号与图片差异指引",
       "category": "商品",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -834,7 +834,7 @@
     },
     {
       "id": "POL-034",
-      "title": "星序商城保修期限与维修指引",
+      "title": "ShopAgentStack 商城保修期限与维修指引",
       "category": "商品",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -859,7 +859,7 @@
     },
     {
       "id": "POL-035",
-      "title": "星序商城切换账户后的数据指引",
+      "title": "ShopAgentStack 商城切换账户后的数据指引",
       "category": "账户",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -884,7 +884,7 @@
     },
     {
       "id": "POL-036",
-      "title": "星序商城模型密钥与聊天内容指引",
+      "title": "ShopAgentStack 商城模型密钥与聊天内容指引",
       "category": "账户",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -909,7 +909,7 @@
     },
     {
       "id": "POL-037",
-      "title": "星序商城对话发送的数据范围指引",
+      "title": "ShopAgentStack 商城对话发送的数据范围指引",
       "category": "账户",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -934,7 +934,7 @@
     },
     {
       "id": "POL-038",
-      "title": "星序商城管理员与客服权限指引",
+      "title": "ShopAgentStack 商城管理员与客服权限指引",
       "category": "账户",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -959,7 +959,7 @@
     },
     {
       "id": "POL-039",
-      "title": "星序商城领取与审核流程指引",
+      "title": "ShopAgentStack 商城领取与审核流程指引",
       "category": "客服",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -984,7 +984,7 @@
     },
     {
       "id": "POL-040",
-      "title": "星序商城审核拒绝的解释指引",
+      "title": "ShopAgentStack 商城审核拒绝的解释指引",
       "category": "客服",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1009,7 +1009,7 @@
     },
     {
       "id": "POL-041",
-      "title": "星序商城人工接管能力边界指引",
+      "title": "ShopAgentStack 商城人工接管能力边界指引",
       "category": "客服",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1034,7 +1034,7 @@
     },
     {
       "id": "POL-042",
-      "title": "星序商城处理时间与催单指引",
+      "title": "ShopAgentStack 商城处理时间与催单指引",
       "category": "客服",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1059,7 +1059,7 @@
     },
     {
       "id": "POL-043",
-      "title": "星序商城政策引用与适用范围指引",
+      "title": "ShopAgentStack 商城政策引用与适用范围指引",
       "category": "知识",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1084,7 +1084,7 @@
     },
     {
       "id": "POL-044",
-      "title": "星序商城政策发布与撤回指引",
+      "title": "ShopAgentStack 商城政策发布与撤回指引",
       "category": "知识",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1109,7 +1109,7 @@
     },
     {
       "id": "POL-045",
-      "title": "星序商城历史订单适用政策指引",
+      "title": "ShopAgentStack 商城历史订单适用政策指引",
       "category": "知识",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1134,7 +1134,7 @@
     },
     {
       "id": "POL-046",
-      "title": "星序商城外部搜索与本店政策指引",
+      "title": "ShopAgentStack 商城外部搜索与本店政策指引",
       "category": "知识",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1149,7 +1149,7 @@
         },
         {
           "id": "POL-046-C2",
-          "sha256": "033728b413a5b23d5a76a06e67054865db53424dc26d02e97d2bcd5bed93518b"
+          "sha256": "68ef383ad131a421b7aee2a71bc754298ceb5814326ddb71d08db65835fff61b"
         },
         {
           "id": "POL-046-C3",
@@ -1159,7 +1159,7 @@
     },
     {
       "id": "POL-047",
-      "title": "星序商城证据不足与补问指引",
+      "title": "ShopAgentStack 商城证据不足与补问指引",
       "category": "知识",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1184,7 +1184,7 @@
     },
     {
       "id": "POL-048",
-      "title": "星序商城材料中的恶意指令指引",
+      "title": "ShopAgentStack 商城材料中的恶意指令指引",
       "category": "知识",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1209,7 +1209,7 @@
     },
     {
       "id": "POL-049",
-      "title": "星序商城订单标识与查询指引",
+      "title": "ShopAgentStack 商城订单标识与查询指引",
       "category": "订单",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1234,7 +1234,7 @@
     },
     {
       "id": "POL-050",
-      "title": "星序商城多订单售后办理规则",
+      "title": "ShopAgentStack 商城多订单售后办理规则",
       "category": "订单",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1259,7 +1259,7 @@
     },
     {
       "id": "POL-051",
-      "title": "星序商城购物袋与订单确认指引",
+      "title": "ShopAgentStack 商城购物袋与订单确认指引",
       "category": "订单",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1284,7 +1284,7 @@
     },
     {
       "id": "POL-052",
-      "title": "星序商城订单记录与购买凭证说明",
+      "title": "ShopAgentStack 商城订单记录与购买凭证说明",
       "category": "订单",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1303,13 +1303,13 @@
         },
         {
           "id": "POL-052-C3",
-          "sha256": "f904c6d75c818c8a638b7e1e8d77c74f3ff41014793d2980dfc1a4d8948b8b46"
+          "sha256": "a5d4aaa88202a88b0b06dd9b8e375f0bfa2b636b9a5dc7e922792363d13ddaa0"
         }
       ]
     },
     {
       "id": "POL-053",
-      "title": "星序商城重复支付操作处理说明",
+      "title": "ShopAgentStack 商城重复支付操作处理说明",
       "category": "支付",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1334,7 +1334,7 @@
     },
     {
       "id": "POL-054",
-      "title": "星序商城支付异常核实指引",
+      "title": "ShopAgentStack 商城支付异常核实指引",
       "category": "支付",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1359,7 +1359,7 @@
     },
     {
       "id": "POL-055",
-      "title": "星序商城售后申请资格说明",
+      "title": "ShopAgentStack 商城售后申请资格说明",
       "category": "退货",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1384,7 +1384,7 @@
     },
     {
       "id": "POL-056",
-      "title": "星序商城售后原因填写规范",
+      "title": "ShopAgentStack 商城售后原因填写规范",
       "category": "退货",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1409,7 +1409,7 @@
     },
     {
       "id": "POL-057",
-      "title": "星序商城售后预览金额变更规则",
+      "title": "ShopAgentStack 商城售后预览金额变更规则",
       "category": "退货",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1434,7 +1434,7 @@
     },
     {
       "id": "POL-058",
-      "title": "星序商城售后预览取消指引",
+      "title": "ShopAgentStack 商城售后预览取消指引",
       "category": "退货",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1459,7 +1459,7 @@
     },
     {
       "id": "POL-059",
-      "title": "星序商城售后确认信息使用规则",
+      "title": "ShopAgentStack 商城售后确认信息使用规则",
       "category": "退货",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1484,7 +1484,7 @@
     },
     {
       "id": "POL-060",
-      "title": "星序商城售后处理状态说明",
+      "title": "ShopAgentStack 商城售后处理状态说明",
       "category": "客服",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1509,7 +1509,7 @@
     },
     {
       "id": "POL-061",
-      "title": "星序商城模拟退款完成后的订单说明",
+      "title": "ShopAgentStack 商城模拟退款完成后的订单说明",
       "category": "退款",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1534,7 +1534,7 @@
     },
     {
       "id": "POL-062",
-      "title": "星序商城退款金额异常处理规则",
+      "title": "ShopAgentStack 商城退款金额异常处理规则",
       "category": "退款",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1559,7 +1559,7 @@
     },
     {
       "id": "POL-063",
-      "title": "星序商城退款结果与参考编号说明",
+      "title": "ShopAgentStack 商城退款结果与参考编号说明",
       "category": "退款",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1584,7 +1584,7 @@
     },
     {
       "id": "POL-064",
-      "title": "星序商城售后审核说明查阅指引",
+      "title": "ShopAgentStack 商城售后审核说明查阅指引",
       "category": "客服",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1609,7 +1609,7 @@
     },
     {
       "id": "POL-065",
-      "title": "星序商城重复咨询与申请进度指引",
+      "title": "ShopAgentStack 商城重复咨询与申请进度指引",
       "category": "客服",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1634,7 +1634,7 @@
     },
     {
       "id": "POL-066",
-      "title": "星序商城服务渠道与通知说明",
+      "title": "ShopAgentStack 商城服务渠道与通知说明",
       "category": "客服",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1659,7 +1659,7 @@
     },
     {
       "id": "POL-067",
-      "title": "星序商城寄回地址与退件安排说明",
+      "title": "ShopAgentStack 商城寄回地址与退件安排说明",
       "category": "物流",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1684,7 +1684,7 @@
     },
     {
       "id": "POL-068",
-      "title": "星序商城拆单发货与包裹查询说明",
+      "title": "ShopAgentStack 商城拆单发货与包裹查询说明",
       "category": "物流",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1709,7 +1709,7 @@
     },
     {
       "id": "POL-069",
-      "title": "星序商城商品规格证据使用规范",
+      "title": "ShopAgentStack 商城商品规格证据使用规范",
       "category": "商品",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1734,7 +1734,7 @@
     },
     {
       "id": "POL-070",
-      "title": "星序商城套餐与赠品核实说明",
+      "title": "ShopAgentStack 商城套餐与赠品核实说明",
       "category": "商品",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1759,7 +1759,7 @@
     },
     {
       "id": "POL-071",
-      "title": "星序商城价格差异与活动说明",
+      "title": "ShopAgentStack 商城价格差异与活动说明",
       "category": "商品",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1778,13 +1778,13 @@
         },
         {
           "id": "POL-071-C3",
-          "sha256": "c4f67e9a256dbc7354860bda8b47e948ef8a2e9d8f98b376cec7a97053d4b85b"
+          "sha256": "001c65d825813bdd651a9287de0ae173ffb6672e8eb4b0b44b27b0759b3285cb"
         }
       ]
     },
     {
       "id": "POL-072",
-      "title": "星序商城登录状态与业务办理说明",
+      "title": "ShopAgentStack 商城登录状态与业务办理说明",
       "category": "账户",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1809,7 +1809,7 @@
     },
     {
       "id": "POL-073",
-      "title": "星序商城个人模型连接使用说明",
+      "title": "ShopAgentStack 商城个人模型连接使用说明",
       "category": "账户",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1834,7 +1834,7 @@
     },
     {
       "id": "POL-074",
-      "title": "星序商城模型选择与服务权限说明",
+      "title": "ShopAgentStack 商城模型选择与服务权限说明",
       "category": "账户",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1859,7 +1859,7 @@
     },
     {
       "id": "POL-075",
-      "title": "星序商城密钥异常处置指引",
+      "title": "ShopAgentStack 商城密钥异常处置指引",
       "category": "账户",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1870,7 +1870,7 @@
       "clauses": [
         {
           "id": "POL-075-C1",
-          "sha256": "9ba795c3e02f778b90d2843254a03d1ba4d5f65d6b2618f7377ffcf530f829c2"
+          "sha256": "8f2682b0fe536c15ea0f617bdd1984270f1655cbc445d50994112ba74041be60"
         },
         {
           "id": "POL-075-C2",
@@ -1884,7 +1884,7 @@
     },
     {
       "id": "POL-076",
-      "title": "星序商城政策原文与历史回答说明",
+      "title": "ShopAgentStack 商城政策原文与历史回答说明",
       "category": "知识",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1909,7 +1909,7 @@
     },
     {
       "id": "POL-077",
-      "title": "星序商城政策与个案结果适用说明",
+      "title": "ShopAgentStack 商城政策与个案结果适用说明",
       "category": "知识",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1934,7 +1934,7 @@
     },
     {
       "id": "POL-078",
-      "title": "星序商城政策范围与未约定事项说明",
+      "title": "ShopAgentStack 商城政策范围与未约定事项说明",
       "category": "知识",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1945,7 +1945,7 @@
       "clauses": [
         {
           "id": "POL-078-C1",
-          "sha256": "eeab8901826a9a98c3c4a4bf7b908b28ad7c18e5d6d3d962891968f7d80a0abe"
+          "sha256": "b9d7a4214f8408637dc2214591cd34196e9b3d4726b504be4518c83283649c37"
         },
         {
           "id": "POL-078-C2",
@@ -1959,7 +1959,7 @@
     },
     {
       "id": "POL-079",
-      "title": "星序商城商品资料与服务规则区分说明",
+      "title": "ShopAgentStack 商城商品资料与服务规则区分说明",
       "category": "知识",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -1984,7 +1984,7 @@
     },
     {
       "id": "POL-080",
-      "title": "星序商城服务异常反馈规范",
+      "title": "ShopAgentStack 商城服务异常反馈规范",
       "category": "客服",
       "visibility": "CUSTOMER",
       "content_version": 2,
@@ -2009,7 +2009,7 @@
     },
     {
       "id": "SOP-001",
-      "title": "星序客服工单领取规范",
+      "title": "ShopAgentStack客服工单领取规范",
       "category": "客服作业",
       "visibility": "STAFF",
       "content_version": 2,
@@ -2034,7 +2034,7 @@
     },
     {
       "id": "SOP-002",
-      "title": "星序客服审核前核对清单",
+      "title": "ShopAgentStack客服审核前核对清单",
       "category": "客服作业",
       "visibility": "STAFF",
       "content_version": 2,
@@ -2059,7 +2059,7 @@
     },
     {
       "id": "SOP-003",
-      "title": "星序客服审核结论记录规范",
+      "title": "ShopAgentStack客服审核结论记录规范",
       "category": "客服作业",
       "visibility": "STAFF",
       "content_version": 2,
@@ -2084,7 +2084,7 @@
     },
     {
       "id": "SOP-004",
-      "title": "星序客服退款执行核实规范",
+      "title": "ShopAgentStack客服退款执行核实规范",
       "category": "客服作业",
       "visibility": "STAFF",
       "content_version": 2,
@@ -2109,7 +2109,7 @@
     },
     {
       "id": "SOP-005",
-      "title": "星序客服重复请求处理规范",
+      "title": "ShopAgentStack客服重复请求处理规范",
       "category": "客服作业",
       "visibility": "STAFF",
       "content_version": 2,
@@ -2134,7 +2134,7 @@
     },
     {
       "id": "SOP-006",
-      "title": "星序客服事实不足处理规范",
+      "title": "ShopAgentStack客服事实不足处理规范",
       "category": "客服作业",
       "visibility": "STAFF",
       "content_version": 2,
@@ -2159,7 +2159,7 @@
     },
     {
       "id": "SOP-007",
-      "title": "星序客服拒绝结果说明规范",
+      "title": "ShopAgentStack客服拒绝结果说明规范",
       "category": "客服作业",
       "visibility": "STAFF",
       "content_version": 2,
@@ -2184,7 +2184,7 @@
     },
     {
       "id": "SOP-008",
-      "title": "星序客服数据最小化规范",
+      "title": "ShopAgentStack客服数据最小化规范",
       "category": "客服作业",
       "visibility": "STAFF",
       "content_version": 2,
@@ -2209,7 +2209,7 @@
     },
     {
       "id": "SOP-009",
-      "title": "星序政策编写与能力核对规范",
+      "title": "ShopAgentStack政策编写与能力核对规范",
       "category": "政策管理",
       "visibility": "STAFF",
       "content_version": 2,
@@ -2234,7 +2234,7 @@
     },
     {
       "id": "SOP-010",
-      "title": "星序政策发布前检查规范",
+      "title": "ShopAgentStack政策发布前检查规范",
       "category": "政策管理",
       "visibility": "STAFF",
       "content_version": 2,
@@ -2259,7 +2259,7 @@
     },
     {
       "id": "SOP-011",
-      "title": "星序政策修订与替代规范",
+      "title": "ShopAgentStack政策修订与替代规范",
       "category": "政策管理",
       "visibility": "STAFF",
       "content_version": 2,
@@ -2284,7 +2284,7 @@
     },
     {
       "id": "SOP-012",
-      "title": "星序政策撤回与引用检查规范",
+      "title": "ShopAgentStack政策撤回与引用检查规范",
       "category": "政策管理",
       "visibility": "STAFF",
       "content_version": 2,
@@ -2309,7 +2309,7 @@
     },
     {
       "id": "SOP-013",
-      "title": "星序知识条款标注规范",
+      "title": "ShopAgentStack知识条款标注规范",
       "category": "知识维护",
       "visibility": "STAFF",
       "content_version": 2,
@@ -2334,7 +2334,7 @@
     },
     {
       "id": "SOP-014",
-      "title": "星序知识评测结果使用规范",
+      "title": "ShopAgentStack知识评测结果使用规范",
       "category": "知识维护",
       "visibility": "STAFF",
       "content_version": 2,
@@ -2359,7 +2359,7 @@
     },
     {
       "id": "SOP-015",
-      "title": "星序知识无答案与越权验收规范",
+      "title": "ShopAgentStack知识无答案与越权验收规范",
       "category": "知识维护",
       "visibility": "STAFF",
       "content_version": 2,
@@ -2384,7 +2384,7 @@
     },
     {
       "id": "SOP-016",
-      "title": "星序测试政策隔离规范",
+      "title": "ShopAgentStack测试政策隔离规范",
       "category": "知识维护",
       "visibility": "STAFF",
       "content_version": 2,

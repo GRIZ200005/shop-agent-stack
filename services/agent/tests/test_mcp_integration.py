@@ -4,10 +4,10 @@ import os
 from uuid import uuid4
 import httpx
 import pytest
-from aster_agent.business import java, identity, BusinessError, PORTAL
-from aster_agent import tools
+from shop_agent_stack.business import java, identity, BusinessError, PORTAL
+from shop_agent_stack import tools
 
-pytestmark=[pytest.mark.asyncio,pytest.mark.skipif(os.getenv("ASTER_INTEGRATION")!="true",reason="requires local P2 services")]
+pytestmark=[pytest.mark.asyncio,pytest.mark.skipif(os.getenv("SHOP_AGENT_STACK_INTEGRATION")!="true",reason="requires local P2 services")]
 
 
 async def customer():
@@ -24,18 +24,18 @@ async def customer():
 async def paid_order(bearer):
     await java("/member/address/add",bearer=bearer,body={"name":"Synthetic","phoneNumber":"00000000000","defaultStatus":0,"province":"Test","city":"Test","region":"Test","detailAddress":"Fixture"})
     address=(await java("/member/address/list",bearer=bearer))[0]["id"]
-    await java("/cart/add",bearer=bearer,body={"productId":1,"productSkuId":1,"quantity":1,"price":0.01,"productName":"Aster USB-C Cable","productCategoryId":1})
+    await java("/cart/add",bearer=bearer,body={"productId":1,"productSkuId":1,"quantity":1,"price":0.01,"productName":"ShopAgentStack USB-C Cable","productCategoryId":1})
     cart=await java("/cart/list",bearer=bearer)
     order=await java("/order/generateOrder",bearer=bearer,body={"memberReceiveAddressId":address,"payType":0,"cartIds":[c["id"] for c in cart]})
     oid=order["order"]["id"]
-    await java(f"/aster/orders/{oid}/simulate-payment",bearer=bearer,body={})
+    await java(f"/shop_agent_stack/orders/{oid}/simulate-payment",bearer=bearer,body={})
     return oid
 
 
 async def test_published_library_mcp_retrieval_and_source():
     bearer = await customer()
-    rows = await java("/aster/policies", bearer=bearer)
-    title = "星序商城售后申请资格说明"
+    rows = await java("/shop_agent_stack/policies", bearer=bearer)
+    title = "ShopAgentStack 商城售后申请资格说明"
     policy = next((p for p in rows if p["title"] == title), None)
     if policy is None:
         pytest.skip("requires explicit policy library import")
@@ -63,15 +63,15 @@ async def test_real_mcp_confirmation_ownership_and_replay():
         assert float(preview["amount"])==49.9 and preview["expired"] is False
         competing=(await tools.call(session,"preview_after_sale",{"order_id":oid,"reason":"A distinct pending preview"}))["preview"]
         with pytest.raises(ValueError): await tools.call(session,"submit_after_sale",{"operation_id":preview["id"]})
-        with pytest.raises(BusinessError): await java(f"/aster/agent/operations/{preview['id']}/confirm",bearer=a,body={"confirmationToken":"wrong-confirmation"})
+        with pytest.raises(BusinessError): await java(f"/shop_agent_stack/agent/operations/{preview['id']}/confirm",bearer=a,body={"confirmationToken":"wrong-confirmation"})
         async with tools.connect(other["executionToken"]) as stranger:
             with pytest.raises(ValueError): await tools.call(stranger,"get_my_order",{"order_id":oid})
             with pytest.raises(ValueError): await tools.call(stranger,"submit_after_sale",{"operation_id":preview["id"]})
-        await java(f"/aster/agent/operations/{preview['id']}/confirm",bearer=a,body={"confirmationToken":preview["confirmationToken"]})
+        await java(f"/shop_agent_stack/agent/operations/{preview['id']}/confirm",bearer=a,body={"confirmationToken":preview["confirmationToken"]})
         first,second=await asyncio.gather(tools.call(session,"submit_after_sale",{"operation_id":preview["id"]}),tools.call(session,"submit_after_sale",{"operation_id":preview["id"]}))
         assert first["operation"]["status"]=="SUCCEEDED"
         assert first["operation"]["case_id"]==second["operation"]["case_id"]
-        await java(f"/aster/agent/operations/{competing['id']}/confirm",bearer=a,body={"confirmationToken":competing["confirmationToken"]})
+        await java(f"/shop_agent_stack/agent/operations/{competing['id']}/confirm",bearer=a,body={"confirmationToken":competing["confirmationToken"]})
         with pytest.raises(ValueError): await tools.call(session,"submit_after_sale",{"operation_id":competing["id"]})
         cases=(await tools.call(session,"list_my_after_sales",{}))["after_sales"]
         assert len([s for s in cases if s["order_id"]==oid])==1
@@ -81,8 +81,8 @@ async def test_cancelled_operation_and_invalid_execution_grant():
     bearer=await customer(); oid=await paid_order(bearer); auth=await identity(bearer)
     async with tools.connect(auth["executionToken"]) as session:
         preview=(await tools.call(session,"preview_after_sale",{"order_id":oid,"reason":"Cancellation fixture"}))["preview"]
-        await java(f"/aster/agent/operations/{preview['id']}/cancel",bearer=bearer,body={})
+        await java(f"/shop_agent_stack/agent/operations/{preview['id']}/cancel",bearer=bearer,body={})
         with pytest.raises(ValueError): await tools.call(session,"submit_after_sale",{"operation_id":preview["id"]})
-        with pytest.raises(BusinessError): await java(f"/aster/agent/operations/{preview['id']}/confirm",bearer=bearer,body={"confirmationToken":preview["confirmationToken"]})
+        with pytest.raises(BusinessError): await java(f"/shop_agent_stack/agent/operations/{preview['id']}/confirm",bearer=bearer,body={"confirmationToken":preview["confirmationToken"]})
     async with tools.connect("invalid-synthetic-grant") as session:
         with pytest.raises(ValueError): await tools.call(session,"list_my_orders",{})

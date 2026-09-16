@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-/** Aster tests: denied reads must not reach order-item loading; denied writes create no order. */
+/** ShopAgentStack tests: denied reads must not reach order-item loading; denied writes create no order. */
 class OrderOwnershipTest {
     private OmsPortalOrderServiceImpl service;
     private OmsOrderMapper orders;

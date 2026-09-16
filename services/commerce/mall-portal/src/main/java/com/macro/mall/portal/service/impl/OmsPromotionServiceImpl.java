@@ -19,7 +19,7 @@ import java.util.*;
 
 /**
  * Created by macro on 2018/8/27.
- * Modified by Aster Commerce: validate cart inputs and use authoritative SKU prices.
+ * Modified by ShopAgentStack: validate cart inputs and use authoritative SKU prices.
  * 促销管理Service实现类
  */
 @Service

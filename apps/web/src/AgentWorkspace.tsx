@@ -59,7 +59,7 @@ async function agent<T>(path: string, body?: unknown, method?: string): Promise<
   });
   const data = await res.json();
   if (res.status === 401)
-    window.dispatchEvent(new Event("aster-session-expired"));
+    window.dispatchEvent(new Event("shop_agent_stack-session-expired"));
   if (!res.ok)
     throw new Error(
       typeof data.detail === "string" ? data.detail : "服务暂不可用，请重试",
@@ -357,8 +357,8 @@ export function AgentWorkspace({
         pendingRequest.current = null;
         setError("");
       }
-      if (sessionStorage.getItem("aster_agent_session") === deleteTarget.id)
-        sessionStorage.removeItem("aster_agent_session");
+      if (sessionStorage.getItem("shop_agent_stack_session") === deleteTarget.id)
+        sessionStorage.removeItem("shop_agent_stack_session");
       setDeleteTarget(null);
     } catch (e) {
       setDeleteError((e as Error).message);
@@ -371,11 +371,11 @@ export function AgentWorkspace({
       const s = await agent<Session>("/sessions/" + id);
       followBottom.current = true;
       setSession(s);
-      sessionStorage.setItem("aster_agent_session", id);
+      sessionStorage.setItem("shop_agent_stack_session", id);
       setError("");
     } catch (e) {
       setError((e as Error).message);
-      sessionStorage.removeItem("aster_agent_session");
+      sessionStorage.removeItem("shop_agent_stack_session");
     }
   }
   useEffect(() => {
@@ -400,7 +400,7 @@ export function AgentWorkspace({
         .then((s) => {
           if (mounted) {
             setSessions(s);
-            const id = sessionStorage.getItem("aster_agent_session");
+            const id = sessionStorage.getItem("shop_agent_stack_session");
             if (id && s.some((x) => x.id === id)) void select(id);
           }
         })
@@ -489,7 +489,7 @@ export function AgentWorkspace({
       const s = session || (await agent<Session>("/sessions", {}));
       if (!session) {
         setSession({ ...s, runs: [] });
-        sessionStorage.setItem("aster_agent_session", s.id);
+        sessionStorage.setItem("shop_agent_stack_session", s.id);
       }
       const text = message.trim();
       if (
@@ -567,7 +567,7 @@ export function AgentWorkspace({
               disabled={busy || executing}
               onClick={() => {
                 setSession(null);
-                sessionStorage.removeItem("aster_agent_session");
+                sessionStorage.removeItem("shop_agent_stack_session");
                 setError("");
               }}
             >
@@ -597,7 +597,7 @@ export function AgentWorkspace({
           <section className="agent-conversation" aria-label="助手会话">
             <div className="agent-toolbar">
               <Sparkles size={18} />
-              <strong>星序助手</strong>
+              <strong>购物助手</strong>
               <HandoffButton
                 initialTitle={runs.at(-1)?.input || ""}
                 excerpt={runs
@@ -799,8 +799,8 @@ export function AgentWorkspace({
               <textarea
                 ref={composerInput}
                 rows={3}
-                aria-label="发送给星序助手"
-                placeholder="向星序提问，或描述你需要的帮助…"
+                aria-label="发送给购物助手"
+                placeholder="向助手提问，或描述你需要的帮助…"
                 maxLength={2000}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}

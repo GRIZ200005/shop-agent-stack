@@ -60,7 +60,7 @@ test("friendly model choices submit exact IDs and preserve saved unlisted models
   });
   await page.goto("/login");
   await page.evaluate(() =>
-    sessionStorage.setItem("aster_portal", "Bearer synthetic-test-session"),
+    sessionStorage.setItem("shop_agent_stack_portal", "Bearer synthetic-test-session"),
   );
   await page.goto("/app/settings?tab=models");
   const picker = page.getByRole("combobox", { name: "模型名称", exact: true });

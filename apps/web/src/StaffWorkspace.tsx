@@ -38,13 +38,13 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
   async function load() {
     setError("");
     try {
-      const identity = await api<Staff>("admin", "/aster/me");
+      const identity = await api<Staff>("admin", "/shop_agent_stack/me");
       setMe(identity);
       if (adminView && identity.role !== "ADMIN") return;
       if (adminView) {
         setPolicies(await loadPolicies("admin"));
-        setAccounts(await api<Staff[]>("admin", "/aster/staff"));
-      } else setSales(await api<Sale[]>("admin", "/aster/after-sales"));
+        setAccounts(await api<Staff[]>("admin", "/shop_agent_stack/staff"));
+      } else setSales(await api<Sale[]>("admin", "/shop_agent_stack/after-sales"));
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -61,7 +61,7 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
       if (fetching) return;
       fetching = true;
       try {
-        const next = await api<Sale>("admin", `/aster/after-sales/${detail.id}`);
+        const next = await api<Sale>("admin", `/shop_agent_stack/after-sales/${detail.id}`);
         if (!cancelled) { setDetail(next); setSales(items => items.map(s => s.id === next.id ? next : s)); }
       } catch (e) { if (!cancelled) setError((e as Error).message); }
       finally { fetching = false; }
@@ -103,7 +103,7 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
       <div className="page-heading">
         <div>
           <div className="eyebrow">
-            {adminView ? "GOVERNANCE" : "CUSTOMER CARE"} / ASTER WORKSPACE
+            {adminView ? "GOVERNANCE" : "CUSTOMER CARE"} / SHOPAGENTSTACK WORKSPACE
           </div>
           <h1>{adminView ? "让服务，有章可循。" : "每一次回应，都有温度。"}</h1>
           <p>
@@ -193,7 +193,7 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
                           void run(async () => {
                             await api(
                               "admin",
-                              `/aster/policies/${p.id}/publish`,
+                              `/shop_agent_stack/policies/${p.id}/publish`,
                               {},
                             );
                           })
@@ -232,7 +232,7 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
                           void run(async () => {
                             await api(
                               "admin",
-                              `/aster/policies/${p.id}/withdraw`,
+                              `/shop_agent_stack/policies/${p.id}/withdraw`,
                               {},
                             );
                           })
@@ -341,7 +341,7 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
                   onClick={() =>
                     void run(async () =>
                       setDetail(
-                        await api<Sale>("admin", `/aster/after-sales/${s.id}`),
+                        await api<Sale>("admin", `/shop_agent_stack/after-sales/${s.id}`),
                       ),
                     )
                   }
@@ -387,11 +387,11 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
                 void run(async () => {
                   await api(
                     "admin",
-                    `/aster/after-sales/${detail.id}/claim`,
+                    `/shop_agent_stack/after-sales/${detail.id}/claim`,
                     {},
                   );
                   setDetail(
-                    await api<Sale>("admin", `/aster/after-sales/${detail.id}`),
+                    await api<Sale>("admin", `/shop_agent_stack/after-sales/${detail.id}`),
                   );
                 })
               }
@@ -409,14 +409,14 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
                 void run(async () => {
                   await api(
                     "admin",
-                    `/aster/after-sales/${detail.id}/decision`,
+                    `/shop_agent_stack/after-sales/${detail.id}/decision`,
                     {
                       approved: button.value === "approve",
                       note: f.get("note"),
                     },
                   );
                   setDetail(
-                    await api<Sale>("admin", `/aster/after-sales/${detail.id}`),
+                    await api<Sale>("admin", `/shop_agent_stack/after-sales/${detail.id}`),
                   );
                 });
               }}
@@ -454,8 +454,8 @@ export function StaffWorkspace({ adminView }: { adminView: boolean }) {
             <p className="notice">退款任务已排队，系统会自动更新结果；请勿重复申请。</p>
           ) : detail.status === "REFUND_REVIEW" && detail.assignee_id === me?.id ? (
             <button className="button" disabled={busy} onClick={() => void run(async () => {
-              await api("admin", `/aster/after-sales/${detail.id}/refund-retry`, {});
-              setDetail(await api<Sale>("admin", `/aster/after-sales/${detail.id}`));
+              await api("admin", `/shop_agent_stack/after-sales/${detail.id}/refund-retry`, {});
+              setDetail(await api<Sale>("admin", `/shop_agent_stack/after-sales/${detail.id}`));
             })}>已核实，重试模拟退款</button>
           ) : null}
         </Modal>
@@ -517,9 +517,9 @@ function AdminForm({
               "admin",
               kind === "policies"
                 ? revision
-                  ? `/aster/policies/${revision.id}/revise`
-                  : "/aster/policies"
-                : "/aster/staff",
+                  ? `/shop_agent_stack/policies/${revision.id}/revise`
+                  : "/shop_agent_stack/policies"
+                : "/shop_agent_stack/staff",
               Object.fromEntries(f),
             );
             onDone();

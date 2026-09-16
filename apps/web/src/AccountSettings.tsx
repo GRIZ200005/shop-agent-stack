@@ -18,7 +18,7 @@ export async function accountApi<T>(
     signal: AbortSignal.timeout(50000),
   });
   if (res.status === 401) {
-    window.dispatchEvent(new Event("aster-session-expired"));
+    window.dispatchEvent(new Event("shop_agent_stack-session-expired"));
     throw new Error("登录已过期");
   }
   const data = await res.json();

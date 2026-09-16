@@ -1,9 +1,9 @@
-# Modified by Aster Commerce: environment-only JWT key and isolated local profile.
+# Modified by ShopAgentStack: environment-only JWT key and isolated local profile.
 spring:
   application:
     name: mall-admin
   profiles:
-    active: aster
+    active: shop_agent_stack
   servlet:
     multipart:
       enabled: true #开启文件上传
@@ -19,7 +19,7 @@ mybatis:
 
 jwt:
   tokenHeader: Authorization #JWT存储的请求头
-  secret: ${ASTER_JWT_SECRET}
+  secret: ${SHOP_AGENT_STACK_JWT_SECRET}
   expiration: 604800 #JWT的超期限时间(60*60*24*7)
   tokenHead: 'Bearer '  #JWT负载中拿到开头
 

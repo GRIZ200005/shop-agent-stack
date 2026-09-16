@@ -19,9 +19,9 @@ from cryptography.fernet import Fernet
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "services/agent"))
-from aster_agent import runtime, providers, tools
-from aster_agent.business import identity, PORTAL
-from aster_agent.store import Store
+from shop_agent_stack import runtime, providers, tools
+from shop_agent_stack.business import identity, PORTAL
+from shop_agent_stack.store import Store
 
 
 def connections():
@@ -65,7 +65,7 @@ async def main(args):
     directory.mkdir(parents=True)
     manifest={"kind":"development smoke, not independent holdout", "provider":args.provider,"model":config["model"],"indices":selected,
         "transport":"runtime entrypoint + real MCP + real Java + real MySQL; HTTP Agent route not exercised",
-        "max_model_requests":32,"hashes":{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/"catalog/search-cases.json",ROOT/"catalog/products.tsv",*sorted((ROOT/"services/agent/aster_agent").glob("*.py"))]}}
+        "max_model_requests":32,"hashes":{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/"catalog/search-cases.json",ROOT/"catalog/products.tsv",*sorted((ROOT/"services/agent/shop_agent_stack").glob("*.py"))]}}
     (directory/"manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
     print(json.dumps({"output":str(directory.relative_to(ROOT)),"provider":args.provider,"model":config["model"]}),flush=True)
     bearer=await customer()

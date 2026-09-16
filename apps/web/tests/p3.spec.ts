@@ -14,7 +14,7 @@ test("P3d evidence clarification, bounded supplement and abstention", async ({pa
   test.skip(!existsSync(resolve("../../.local/policy-library-v2-import.json")), "requires policy library");
   const bearer=await customer(request);
   await page.goto("/login");
-  await page.evaluate(bearer => sessionStorage.setItem("aster_portal",bearer),bearer);
+  await page.evaluate(bearer => sessionStorage.setItem("shop_agent_stack_portal",bearer),bearer);
   for (const [question, expected] of [
     ["政策测试补问：拆封耳机能不能退", "请说明是仅拆开包装"],
     ["政策测试补查：我需要查整单申请范围", ""],
@@ -23,7 +23,7 @@ test("P3d evidence clarification, bounded supplement and abstention", async ({pa
     await page.goto("/app/assistant");
     await page.getByRole("button",{name:"新对话",exact:true}).click();
     await page.getByLabel("选择模型服务").selectOption("fixture");
-    await page.getByLabel("发送给星序助手").fill(question);
+    await page.getByLabel("发送给购物助手").fill(question);
     await page.getByRole("button",{name:"发送消息",exact:true}).click();
     await expect(page.locator(".agent-state").last()).toContainText("本次回复已完成");
     if (expected) await expect(page.locator(".agent-text").last()).toContainText(expected);
@@ -35,7 +35,7 @@ test("P3d evidence clarification, bounded supplement and abstention", async ({pa
       await expect(process).toContainText("需要补查相关政策");
       await expect(process).toContainText("第 2 次");
       await expect(page.locator(".agent-citations a")).not.toHaveCount(0);
-      await expect(page.locator(".agent-citations")).toContainText("星序商城整单售后申请范围指引");
+      await expect(page.locator(".agent-citations")).toContainText("ShopAgentStack 商城整单售后申请范围指引");
     } else await expect(page.locator(".agent-citations a")).toHaveCount(0);
   }
   await page.screenshot({path:resolve("../../.local/screenshots/p3d-evidence-check.png"),fullPage:true});
@@ -48,7 +48,7 @@ test("P3 library publication, pagination, source hashes and staff isolation", as
   const collected: { id: number; visibility: string }[] = [];
   let before = 0, pageCount = 0;
   while (true) {
-    const rows = await call(request, "admin", `/aster/policies?before=${before}`, admin);
+    const rows = await call(request, "admin", `/shop_agent_stack/policies?before=${before}`, admin);
     collected.push(...rows); pageCount++;
     if (rows.length < 100) break;
     const next = rows[rows.length - 1].id;
@@ -56,11 +56,15 @@ test("P3 library publication, pagination, source hashes and staff isolation", as
     before = next;
     expect(pageCount).toBeLessThan(100);
   }
-  expect(pageCount).toBeGreaterThan(1);
+  // A fresh library has 96 documents. Exercise the cursor without depending
+  // on fixtures left behind by previous test runs to exceed the page limit.
+  expect(collected.length).toBeGreaterThan(1);
+  const suffix = await call(request, "admin", `/shop_agent_stack/policies?before=${collected[0].id}`, admin);
+  expect(suffix.map((p: { id: number }) => p.id)).toEqual(collected.slice(1, 101).map(p => p.id));
   expect(new Set(collected.map(p => p.id)).size).toBe(collected.length);
   for (const mapping of imported.mappings) {
     expect(collected.find(p => p.id === mapping.policy_id)?.visibility).toBe(mapping.visibility);
-    const response = await request.get(`/api/portal/aster/policies/${mapping.policy_id}?version=${mapping.version}`, {
+    const response = await request.get(`/api/portal/shop_agent_stack/policies/${mapping.policy_id}?version=${mapping.version}`, {
       headers: { Authorization: bearer },
     });
     const body = await response.json();
@@ -71,12 +75,12 @@ test("P3 library publication, pagination, source hashes and staff isolation", as
         .toEqual(mapping.clauses.map((c: {content_hash: string}) => c.content_hash));
     }
   }
-  const grant = await call(request, "portal", "/aster/agent/context", bearer, {});
+  const grant = await call(request, "portal", "/shop_agent_stack/agent/context", bearer, {});
   const clauses: {policy_id: number; clause_no: number; content_hash: string}[] = [];
   let after = 0;
   for (let n = 0; n < 100; n++) {
-    const res = await request.get(`/api/portal/aster/internal/agent/policies?after=${after}`, {
-      headers: { "X-Aster-Execution": grant.executionToken },
+    const res = await request.get(`/api/portal/shop_agent_stack/internal/agent/policies?after=${after}`, {
+      headers: { "X-ShopAgentStack-Execution": grant.executionToken },
     });
     const body = await res.json(); expect(body.code).toBe(200);
     clauses.push(...body.data.items);
@@ -89,7 +93,7 @@ test("P3 library publication, pagination, source hashes and staff isolation", as
   }
   await page.goto("/login");
   await page.evaluate(({admin,bearer}) => {
-    sessionStorage.setItem("aster_admin", admin); sessionStorage.setItem("aster_portal", bearer);
+    sessionStorage.setItem("shop_agent_stack_admin", admin); sessionStorage.setItem("shop_agent_stack_portal", bearer);
   }, {admin,bearer});
   await page.goto("/app/policies");
   await expect(page.locator("article.policy")).toHaveCount(10);
@@ -97,20 +101,20 @@ test("P3 library publication, pagination, source hashes and staff isolation", as
   await page.getByRole("button", {name:"下一页",exact:true}).click();
   await expect(page.locator("article.policy h2").first()).not.toHaveText(firstTitle);
   await page.getByLabel("搜索政策").fill("整单售后申请范围");
-  await expect(page.getByRole("heading", {name:"星序商城整单售后申请范围指引",exact:true})).toBeVisible();
-  await page.getByLabel("搜索政策").fill("星序客服工单领取规范");
+  await expect(page.getByRole("heading", {name:"ShopAgentStack 商城整单售后申请范围指引",exact:true})).toBeVisible();
+  await page.getByLabel("搜索政策").fill("ShopAgentStack客服工单领取规范");
   await expect(page.locator("article.policy")).toHaveCount(0);
   await page.getByLabel("搜索政策").fill("");
   await page.screenshot({path:resolve("../../.local/screenshots/policy-library-v2.png"),fullPage:true});
   await page.goto("/admin");
-  await page.getByLabel("搜索政策").fill("星序客服工单领取规范");
+  await page.getByLabel("搜索政策").fill("ShopAgentStack客服工单领取规范");
   await expect(page.locator("article.policy")).toContainText("仅内部可见");
 });
 test.afterEach(async ({ request }) => {
   const token = await staff(request, "ADMIN");
   for (const id of createdPolicies.splice(0)) {
     const response = await request.post(
-      `/api/admin/aster/policies/${id}/withdraw`,
+      `/api/admin/shop_agent_stack/policies/${id}/withdraw`,
       { headers: { Authorization: token }, data: {} },
     );
     const body = await response.json();
@@ -185,8 +189,8 @@ test("P3 publish, cite original, revise and withdraw against real services", asy
   await page.goto("/login");
   await page.evaluate(
     ({ admin, bearer }) => {
-      sessionStorage.setItem("aster_admin", admin);
-      sessionStorage.setItem("aster_portal", bearer);
+      sessionStorage.setItem("shop_agent_stack_admin", admin);
+      sessionStorage.setItem("shop_agent_stack_portal", bearer);
     },
     { admin, bearer },
   );
@@ -201,11 +205,11 @@ test("P3 publish, cite original, revise and withdraw against real services", asy
     .locator("article.policy")
     .filter({ has: page.getByRole("heading", { name: title, exact: true }) });
   await expect(card).toContainText("未进入正式检索");
-  let policies = await call(request, "admin", "/aster/policies", admin);
+  let policies = await call(request, "admin", "/shop_agent_stack/policies", admin);
   const first = policies.find((p: { title: string }) => p.title === title);
   createdPolicies.push(first.id);
   const source = (id: number, version: number) =>
-    request.get(`/api/portal/aster/policies/${id}?version=${version}`, {
+    request.get(`/api/portal/shop_agent_stack/policies/${id}?version=${version}`, {
       headers: { Authorization: bearer },
     });
   expect((await (await source(first.id, 1)).json()).code).not.toBe(200);
@@ -213,7 +217,7 @@ test("P3 publish, cite original, revise and withdraw against real services", asy
   await expect(card).toContainText("条款索引就绪");
   await page.goto("/app/assistant");
   await page.getByLabel("选择模型服务").selectOption("fixture");
-  await page.getByLabel("发送给星序助手").fill("政策：" + title);
+  await page.getByLabel("发送给购物助手").fill("政策：" + title);
   await page.getByRole("button", { name: "发送消息", exact: true }).click();
   await expect(page.locator(".agent-state").last()).toContainText(
     "本次回复已完成",
@@ -247,7 +251,7 @@ test("P3 publish, cite original, revise and withdraw against real services", asy
     .filter({ hasText: "草稿" });
   await revision.getByRole("button", { name: "发布政策", exact: true }).click();
   await expect(revision).toHaveCount(0);
-  policies = await call(request, "admin", "/aster/policies", admin);
+  policies = await call(request, "admin", "/shop_agent_stack/policies", admin);
   const second = policies.find(
     (p: { title: string; version: number }) =>
       p.title === title && p.version === 2,
@@ -281,36 +285,36 @@ test("P3 catalog pagination and private policies never enter customer retrieval"
     service = await staff(request, "SERVICE"),
     bearer = await customer(request);
   const tag = randomUUID().replaceAll("-", "");
-  const large = await call(request, "admin", "/aster/policies", admin, {
+  const large = await call(request, "admin", "/shop_agent_stack/policies", admin, {
     title: "分页 " + tag,
     content: Array.from(
       { length: 205 },
       (_, i) => `分页条款 ${tag} ${i}：仅用于合成检索验收。`,
     ).join("\n"),
   });
-  const privateId = await call(request, "admin", "/aster/policies", admin, {
+  const privateId = await call(request, "admin", "/shop_agent_stack/policies", admin, {
     title: "内部 " + tag,
     content: "内部专用文字 " + tag,
     visibility: "STAFF",
   });
   createdPolicies.push(large, privateId);
-  await call(request, "admin", `/aster/policies/${large}/publish`, admin, {});
+  await call(request, "admin", `/shop_agent_stack/policies/${large}/publish`, admin, {});
   await call(
     request,
     "admin",
-    `/aster/policies/${privateId}/publish`,
+    `/shop_agent_stack/policies/${privateId}/publish`,
     admin,
     {},
   );
   const denied = await request.post(
-    `/api/admin/aster/policies/${large}/withdraw`,
+    `/api/admin/shop_agent_stack/policies/${large}/withdraw`,
     { headers: { Authorization: service }, data: {} },
   );
   expect((await denied.json()).code).not.toBe(200);
   const grant = await call(
     request,
     "portal",
-    "/aster/agent/context",
+    "/shop_agent_stack/agent/context",
     bearer,
     {},
   );
@@ -319,8 +323,8 @@ test("P3 catalog pagination and private policies never enter customer retrieval"
     pages = 0;
   while (true) {
     const res = await request.get(
-      `/api/portal/aster/internal/agent/policies?after=${after}`,
-      { headers: { "X-Aster-Execution": grant.executionToken } },
+      `/api/portal/shop_agent_stack/internal/agent/policies?after=${after}`,
+      { headers: { "X-ShopAgentStack-Execution": grant.executionToken } },
     );
     const body = await res.json();
     expect(body.code).toBe(200);
@@ -334,5 +338,5 @@ test("P3 catalog pagination and private policies never enter customer retrieval"
   expect(all.filter((c) => c.policy_id === large)).toHaveLength(205);
   expect(all.some((c) => c.policy_id === privateId)).toBe(false);
   for (const id of [large, privateId])
-    await call(request, "admin", `/aster/policies/${id}/withdraw`, admin, {});
+    await call(request, "admin", `/shop_agent_stack/policies/${id}/withdraw`, admin, {});
 });

@@ -50,7 +50,7 @@ export function FulfillmentWorkspace() {
     setError("");
     api<{ items: Summary[]; total: number }>(
       "admin",
-      `/aster/fulfillment?query=${encodeURIComponent(query)}&page=${page}${status ? `&status=${status}` : ""}`,
+      `/shop_agent_stack/fulfillment?query=${encodeURIComponent(query)}&page=${page}${status ? `&status=${status}` : ""}`,
     )
       .then((r) => {
         if (live) {
@@ -234,8 +234,8 @@ function ShipmentDialog({
     [confirm, setConfirm] = useState(false);
   const path =
     side === "admin"
-      ? `/aster/fulfillment/${id}`
-      : `/aster/orders/${id}/shipment`;
+      ? `/shop_agent_stack/fulfillment/${id}`
+      : `/shop_agent_stack/orders/${id}/shipment`;
   const load = useCallback(async () => {
     setDetail(await api<Detail>(side, path));
   }, [side, path]);
@@ -248,7 +248,7 @@ function ShipmentDialog({
     try {
       await api(
         side,
-        stage ? `${path}/advance` : `/aster/orders/${id}/receive`,
+        stage ? `${path}/advance` : `/shop_agent_stack/orders/${id}/receive`,
         stage ? { stage, note: note.trim() } : {},
       );
       await load();

@@ -16,8 +16,8 @@ from uuid import uuid4
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "services/agent"))
-from aster_agent import runtime, providers, tools
-from aster_agent.store import Store
+from shop_agent_stack import runtime, providers, tools
+from shop_agent_stack.store import Store
 
 
 def model_config(args):
@@ -201,7 +201,7 @@ def main():
     if not 1<=args.repeats<=10 or not 1<=args.max_model_calls<=1000: parser.error("Invalid budget")
     cases=json.loads(args.cases.read_text(encoding="utf-8")); validate(cases)
     out=args.output_root/(datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")+"_"+uuid4().hex[:8]); out.mkdir(parents=True,exist_ok=False)
-    sources=sorted((ROOT/"services/agent/aster_agent").glob("*.py"))+[Path(__file__),ROOT/"services/agent/requirements.lock"]
+    sources=sorted((ROOT/"services/agent/shop_agent_stack").glob("*.py"))+[Path(__file__),ROOT/"services/agent/requirements.lock"]
     manifest={"schema_version":1,"mode":"live_model_synthetic_tools" if args.live else "scripted_harness_smoke",
               "dataset_sha256":digest(args.cases),"source_sha256":{str(p.relative_to(ROOT)):digest(p) for p in sources},
               "provider":args.provider if args.live else "scripted","model":model_config(args)["model"] if args.live else "scripted-v1",

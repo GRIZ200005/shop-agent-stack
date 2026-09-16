@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <!-- Modified by Aster Commerce: P0 module subset and safe build defaults. -->
+    <!-- Modified by ShopAgentStack: P0 module subset and safe build defaults. -->
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.macro.mall</groupId>
@@ -11,8 +11,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <!-- Modified by Aster Commerce: shared after-sale domain module. -->
-        <module>aster-after-sale</module>
+        <!-- Modified by ShopAgentStack: shared after-sale domain module. -->
+        <module>shop-agent-stack-after-sale</module>
         <module>mall-common</module>
         <module>mall-mbg</module>
         <module>mall-security</module>

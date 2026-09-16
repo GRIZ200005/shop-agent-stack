@@ -2,4 +2,4 @@
 services:
   agent:
     environment:
-      ASTER_ENABLE_TEST_PROVIDER: "true"
+      SHOP_AGENT_STACK_ENABLE_TEST_PROVIDER: "true"

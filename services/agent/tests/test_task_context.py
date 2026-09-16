@@ -1,7 +1,7 @@
 import json
 import pytest
-from aster_agent import context, runtime, tools
-from aster_agent.store import Store, StoreError
+from shop_agent_stack import context, runtime, tools
+from shop_agent_stack.store import Store, StoreError
 from test_runtime import setup_runtime
 
 
@@ -64,7 +64,7 @@ async def test_multiturn_clarification_resume_and_correction(tmp_path,monkeypatc
         return {"id":str(steps)+name,"function":{"name":name,"arguments":json.dumps(args,ensure_ascii=False)}}
     async def model(provider,messages,definitions,**kwargs):
         nonlocal steps
-        if messages[0]["content"].startswith("ASTER_POLICY_ASSESSMENT_V1"):
+        if messages[0]["content"].startswith("SHOP_AGENT_STACK_POLICY_ASSESSMENT_V1"):
             payload=json.loads(messages[-1]["content"])
             if phase==2:
                 assert "没使用" in str(payload) and "user_claim" in str(payload)

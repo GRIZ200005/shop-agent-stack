@@ -12,10 +12,10 @@ from uuid import uuid4
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"services/agent"))
-from aster_agent import runtime, providers, tools
-from aster_agent.business import identity
-from aster_agent.store import Store
-from aster_agent.shopping_eval import load_suite,score,summarize
+from shop_agent_stack import runtime, providers, tools
+from shop_agent_stack.business import identity
+from shop_agent_stack.store import Store
+from shop_agent_stack.shopping_eval import load_suite,score,summarize
 
 
 async def main(args):
@@ -35,7 +35,7 @@ async def main(args):
     config=helper.config_for(args.saved_member,args.provider)
     directory=ROOT/"evaluation/runs"/("shopping-"+args.split+"-"+datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")+"-"+uuid4().hex[:6])
     directory.mkdir(parents=True)
-    files=[Path(__file__),ROOT/"scripts/evaluate-product-agent.py",path,ROOT/"catalog/products.tsv",*sorted((ROOT/"services/agent/aster_agent").glob("*.py"))]
+    files=[Path(__file__),ROOT/"scripts/evaluate-product-agent.py",path,ROOT/"catalog/products.tsv",*sorted((ROOT/"services/agent/shop_agent_stack").glob("*.py"))]
     manifest={"split":args.split,"cases":[c["id"] for c in cases],"planned_turns":planned,"provider":args.provider,"model":config["model"],
         "max_requests":args.max_requests,"transport":"same runtime entrypoint; real model/MCP/Java/MySQL; isolated synthetic customer and event DB",
         "independent_blind_holdout":False,"hashes":{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}}

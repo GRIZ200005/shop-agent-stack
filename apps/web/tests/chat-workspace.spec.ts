@@ -14,8 +14,8 @@ test("streaming workspace renders Markdown, deduplicates results and restores hi
     events,
   };
   await page.addInitScript(() => {
-    sessionStorage.setItem("aster_portal", "Bearer synthetic-session");
-    sessionStorage.setItem("aster_agent_session", "synthetic-session");
+    sessionStorage.setItem("shop_agent_stack_portal", "Bearer synthetic-session");
+    sessionStorage.setItem("shop_agent_stack_session", "synthetic-session");
     const original = window.fetch.bind(window);
     window.fetch = async (...args) => {
       if (String(args[0]).includes("/events?")) {
@@ -124,7 +124,7 @@ test("streaming workspace renders Markdown, deduplicates results and restores hi
   await expect(page.locator(".agent-data-card")).toHaveCount(2);
   for (const width of [1920, 390]) {
     await page.setViewportSize({ width, height: 900 });
-    await expect(page.getByLabel("发送给星序助手")).toBeInViewport();
+    await expect(page.getByLabel("发送给购物助手")).toBeInViewport();
     const sizes = await page.evaluate(() => ({
       scroll: document.documentElement.scrollHeight,
       height: innerHeight,

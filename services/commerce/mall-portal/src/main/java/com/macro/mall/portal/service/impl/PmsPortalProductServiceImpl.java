@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 /**
  * 前台订单管理Service实现类
  * Created by macro on 2020/4/6.
- * Modified by Aster: deterministic catalog pagination and published-only detail access.
+ * Modified by ShopAgentStack: deterministic catalog pagination and published-only detail access.
  */
 @Service
 public class PmsPortalProductServiceImpl implements PmsPortalProductService {

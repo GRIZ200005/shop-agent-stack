@@ -1,19 +1,19 @@
-name: aster-p0
+name: shop_agent_stack-p0
 
 services:
   mysql:
     image: mysql:8.4
     environment:
-      MYSQL_DATABASE: aster
-      MYSQL_USER: aster
-      MYSQL_PASSWORD: ${ASTER_DB_PASSWORD:?Run scripts/init-local.ps1}
-      MYSQL_ROOT_PASSWORD: ${ASTER_DB_ROOT_PASSWORD:?Run scripts/init-local.ps1}
+      MYSQL_DATABASE: shop_agent_stack
+      MYSQL_USER: shop_agent_stack
+      MYSQL_PASSWORD: ${SHOP_AGENT_STACK_DB_PASSWORD:?Run scripts/init-local.ps1}
+      MYSQL_ROOT_PASSWORD: ${SHOP_AGENT_STACK_DB_ROOT_PASSWORD:?Run scripts/init-local.ps1}
     ports: ["127.0.0.1:13316:3306"]
     volumes:
       - mysql_data:/var/lib/mysql
       - ./mysql/init:/docker-entrypoint-initdb.d:ro
     healthcheck:
-      test: ["CMD-SHELL", 'MYSQL_PWD="$$MYSQL_PASSWORD" mysql -uaster -Daster -e "SELECT 1" >/dev/null 2>&1']
+      test: ["CMD-SHELL", 'MYSQL_PWD="$$MYSQL_PASSWORD" mysql -h127.0.0.1 -ushop_agent_stack -Dshop_agent_stack -e "SELECT 1" >/dev/null 2>&1']
       interval: 5s
       timeout: 5s
       retries: 40
@@ -29,9 +29,9 @@ services:
   rabbitmq:
     image: rabbitmq:3.13-management
     environment:
-      RABBITMQ_DEFAULT_USER: aster
-      RABBITMQ_DEFAULT_PASS: ${ASTER_MQ_PASSWORD:?Run scripts/init-local.ps1}
-      RABBITMQ_DEFAULT_VHOST: /aster
+      RABBITMQ_DEFAULT_USER: shop_agent_stack
+      RABBITMQ_DEFAULT_PASS: ${SHOP_AGENT_STACK_MQ_PASSWORD:?Run scripts/init-local.ps1}
+      RABBITMQ_DEFAULT_VHOST: /shop_agent_stack
     volumes: ["rabbit_data:/var/lib/rabbitmq"]
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
@@ -51,9 +51,9 @@ services:
     working_dir: /app
     command: ["java", "-Xms128m", "-Xmx512m", "-jar", "/app/app.jar", "--spring.config.additional-location=file:/config/", "--server.port=8085"]
     environment: &app-env
-      ASTER_DB_PASSWORD: ${ASTER_DB_PASSWORD}
-      ASTER_MQ_PASSWORD: ${ASTER_MQ_PASSWORD}
-      ASTER_JWT_SECRET: ${ASTER_PORTAL_JWT_SECRET}
+      SHOP_AGENT_STACK_DB_PASSWORD: ${SHOP_AGENT_STACK_DB_PASSWORD}
+      SHOP_AGENT_STACK_MQ_PASSWORD: ${SHOP_AGENT_STACK_MQ_PASSWORD}
+      SHOP_AGENT_STACK_JWT_SECRET: ${SHOP_AGENT_STACK_PORTAL_JWT_SECRET}
     ports: ["127.0.0.1:18085:8085"]
     volumes:
       - ../services/commerce/mall-portal/target/mall-portal-1.0-SNAPSHOT.jar:/app/app.jar:ro
@@ -74,10 +74,10 @@ services:
     command: ["java", "-Xms128m", "-Xmx512m", "-jar", "/app/app.jar", "--spring.config.additional-location=file:/config/", "--server.port=8080"]
     environment:
       <<: *app-env
-      ASTER_JWT_SECRET: ${ASTER_ADMIN_JWT_SECRET}
-      ASTER_BOOTSTRAP_ADMIN_PASSWORD: ${ASTER_BOOTSTRAP_ADMIN_PASSWORD:-}
-      ASTER_BOOTSTRAP_SERVICE_PASSWORD: ${ASTER_BOOTSTRAP_SERVICE_PASSWORD:-}
-      ASTER_REFUND_ENABLED: "true"
+      SHOP_AGENT_STACK_JWT_SECRET: ${SHOP_AGENT_STACK_ADMIN_JWT_SECRET}
+      SHOP_AGENT_STACK_BOOTSTRAP_ADMIN_PASSWORD: ${SHOP_AGENT_STACK_BOOTSTRAP_ADMIN_PASSWORD:-}
+      SHOP_AGENT_STACK_BOOTSTRAP_SERVICE_PASSWORD: ${SHOP_AGENT_STACK_BOOTSTRAP_SERVICE_PASSWORD:-}
+      SHOP_AGENT_STACK_REFUND_ENABLED: "true"
     ports: ["127.0.0.1:18080:8080"]
     volumes:
       - ../services/commerce/mall-admin/target/mall-admin-1.0-SNAPSHOT.jar:/app/app.jar:ro

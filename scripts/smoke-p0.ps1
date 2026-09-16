@@ -34,7 +34,7 @@ function New-Customer([string]$Suffix) {
 
 Assert-P0 ((Api GET "$Portal/actuator/health").status -eq 'UP') 'portal_health'
 Assert-P0 ((Api GET "$Admin/actuator/health").status -eq 'UP') 'admin_health'
-$products = Api GET "$Portal/product/search?keyword=Aster&pageNum=1&pageSize=10"
+$products = Api GET "$Portal/product/search?keyword=ShopAgentStack&pageNum=1&pageSize=10"
 Assert-P0 ($products.code -eq 200 -and @($products.data.list | Where-Object id -eq 1).Count -eq 1) 'synthetic_product_search'
 Assert-P0 ([decimal]($products.data.list | Where-Object id -eq 1).price -eq [decimal]49.90) 'catalog_price'
 $anonymous = Api GET "$Portal/order/list?status=-1"
@@ -47,7 +47,7 @@ $addAddress = Api POST "$Portal/member/address/add" $address -Token $alice.Token
 if ($addAddress.code -ne 200) { throw 'Address creation failed.' }
 $addresses = Api GET "$Portal/member/address/list" -Token $alice.Token
 $addressId = $addresses.data[0].id
-$cart = @{productId=1;productSkuId=1;quantity=2;price=0.01;productName='Aster USB-C Cable';productSkuCode='ASTER-CABLE-BLACK-1M';productCategoryId=1;productBrand='Aster Lab';productSn='ASTER-CABLE-001'}
+$cart = @{productId=1;productSkuId=1;quantity=2;price=0.01;productName='ShopAgentStack USB-C Cable';productSkuCode='SHOP_AGENT_STACK-CABLE-BLACK-1M';productCategoryId=1;productBrand='ShopAgentStack Lab';productSn='SHOP_AGENT_STACK-CABLE-001'}
 $added = Api POST "$Portal/cart/add" $cart -Token $alice.Token
 Assert-P0 ($added.code -eq 200) 'cart_created'
 $list = Api GET "$Portal/cart/list" -Token $alice.Token

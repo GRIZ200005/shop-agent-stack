@@ -11,11 +11,11 @@ if(-not (Test-Path -LiteralPath $keyFile)) {
     $keyBytes=[Security.Cryptography.RandomNumberGenerator]::GetBytes(32)
     [IO.File]::WriteAllText($keyFile,[Convert]::ToBase64String($keyBytes).Replace('+','-').Replace('/','_'))
 }
-Get-Content -Raw -Encoding utf8 "$root/deploy/mysql/migrations/004-p2.sql" | docker compose --env-file "$root/.env" -f "$root/deploy/compose.p0.yml" exec -T mysql sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" mysql --default-character-set=utf8mb4 -uaster -Daster'
+Get-Content -Raw -Encoding utf8 "$root/deploy/mysql/migrations/004-p2.sql" | docker compose --env-file "$root/.env" -f "$root/deploy/compose.p0.yml" exec -T mysql sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" mysql --default-character-set=utf8mb4 -ushop_agent_stack -Dshop_agent_stack'
 if($LASTEXITCODE -ne 0){throw 'P2 migration failed'}
-Get-Content -Raw -Encoding utf8 "$root/deploy/mysql/migrations/005-p3-policies.sql" | docker compose --env-file "$root/.env" -f "$root/deploy/compose.p0.yml" exec -T mysql sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" mysql --default-character-set=utf8mb4 -uaster -Daster'
+Get-Content -Raw -Encoding utf8 "$root/deploy/mysql/migrations/005-p3-policies.sql" | docker compose --env-file "$root/.env" -f "$root/deploy/compose.p0.yml" exec -T mysql sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" mysql --default-character-set=utf8mb4 -ushop_agent_stack -Dshop_agent_stack'
 if($LASTEXITCODE -ne 0){throw 'P3 policy migration failed'}
-Get-Content -Raw -Encoding utf8 "$root/deploy/mysql/migrations/006-p3c-index-outbox.sql" | docker compose --env-file "$root/.env" -f "$root/deploy/compose.p0.yml" exec -T mysql sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" mysql --default-character-set=utf8mb4 -uaster -Daster'
+Get-Content -Raw -Encoding utf8 "$root/deploy/mysql/migrations/006-p3c-index-outbox.sql" | docker compose --env-file "$root/.env" -f "$root/deploy/compose.p0.yml" exec -T mysql sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" mysql --default-character-set=utf8mb4 -ushop_agent_stack -Dshop_agent_stack'
 if($LASTEXITCODE -ne 0){throw 'P3c index migration failed'}
 docker compose -f "$root/deploy/compose.retrieval.yml" up -d --wait milvus
 if($LASTEXITCODE -ne 0){throw 'Milvus startup failed'}

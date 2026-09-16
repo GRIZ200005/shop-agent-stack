@@ -26,20 +26,20 @@ $pom = Get-Content -LiteralPath $pomPath -Raw
 $pom = $pom -replace '\s*<module>mall-(demo|search)</module>', ''
 $pom = $pom -replace '<docker.host>.*?</docker.host>', '<docker.host>http://localhost:2375</docker.host>'
 $pom = $pom -replace '<skipTests>true</skipTests>', '<skipTests>false</skipTests>'
-$pom = $pom.Replace('<modelVersion>', '<!-- Modified by Aster Commerce: P0 module subset and safe build defaults. -->' + "`n    <modelVersion>")
+$pom = $pom.Replace('<modelVersion>', '<!-- Modified by ShopAgentStack: P0 module subset and safe build defaults. -->' + "`n    <modelVersion>")
 [IO.File]::WriteAllText($pomPath, $pom, [Text.UTF8Encoding]::new($false))
 foreach ($module in @('mall-admin','mall-portal')) {
     $configPath = Join-Path $target "$module/src/main/resources/application.yml"
     $config = Get-Content -LiteralPath $configPath -Raw
-    $config = $config -replace 'active: dev.*', 'active: aster'
-    $config = $config -replace 'secret: mall-(admin|portal)-secret.*', 'secret: ${ASTER_JWT_SECRET}'
-    $config = "# Modified by Aster Commerce: environment-only JWT key and isolated local profile.`n" + $config
+    $config = $config -replace 'active: dev.*', 'active: shop_agent_stack'
+    $config = $config -replace 'secret: mall-(admin|portal)-secret.*', 'secret: ${SHOP_AGENT_STACK_JWT_SECRET}'
+    $config = "# Modified by ShopAgentStack: environment-only JWT key and isolated local profile.`n" + $config
     [IO.File]::WriteAllText($configPath, $config, [Text.UTF8Encoding]::new($false))
 }
 $sql = Get-Content -LiteralPath (Join-Path $Source 'document/sql/mall.sql') -Raw
 $tables = [regex]::Matches($sql, '(?ms)^CREATE TABLE .*?^\) ENGINE.*?;')
 if ($tables.Count -lt 50) { throw 'DDL extraction unexpectedly small.' }
-$ddl = "-- Derived from macrozheng/mall $pin, Apache-2.0.`n-- Modified by Aster Commerce: schema only; all upstream sample rows and export metadata excluded.`nSET NAMES utf8mb4;`n"
+$ddl = "-- Derived from macrozheng/mall $pin, Apache-2.0.`n-- Modified by ShopAgentStack: schema only; all upstream sample rows and export metadata excluded.`nSET NAMES utf8mb4;`n"
 foreach ($table in $tables) { $ddl += ($table.Value -replace 'AUTO_INCREMENT = \d+', 'AUTO_INCREMENT = 1') + "`n`n" }
 $sqlDir = Join-Path $root 'deploy/mysql/init'
 New-Item -ItemType Directory -Path $sqlDir -Force | Out-Null

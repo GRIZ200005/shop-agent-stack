@@ -23,15 +23,15 @@ const catalog = [];
 mkdirSync(resolve(root, 'knowledge/handbooks'), { recursive: true });
 for (const [visibility, source, label] of groups) {
   const rows = readTsv(source);
-  const sections = [`# 星序商城${label}`, '',
+  const sections = [`# ShopAgentStack 商城${label}`, '',
     '内容版本：2.0 · 状态：待人工审核、未发布 · 来源：独立原创模拟业务资料', '',
-    '适用范围：Aster Commerce 当前学习环境。支付与退款为模拟流程，不发生真实资金流转。本文不是外部商家政策或真实交易承诺。文档生成日期不代表生效日期，线上生效版本以管理员发布记录为准。', '',
+    '适用范围：ShopAgentStack 当前学习环境。支付与退款为模拟流程，不发生真实资金流转。本文不是外部商家政策或真实交易承诺。文档生成日期不代表生效日期，线上生效版本以管理员发布记录为准。', '',
     '政策编号用于证据追踪，不属于标题。正文是待审阅的服务规则与指引；具体订单资格和办理结果仍须查询业务记录。', '', '## 目录', '',
     ...rows.map(r => `- [${r.title}](#${r.id.toLowerCase()})`), ''];
   for (const row of rows) {
     if (ids.has(row.id) || titles.has(row.title)) throw Error('Duplicate ID or title');
     ids.add(row.id); titles.add(row.title);
-    if (!row.title.startsWith('星序') || row.title.length > 120) throw Error('Invalid formal title');
+    if (!row.title.startsWith('ShopAgentStack') || row.title.length > 120) throw Error('Invalid formal title');
     const texts = [1, 2, 3].map(n => row[`clause_${n}`]);
     for (const text of texts) {
       if (!text?.trim() || clauses.has(text)) throw Error(`Empty or duplicated clause: ${row.id}`);
@@ -59,7 +59,7 @@ for (const q of questions) {
   }
 }
 writeFileSync(resolve(root, 'knowledge/catalog-v2.json'), JSON.stringify({schema_version: 1,
-  source: 'aster-original-synthetic', documents: catalog.length, clauses: clauses.size,
+  source: 'shop_agent_stack-original-synthetic', documents: catalog.length, clauses: clauses.size,
   customer_documents: catalog.filter(d => d.visibility === 'CUSTOMER').length,
   staff_documents: catalog.filter(d => d.visibility === 'STAFF').length,
   development_scenarios: questions.length, policies: catalog}, null, 2)+'\n');

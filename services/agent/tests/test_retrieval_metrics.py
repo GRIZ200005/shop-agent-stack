@@ -1,5 +1,5 @@
 import pytest
-from aster_agent.retrieval_metrics import metrics, rrf
+from shop_agent_stack.retrieval_metrics import metrics, rrf
 
 
 def test_rrf_rewards_agreement_and_ignores_duplicate_votes():

@@ -51,8 +51,8 @@ export function Login({
         side === "portal",
       );
       saveToken(side, data.tokenHead + data.token);
-      sessionStorage.setItem(`aster_name_${side}`, username);
-      sessionStorage.removeItem("aster_agent_session");
+      sessionStorage.setItem(`shop_agent_stack_name_${side}`, username);
+      sessionStorage.removeItem("shop_agent_stack_session");
       onSuccess();
     } catch (e) {
       setError((e as Error).message);
@@ -64,9 +64,9 @@ export function Login({
     <LoginCard
       title={
         register
-          ? "创建你的星序账户"
+          ? "创建你的商城账户"
           : side === "portal"
-            ? "欢迎回到星序"
+            ? "欢迎回来"
             : "登录工作台"
       }
       onClose={onClose}

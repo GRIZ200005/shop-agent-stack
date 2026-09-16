@@ -1,4 +1,4 @@
-from aster_agent.shopping_eval import score,summarize
+from shop_agent_stack.shopping_eval import score,summarize
 
 
 def test_terminal_clarification_does_not_pass_mixed_evidence_contract():

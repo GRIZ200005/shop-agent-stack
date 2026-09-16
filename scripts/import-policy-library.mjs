@@ -44,7 +44,7 @@ if (!publish) {
   async function list() {
     const all=[]; let before=0;
     for(let page=0;page<100;page++) {
-      const rows=await call('/aster/policies?before='+before);
+      const rows=await call('/shop_agent_stack/policies?before='+before);
       all.push(...rows);
       if(rows.length<100) return all;
       const next=rows.at(-1).id;
@@ -71,14 +71,14 @@ if (!publish) {
   for(const p of plans) {
     let row=existing.find(r=>r.title===p.title);
     if(!row) {
-      const id=await call('/aster/policies',{title:p.title,content:p.content,visibility:p.visibility});
+      const id=await call('/shop_agent_stack/policies',{title:p.title,content:p.content,visibility:p.visibility});
       row={id,version:1,status:'DRAFT'}; created++;
     }
     mapping.push({source_id:p.source_id,policy_id:row.id,version:row.version,visibility:p.visibility,
       clauses:p.clauses.map((c,i)=>({source_clause_id:c.id,clause_no:i+1,content_hash:c.sha256,
         citation_id:`P${row.id}V${row.version}C${i+1}`}))});
     save(false);
-    if(row.status==='DRAFT') {await call(`/aster/policies/${row.id}/publish`,{});published++;}
+    if(row.status==='DRAFT') {await call(`/shop_agent_stack/policies/${row.id}/publish`,{});published++;}
   }
   const after=await list();
   for(const p of plans) {

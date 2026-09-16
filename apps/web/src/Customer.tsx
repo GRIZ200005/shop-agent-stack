@@ -102,7 +102,7 @@ export function Customer({
             ).list || [],
           );
         if (path.endsWith("/after-sales"))
-          setSales(await api<Sale[]>("portal", "/aster/after-sales"));
+          setSales(await api<Sale[]>("portal", "/shop_agent_stack/after-sales"));
         if (path.endsWith("/policies")) {
           const query = new URLSearchParams(window.location.search);
           const id = query.get("policy"),
@@ -112,7 +112,7 @@ export function Customer({
               ? [
                   await api<Policy>(
                     "portal",
-                    `/aster/policies/${encodeURIComponent(id)}?version=${encodeURIComponent(version)}`,
+                    `/shop_agent_stack/policies/${encodeURIComponent(id)}?version=${encodeURIComponent(version)}`,
                   ),
                 ]
               : await loadPolicies("portal"),
@@ -158,7 +158,7 @@ export function Customer({
       try {
         const next = await api<Sale>(
           "portal",
-          `/aster/after-sales/${detail.id}`,
+          `/shop_agent_stack/after-sales/${detail.id}`,
         );
         if (!cancelled) {
           setDetail(next);
@@ -223,9 +223,9 @@ export function Customer({
   if (!catalog && !signed)
     return (
       <section className="page">
-        <div className="eyebrow">MY ASTER</div>
+        <div className="eyebrow">MY SHOP</div>
         <h1>{heading}</h1>
-        <Empty title="登录后，继续你的星序旅程">
+        <Empty title="登录后，继续你的购物旅程">
           订单与售后仅对你本人可见。
         </Empty>
         <button className="button centered" onClick={requestLogin}>
@@ -249,7 +249,7 @@ export function Customer({
           </div>
           <div className="hero">
             <div className="hero-copy">
-              <span className="pill light">ASTER ESSENTIALS</span>
+              <span className="pill light">SHOP ESSENTIALS</span>
               <h2>
                 收集日常的
                 <br />
@@ -274,7 +274,7 @@ export function Customer({
                 alt="晨白陶瓷马克杯 · AI 商品示意图"
                 large
               />
-              <span className="hero-caption">Aster Studio · 日常生活图录</span>
+              <span className="hero-caption">ShopAgentStack Studio · 日常生活图录</span>
             </div>
           </div>
           <div className="benefits">
@@ -364,7 +364,7 @@ export function Customer({
       ) : (
         <div className="page-heading">
           <div>
-            <div className="eyebrow">MY ASTER</div>
+            <div className="eyebrow">MY SHOP</div>
             <h1>{heading}</h1>
             <p>
               {path.endsWith("/after-sales")
@@ -637,7 +637,7 @@ export function Customer({
                         void run(async () => {
                           await api(
                             "portal",
-                            `/aster/orders/${o.id}/simulate-payment`,
+                            `/shop_agent_stack/orders/${o.id}/simulate-payment`,
                             {},
                           );
                         }, "模拟支付完成，没有真实扣款")
@@ -677,7 +677,7 @@ export function Customer({
                   void run(
                     async () =>
                       setDetail(
-                        await api<Sale>("portal", `/aster/after-sales/${s.id}`),
+                        await api<Sale>("portal", `/shop_agent_stack/after-sales/${s.id}`),
                       ),
                     "已加载售后进度",
                   )
@@ -908,7 +908,7 @@ function Checkout({
             name="address"
             required
             maxLength={100}
-            defaultValue="星序体验空间 1 号"
+            defaultValue="商城体验空间 1 号"
           />
         </label>
         <div className="between total">
@@ -945,7 +945,7 @@ function ReturnForm({ order, onClose }: { order: Order; onClose: () => void }) {
           const reason = new FormData(e.currentTarget).get("reason");
           setBusy(true);
           try {
-            await api("portal", "/aster/after-sales", {
+            await api("portal", "/shop_agent_stack/after-sales", {
               orderId: order.id,
               reason,
             });

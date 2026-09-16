@@ -113,15 +113,16 @@ p {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 25px;
-  letter-spacing: 2.5px;
+  font-size: 16px;
+  letter-spacing: -0.4px;
   font-weight: 750;
 }
 .brand-mark {
   background: var(--primary);
   color: white;
   width: 39px;
-  height: 42px;
+  height: 39px;
+  flex-shrink: 0;
   border-radius: 12px;
   font-size: 33px;
   line-height: 42px;

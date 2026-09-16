@@ -1,7 +1,7 @@
 import json
 import httpx
 import pytest
-from aster_agent import providers
+from shop_agent_stack import providers
 
 
 @pytest.mark.asyncio
@@ -21,7 +21,7 @@ async def test_assessment_budget_and_finish_reason_are_not_chat_fields(monkeypat
 @pytest.mark.asyncio
 @pytest.mark.parametrize("name",["deepseek","openai","kimi","custom"])
 async def test_provider_wire_contract(monkeypatch,name):
-    prefix="ASTER_"+name.upper()
+    prefix="SHOP_AGENT_STACK_"+name.upper()
     monkeypatch.setenv(prefix+"_API_KEY","synthetic-secret")
     monkeypatch.setenv(prefix+"_MODEL","test-model")
     monkeypatch.setenv(prefix+"_BASE_URL","https://model.example/v1")
@@ -42,12 +42,12 @@ async def test_provider_wire_contract(monkeypatch,name):
 
 @pytest.mark.asyncio
 async def test_error_body_redacted_and_insecure_url_rejected(monkeypatch):
-    monkeypatch.setenv("ASTER_CUSTOM_API_KEY","synthetic-secret")
-    monkeypatch.setenv("ASTER_CUSTOM_MODEL","test-model")
-    monkeypatch.setenv("ASTER_CUSTOM_BASE_URL","https://model.example/v1")
+    monkeypatch.setenv("SHOP_AGENT_STACK_CUSTOM_API_KEY","synthetic-secret")
+    monkeypatch.setenv("SHOP_AGENT_STACK_CUSTOM_MODEL","test-model")
+    monkeypatch.setenv("SHOP_AGENT_STACK_CUSTOM_BASE_URL","https://model.example/v1")
     original=httpx.AsyncClient
     monkeypatch.setattr(providers.httpx,"AsyncClient",lambda **kw:original(transport=httpx.MockTransport(lambda r:httpx.Response(401,text="synthetic-secret private prompt")),**kw))
     with pytest.raises(ValueError,match="HTTP 401") as err: await providers.complete("custom",[],[])
     assert "synthetic-secret" not in str(err.value) and "private prompt" not in str(err.value)
-    monkeypatch.setenv("ASTER_CUSTOM_BASE_URL","http://model.example/v1")
+    monkeypatch.setenv("SHOP_AGENT_STACK_CUSTOM_BASE_URL","http://model.example/v1")
     with pytest.raises(ValueError,match="HTTPS"): await providers.complete("custom",[],[])

@@ -8,12 +8,12 @@ export class ApiError extends Error {
   }
 }
 export const token = (side: Side) =>
-  sessionStorage.getItem(`aster_${side}`) || "";
+  sessionStorage.getItem(`shop_agent_stack_${side}`) || "";
 export function saveToken(side: Side, value: string) {
-  sessionStorage.setItem(`aster_${side}`, value);
+  sessionStorage.setItem(`shop_agent_stack_${side}`, value);
 }
 export function clearToken(side: Side) {
-  sessionStorage.removeItem(`aster_${side}`);
+  sessionStorage.removeItem(`shop_agent_stack_${side}`);
 }
 export async function api<T>(
   side: Side,
@@ -45,7 +45,7 @@ export async function api<T>(
     if (data.code === 401) {
       clearToken(side);
       if (location.pathname !== "/login")
-        window.dispatchEvent(new Event("aster-session-expired"));
+        window.dispatchEvent(new Event("shop_agent_stack-session-expired"));
     }
     throw new ApiError(
       data.message || "操作未完成",

@@ -2,15 +2,15 @@
 import os
 import pytest
 from test_mcp_integration import customer
-from aster_agent.business import identity, java, BusinessError
-from aster_agent import tools
+from shop_agent_stack.business import identity, java, BusinessError
+from shop_agent_stack import tools
 
-pytestmark=[pytest.mark.asyncio,pytest.mark.skipif(os.getenv("ASTER_INTEGRATION")!="true",reason="requires local catalog")]
+pytestmark=[pytest.mark.asyncio,pytest.mark.skipif(os.getenv("SHOP_AGENT_STACK_INTEGRATION")!="true",reason="requires local catalog")]
 
 
 async def test_live_catalog_transport_filters_snapshot_and_grant():
     with pytest.raises(BusinessError):
-        await java("/aster/internal/agent/products/10001",execution="invalid-synthetic-grant")
+        await java("/shop_agent_stack/internal/agent/products/10001",execution="invalid-synthetic-grant")
     auth=await identity(await customer())
     async with tools.connect(auth["executionToken"]) as session:
         found=await tools.call(session,"search_products",{"query":"玻璃 杯","max_price":50})

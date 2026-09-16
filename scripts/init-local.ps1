@@ -8,7 +8,7 @@ function New-LocalSecret {
     try { $rng.GetBytes($bytes) } finally { $rng.Dispose() }
     return [Convert]::ToBase64String($bytes)
 }
-$names = 'ASTER_DB_PASSWORD','ASTER_DB_ROOT_PASSWORD','ASTER_MQ_PASSWORD','ASTER_PORTAL_JWT_SECRET','ASTER_ADMIN_JWT_SECRET'
+$names = 'SHOP_AGENT_STACK_DB_PASSWORD','SHOP_AGENT_STACK_DB_ROOT_PASSWORD','SHOP_AGENT_STACK_MQ_PASSWORD','SHOP_AGENT_STACK_PORTAL_JWT_SECRET','SHOP_AGENT_STACK_ADMIN_JWT_SECRET'
 $lines = @('# Local generated credentials; never commit this file.')
 foreach ($name in $names) { $lines += "$name=$(New-LocalSecret)" }
 [IO.File]::WriteAllLines($file, $lines, [Text.UTF8Encoding]::new($false))

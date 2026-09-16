@@ -1,5 +1,5 @@
 import pytest
-from aster_agent import context
+from shop_agent_stack import context
 from test_task_context import claim
 
 

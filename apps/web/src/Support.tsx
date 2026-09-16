@@ -82,7 +82,7 @@ function CreateSupport({
     if (request.current.body !== body)
       request.current = { body, id: crypto.randomUUID() };
     try {
-      const result = await api<Ticket>("portal", "/aster/support", {
+      const result = await api<Ticket>("portal", "/shop_agent_stack/support", {
         requestId: request.current.id,
         title: title.trim(),
         context: context.trim(),
@@ -161,7 +161,7 @@ export function SupportWorkspace({ staff = false }: { staff?: boolean }) {
   const messageRequest = useRef({ body: "", id: crypto.randomUUID() });
   useEffect(() => {
     if (staff)
-      void api<Staff>("admin", "/aster/me")
+      void api<Staff>("admin", "/shop_agent_stack/me")
         .then(setMe)
         .catch((e) => setError(e.message));
   }, [staff]);
@@ -174,7 +174,7 @@ export function SupportWorkspace({ staff = false }: { staff?: boolean }) {
       try {
         const next = await api<{ items: Ticket[]; more: boolean }>(
           side,
-          `/aster/support?page=${page}`,
+          `/shop_agent_stack/support?page=${page}`,
         );
         if (!cancelled) {
           setItems(next.items);
@@ -205,7 +205,7 @@ export function SupportWorkspace({ staff = false }: { staff?: boolean }) {
       if (fetching) return;
       fetching = true;
       try {
-        const d = await api<Ticket>(side, `/aster/support/${selected}`);
+        const d = await api<Ticket>(side, `/shop_agent_stack/support/${selected}`);
         if (!cancelled) setDetail(d);
       } catch (e) {
         if (!cancelled) setError((e as Error).message);
@@ -243,7 +243,7 @@ export function SupportWorkspace({ staff = false }: { staff?: boolean }) {
         messageRequest.current = { body, id: crypto.randomUUID() };
       await api(
         side,
-        `/aster/support/${ticketId}/${kind}`,
+        `/shop_agent_stack/support/${ticketId}/${kind}`,
         kind === "messages"
           ? { requestId: messageRequest.current.id, content: reply.trim() }
           : {},
@@ -292,7 +292,7 @@ export function SupportWorkspace({ staff = false }: { staff?: boolean }) {
             <p>
               {loading
                 ? "正在加载…"
-                : "暂无咨询。有问题时，可以从星序助手转人工。"}
+                : "暂无咨询。有问题时，可以从购物助手转人工。"}
             </p>
           )}
           {items.map((t) => (

@@ -5,7 +5,7 @@ export async function loadPolicies(side: Side): Promise<Policy[]> {
   const result: Policy[] = [];
   let before = 0;
   for (let page = 0; page < 100; page++) {
-    const rows = await api<Policy[]>(side, `/aster/policies?before=${before}`);
+    const rows = await api<Policy[]>(side, `/shop_agent_stack/policies?before=${before}`);
     result.push(...rows);
     if (rows.length < 100) return result;
     const next = rows[rows.length - 1].id;

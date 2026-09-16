@@ -74,7 +74,7 @@ async function paidOrder(request: APIRequestContext, token: string) {
   });
   await business(
     request,
-    `/aster/orders/${result.order.id}/simulate-payment`,
+    `/shop_agent_stack/orders/${result.order.id}/simulate-payment`,
     token,
     {},
   );
@@ -83,14 +83,14 @@ async function paidOrder(request: APIRequestContext, token: string) {
 async function login(page: Page, bearer: string) {
   await page.goto("/login?next=/app/assistant");
   await page.evaluate(
-    (value) => sessionStorage.setItem("aster_portal", value),
+    (value) => sessionStorage.setItem("shop_agent_stack_portal", value),
     bearer,
   );
   await page.goto("/app/assistant");
   await expect(page.getByLabel("选择模型服务")).toHaveValue("fixture");
 }
 async function send(page: Page, text: string) {
-  await page.getByLabel("发送给星序助手").fill(text);
+  await page.getByLabel("发送给购物助手").fill(text);
   await page.getByRole("button", { name: "发送消息", exact: true }).click();
 }
 async function agent(
@@ -127,7 +127,7 @@ test("P2 browser: real order cards, persisted preview, explicit confirmation, id
     page.getByRole("button", { name: "确认提交售后" }),
   ).toBeVisible();
   const sid = await page.evaluate(() =>
-    sessionStorage.getItem("aster_agent_session"),
+    sessionStorage.getItem("shop_agent_stack_session"),
   );
   const snapshot = await (
     await agent(request, "/sessions/" + sid, bearer)
@@ -137,7 +137,7 @@ test("P2 browser: real order cards, persisted preview, explicit confirmation, id
       (e: { kind: string }) => e.kind === "preview",
     ).data;
   expect(run.status).toBe("WAITING_CONFIRMATION");
-  const before = await business(request, "/aster/after-sales", bearer);
+  const before = await business(request, "/shop_agent_stack/after-sales", bearer);
   expect(before.some((c: { order_id: number }) => c.order_id === oid)).toBe(
     false,
   );
@@ -157,7 +157,7 @@ test("P2 browser: real order cards, persisted preview, explicit confirmation, id
     confirmation_token: preview.confirmationToken,
   });
   expect(replay.status()).toBe(200);
-  const after = await business(request, "/aster/after-sales", bearer);
+  const after = await business(request, "/shop_agent_stack/after-sales", bearer);
   expect(
     after.filter((c: { order_id: number }) => c.order_id === oid),
   ).toHaveLength(1);

@@ -44,7 +44,7 @@ function safeNext(value: string | null) {
 }
 function leave(next: string) {
   Object.keys(sessionStorage)
-    .filter((k) => k.startsWith("aster_"))
+    .filter((k) => k.startsWith("shop_agent_stack_"))
     .forEach((k) => sessionStorage.removeItem(k));
   location.replace("/login?next=" + encodeURIComponent(next));
 }
@@ -65,7 +65,7 @@ export function App() {
   const [menu, setMenu] = useState(false),
     [accountMenu, setAccountMenu] = useState(false);
   const [name, setName] = useState(
-    sessionStorage.getItem(`aster_name_${side}`) || "星序用户",
+    sessionStorage.getItem(`shop_agent_stack_name_${side}`) || "商城用户",
   );
   const [compact, setCompact] = useState(false);
   const isAdmin = destination.startsWith("/admin");
@@ -82,10 +82,10 @@ export function App() {
     )
       .then((info) => {
         if (cancelled) return;
-        setName(String(info.username || info.nickName || "星序用户"));
+        setName(String(info.username || info.nickName || "商城用户"));
         sessionStorage.setItem(
-          `aster_name_${side}`,
-          String(info.username || "星序用户"),
+          `shop_agent_stack_name_${side}`,
+          String(info.username || "商城用户"),
         );
         setReady(true);
         if (side === "portal")
@@ -110,8 +110,8 @@ export function App() {
     function expired() {
       if (!loginPage) leave(destination + location.search);
     }
-    window.addEventListener("aster-session-expired", expired);
-    return () => window.removeEventListener("aster-session-expired", expired);
+    window.addEventListener("shop_agent_stack-session-expired", expired);
+    return () => window.removeEventListener("shop_agent_stack-session-expired", expired);
   }, [destination, loginPage]);
   useEffect(() => {
     const close = (event: KeyboardEvent) => {
@@ -128,9 +128,9 @@ export function App() {
       <div className="auth-page">
         <div className="auth-story">
           <a className="brand" href="/login">
-            <span className="brand-mark">✳</span>
+            <img className="brand-mark" src="/brand/shop-agent-stack.svg" alt="" />
             <div>
-              ASTER<span>COMMERCE · 星序</span>
+              ShopAgentStack<span>AI COMMERCE & SERVICE</span>
             </div>
           </a>
           <div className="auth-art">
@@ -145,7 +145,7 @@ export function App() {
             <h2>
               日常所需，
               <br />
-              尽在你的星序。
+              选购与服务，一站完成。
             </h2>
             <p>
               从一件好物，到一次安心的回应。
@@ -174,7 +174,7 @@ export function App() {
             <a href="/login?next=/admin">管理员登录</a>
           </div>
           <small className="auth-foot">
-            ASTER COMMERCE · 让选购简单，让服务有序
+            SHOPAGENTSTACK · 让选购简单，让服务有序
           </small>
         </div>
       </div>
@@ -194,7 +194,7 @@ export function App() {
   const links =
     side === "portal"
       ? ([
-          [Sparkles, "星序助手", "/app/assistant"],
+          [Sparkles, "购物助手", "/app/assistant"],
           [Grid2X2, "发现好物", "/app"],
           [ShoppingBag, "购物袋", "/app/cart"],
           [ReceiptText, "我的订单", "/app/orders"],
@@ -215,9 +215,9 @@ export function App() {
     >
       <aside className={`sidebar ${menu ? "open" : ""}`}>
         <a className="brand" href="/app/assistant">
-          <span className="brand-mark">✳</span>
+          <img className="brand-mark" src="/brand/shop-agent-stack.svg" alt="" />
           <div>
-            ASTER<span>COMMERCE · 星序</span>
+            ShopAgentStack<span>AI COMMERCE & SERVICE</span>
           </div>
         </a>
         <button
@@ -327,7 +327,7 @@ export function App() {
             </button>
             <span>
               {side === "portal"
-                ? "星序生活"
+                ? "商城首页"
                 : isAdmin
                   ? "管理中心"
                   : "客户服务"}
@@ -335,7 +335,7 @@ export function App() {
             <span className="slash">/</span>
             <small>欢迎回来，{name}</small>
           </div>
-          <span className="local-tag">ASTER LAB</span>
+          <span className="local-tag">SHOPAGENTSTACK</span>
         </header>
         <main>
           {destination === "/admin/orders" ? (
@@ -351,8 +351,8 @@ export function App() {
               onProfile={(nickname, dense) => {
                 setName(
                   nickname ||
-                    sessionStorage.getItem(`aster_name_${side}`) ||
-                    "星序用户",
+                    sessionStorage.getItem(`shop_agent_stack_name_${side}`) ||
+                    "商城用户",
                 );
                 setCompact(dense);
               }}
@@ -372,7 +372,7 @@ export function App() {
           )}
         </main>
         <footer>
-          <span>ASTER COMMERCE</span>
+          <span>SHOPAGENTSTACK</span>
           <span>让选购简单，让服务有序。</span>
           <small>合成商品 · 模拟交易体验</small>
         </footer>

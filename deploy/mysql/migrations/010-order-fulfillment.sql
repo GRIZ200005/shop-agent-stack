@@ -1,5 +1,5 @@
--- Original Aster: one simulated shipment per order, with an ordered event history.
-CREATE TABLE IF NOT EXISTS aster_shipment_event (
+-- Original ShopAgentStack: one simulated shipment per order, with an ordered event history.
+CREATE TABLE IF NOT EXISTS shop_agent_stack_shipment_event (
  id BIGINT AUTO_INCREMENT PRIMARY KEY,
  order_id BIGINT NOT NULL,
  stage VARCHAR(20) NOT NULL,

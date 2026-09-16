@@ -1,5 +1,5 @@
 -- Derived from macrozheng/mall 9bfc2fd2c4aaa4ac519e9152e65d673a5380de1a, Apache-2.0.
--- Modified by Aster Commerce: schema only; all upstream sample rows and export metadata excluded.
+-- Modified by ShopAgentStack: schema only; all upstream sample rows and export metadata excluded.
 SET NAMES utf8mb4;
 CREATE TABLE `cms_help`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,

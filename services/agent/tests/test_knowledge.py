@@ -1,7 +1,7 @@
 from datetime import date
 import pytest
 from langchain_core.documents import Document
-from aster_agent.knowledge import LexicalIndex
+from shop_agent_stack.knowledge import LexicalIndex
 
 
 def doc(**changes):

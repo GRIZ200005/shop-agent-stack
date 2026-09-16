@@ -1,8 +1,8 @@
 from contextlib import asynccontextmanager
 from types import SimpleNamespace
 import pytest
-from aster_agent import runtime, tools
-from aster_agent.store import Store
+from shop_agent_stack import runtime, tools
+from shop_agent_stack.store import Store
 
 
 def setup_runtime(tmp_path,monkeypatch):

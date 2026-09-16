@@ -9,7 +9,7 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(root / "services/agent"))
-from aster_agent.knowledge import LexicalIndex, load_drafts
+from shop_agent_stack.knowledge import LexicalIndex, load_drafts
 
 source = root / "knowledge/authoring/policies.tsv"
 gold = root / "evaluation/retrieval-dev.tsv"
@@ -26,7 +26,7 @@ with gold.open(encoding="utf-8", newline="") as file:
         returned = {hit["clause_id"] for hit in hits}
         results.append({"id": case["id"], "retrieved": [h["clause_id"] for h in hits],
                         "expected": sorted(expected), "recall_at_5": len(expected & returned)/len(expected)})
-manifest = {"schema_version": 1, "source": "aster-original-synthetic", "review_status": "DRAFT_NOT_PUBLISHED",
+manifest = {"schema_version": 1, "source": "shop_agent_stack-original-synthetic", "review_status": "DRAFT_NOT_PUBLISHED",
             "documents": len({d.metadata["doc_id"] for d in documents}), "clauses": len(documents),
             "categories": dict(Counter(d.metadata["category"] for d in documents)),
             "corpus_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),

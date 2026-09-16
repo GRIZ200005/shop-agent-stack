@@ -67,7 +67,7 @@ test("paid order → administrator shipment → customer receipt, with access bo
       })
     ).json();
   }
-  expect((await call("admin", "/aster/fulfillment", service)).code).toBe(403);
+  expect((await call("admin", "/shop_agent_stack/fulfillment", service)).code).toBe(403);
   expect(
     (
       await call("portal", "/member/address/add", owner, {
@@ -108,8 +108,8 @@ test("paid order → administrator shipment → customer receipt, with access bo
   expect(created.code).toBe(200);
   const id = created.data.order.id,
     orderSn = created.data.order.orderSn;
-  const shipment = `/aster/fulfillment/${id}`,
-    owned = `/aster/orders/${id}`;
+  const shipment = `/shop_agent_stack/fulfillment/${id}`,
+    owned = `/shop_agent_stack/orders/${id}`;
   expect(
     (
       await call("admin", shipment + "/advance", service, {
@@ -134,7 +134,7 @@ test("paid order → administrator shipment → customer receipt, with access bo
     (await call("portal", owned + "/simulate-payment", owner, {})).code,
   ).toBe(200);
   await page.goto("/login?next=/admin/orders");
-  await page.evaluate((t) => sessionStorage.setItem("aster_admin", t), admin);
+  await page.evaluate((t) => sessionStorage.setItem("shop_agent_stack_admin", t), admin);
   await page.goto("/admin/orders");
   await page.getByLabel("搜索订单号").fill(orderSn);
   await page.getByRole("button", { name: "查询", exact: true }).click();
@@ -171,7 +171,7 @@ test("paid order → administrator shipment → customer receipt, with access bo
     path: resolve("../../.local/screenshots/fulfillment-admin.png"),
     fullPage: true,
   });
-  await page.evaluate((t) => sessionStorage.setItem("aster_portal", t), owner);
+  await page.evaluate((t) => sessionStorage.setItem("shop_agent_stack_portal", t), owner);
   await page.goto("/app/orders");
   await page.getByRole("button", { name: "查看物流" }).click();
   await expect(page.getByText("模拟派送中", { exact: true })).toBeVisible();

@@ -82,10 +82,10 @@ test("checkout creates a pending order with atomic stock reservation", async ({
       [
         "exec",
         "-i",
-        "aster-p0-mysql-1",
+        "shop_agent_stack-p0-mysql-1",
         "sh",
         "-c",
-        'MYSQL_PWD="$MYSQL_PASSWORD" mysql --default-character-set=utf8mb4 -uaster -Daster',
+        'MYSQL_PWD="$MYSQL_PASSWORD" mysql --default-character-set=utf8mb4 -ushop_agent_stack -Dshop_agent_stack',
       ],
       {
         input: `START TRANSACTION;
@@ -124,7 +124,7 @@ test("administrator catalog UI, role checks and reversible inventory lifecycle",
     staff = await login("SERVICE");
   async function call(path: string, body?: unknown, auth = admin) {
     return (
-      await request.fetch("/api/admin/aster/catalog" + path, {
+      await request.fetch("/api/admin/shop_agent_stack/catalog" + path, {
         method: body === undefined ? "GET" : "POST",
         headers: { Authorization: auth },
         ...(body === undefined ? {} : { data: body }),
@@ -153,7 +153,7 @@ test("administrator catalog UI, role checks and reversible inventory lifecycle",
     ).code,
   ).toBe(403);
   await page.goto("/login?next=/admin/products");
-  await page.evaluate((t) => sessionStorage.setItem("aster_admin", t), admin);
+  await page.evaluate((t) => sessionStorage.setItem("shop_agent_stack_admin", t), admin);
   await page.goto("/admin/products");
   await expect(
     page.getByRole("heading", { name: "商品管理", exact: true }),
@@ -174,7 +174,7 @@ test("administrator catalog UI, role checks and reversible inventory lifecycle",
     await page.getByLabel("调整原因").fill(reason);
     const saved = page.waitForResponse(
       (r) =>
-        r.url().endsWith("/aster/catalog/10001/changes") &&
+        r.url().endsWith("/shop_agent_stack/catalog/10001/changes") &&
         r.request().method() === "POST",
     );
     await page.getByRole("button", { name: "保存库存调整" }).click();

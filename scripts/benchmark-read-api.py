@@ -48,7 +48,7 @@ async def run(args,out):
         if body.get("code")!=200: raise ValueError("Benchmark login failed")
         token=body["data"]["tokenHead"]+body["data"]["token"]
         endpoints={"catalog":("/api/portal/product/search?pageNum=1&pageSize=20&sort=0",{}),
-                   "refund_monitor":("/api/admin/aster/refunds/monitor",{"Authorization":token})}
+                   "refund_monitor":("/api/admin/shop_agent_stack/refunds/monitor",{"Authorization":token})}
         results=[]
         for repeat in range(args.repeats):
             for name in (list(endpoints) if repeat%2==0 else list(reversed(endpoints))):

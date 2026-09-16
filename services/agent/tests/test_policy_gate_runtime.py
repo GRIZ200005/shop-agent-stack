@@ -1,6 +1,6 @@
 import json
 import pytest
-from aster_agent import runtime, tools
+from shop_agent_stack import runtime, tools
 from test_runtime import setup_runtime
 
 
@@ -13,7 +13,7 @@ async def test_parallel_policy_searches_are_assessed_together(tmp_path, monkeypa
              "version": 1, "clause_no": 1, "content_hash": str(i)}
             for i, text in [(1, "说明破损位置与发现时间"), (2, "由客服审核")]]
     async def model(provider, messages, definitions, **kwargs):
-        if messages[0]["content"].startswith("ASTER_POLICY_ASSESSMENT_V1"):
+        if messages[0]["content"].startswith("SHOP_AGENT_STACK_POLICY_ASSESSMENT_V1"):
             payload = json.loads(messages[-1]["content"])
             judged.append(payload)
             assert {h["citation_id"] for h in payload["evidence"]} == {"P1V1C1", "P2V1C1"}
@@ -45,7 +45,7 @@ async def test_parallel_policy_searches_are_assessed_together(tmp_path, monkeypa
 async def test_truncated_assessment_blocks_answer_and_business_tools(tmp_path, monkeypatch):
     store, rid = setup_runtime(tmp_path, monkeypatch)
     async def model(provider, messages, definitions, **kwargs):
-        if messages[0]["content"].startswith("ASTER_POLICY_ASSESSMENT_V1"):
+        if messages[0]["content"].startswith("SHOP_AGENT_STACK_POLICY_ASSESSMENT_V1"):
             assert kwargs["max_output_tokens"] == 4096
             return {"content": None}, {"total_tokens": 4096, "finish_reason": "length"}
         return {"role": "assistant", "tool_calls": [
@@ -69,7 +69,7 @@ async def test_policy_terminal_blocks_pending_business_tools(tmp_path, monkeypat
     store,rid=setup_runtime(tmp_path,monkeypatch)
     calls=[]
     async def model(provider,messages,definitions,**kwargs):
-        if messages[0]["content"].startswith("ASTER_POLICY_ASSESSMENT_V1"):
+        if messages[0]["content"].startswith("SHOP_AGENT_STACK_POLICY_ASSESSMENT_V1"):
             text="not json" if decision=="malformed" else json.dumps({"decision":decision,"missing_fields":["usage"]})
             return {"role":"assistant","content":text},{"total_tokens":7}
         return {"role":"assistant","tool_calls":[

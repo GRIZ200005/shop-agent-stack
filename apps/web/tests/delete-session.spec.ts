@@ -5,8 +5,8 @@ test("delete conversation requires confirmation, handles conflicts and clears se
   let conflict = true;
   let deletes = 0;
   await page.addInitScript(() => {
-    sessionStorage.setItem("aster_portal", "Bearer synthetic-session");
-    sessionStorage.setItem("aster_agent_session", "delete-test");
+    sessionStorage.setItem("shop_agent_stack_portal", "Bearer synthetic-session");
+    sessionStorage.setItem("shop_agent_stack_session", "delete-test");
   });
   await page.route("**/api/**", async (route) => {
     const path = new URL(route.request().url()).pathname;
@@ -37,7 +37,7 @@ test("delete conversation requires confirmation, handles conflicts and clears se
   await page.getByRole("button", { name: "确认删除", exact: true }).click();
   await expect(remove).toHaveCount(0);
   await expect(page.getByRole("dialog")).toHaveCount(0);
-  expect(await page.evaluate(() => sessionStorage.getItem("aster_agent_session"))).toBeNull();
+  expect(await page.evaluate(() => sessionStorage.getItem("shop_agent_stack_session"))).toBeNull();
   await page.reload();
   await expect(page.getByText("你的对话会保存在这里。")).toBeVisible();
 });

@@ -6,19 +6,19 @@ from pathlib import Path
 from uuid import uuid4
 import httpx
 import pytest
-from aster_agent import tools
-from aster_agent.business import identity
+from shop_agent_stack import tools
+from shop_agent_stack.business import identity
 from test_mcp_integration import customer
 
-pytestmark = [pytest.mark.asyncio, pytest.mark.skipif(os.getenv("ASTER_P3C_LIVE") != "true", reason="explicit local hybrid integration")]
+pytestmark = [pytest.mark.asyncio, pytest.mark.skipif(os.getenv("SHOP_AGENT_STACK_P3C_LIVE") != "true", reason="explicit local hybrid integration")]
 
 
 async def test_hybrid_availability():
-    expected_outage = os.getenv("ASTER_P3C_OUTAGE") == "true"
+    expected_outage = os.getenv("SHOP_AGENT_STACK_P3C_OUTAGE") == "true"
     auth = await identity(await customer())
     async with tools.connect(auth["executionToken"]) as session:
         for _ in range(45):
-            result = await tools.call(session, "search_policies", {"query":"星序商城售后申请资格说明 未付款订单"})
+            result = await tools.call(session, "search_policies", {"query":"ShopAgentStack 商城售后申请资格说明 未付款订单"})
             if expected_outage or result["retrieval"]["method"] == "HYBRID_RRF_RERANK":
                 break
             await asyncio.sleep(1)
@@ -38,14 +38,14 @@ async def test_publication_revision_withdrawal_and_index_isolation():
         login = (await http.post("http://admin:8080/admin/login", json={"username":admin["username"], "password":admin["password"]})).json()
         assert login["code"] == 200
         headers = {"Authorization":login["data"]["tokenHead"] + login["data"]["token"]}
-        private = {"X-Aster-Index":key}
+        private = {"X-ShopAgentStack-Index":key}
         async def call(path, body=None):
-            response = await http.request("GET" if body is None else "POST", "http://admin:8080/aster" + path, headers=headers, json=body)
+            response = await http.request("GET" if body is None else "POST", "http://admin:8080/shop_agent_stack" + path, headers=headers, json=body)
             result = response.json()
             assert result["code"] == 200
             return result.get("data")
         async def state():
-            res = await http.get("http://portal:8085/aster/internal/agent/index/state", headers=private)
+            res = await http.get("http://portal:8085/shop_agent_stack/internal/agent/index/state", headers=private)
             body = res.json()
             assert body["code"] == 200
             return body["data"]
@@ -59,7 +59,7 @@ async def test_publication_revision_withdrawal_and_index_isolation():
                     return current
                 await asyncio.sleep(1)
             pytest.fail("Index did not settle; inspect authenticated worker status")
-        unauthorized = await http.get("http://portal:8085/aster/internal/agent/index/state")
+        unauthorized = await http.get("http://portal:8085/shop_agent_stack/internal/agent/index/state")
         assert unauthorized.status_code != 200 or unauthorized.json().get("code") != 200
         auth = await identity(await customer())
         title = "P3c状态机验收 " + uuid4().hex
@@ -72,7 +72,7 @@ async def test_publication_revision_withdrawal_and_index_isolation():
             await call(f"/policies/{hidden}/publish", {})
             first_state = await settled()
             before = (await state())["epoch"]
-            repeated = await http.post(f"http://admin:8080/aster/policies/{first}/publish", headers=headers, json={})
+            repeated = await http.post(f"http://admin:8080/shop_agent_stack/policies/{first}/publish", headers=headers, json={})
             assert repeated.json()["code"] != 200
             assert (await state())["epoch"] == before
             async with tools.connect(auth["executionToken"]) as session:
@@ -104,7 +104,7 @@ async def test_publication_revision_withdrawal_and_index_isolation():
                 assert all(h["policy_id"] not in [first, revised, hidden] for h in (await hybrid())["evidence"])
         finally:
             for policy_id in ids:
-                response = await http.post(f"http://admin:8080/aster/policies/{policy_id}/withdraw", headers=headers, json={})
+                response = await http.post(f"http://admin:8080/shop_agent_stack/policies/{policy_id}/withdraw", headers=headers, json={})
                 body = response.json()
                 assert body["code"] == 200 or body.get("message") == "仅已发布政策可撤回"
             await settled()

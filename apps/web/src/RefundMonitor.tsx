@@ -12,7 +12,7 @@ export function RefundMonitor() {
   async function load(before = 0) {
     setBusy(true); setError("");
     try {
-      const next = await api<Snapshot>("admin", `/aster/refunds/monitor?before=${before}`);
+      const next = await api<Snapshot>("admin", `/shop_agent_stack/refunds/monitor?before=${before}`);
       setSnapshot(previous => ({ ...next, rows: before && previous ? [...previous.rows, ...next.rows] : next.rows }));
     } catch (e) { setError((e as Error).message); }
     finally { setBusy(false); }
@@ -20,7 +20,7 @@ export function RefundMonitor() {
   async function check(id: number) {
     setBusy(true); setError(""); setChecked("");
     try {
-      const row = await api<Row>("admin", `/aster/after-sales/${id}/refund-check`);
+      const row = await api<Row>("admin", `/shop_agent_stack/after-sales/${id}/refund-check`);
       setChecked(`售后 #${id}：${labels[row.reconciliation] || "未知核查状态"}。本次核查未修改任何账目。`);
     } catch (e) { setError((e as Error).message); }
     finally { setBusy(false); }

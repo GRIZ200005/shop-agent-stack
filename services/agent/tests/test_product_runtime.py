@@ -1,7 +1,7 @@
 import json
 import pytest
-from aster_agent import runtime, tools
-from aster_agent.catalog import with_snapshot
+from shop_agent_stack import runtime, tools
+from shop_agent_stack.catalog import with_snapshot
 from test_runtime import setup_runtime
 
 

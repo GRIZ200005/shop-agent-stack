@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">ShopAgentStack</title>
+  <desc id="desc">An original stepped S monogram with two offset workflow terminals on a dark rounded tile.</desc>
+  <rect x="4" y="4" width="120" height="120" rx="30" fill="#172033"/>
+  <path d="M88 32 H48 Q32 32 32 48 V51 Q32 64 48 64 H80 Q96 64 96 77 V80 Q96 96 80 96 H40" fill="none" stroke="#f4f1ff" stroke-width="12" stroke-linecap="square"/>
+  <path d="M58 46 H88 M40 82 H70" fill="none" stroke="#a78bfa" stroke-width="6" stroke-linecap="round"/>
+  <rect x="83" y="25" width="14" height="14" rx="4" fill="#2dd4bf"/>
+  <rect x="31" y="89" width="14" height="14" rx="4" fill="#2dd4bf"/>
+</svg>

@@ -20,12 +20,12 @@ const publishedFixtureTitles: string[] = [];
 test.afterEach(async ({ request }) => {
   if (!publishedFixtureTitles.length) return;
   const token = await loginApi(request, "admin", admin);
-  const policies = await call(request, "admin", "/aster/policies", token);
+  const policies = await call(request, "admin", "/shop_agent_stack/policies", token);
   expect(policies.code).toBe(200);
   for (const title of publishedFixtureTitles.splice(0)) {
     const policy = policies.data.find((p: { title: string }) => p.title === title);
     if (policy?.status === "PUBLISHED") {
-      const result = await call(request, "admin", `/aster/policies/${policy.id}/withdraw`, token, {});
+      const result = await call(request, "admin", `/shop_agent_stack/policies/${policy.id}/withdraw`, token, {});
       expect(result.code, "Withdraw this test's published policy").toBe(200);
     }
   }
@@ -66,7 +66,7 @@ async function loginApi(
   return r.data.tokenHead + r.data.token;
 }
 async function customer(request: APIRequestContext) {
-  const user = { username: "e2e_" + tag(), password: "Aster!" + tag() + "Aa9" };
+  const user = { username: "e2e_" + tag(), password: "ShopAgentStack!" + tag() + "Aa9" };
   const telephone =
     "000" + String(Math.floor(Math.random() * 1e8)).padStart(8, "0");
   const otp = await call(
@@ -115,7 +115,7 @@ async function order(request: APIRequestContext, token: string) {
     productSkuId: 1,
     quantity: 1,
     price: 0.01,
-    productName: "Aster USB-C Cable",
+    productName: "ShopAgentStack USB-C Cable",
     productCategoryId: 1,
   });
   expect(r.code).toBe(200);
@@ -141,10 +141,10 @@ test("three-role browser journey: purchase, review, refund, publish policy", asy
   page.on("pageerror", (e) => errors.push(e.message));
   await loginUi(page, "/app", user);
   // The expanded catalog is paginated; locate the fixture instead of assuming it is on page one.
-  await page.getByRole("textbox", { name: "搜索商品", exact: true }).fill("Aster USB-C Cable");
+  await page.getByRole("textbox", { name: "搜索商品", exact: true }).fill("ShopAgentStack USB-C Cable");
   await page.getByRole("button", { name: "搜索", exact: true }).click();
   await expect(
-    page.getByRole("heading", { name: "Aster USB-C Cable" }),
+    page.getByRole("heading", { name: "ShopAgentStack USB-C Cable" }),
   ).toBeVisible();
   mkdirSync(resolve(local, "screenshots"), { recursive: true });
   await page.screenshot({
@@ -152,7 +152,7 @@ test("three-role browser journey: purchase, review, refund, publish policy", asy
     fullPage: true,
   });
   await page
-    .getByRole("button", { name: "加入购物袋 Aster USB-C Cable", exact: true })
+    .getByRole("button", { name: "加入购物袋 ShopAgentStack USB-C Cable", exact: true })
     .click();
   await expect(
     page.getByRole("status").filter({ hasText: "已加入购物袋" }),
@@ -171,7 +171,7 @@ test("three-role browser journey: purchase, review, refund, publish policy", asy
   await page.getByRole("button", { name: "确认提交售后" }).click();
   await expect(page.getByRole("heading", { name: reason })).toBeVisible();
   const staffPage = await browser.newPage({
-    baseURL: process.env.ASTER_WEB_URL || "http://127.0.0.1:18030",
+    baseURL: process.env.SHOP_AGENT_STACK_WEB_URL || "http://127.0.0.1:18030",
   });
   await loginUi(staffPage, "/service", service);
   await expect(
@@ -194,17 +194,17 @@ test("three-role browser journey: purchase, review, refund, publish policy", asy
   await staffPage.getByRole("button", { name: "关闭" }).click();
   await staffPage.getByText("退款监控与对账", { exact: true }).click();
   await expect(staffPage.getByText("账目一致", { exact: true }).first()).toBeVisible();
-  const monitor = await call(request, "admin", "/aster/refunds/monitor", await loginApi(request, "admin", service));
+  const monitor = await call(request, "admin", "/shop_agent_stack/refunds/monitor", await loginApi(request, "admin", service));
   expect(monitor.code).toBe(200);
   expect(monitor.data.scope).toBe("P4_ASYNC_SIMULATOR");
   const latest = monitor.data.rows[0];
   await staffPage.getByRole("button", { name: `核对 #${latest.case_id}`, exact: true }).click();
   await expect(staffPage.getByText(`售后 #${latest.case_id}：账目一致。本次核查未修改任何账目。`, { exact: true })).toBeVisible();
-  const anonymous = await request.get("/api/admin/aster/refunds/monitor");
+  const anonymous = await request.get("/api/admin/shop_agent_stack/refunds/monitor");
   const anonymousBody = await anonymous.json();
   expect([401,403]).toContain(anonymousBody.code);
   expect(anonymousBody.data?.rows).toBeUndefined();
-  const customerDenied = await request.get("/api/admin/aster/refunds/monitor", { headers: { Authorization: user.token } });
+  const customerDenied = await request.get("/api/admin/shop_agent_stack/refunds/monitor", { headers: { Authorization: user.token } });
   const customerBody = await customerDenied.json();
   expect([401,403]).toContain(customerBody.code);
   expect(customerBody.data?.rows).toBeUndefined();
@@ -221,7 +221,7 @@ test("three-role browser journey: purchase, review, refund, publish policy", asy
     page.getByText("模拟退款已完成，无真实资金流转", { exact: true }),
   ).toBeVisible();
   const adminPage = await browser.newPage({
-    baseURL: process.env.ASTER_WEB_URL || "http://127.0.0.1:18030",
+    baseURL: process.env.SHOP_AGENT_STACK_WEB_URL || "http://127.0.0.1:18030",
   });
   await loginUi(adminPage, "/admin", admin);
   await expect(
@@ -252,7 +252,7 @@ test("three-role browser journey: purchase, review, refund, publish policy", asy
   await expect(
     staffPage.getByRole("heading", { name: "没有管理中心访问权限" }),
   ).toBeVisible();
-  const cases = await call(request, "portal", "/aster/after-sales", user.token);
+  const cases = await call(request, "portal", "/shop_agent_stack/after-sales", user.token);
   const completed = cases.data.find(
     (s: { reason: string }) => s.reason === reason,
   );
@@ -300,7 +300,7 @@ test("API boundaries, duplicate submit, concurrent claims, rejected refund, role
       await call(
         request,
         "portal",
-        `/aster/orders/${id}/simulate-payment`,
+        `/shop_agent_stack/orders/${id}/simulate-payment`,
         b.token,
         {},
       )
@@ -308,7 +308,7 @@ test("API boundaries, duplicate submit, concurrent claims, rejected refund, role
   ).not.toBe(200);
   expect(
     (
-      await call(request, "portal", "/aster/after-sales", a.token, {
+      await call(request, "portal", "/shop_agent_stack/after-sales", a.token, {
         orderId: id,
         reason: "未支付",
       })
@@ -319,7 +319,7 @@ test("API boundaries, duplicate submit, concurrent claims, rejected refund, role
       await call(
         request,
         "portal",
-        `/aster/orders/${id}/simulate-payment`,
+        `/shop_agent_stack/orders/${id}/simulate-payment`,
         a.token,
         {},
       )
@@ -330,7 +330,7 @@ test("API boundaries, duplicate submit, concurrent claims, rejected refund, role
       await call(
         request,
         "portal",
-        `/aster/orders/${id}/simulate-payment`,
+        `/shop_agent_stack/orders/${id}/simulate-payment`,
         a.token,
         {},
       )
@@ -338,7 +338,7 @@ test("API boundaries, duplicate submit, concurrent claims, rejected refund, role
   ).toBe(200);
   expect(
     (
-      await call(request, "portal", "/aster/after-sales", b.token, {
+      await call(request, "portal", "/shop_agent_stack/after-sales", b.token, {
         orderId: id,
         reason: "越权",
       })
@@ -347,7 +347,7 @@ test("API boundaries, duplicate submit, concurrent claims, rejected refund, role
   const submitted = await call(
     request,
     "portal",
-    "/aster/after-sales",
+    "/shop_agent_stack/after-sales",
     a.token,
     { orderId: id, reason: "API synthetic case" },
   );
@@ -356,21 +356,21 @@ test("API boundaries, duplicate submit, concurrent claims, rejected refund, role
   const duplicate = await call(
     request,
     "portal",
-    "/aster/after-sales",
+    "/shop_agent_stack/after-sales",
     a.token,
     { orderId: id, reason: "API synthetic case" },
   );
   expect(duplicate.data.id).toBe(caseId);
   expect(
-    (await call(request, "portal", `/aster/after-sales/${caseId}`, b.token))
+    (await call(request, "portal", `/shop_agent_stack/after-sales/${caseId}`, b.token))
       .code,
   ).not.toBe(200);
   expect(
-    (await call(request, "portal", "/aster/after-sales", b.token)).data,
+    (await call(request, "portal", "/shop_agent_stack/after-sales", b.token)).data,
   ).toEqual([]);
   const claims = await Promise.all(
     [staffToken, adminToken].map((t) =>
-      call(request, "admin", `/aster/after-sales/${caseId}/claim`, t, {}),
+      call(request, "admin", `/shop_agent_stack/after-sales/${caseId}/claim`, t, {}),
     ),
   );
   expect(claims.filter((c) => c.code === 200)).toHaveLength(1);
@@ -381,7 +381,7 @@ test("API boundaries, duplicate submit, concurrent claims, rejected refund, role
       await call(
         request,
         "admin",
-        `/aster/after-sales/${caseId}/decision`,
+        `/shop_agent_stack/after-sales/${caseId}/decision`,
         loser,
         { approved: true, note: "wrong assignee" },
       )
@@ -392,7 +392,7 @@ test("API boundaries, duplicate submit, concurrent claims, rejected refund, role
       await call(
         request,
         "admin",
-        `/aster/after-sales/${caseId}/decision`,
+        `/shop_agent_stack/after-sales/${caseId}/decision`,
         winner,
         { approved: false, note: "信息不足，拒绝本次申请" },
       )
@@ -403,7 +403,7 @@ test("API boundaries, duplicate submit, concurrent claims, rejected refund, role
       await call(
         request,
         "admin",
-        `/aster/after-sales/${caseId}/decision`,
+        `/shop_agent_stack/after-sales/${caseId}/decision`,
         winner,
         { approved: true, note: "duplicate" },
       )
@@ -412,20 +412,20 @@ test("API boundaries, duplicate submit, concurrent claims, rejected refund, role
   const rejected = await call(
     request,
     "portal",
-    `/aster/after-sales/${caseId}`,
+    `/shop_agent_stack/after-sales/${caseId}`,
     a.token,
   );
   expect(rejected.data.status).toBe("REJECTED");
   expect(rejected.data.refund_reference ?? null).toBeNull();
   expect(
     (
-      await call(request, "admin", "/aster/policies", staffToken, {
+      await call(request, "admin", "/shop_agent_stack/policies", staffToken, {
         title: "forbidden",
         content: "forbidden",
       })
     ).code,
   ).toBe(403);
-  expect((await call(request, "admin", "/aster/staff", staffToken)).code).toBe(
+  expect((await call(request, "admin", "/shop_agent_stack/staff", staffToken)).code).toBe(
     403,
   );
   expect((await call(request, "admin", "/admin/list", staffToken)).code).toBe(
@@ -439,7 +439,7 @@ test("API boundaries, duplicate submit, concurrent claims, rejected refund, role
       })
     ).code,
   ).toBe(403);
-  expect((await call(request, "admin", "/aster/me", a.token)).code).not.toBe(
+  expect((await call(request, "admin", "/shop_agent_stack/me", a.token)).code).not.toBe(
     200,
   );
   const newUser = {
@@ -448,7 +448,7 @@ test("API boundaries, duplicate submit, concurrent claims, rejected refund, role
   };
   expect(
     (
-      await call(request, "admin", "/aster/staff", adminToken, {
+      await call(request, "admin", "/shop_agent_stack/staff", adminToken, {
         ...newUser,
         name: "Synthetic Staff",
         role: "SERVICE",
@@ -456,19 +456,19 @@ test("API boundaries, duplicate submit, concurrent claims, rejected refund, role
     ).code,
   ).toBe(200);
   const newToken = await loginApi(request, "admin", newUser);
-  expect((await call(request, "admin", "/aster/me", newToken)).data.role).toBe(
+  expect((await call(request, "admin", "/shop_agent_stack/me", newToken)).data.role).toBe(
     "SERVICE",
   );
   const draftTitle = "Private draft " + tag();
   expect(
     (
-      await call(request, "admin", "/aster/policies", adminToken, {
+      await call(request, "admin", "/shop_agent_stack/policies", adminToken, {
         title: draftTitle,
         content: "Not published",
       })
     ).code,
   ).toBe(200);
-  const visible = await call(request, "portal", "/aster/policies", a.token);
+  const visible = await call(request, "portal", "/shop_agent_stack/policies", a.token);
   expect(
     visible.data.some((p: { title: string }) => p.title === draftTitle),
   ).toBe(false);

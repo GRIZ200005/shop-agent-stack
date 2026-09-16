@@ -1,11 +1,11 @@
--- Original Aster P2: short-lived execution contexts and single-consumption confirmations.
-CREATE TABLE IF NOT EXISTS aster_agent_grant (
+-- Original ShopAgentStack P2: short-lived execution contexts and single-consumption confirmations.
+CREATE TABLE IF NOT EXISTS shop_agent_stack_grant (
   token_hash CHAR(64) PRIMARY KEY,
   member_id BIGINT NOT NULL,
   expires_at TIMESTAMP NOT NULL,
   INDEX idx_grant_expiry(expires_at)
 );
-CREATE TABLE IF NOT EXISTS aster_agent_operation (
+CREATE TABLE IF NOT EXISTS shop_agent_stack_operation (
   id CHAR(36) PRIMARY KEY,
   member_id BIGINT NOT NULL,
   order_id BIGINT NOT NULL,

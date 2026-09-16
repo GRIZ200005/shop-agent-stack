@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from aster_agent.shopping_eval import load_suite
+from shop_agent_stack.shopping_eval import load_suite
 
 
 def test_frozen_split_hash_counts_and_product_labels():

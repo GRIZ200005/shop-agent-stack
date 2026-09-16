@@ -28,16 +28,16 @@ import java.util.stream.Collectors;
 /**
  * 前台订单管理Service
  * Created by macro on 2018/8/30.
- * Modified by Aster Commerce: validate order/address ownership and non-empty carts for P0.
- * Modified by Aster Commerce: reserve stock atomically and reject downlisted products at checkout.
- * Modified by Aster Commerce: route customer receipt confirmation through the owned fulfillment state machine.
+ * Modified by ShopAgentStack: validate order/address ownership and non-empty carts for P0.
+ * Modified by ShopAgentStack: reserve stock atomically and reject downlisted products at checkout.
+ * Modified by ShopAgentStack: route customer receipt confirmation through the owned fulfillment state machine.
  */
 @Service
 public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
     @Autowired
-    private com.macro.mall.aster.FulfillmentService fulfillmentService;
+    private com.macro.mall.shopagentstack.FulfillmentService fulfillmentService;
     @Autowired
-    private com.macro.mall.aster.CatalogManagementService catalogManagementService;
+    private com.macro.mall.shopagentstack.CatalogManagementService catalogManagementService;
     @Autowired
     private UmsMemberService memberService;
     @Autowired

@@ -18,8 +18,8 @@
     </parent>
 
     <dependencies>
-        <!-- Modified by Aster Commerce: shared after-sale domain. -->
-        <dependency><groupId>com.macro.mall</groupId><artifactId>aster-after-sale</artifactId><version>1.0-SNAPSHOT</version></dependency>
+        <!-- Modified by ShopAgentStack: shared after-sale domain. -->
+        <dependency><groupId>com.macro.mall</groupId><artifactId>shop-agent-stack-after-sale</artifactId><version>1.0-SNAPSHOT</version></dependency>
         <dependency>
             <groupId>com.macro.mall</groupId>
             <artifactId>mall-mbg</artifactId>

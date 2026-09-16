@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 /**
  * 后台用户管理Controller
  * Created by macro on 2018/4/26.
- * Modified by Aster Commerce: public administrator registration is disabled.
+ * Modified by ShopAgentStack: public administrator registration is disabled.
  */
 @Controller
 @Tag(name = "UmsAdminController", description = "后台用户管理")

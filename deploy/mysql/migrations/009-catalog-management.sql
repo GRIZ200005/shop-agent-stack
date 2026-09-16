@@ -1,5 +1,5 @@
--- Original Aster: append-only administrator catalog adjustment history.
-CREATE TABLE IF NOT EXISTS aster_catalog_change (
+-- Original ShopAgentStack: append-only administrator catalog adjustment history.
+CREATE TABLE IF NOT EXISTS shop_agent_stack_catalog_change (
  request_id VARCHAR(36) PRIMARY KEY,
  product_id BIGINT NOT NULL,
  sku_id BIGINT NOT NULL,

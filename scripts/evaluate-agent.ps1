@@ -13,14 +13,14 @@ New-Item -ItemType Directory -Force -Path $runs | Out-Null
 $dockerArgs=@('run','--rm','--mount',"type=bind,source=$root,target=/workspace,readonly",'--mount',"type=bind,source=$runs,target=/workspace/evaluation/runs",'--workdir','/workspace')
 if($Live){
     if($SavedMember -gt 0){
-        $dockerArgs+=@('--volumes-from','aster-p0-agent-1:ro')
+        $dockerArgs+=@('--volumes-from','shop_agent_stack-p0-agent-1:ro')
     } else {
     $config=Join-Path $root '.local/agent-eval.env'
-    if(-not (Test-Path -LiteralPath $config)){throw 'Live evaluation needs the dedicated ignored .local/agent-eval.env. See docs/records/22-p3f-agent-evaluation.md.'}
+    if(-not (Test-Path -LiteralPath $config)){throw 'Live evaluation needs the dedicated ignored .local/agent-eval.env. See docs/testing.md.'}
     $dockerArgs+=@('--env-file',$config)
     }
 }
-$dockerArgs+=@('aster-agent:p2','python','scripts/evaluate-agent.py','--provider',$Provider,'--repeats',"$Repeats",'--max-model-calls',"$MaxModelCalls")
+$dockerArgs+=@('shop_agent_stack-agent:p2','python','scripts/evaluate-agent.py','--provider',$Provider,'--repeats',"$Repeats",'--max-model-calls',"$MaxModelCalls")
 if($Live){$dockerArgs+='--live'}
 if($SavedMember -gt 0){$dockerArgs+=@('--saved-member',"$SavedMember")}
 if($RequirePass){$dockerArgs+='--fail-on-contract'}

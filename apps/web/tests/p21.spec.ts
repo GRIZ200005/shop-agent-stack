@@ -91,7 +91,7 @@ test("P2.1 login gate, private model settings, account switching and mobile menu
   await page.getByRole("button", { name: "测试已保存连接" }).click();
   await expect(page.getByRole("alert")).toContainText("连接测试失败");
   await page.getByRole("button", { name: "个人资料", exact: true }).click();
-  await page.getByLabel("显示名称", { exact: true }).fill("星序体验者");
+  await page.getByLabel("显示名称", { exact: true }).fill("商城体验者");
   await page.getByLabel("默认模型", { exact: true }).selectOption("custom");
   await page.getByRole("button", { name: "保存偏好" }).click();
   await expect(page.getByRole("status")).toContainText("偏好已保存");
@@ -101,7 +101,7 @@ test("P2.1 login gate, private model settings, account switching and mobile menu
   await page.getByRole("button", { name: "切换账户", exact: true }).click();
   await expect(page).toHaveURL(/\/login/);
   expect(
-    await page.evaluate(() => sessionStorage.getItem("aster_portal")),
+    await page.evaluate(() => sessionStorage.getItem("shop_agent_stack_portal")),
   ).toBeNull();
   await page.getByLabel("用户名", { exact: true }).fill(b.username);
   await page.getByLabel("密码", { exact: true }).fill(b.password);

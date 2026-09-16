@@ -18,12 +18,12 @@ from sentence_transformers import SentenceTransformer, CrossEncoder
 from langchain_core.documents import Document
 
 sys.path.insert(0, "/workspace/services/agent")
-from aster_agent.knowledge import LexicalIndex
-from aster_agent.retrieval_metrics import rrf
-from aster_agent.policy_snapshot import snapshot_digest
+from shop_agent_stack.knowledge import LexicalIndex
+from shop_agent_stack.retrieval_metrics import rrf
+from shop_agent_stack.policy_snapshot import snapshot_digest
 
 KEY = Path("/run/secrets/index_key").read_text().strip()
-PORTAL = "http://portal:8085/aster/internal/agent/index"
+PORTAL = "http://portal:8085/shop_agent_stack/internal/agent/index"
 CONFIG = json.loads(Path("/workspace/evaluation/retrieval-matrix.json").read_text())
 LOCK = threading.Lock()
 ACTIVE = None
@@ -36,7 +36,7 @@ reranker = None
 def java(path, body=None):
     with httpx.Client(timeout=15, trust_env=False) as http:
         response = http.request("GET" if body is None else "POST", PORTAL + path,
-                                headers={"X-Aster-Index": KEY}, json=body)
+                                headers={"X-ShopAgentStack-Index": KEY}, json=body)
         response.raise_for_status()
         result = response.json()
         if result["code"] != 200:
@@ -76,7 +76,7 @@ def worker():
     failures = 0
     while True:
         epoch = None
-        collection = "aster_live_pending"
+        collection = "shop_agent_stack_live_pending"
         try:
             if encoder is None or reranker is None:
                 torch.set_num_threads(4)
@@ -89,7 +89,7 @@ def worker():
             epoch, rows = snapshot()
             digest = snapshot_digest(rows)
             model_hash = hashlib.sha256(json.dumps(CONFIG, sort_keys=True).encode()).hexdigest()[:12]
-            collection = f"aster_live_{model_hash}_{epoch}_{digest[:16]}"
+            collection = f"shop_agent_stack_live_{model_hash}_{epoch}_{digest[:16]}"
             with LOCK:
                 if ACTIVE is None or ACTIVE["collection"] != collection:
                     STATUS.update(state="BUILDING", ready=False)
@@ -114,9 +114,9 @@ def worker():
                     java("/result", {"revision": epoch, "success": True, "collection": collection})
                     ACTIVE = {"epoch": epoch, "digest": digest, "collection": collection, "rows": rows,
                               "documents": docs, "lexical": LexicalIndex(docs, at=date.today())}
-                    # This dedicated service owns only aster_live_* collections.
+                    # This dedicated service owns only shop_agent_stack_live_* collections.
                     for old in client.list_collections():
-                        if old.startswith("aster_live_") and old != collection:
+                        if old.startswith("shop_agent_stack_live_") and old != collection:
                             client.drop_collection(collection_name=old)
                 else:
                     client.get_collection_stats(collection_name=collection, timeout=3)
@@ -188,13 +188,13 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/health":
             self.respond(200, {"alive": True})
-        elif self.path == "/status" and hmac.compare_digest(self.headers.get("X-Aster-Index", ""), KEY):
+        elif self.path == "/status" and hmac.compare_digest(self.headers.get("X-ShopAgentStack-Index", ""), KEY):
             self.respond(200, STATUS.copy())
         else:
             self.respond(403, {"error": "FORBIDDEN"})
 
     def do_POST(self):
-        if self.path != "/search" or not hmac.compare_digest(self.headers.get("X-Aster-Index", ""), KEY):
+        if self.path != "/search" or not hmac.compare_digest(self.headers.get("X-ShopAgentStack-Index", ""), KEY):
             return self.respond(403, {"error": "FORBIDDEN"})
         try:
             length = int(self.headers.get("Content-Length", "0"))

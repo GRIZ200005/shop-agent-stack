@@ -32,7 +32,7 @@ type Item = {
   skus: Sku[];
   history: Change[];
 };
-const path = "/aster/catalog";
+const path = "/shop_agent_stack/catalog";
 
 export function ProductManagement() {
   const [items, setItems] = useState<Item[]>([]),
