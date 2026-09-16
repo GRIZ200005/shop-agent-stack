@@ -29,9 +29,12 @@ import java.util.stream.Collectors;
  * 前台订单管理Service
  * Created by macro on 2018/8/30.
  * Modified by Aster Commerce: validate order/address ownership and non-empty carts for P0.
+ * Modified by Aster Commerce: reserve stock atomically and reject downlisted products at checkout.
  */
 @Service
 public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
+    @Autowired
+    private com.macro.mall.aster.CatalogManagementService catalogManagementService;
     @Autowired
     private UmsMemberService memberService;
     @Autowired
@@ -737,10 +740,10 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
      * 锁定下单商品的所有库存
      */
     private void lockStock(List<CartPromotionItem> cartPromotionItemList) {
-        for (CartPromotionItem cartPromotionItem : cartPromotionItemList) {
-            PmsSkuStock skuStock = skuStockMapper.selectByPrimaryKey(cartPromotionItem.getProductSkuId());
-            skuStock.setLockStock(skuStock.getLockStock() + cartPromotionItem.getQuantity());
-            skuStockMapper.updateByPrimaryKeySelective(skuStock);
+        var sorted = new ArrayList<>(cartPromotionItemList);
+        sorted.sort(Comparator.comparing(CartPromotionItem::getProductId).thenComparing(CartPromotionItem::getProductSkuId));
+        for (CartPromotionItem item : sorted) {
+            catalogManagementService.reserve(item.getProductId(), item.getProductSkuId(), item.getQuantity());
         }
     }
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   ShoppingBag,
+  Package as PackageIcon,
   Grid2X2,
   ReceiptText,
   LifeBuoy,
@@ -23,6 +24,7 @@ import { Login } from "./Login";
 import { AccountSettings, accountApi } from "./AccountSettings";
 import "./account.css";
 import { SupportWorkspace } from "./Support";
+import { ProductManagement } from "./ProductManagement";
 
 function safeNext(value: string | null) {
   try {
@@ -203,6 +205,7 @@ export function App() {
           [Headphones, "售后工作台", "/service"],
           [Headphones, "人工咨询", "/service/support"],
           [ShieldCheck, "管理中心", "/admin"],
+          [PackageIcon, "商品管理", "/admin/products"],
         ] as const);
   return (
     <div
@@ -333,7 +336,9 @@ export function App() {
           <span className="local-tag">ASTER LAB</span>
         </header>
         <main>
-          {destination.endsWith("/support") ? (
+          {destination === "/admin/products" ? (
+            <ProductManagement />
+          ) : destination.endsWith("/support") ? (
             <SupportWorkspace staff={side === "admin"} />
           ) : destination.endsWith("/settings") ? (
             <AccountSettings

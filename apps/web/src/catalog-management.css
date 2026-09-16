@@ -1,0 +1,239 @@
+.catalog-admin {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.catalog-heading,
+.catalog-summary,
+.catalog-filters,
+.catalog-row,
+.catalog-pagination,
+.catalog-editor-heading,
+.catalog-editor-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.catalog-heading {
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.catalog-heading h1 {
+  margin: 8px 0;
+}
+.catalog-heading p {
+  color: #77748c;
+}
+.catalog-summary {
+  background: #f1eefc;
+  border: 1px solid #e6dff9;
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 24px;
+  color: #6154b8;
+}
+.catalog-summary strong {
+  display: block;
+  font-size: 30px;
+  color: #2b2840;
+}
+.catalog-summary span {
+  font-size: 13px;
+}
+.catalog-summary p {
+  margin-left: auto;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.catalog-filters {
+  margin-bottom: 20px;
+  gap: 12px;
+}
+.catalog-filters label {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 10px;
+  background: white;
+  border: 1px solid #e2dfed;
+  border-radius: 12px;
+  padding: 0 14px;
+}
+.catalog-filters input {
+  border: 0;
+  width: 100%;
+  padding: 14px 0;
+  outline: none;
+}
+.catalog-filters select,
+.catalog-editor select,
+.catalog-editor input,
+.catalog-editor textarea {
+  padding: 12px;
+  border: 1px solid #ded9ec;
+  border-radius: 10px;
+  font: inherit;
+  background: white;
+  color: #333047;
+}
+.catalog-list {
+  border: 1px solid #e8e4f1;
+  border-radius: 18px;
+  background: white;
+  overflow: hidden;
+}
+.catalog-row {
+  padding: 18px 22px;
+  border-bottom: 1px solid #efecf5;
+}
+.catalog-row:last-child {
+  border-bottom: 0;
+}
+.catalog-row .product-art,
+.catalog-editor-heading .product-art {
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+  border-radius: 12px;
+}
+.catalog-name {
+  flex: 1;
+  min-width: 0;
+}
+.catalog-name h3 {
+  margin: 5px 0;
+  font-size: 15px;
+  color: #302d42;
+}
+.catalog-name small,
+.catalog-name span {
+  color: #787489;
+  font-size: 12px;
+}
+.catalog-row > strong {
+  min-width: 85px;
+  font-size: 14px;
+}
+.catalog-status {
+  padding: 6px 12px;
+  background: #f0eef4;
+  color: #777181;
+  border-radius: 20px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.catalog-status.on {
+  background: #e9f5ef;
+  color: #35785b;
+}
+.catalog-pagination {
+  justify-content: center;
+  margin-top: 22px;
+  font-size: 13px;
+  color: #746e85;
+}
+.catalog-editor {
+  min-width: 0;
+}
+.catalog-editor-heading {
+  margin-bottom: 24px;
+}
+.catalog-editor-heading h3 {
+  margin: 6px 0;
+}
+.catalog-editor-heading small {
+  color: #777187;
+}
+.catalog-editor label {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 16px 0;
+  color: #585268;
+  font-size: 14px;
+}
+.catalog-stock-counts {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px;
+  border-radius: 12px;
+  background: #f7f5fc;
+}
+.catalog-stock-counts span {
+  font-size: 12px;
+  color: #777187;
+}
+.catalog-stock-counts strong {
+  display: block;
+  color: #393048;
+  font-size: 22px;
+  margin-top: 6px;
+}
+.catalog-editor-actions {
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0 28px;
+}
+.catalog-history {
+  padding: 0;
+  list-style: none;
+}
+.catalog-history li {
+  border-left: 2px solid #dfd8f3;
+  padding: 4px 0 4px 16px;
+  margin: 16px 0;
+}
+.catalog-history small {
+  display: block;
+  margin-top: 6px;
+  color: #847e93;
+  font-size: 12px;
+}
+.catalog-history p {
+  margin: 8px 0;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.catalog-error,
+.catalog-notice {
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #fff0f0;
+  color: #a13748;
+}
+.catalog-notice {
+  background: #eef8f1;
+  color: #32754f;
+}
+@media (max-width: 700px) {
+  .catalog-row {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 15px;
+  }
+  .catalog-row .product-art {
+    width: 60px;
+    height: 60px;
+  }
+  .catalog-name {
+    flex-basis: calc(100% - 80px);
+  }
+  .catalog-row > strong {
+    margin-right: auto;
+  }
+  .catalog-filters {
+    flex-wrap: wrap;
+  }
+  .catalog-filters label {
+    flex-basis: 100%;
+  }
+  .catalog-summary p {
+    display: none;
+  }
+  .catalog-heading {
+    align-items: flex-start;
+  }
+  .catalog-editor-actions .button {
+    flex: 1;
+    white-space: nowrap;
+  }
+}

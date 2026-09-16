@@ -24,3 +24,5 @@ Get-Content -Raw -Encoding utf8 "$root/deploy/mysql/migrations/007-p4-refund-out
 if ($LASTEXITCODE -ne 0) { throw 'P4 refund migration failed.' }
 Get-Content -Raw -Encoding utf8 "$root/deploy/mysql/migrations/008-support.sql" | docker compose --env-file "$root/.env" -f "$root/deploy/compose.p0.yml" exec -T mysql sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" mysql --default-character-set=utf8mb4 -uaster -Daster'
 if ($LASTEXITCODE -ne 0) { throw 'Support migration failed.' }
+Get-Content -Raw -Encoding utf8 "$root/deploy/mysql/migrations/009-catalog-management.sql" | docker compose --env-file "$root/.env" -f "$root/deploy/compose.p0.yml" exec -T mysql sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" mysql --default-character-set=utf8mb4 -uaster -Daster'
+if ($LASTEXITCODE -ne 0) { throw 'Catalog migration failed.' }

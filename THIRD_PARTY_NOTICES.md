@@ -96,3 +96,7 @@ The original catalog expansion adds independently authored synthetic product rec
 ## Product Agent integration
 
 Original `ProductQueryService`, MCP product tools, snapshot validation, Agent product cards, development evaluation runner and tests connect the synthetic catalog to the existing Agent. The upstream-derived `PmsPortalProductServiceImpl.java` additionally rejects missing, deleted or unpublished product details; its author and modification notices are preserved. No new external source code or private data is imported.
+
+## Catalog management
+
+Original administrator catalog UI, role-checked API, inventory adjustment audit and focused tests reuse existing dependencies. The mall-derived `OmsPortalOrderServiceImpl.java` now delegates stock reservation to the original Aster service for live publication checks and atomic conditional inventory updates, in stable product/SKU order. Upstream authorship is preserved and the modification is marked in the file. No private data or reference implementation is imported.
