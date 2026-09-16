@@ -4,10 +4,6 @@
 
 **个人开发的 AI 电商与客户服务项目 · 从智能问答到可追踪的业务执行**
 
-**Java 17 · Spring Boot · Python · LangGraph · React · TypeScript**
-
-MySQL · Redis · RabbitMQ · Milvus · MCP · Docker Compose
-
 [项目实现](#项目实现与个人贡献) · [产品展示](docs/showcase.md) · [快速开始](docs/getting-started.md) · [系统架构](#系统架构) · [工程文档](docs/README.md)
 
 </div>
@@ -32,6 +28,8 @@ Aster Commerce · 星序是一个个人开发与维护、基于 [macrozheng/mall
 | AI 应用 | 新增模型适配、LangGraph 工具循环与 MCP 业务工具 | 上下文预算、执行授权、确认预览、SSE 与会话恢复 |
 | 政策知识库 | 新增条款版本管理、索引更新和有界证据检查 | BM25 + Milvus、RRF、BGE 精排、发布可见性与引用复核 |
 | 工程交付 | 新增合成数据、导入脚本、容器配置和分层验证 | 固定版本、可追溯实验记录、浏览器/API 验收与故障测试 |
+
+**开发方式**：本项目由个人发起与维护，开发过程中使用 Codex 等 AI 编程工具辅助方案讨论、代码实现、问题定位、测试与文档整理。维护者负责需求取舍、变更验收与持续维护；实现范围、上游来源及验证结果以仓库代码和工程记录为准。
 
 建议从[一次 Agent 查询](docs/agent.md)、[一次交易与异步退款](docs/architecture.md)、[验证记录](docs/testing.md)三个入口阅读，结合下方真实运行截图查看实现效果。
 
