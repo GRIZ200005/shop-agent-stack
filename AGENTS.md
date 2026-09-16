@@ -1,27 +1,59 @@
 # Project boundaries
 
-- Build this as an independent personal project intended for future public release.
-- Do not import private reference repositories or their Git history, company branding, internal URLs, credentials, proprietary prompts, documents, screenshots, customer data, or environment metadata. Reimplement general mechanisms independently.
-- Do not treat removing names from proprietary code as permission to redistribute it.
-- Use personal Git author metadata configured by the user; do not inherit organization identities or invent author details.
-- Before committing, inspect the staged diff and file list for confidential content. Before publishing, inspect the full repository history and generated artifacts as well.
-- Respect all upstream licenses. For mall-derived code, preserve applicable notices, include Apache-2.0 license text, mark modified files, and record the exact upstream commit and modifications.
-- The repository includes the P1 three-role baseline and a P2 Agent/MCP implementation. Use docs/09-p2-agent-runbook-and-verification.md for current evidence: deterministic fixture tests are not real-model validation. External model smoke, RAG, web search, live payment and durable asynchronous refunds are not verified/completed by P2. Never enable a fixture engine as a silent model fallback.
-- Keep secrets and runtime data outside tracked files. Commit only placeholder configuration examples and reviewed synthetic/public fixtures.
-- P2.1 uses independent login and owner-scoped model settings. See docs/10-p21-account-and-model-settings.md. Preserve encrypted credentials, redacted responses, public-only pinned outbound connections, and the separate ignored deployment key. Do not run real model tests while the user has paused them.
-- P3a adds transactional policy publication/revision/withdrawal, an authoritative clause catalog and MCP lexical retrieval with source revalidation. See docs/14-p3a-policy-rag.md. Do not describe this as completed Hybrid retrieval, semantic citation validation or the full Agentic RAG plan; do not auto-publish the authoring drafts.
-- P3b has a separate local Milvus/CPU embedding/reranker experiment and a six-mode evaluation matrix (docs/18-hybrid-retrieval-experiments.md). Do not describe offline draft experiments as independent holdout results or production latency. Do not use experimental collections for customer answers.
-- P3c adds an online single-worker index consumer, transactional MySQL outbox and generation-checked Hybrid/RRF/Rerank with explicit BM25 degradation (docs/19-p3c-online-policy-retrieval.md). Retain authoritative catalog digests and final source verification. Never scale the index worker beyond one without a lease/fencing design. Stop/restart fault tests sequentially, restore Milvus in finally, and never invoke real paid models as part of regression.
-- P3d adds a bounded LangGraph policy assessment/retry/clarification subgraph (docs/20-p3d-policy-evidence-gate.md). Assessment is model judgment, not proven entailment. Preserve the two-search run budget, source checks and no-business-actions after terminal clarification. Fixture branch tests do not measure real-model assessment accuracy.
+## Source, privacy and licensing
 
-See docs/05-repository-and-provenance.md for repository setup and publication requirements.
+- Build Aster as an independent project. Do not import private reference repositories or their Git history, company branding, internal URLs, credentials, proprietary prompts, documents, screenshots, customer data or environment metadata.
+- Reimplement general mechanisms independently. Removing names from proprietary code does not grant redistribution rights.
+- Use the user's configured personal Git author metadata. Never inherit organization identities or invent author details.
+- Before committing, inspect the staged diff and file list. Before publishing, inspect the full repository history, refs, authors and generated artifacts.
+- Respect upstream licenses. Preserve mall license text, author notices and modification markers; record its exact commit and changes in THIRD_PARTY_NOTICES.md.
+- Keep secrets, runtime databases, raw evaluation outputs and personal learning notes outside tracked files. Only reviewed synthetic/public fixtures and screenshots belong in the repository.
+- Follow docs/public-release.md for release checks. Do not change visibility, push a release or rewrite shared history as a side effect of local editing.
 
-- P3e adds owner-scoped session task snapshots and bounded context (docs/21-p3e-task-context.md). User quotes are claims, not authority. Keep snapshots and successful run termination atomic; never persist failed/stopped updates or store confirmation secrets in memory. Synthetic multi-turn tests do not measure real-model reference resolution.
-- P3f adds isolated Agent evaluation with synthetic tools and a history/task ablation (docs/22-p3f-agent-evaluation.md). Default scripted runs only validate the harness; live paid calls require explicit authorization. Keep failed and incomplete outcomes visible, distinguish contract pass rates from answer accuracy, and keep raw local artifacts ignored.
-- P4a adds transactional refund outbox, RabbitMQ delivery and an idempotent local simulator ledger (docs/25-p4a-reliable-refunds.md). Only admin enables the worker. Never equate publisher confirmation with refund success or describe the local ledger as a real payment integration. Run verify-p4 fault tests sequentially and restore broker/worker in finally.
-- P4b adds staff-only refund monitoring and read-only internal reconciliation (docs/26-p4b-refund-monitor.md). Database pending counts are not broker queue depth; legacy refunds are outside the asynchronous ledger scope. Never auto-repair mismatches or clear consumer errors merely because a publication was confirmed.
-- Product tools add live MySQL keyword/filter lookup and snapshot revalidation (docs/29-product-agent-live-evaluation.md). These are not semantic product retrieval or checkout reservations. Live development contracts are not answer accuracy; preserve initial failures and separate targeted reruns. Paid evaluation remains opt-in. The model continuation threshold is now 16,000 reported tokens, not a hard billing cap.
-- Multi-turn shopping adds quoted preferences, host-owned product references and one bounded citation repair (docs/30-multiturn-shopping-evaluation.md). Never persist prices/stock as reference memory or promote failed-run references. Frozen reserved shopping scenarios are self-authored and unrun, not an independently validated holdout. Do not tune on them or infer answer accuracy from contract checks.
-- Human support (docs/31-human-support.md) is an independent customer-confirmed text ticket, not a refund authorization or verified transcript. Preserve customer ownership, assignee-only mutations, transactional row locking and request idempotency. Updates currently use five-second visible-page polling, not push delivery. Prioritize usable business features and bounded regression; do not keep expanding model evaluation unless requested.
-- Catalog management (docs/32-catalog-management.md) adds admin-only audited inventory deltas and publication changes. Preserve product-then-SKU lock ordering, expected-stock checks, reserved-stock lower bounds and atomic checkout reservations. This audit covers the new API, not all legacy mutations or a complete warehouse ledger. Do not enable blocked legacy cancellation routes to make tests pass; synthetic checkout cleanup is scoped to its exact owner and unpaid order.
-- Fulfillment (docs/33-order-fulfillment.md) is simulated, single-package delivery with owner-scoped receipt and admin-only shipment updates. Preserve order locking, unique event stages, after-sale conflicts and the legacy receipt delegation. Do not claim real carrier integration or silently generate missing shipment history for legacy orders. Prioritize the bounded V1 acceptance/documentation closeout before adding more business scope.
+## Business authority
+
+- Java owns identity, role checks, prices, inventory, order state, policy authority and business transactions. Page navigation and model output do not grant permission.
+- Customer reads and mutations must check ownership. Employee mutations must check current role and, where required, the assigned employee.
+- Agent after-sale writes require backend-saved previews, expiry checks and one-time confirmation consumption. Never treat text confirmation as authorization.
+- Keep product-then-SKU lock ordering, expected-stock checks, reserved-stock lower bounds and atomic checkout reservations. Inventory audit covers the new API, not every legacy mutation or a complete warehouse ledger.
+- Do not enable blocked legacy payment/cancellation routes to make a test pass. Synthetic cleanup must target its exact owner and unpaid order.
+- Human support is a customer-confirmed text ticket, not a refund authorization or verified transcript. Preserve assignee-only mutations, row locking and request idempotency. Visible pages use five-second polling, not push delivery.
+- Fulfillment is simulated, single-package delivery. Preserve order locking, unique event stages, owner-scoped receipt, after-sale conflicts and legacy receipt delegation. Do not invent missing shipment history or claim real carrier integration.
+
+## Agent, models and context
+
+- Keep owner-scoped encrypted model credentials, redacted responses, separate ignored deployment keys and public-only pinned outbound connections. Never expose API keys to model context or browser storage.
+- Preserve bounded tool loops, time/usage budgets, terminal states, SSE event replay and explicit confirmation boundaries.
+- User quotes are claims, not authority. Keep successful run termination and task snapshots atomic; never persist failed/stopped updates or confirmation secrets as memory.
+- Product tools perform live MySQL keyword/filter lookup and snapshot revalidation, not semantic product retrieval or checkout reservation. Never persist prices/stock as authoritative reference memory.
+- Preserve host-owned product references and bounded citation repair. The 16,000 reported-token continuation threshold is not a hard billing cap.
+- Do not expose raw model internal reasoning as execution evidence. Tool progress, business cards and final answers are separate outputs.
+- Do not describe network search, third-party commerce MCP or cross-session long-term profiles as implemented without code and verification.
+
+## Policies and retrieval
+
+- Published, effective, customer-visible MySQL clauses are authoritative. Drafts are not customer evidence; publication is explicit.
+- Preserve transactional policy revisions/withdrawal, index Outbox, catalog digests, generation checks and final source revalidation.
+- Online Hybrid/RRF/Rerank has explicit BM25 degradation. Never use experimental Milvus collections for customer answers.
+- The index worker is single-instance. Do not scale it without lease/fencing and concurrent publication design.
+- The policy evidence subgraph has a two-search budget. Preserve clarification/insufficient-evidence terminal behavior with no subsequent business actions.
+- Model assessment is not proven entailment. Hash equality is not semantic correctness; deterministic branch tests do not establish model judgment accuracy.
+
+## Refund delivery and recovery
+
+- Only the admin application enables the refund worker. Preserve transactional Outbox, at-least-once delivery, idempotent consumption and the local simulator ledger.
+- A publisher confirm is not a refund success. The local ledger is not an external payment integration.
+- Retain exhausted-retry/manual-review states and consumer errors. A publish confirmation must not clear a prior consumer failure.
+- Diagnostics are staff-only and read-only. Database pending counts are not broker queue depth; legacy refunds remain outside the asynchronous ledger scope. Never auto-repair mismatches.
+
+## Verification and documentation
+
+- Run checks proportionate to the change. Prefer usable business features and bounded regression over continually expanding model evaluation.
+- Paid model calls require explicit authorization; do not run them while paused or as an automatic regression side effect. Scripted/fixture engines must never silently replace unavailable real models.
+- Run stop/restart fault tests sequentially; restore Milvus, broker and worker state in finally blocks.
+- Preserve first failures, incomplete outcomes and targeted reruns. Contract pass rates, retrieval metrics and answer accuracy are different measurements.
+- Development datasets and unrun reserved scenarios are not independently validated holdouts. Do not tune on reserved sets or infer answer accuracy from contract checks.
+- Local short tests do not demonstrate production capacity, high availability or complete upstream security review.
+- Public guides describe implemented behavior and supported limits. Keep personal learning plans in ignored local files, and dated experiment evidence in docs/records.
+
+See docs/README.md for current engineering guides and docs/records/README.md for design and verification evidence.

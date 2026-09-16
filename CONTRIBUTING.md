@@ -1,6 +1,6 @@
 # Contributing / 贡献指南
 
-感谢你愿意改进Aster Commerce。请先阅读 [README](README.md) 和 [架构说明](docs/architecture.md)，区分当前功能与历史规划。
+感谢你愿意改进Aster Commerce。请先阅读 [README](README.md) 和 [架构说明](docs/architecture.md)，了解模块职责与支持范围。
 
 ## 提交问题
 
@@ -27,4 +27,4 @@
 
 ## 许可证
 
-本项目原创代码与文档采用 [Apache-2.0](LICENSE)。提交原创贡献时应有权按项目许可证提供；第三方材料必须保留原许可与来源，不能仅通过改名变为原创。尚未配置强制CI门禁或CLA流程，不应在PR中声称这些检查已自动完成。
+本项目原创代码与文档采用 [Apache-2.0](LICENSE)。提交原创贡献时应有权按项目许可证提供；第三方材料必须保留原许可与来源，不能仅通过改名变为原创。PR 应列出实际执行的验证及结果。

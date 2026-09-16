@@ -16,7 +16,7 @@ if($Live){
         $dockerArgs+=@('--volumes-from','aster-p0-agent-1:ro')
     } else {
     $config=Join-Path $root '.local/agent-eval.env'
-    if(-not (Test-Path -LiteralPath $config)){throw 'Live evaluation needs the dedicated ignored .local/agent-eval.env. See docs/22-p3f-agent-evaluation.md.'}
+    if(-not (Test-Path -LiteralPath $config)){throw 'Live evaluation needs the dedicated ignored .local/agent-eval.env. See docs/records/22-p3f-agent-evaluation.md.'}
     $dockerArgs+=@('--env-file',$config)
     }
 }

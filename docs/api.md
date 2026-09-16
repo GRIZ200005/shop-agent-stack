@@ -31,8 +31,13 @@ Portal/Admin使用 `Authorization: Bearer …`；登录响应返回token及token
 | Admin | `GET /aster/fulfillment` | 管理员订单列表，query/status/page |
 | Admin | `GET /aster/fulfillment/{id}` | 管理员订单履约详情 |
 | Admin | `POST /aster/fulfillment/{id}/advance` | stage为SHIPPED或DELIVERING，需note |
+| Agent | `GET/POST /sessions` | 列出本人会话或创建会话 |
+| Agent | `GET /sessions/{sid}` | 读取本人会话和运行事件 |
+| Agent | `DELETE /sessions/{sid}` | 删除本人已结束的会话、消息与任务记忆；未决操作返回 409 |
+| Agent | `POST /sessions/{sid}/runs` | 创建运行；request_id 用于幂等重试 |
+| Agent | `GET /runs/{rid}/events` | 本人运行的 SSE 事件，支持 after 游标 |
 
-人工咨询接口、客服售后与政策管理的具体参数见对应 [controller](../services/commerce/mall-admin/src/main/java/com/macro/mall/aster/admin) 和阶段文档31—33；Agent API看 [app.py](../services/agent/aster_agent/app.py)。旧上游API存在不代表当前UI使用或允许调用，部分支付/取消路径有明确拦截。
+人工咨询接口、客服售后与政策管理的具体参数见对应 [controller](../services/commerce/mall-admin/src/main/java/com/macro/mall/aster/admin) 和[设计记录](records/README.md)；Agent API看 [app.py](../services/agent/aster_agent/app.py)。旧上游API存在不代表当前UI使用或允许调用，部分支付/取消路径有明确拦截。
 
 ## 返回码
 

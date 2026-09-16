@@ -1,6 +1,6 @@
 # 系统架构与信任边界
 
-[文档首页](README.md) · [Agent链路](agent.md) · [工程学习](engineering-guide.md)
+[文档首页](README.md) · [Agent链路](agent.md) · [工程实现](engineering-guide.md)
 
 ## 进程与职责
 
@@ -51,7 +51,7 @@ sequenceDiagram
 
 客服审批时，同一MySQL事务写入退款任务与业务状态。投递器发送RabbitMQ消息；消费者核验业务状态并以唯一记录/状态机抵御重复消息，写入本地模拟退款账本，完成售后并关闭订单。失败可重试，耗尽进入人工核实；监控页面提供只读核对。
 
-这里的业务结果和模拟账本共享数据库事务，不是外部支付网关的跨系统一致性证明。Publisher confirm只证明消息投递阶段，不代表钱款退款成功。详见[退款设计](25-p4a-reliable-refunds.md)。
+这里的业务结果和模拟账本共享数据库事务，不是外部支付网关的跨系统一致性证明。Publisher confirm只证明消息投递阶段，不代表钱款退款成功。详见[退款设计](records/25-p4a-reliable-refunds.md)。
 
 ## 政策更新
 
