@@ -1,6 +1,8 @@
 <div align="center">
 
-# Aster Commerce · 星序
+<img src="docs/assets/brand/shop-agent-stack.svg" width="88" height="88" alt="ShopAgentStack 项目标识" />
+
+# ShopAgentStack
 
 **个人开发的 AI 电商与客户服务项目 · 从智能问答到可追踪的业务执行**
 
@@ -8,7 +10,7 @@
 
 </div>
 
-Aster Commerce · 星序是一个个人开发与维护、基于 [macrozheng/mall](https://github.com/macrozheng/mall) 二次开发的 AI 电商与客户服务项目。项目围绕「选购 → 下单 → 履约 → 咨询 → 售后」构建客户、客服、管理员三端协作流程，覆盖需求设计、前后端实现、Agent 编排、知识检索、容器化运行与自动化验证。
+ShopAgentStack 是一个个人开发与维护、基于 [macrozheng/mall](https://github.com/macrozheng/mall) 二次开发的 AI 电商与客户服务项目。项目围绕「选购 → 下单 → 履约 → 咨询 → 售后」构建客户、客服、管理员三端协作流程，覆盖需求设计、前后端实现、Agent 编排、知识检索、容器化运行与自动化验证。
 
 项目采用 **Java / Spring Boot** 承载业务与权限控制，**Python / FastAPI / LangGraph** 编排 Agent，**React / TypeScript** 构建前端，并结合 **MySQL、Redis、RabbitMQ 和 Milvus**，实现政策混合检索与引用、客户确认、异步模拟退款及自动化验证。**MCP** 连接受控业务工具，**Docker Compose** 管理本地服务环境。
 
@@ -27,11 +29,11 @@ Aster Commerce · 星序是一个个人开发与维护、基于 [macrozheng/mall
 | 异步售后 | 新增审批后的模拟退款投递、消费与核对 | 事务 Outbox、RabbitMQ、幂等账本、有界重试与人工核实 |
 | AI 应用 | 新增模型适配、LangGraph 工具循环与 MCP 业务工具 | 上下文预算、执行授权、确认预览、SSE 与会话恢复 |
 | 政策知识库 | 新增条款版本管理、索引更新和有界证据检查 | BM25 + Milvus、RRF、BGE 精排、发布可见性与引用复核 |
-| 工程交付 | 新增合成数据、导入脚本、容器配置和分层验证 | 固定版本、可追溯实验记录、浏览器/API 验收与故障测试 |
+| 工程交付 | 新增合成数据、导入脚本、容器配置和分层验证 | 依赖版本锁定、浏览器/API 回归与故障恢复测试 |
 
-**开发方式**：本项目由个人发起与维护，开发过程中使用 Codex 等 AI 编程工具辅助方案讨论、代码实现、问题定位、测试与文档整理。维护者负责需求取舍、变更验收与持续维护；实现范围、上游来源及验证结果以仓库代码和工程记录为准。
+**开发方式**：本项目由个人发起与维护，开发过程中使用 Codex 等 AI 编程工具辅助方案讨论、代码实现、问题定位、测试与文档整理。维护者负责需求取舍、变更审核与持续维护；实现范围与上游来源以仓库代码和来源声明为准。
 
-建议从[一次 Agent 查询](docs/agent.md)、[一次交易与异步退款](docs/architecture.md)、[验证记录](docs/testing.md)三个入口阅读，结合下方真实运行截图查看实现效果。
+建议从[一次 Agent 查询](docs/agent.md)、[一次交易与异步退款](docs/architecture.md)、[自动化测试](docs/testing.md)三个入口阅读，结合本地操作流程验证实现效果。
 
 ## 系统架构
 
@@ -52,58 +54,60 @@ Java 持有业务规则与权威数据，Python 处理模型编排与检索，Ty
 
 ## 产品展示
 
-点击角色标题展开截图，客户侧默认展开。[查看完整图集](docs/showcase.md)。
+[查看完整图集](docs/showcase.md)。客户侧默认展开，客服与管理员侧点击标题展开；图片可点击查看原始尺寸。本地体验方式见[快速开始](#快速开始)。
 
 <details open>
-<summary><strong>客户侧 · 商城、智能助手与政策问答</strong></summary>
+<summary><strong>客户侧 · 商城、商品问答与政策引用</strong></summary>
 
-**商城与商品目录** — 分类、搜索与日常精选。
+**商品目录** — 分类、搜索与商品卡片。
 
-![客户商城与商品目录](docs/assets/screenshots/customer-storefront.png)
+[![客户商品目录](docs/assets/screenshots/customer-storefront.png)](docs/assets/screenshots/customer-storefront.png)
 
-**商品问答** — 条件查询、规格核实与商品依据卡片。
+**商品问答** — 按预算查询商品，展示规格与商品依据。
 
-![星序助手商品问答](docs/assets/screenshots/customer-agent.png)
+[![商品问答与依据卡片](docs/assets/screenshots/customer-agent.png)](docs/assets/screenshots/customer-agent.png)
 
-**政策问答** — 回答中的条款标识与可查看原文的来源卡片。
+**政策引用** — 结合订单查询与政策条款解释申请条件，咨询不自动提交申请。
 
-![政策问答与来源引用](docs/assets/screenshots/customer-policy-rag.png)
+[![政策检索与来源引用](docs/assets/screenshots/customer-policy-rag.png)](docs/assets/screenshots/customer-policy-rag.png)
 
-[更多客户侧截图](docs/showcase.md#customer)
-
-</details>
-
-<details>
-<summary><strong>客服侧 · 人工咨询与售后审核</strong></summary>
-
-客户背景、咨询消息、处理动态与解决状态集中展示。
-
-![客服人工咨询工作台](docs/assets/screenshots/service-consultation.png)
-
-售后领取后填写审核说明，处理结果通过时间线同步给客户。
-
-![客服售后审核](docs/assets/screenshots/service-after-sale-review.png)
-
-[更多客服侧展示](docs/showcase.md#service)
+[更多客户侧展示](docs/showcase.md#customer)
 
 </details>
 
 <details>
-<summary><strong>管理员侧 · 商品运营、规格库存与履约</strong></summary>
+<summary><strong>客服侧 · 售后审核与模拟退款</strong></summary>
 
-查看规格的总库存、订单占用与可售库存，按数量及原因提交调整。
+**售后审核** — 领取申请后填写审核说明，决定通过或拒绝。
 
-![管理员规格库存界面](docs/assets/screenshots/admin-inventory.png)
+[![客服售后审核](docs/assets/screenshots/service-after-sale-review.png)](docs/assets/screenshots/service-after-sale-review.png)
 
-管理正式服务政策，查看发布版本和条款索引状态。
+**处理结果** — 模拟退款状态、审核记录与凭证汇入时间线。
 
-![正式政策与条款索引](docs/assets/screenshots/admin-policy.png)
-
-[更多管理员侧截图](docs/showcase.md#admin)
+[![客服模拟退款完成](docs/assets/screenshots/service-after-sale-completed.png)](docs/assets/screenshots/service-after-sale-completed.png)
 
 </details>
 
-截图来自本机运行的合成业务环境。完整图集包含模拟发货、收货及售后处理结果；本地体验方式见[快速开始](#快速开始)。
+<details>
+<summary><strong>管理员侧 · 商品、库存与政策管理</strong></summary>
+
+**商品运营** — 查询商品、查看上下架状态并进入规格管理。
+
+[![管理员商品目录](docs/assets/screenshots/admin-products.png)](docs/assets/screenshots/admin-products.png)
+
+**规格库存** — 总库存、订单占用、可售库存与调整入口。
+
+[![管理员规格库存](docs/assets/screenshots/admin-inventory.png)](docs/assets/screenshots/admin-inventory.png)
+
+[政策管理与更多展示](docs/showcase.md#admin)
+
+**订单履约** — 模拟发货、派送与客户确认收货形成完整时间线。
+
+[![管理员订单履约完成](docs/assets/screenshots/admin-fulfillment-completed.png)](docs/assets/screenshots/admin-fulfillment-completed.png)
+
+</details>
+
+
 
 ### 推荐体验流程
 
@@ -113,7 +117,7 @@ Java 持有业务规则与权威数据，Python 处理模型编排与检索，Ty
 4. **人机协作**：客户确认提交咨询或售后申请，客服领取、回复或审核，客户查看处理时间线；模拟退款由异步流程完成。
 5. **运营管理**：管理员调整 SKU 库存，查看审计记录，发布或修订政策并观察索引状态。
 
-以上是本地交互路径，截图折叠区域用于浏览展示；启动与角色账户说明见[安装指南](docs/getting-started.md)。
+以上是本地交互路径；启动与角色账户说明见[安装指南](docs/getting-started.md)。
 
 ## 功能地图
 
@@ -165,8 +169,8 @@ FastAPI 接收会话请求，LangGraph 组织有界工具循环，自建 MCP 连
 开发工作流：**Windows + PowerShell 7 + Docker Desktop Linux 容器 + Node.js 24**。Java/Maven、Python 与检索模型在容器中运行。
 
 ```powershell
-git clone https://github.com/GRIZ200005/aster-commerce.git
-Set-Location aster-commerce
+git clone https://github.com/GRIZ200005/shop-agent-stack.git shop-agent-stack
+Set-Location shop-agent-stack
 
 # 准备检索镜像与固定版本模型缓存
 docker compose -f deploy/compose.retrieval.yml build evaluation
@@ -182,7 +186,7 @@ node scripts/import-policy-library.mjs --publish
 
 打开 **[http://127.0.0.1:18030](http://127.0.0.1:18030)**。客户可以注册；客服与管理员使用本机初始化账户。AI 连接在客户空间的“模型设置”中配置，不需要把 Key 写入源码。
 
-首次运行的依赖顺序、失败处理、账户位置与数据冲突处理见[安装指南](docs/getting-started.md)。启动脚本保留现有卷；默认 Compose 仅绑定本机入口。其他操作系统和全新机器的完整复现尚未单独验收。
+首次运行的依赖顺序、失败处理、账户位置与数据冲突处理见[安装指南](docs/getting-started.md)。启动脚本保留现有卷；默认 Compose 仅绑定本机入口。
 
 ## 数据与验证
 
@@ -193,44 +197,28 @@ node scripts/import-policy-library.mjs --publish
 | 业务夹具 | 合成用户、订单、咨询、售后和配送记录 |
 | 评测材料 | 检索对照、Agent 契约、历史/任务状态消融、故障与只读性能实验 |
 
-固定业务验收入口：
-
-```powershell
-Set-Location apps/web
-npm run test:v1
-```
-
-已有验证证据按类型保留，便于从页面效果进一步核查业务与工程行为：
-
-| 验证范围 | 已记录结果 | 证据入口 |
-|---|---|---|
-| 三端业务验收 | 13 项业务有通过证据，其中 1 项修正测试假设后复测通过 | [固定验收](docs/records/34-v1-acceptance.md) |
-| 工具与检索集成 | 4 项真实 MCP / 在线检索检查通过，经过实际业务服务与本机检索链路 | [固定验收](docs/records/34-v1-acceptance.md) |
-| Agent 与交互回归 | 33 项聚焦后端回归、2 项浏览器回归通过 | [Agent 与展示回归](docs/records/35-showcase-and-agent-regressions.md) |
-| 检索与模型实验 | 已记录离线检索比较、真实模型开发实验及多轮上下文消融 | [测试与指标口径](docs/testing.md) |
-
-上述数字来自对应日期和版本的记录，不合并为统一通过率。**契约通过率、检索指标和答案准确率分别统计**；确定性回归与单次成功截图不代表真实模型的整体回答准确率。实验保留首轮失败、修正与定向复测，完整条件见各记录。
+测试覆盖业务事务与权限、Agent 工具契约、三端浏览器流程、政策检索及异步退款故障恢复。测试入口与指标定义见[数据与测试](docs/testing.md)。会写入业务数据或暂停服务的测试应在隔离环境运行。
 
 ## 目录与源码导航
 
 ```text
 apps/web/              客户、客服、管理员界面与页面测试
-services/commerce/     mall 衍生模块与 Aster 业务服务
+services/commerce/     mall 衍生模块与本项目业务服务
 services/agent/        模型适配、Agent、MCP、上下文与会话存储
 services/retrieval/    政策索引、混合召回与精排
 deploy/                Compose、Nginx、配置与 SQL 迁移
 catalog/               商品目录、图片及来源清单
 knowledge/             政策编写源、条款目录与手册
-evaluation/            题集、实验配置与结果摘要
+evaluation/            题集、检索配置与评测工具
 scripts/               构建、启动、导入与验证工具
-docs/                  架构、API、运维、验证与展示
+docs/                  架构、API、运维、测试与展示
 ```
 
 [工程实现与归属](docs/engineering-guide.md) · [代码结构与维护](docs/maintainability.md) · [API 导航](docs/api.md) · [运维指南](docs/operations.md)
 
 ## 适用范围
 
-项目面向单商家合成业务。未接入真实支付/快递、第三方商家 MCP、网络搜索或跨会话长期画像。商品查询使用 MySQL 关键词与过滤；政策索引为单 worker，Agent 使用 SQLite 持久化，多实例扩展需要额外设计。不将本机功能验收描述为生产容量、高可用或独立盲测准确率。
+项目面向单商家合成业务。未接入真实支付/快递、第三方商家 MCP、网络搜索或跨会话长期画像。商品查询使用 MySQL 关键词与过滤；政策索引为单 worker，Agent 使用 SQLite 持久化，多实例扩展需要额外设计。
 
 ## 贡献与许可证
 

@@ -9,7 +9,7 @@
 | `apps/web` + Nginx | 三侧UI、同源代理、SSE展示、客户确认 | 决定业务权限、保存明文API Key |
 | `mall-portal` | 客户身份、下单、客户业务及内部授权接口 | 根据模型自报ID授权 |
 | `mall-admin` | 员工角色、管理操作、退款消费者 | 让普通客服调用管理接口 |
-| `aster-after-sale` | 原创业务域：售后、确认操作、政策、退款、咨询、商品、履约 | 代替所有上游业务代码 |
+| `shop-agent-stack-after-sale` | 原创业务域：售后、确认操作、政策、退款、咨询、商品、履约 | 代替所有上游业务代码 |
 | `services/agent` | 会话、模型调用、受控循环、工具与证据处理、SSE | 直接修改业务数据库绕开Java规则 |
 | `commerce-mcp` | MCP协议适配，将授权传递给业务服务 | 把模型输入视为登录身份 |
 | `retrieval-worker` | 当前政策快照、索引更新、向量/混合检索和精排 | 让撤回的旧向量继续成为权威数据 |
@@ -51,11 +51,11 @@ sequenceDiagram
 
 客服审批时，同一MySQL事务写入退款任务与业务状态。投递器发送RabbitMQ消息；消费者核验业务状态并以唯一记录/状态机抵御重复消息，写入本地模拟退款账本，完成售后并关闭订单。失败可重试，耗尽进入人工核实；监控页面提供只读核对。
 
-这里的业务结果和模拟账本共享数据库事务，不是外部支付网关的跨系统一致性证明。Publisher confirm只证明消息投递阶段，不代表钱款退款成功。详见[退款设计](records/25-p4a-reliable-refunds.md)。
+这里的业务结果和模拟账本共享数据库事务，不是外部支付网关的跨系统一致性证明。Publisher confirm只证明消息投递阶段，不代表钱款退款成功。实现见 [RefundService.java](../services/commerce/shop-agent-stack-after-sale/src/main/java/com/macro/mall/shopagentstack/RefundService.java) 与 [RefundWorker.java](../services/commerce/shop-agent-stack-after-sale/src/main/java/com/macro/mall/shopagentstack/RefundWorker.java)。
 
 ## 政策更新
 
-政策发布/修订/撤回同时变更权威条款与索引任务。单worker读取一致快照，使用固定模型构建对应代际索引，校验摘要后切换；MCP检索检查代际，不可用时明确降级BM25。回答发布前重新核验政策版本、可见性和内容哈希。
+政策发布/修订/撤回同时变更权威条款与索引任务。单worker读取一致快照，使用固定模型构建对应代际索引，校验摘要后切换；MCP检索检查代际，不可用时明确降级BM25。回答发布前重新核验政策版本、可见性和条款内容一致性。
 
 约束：只能按当前设计运行一个索引worker；扩大前需要任务租约、fencing和并发发布设计。实验集合与线上集合隔离，不能把离线草案直接当作客户政策。
 
@@ -69,14 +69,14 @@ sequenceDiagram
 
 ## 代码入口
 
-- [原创业务模块](../services/commerce/aster-after-sale/src/main/java/com/macro/mall/aster)
-- [管理员入口](../services/commerce/mall-admin/src/main/java/com/macro/mall/aster/admin)
+- [原创业务模块](../services/commerce/shop-agent-stack-after-sale/src/main/java/com/macro/mall/shopagentstack)
+- [管理员入口](../services/commerce/mall-admin/src/main/java/com/macro/mall/shopagentstack/admin)
 - [客户入口](../services/commerce/mall-portal/src/main/java/com/macro/mall/portal/controller)
-- [Agent运行时](../services/agent/aster_agent/runtime.py)
-- [MCP工具客户端](../services/agent/aster_agent/tools.py)
+- [Agent运行时](../services/agent/shop_agent_stack/runtime.py)
+- [MCP工具客户端](../services/agent/shop_agent_stack/tools.py)
 - [在线检索服务](../services/retrieval/online.py)
 - [网页入口](../apps/web/src/App.tsx)
 
-## 当前限制
+## 部署边界
 
-没有完成所有上游接口的全面安全/并发审计；新增流水也不覆盖直接SQL及全部遗留管理写入。没有Kubernetes、自动扩缩容、生产监控告警、跨区域容灾或零停机数据库迁移承诺。工程能力用已有链路和证据说明，不用容器数量推断生产成熟度。
+库存与业务流水覆盖本项目受控接口，不覆盖直接 SQL 和全部上游管理写入。部署采用本机 Compose，不包含 Kubernetes、自动扩缩容、生产监控告警、跨区域容灾或零停机数据库迁移。

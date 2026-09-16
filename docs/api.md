@@ -8,36 +8,36 @@
 
 | 浏览器前缀 | 上游 | 说明 |
 |---|---|---|
-| `/api/portal/` | Portal | 客户账户、商品、订单与客户Aster业务 |
+| `/api/portal/` | Portal | 客户账户、商品、订单与客户ShopAgentStack业务 |
 | `/api/admin/` | Admin | 员工登录、管理与客服业务，进一步校验角色 |
 | `/api/agent/` | Agent | 会话、设置、运行和SSE |
 
 Portal/Admin使用 `Authorization: Bearer …`；登录响应返回token及tokenHead，客户端按实际响应组合。两侧令牌不能因为都是Bearer就混用。MCP内部调用使用短期执行授权，不是让模型持有客户JWT。
 
-## 常用新增业务入口
+## 业务接口
 
 下表路径相对于相应分区前缀：
 
 | 分区 | 方法与路径 | 约束 |
 |---|---|---|
-| Portal | `POST /aster/orders/{id}/simulate-payment` | 仅本人可支付订单，模拟扣款 |
-| Portal | `GET /aster/orders/{id}/shipment` | 仅本人订单的模拟物流 |
-| Portal | `POST /aster/orders/{id}/receive` | 归属、状态、售后及发货节点检查 |
-| Portal | `GET/POST /aster/after-sales` | 列出本人售后或按订单提交申请 |
-| Portal | `GET /aster/policies` | 已发布客户政策 |
-| Admin | `GET /aster/catalog` | 管理员商品列表，query/status/page |
-| Admin | `GET /aster/catalog/{id}` | 管理员查看规格、库存和调整记录 |
-| Admin | `POST /aster/catalog/{id}/changes` | 幂等编号、旧值、调整量、原因与库存约束 |
-| Admin | `GET /aster/fulfillment` | 管理员订单列表，query/status/page |
-| Admin | `GET /aster/fulfillment/{id}` | 管理员订单履约详情 |
-| Admin | `POST /aster/fulfillment/{id}/advance` | stage为SHIPPED或DELIVERING，需note |
+| Portal | `POST /shop_agent_stack/orders/{id}/simulate-payment` | 仅本人可支付订单，模拟扣款 |
+| Portal | `GET /shop_agent_stack/orders/{id}/shipment` | 仅本人订单的模拟物流 |
+| Portal | `POST /shop_agent_stack/orders/{id}/receive` | 归属、状态、售后及发货节点检查 |
+| Portal | `GET/POST /shop_agent_stack/after-sales` | 列出本人售后或按订单提交申请 |
+| Portal | `GET /shop_agent_stack/policies` | 已发布客户政策 |
+| Admin | `GET /shop_agent_stack/catalog` | 管理员商品列表，query/status/page |
+| Admin | `GET /shop_agent_stack/catalog/{id}` | 管理员查看规格、库存和调整记录 |
+| Admin | `POST /shop_agent_stack/catalog/{id}/changes` | 幂等编号、旧值、调整量、原因与库存约束 |
+| Admin | `GET /shop_agent_stack/fulfillment` | 管理员订单列表，query/status/page |
+| Admin | `GET /shop_agent_stack/fulfillment/{id}` | 管理员订单履约详情 |
+| Admin | `POST /shop_agent_stack/fulfillment/{id}/advance` | stage为SHIPPED或DELIVERING，需note |
 | Agent | `GET/POST /sessions` | 列出本人会话或创建会话 |
 | Agent | `GET /sessions/{sid}` | 读取本人会话和运行事件 |
 | Agent | `DELETE /sessions/{sid}` | 删除本人已结束的会话、消息与任务记忆；未决操作返回 409 |
 | Agent | `POST /sessions/{sid}/runs` | 创建运行；request_id 用于幂等重试 |
 | Agent | `GET /runs/{rid}/events` | 本人运行的 SSE 事件，支持 after 游标 |
 
-人工咨询接口、客服售后与政策管理的具体参数见对应 [controller](../services/commerce/mall-admin/src/main/java/com/macro/mall/aster/admin) 和[设计记录](records/README.md)；Agent API看 [app.py](../services/agent/aster_agent/app.py)。旧上游API存在不代表当前UI使用或允许调用，部分支付/取消路径有明确拦截。
+人工咨询接口、客服售后与政策管理的具体参数见对应 [controller](../services/commerce/mall-admin/src/main/java/com/macro/mall/shopagentstack/admin)；Agent API看 [app.py](../services/agent/shop_agent_stack/app.py)。上游 API 存在不代表当前 UI 使用或允许调用，部分支付/取消路径有明确拦截。
 
 ## 返回码
 

@@ -2,7 +2,7 @@
 
 [文档首页](README.md) · [运维排障](operations.md)
 
-本文说明开发环境的依赖、构建和初始化顺序。**尚未在完全空白的第二台机器执行全部步骤**。遇到平台差异请附脱敏错误，不上传配置文件。
+本文说明 Windows、PowerShell 7 与 Docker Desktop Linux 容器环境下的依赖、构建和初始化顺序。
 
 ## 1. 前提
 
@@ -11,15 +11,15 @@
 | 终端 | PowerShell 7（`pwsh`）；Windows PowerShell 5.1不作为完整脚本支持基线 |
 | 运行环境 | Docker Desktop，Linux容器模式，Compose插件 |
 | 前端工具 | Node.js 24与npm；使用仓库lockfile |
-| 浏览器验收 | Microsoft Edge；测试默认使用`msedge`，也可配置已安装的Playwright channel |
+| 浏览器测试 | Microsoft Edge；测试默认使用`msedge`，也可配置已安装的Playwright channel |
 | 网络 | 首次拉取容器、Maven/npm/Python依赖及Hugging Face固定模型需要网络 |
-| 资源 | Java服务、Milvus和CPU精排同时运行；建议给Docker预留足够内存与磁盘。没有实测最小配置，不把推荐硬件当作验收门槛 |
+| 资源 | Java服务、Milvus和CPU精排同时运行；建议给Docker预留足够内存与磁盘 |
 
 不需要安装本机Java17或Python3.12，相关构建使用容器。GPU不是本地检索的必需条件。
 
 ```powershell
-git clone https://github.com/GRIZ200005/aster-commerce.git
-Set-Location aster-commerce
+git clone https://github.com/GRIZ200005/shop-agent-stack.git shop-agent-stack
+Set-Location shop-agent-stack
 docker version
 docker compose version
 node --version
@@ -30,7 +30,7 @@ $PSVersionTable.PSVersion
 
 ## 2. 首次准备检索镜像与模型缓存
 
-在线检索服务使用外部命名卷 `aster-retrieval_models`，并以只读方式加载缓存。`start-p2.ps1 -Build` 会构建业务和Agent，但**不会构建检索镜像或下载模型**。
+在线检索服务使用外部命名卷 `shop_agent_stack-retrieval_models`，并以只读方式加载缓存。`start-p2.ps1 -Build` 会构建业务和Agent，但**不会构建检索镜像或下载模型**。
 
 ```powershell
 docker compose -f deploy/compose.retrieval.yml build evaluation
@@ -73,9 +73,9 @@ node scripts/import-product-catalog.mjs --apply
 node scripts/import-policy-library.mjs --publish
 ```
 
-商品导入会检查ID/名称等冲突，不重置已有库存或销量。政策导入发布客户政策及员工SOP，客户查询按可见性过滤。已有数据有冲突时停止并人工核对，不删除旧库“重试”。政策发布会触发索引更新，完成前不能仅凭容器启动就宣称混合检索就绪。
+商品导入会检查ID/名称等冲突，不重置已有库存或销量。政策导入发布客户政策及员工SOP，客户查询按可见性过滤。已有数据冲突时停止导入并核对现有记录。政策发布后等待索引更新完成，再使用混合检索。
 
-导入源、数量和图片说明见[数据与测试](testing.md)、[商品目录记录](records/28-product-catalog.md)、[政策库记录](records/16-policy-library-v2.md)。
+导入源、数量和图片说明见[数据与测试](testing.md)与[政策知识库](../knowledge/README.md)。
 
 ## 5. 登录与模型连接
 
@@ -88,14 +88,7 @@ node scripts/import-policy-library.mjs --publish
 
 不要修改他人的已保存配置，也不要用真实客户数据进行本项目演示。
 
-## 6. 验证与日常使用
-
-```powershell
-Push-Location apps/web
-try { npm run test:v1 } finally { Pop-Location }
-```
-
-需要完整前置数据；测试会写入合成账号、订单和事件。MCP/混合检索验证单独见[验收记录](records/34-v1-acceptance.md)。这不是必须每次启动都跑的步骤。
+## 6. 日常启停
 
 已有构建产物、镜像和模型卷时：
 
@@ -107,6 +100,5 @@ try { npm run test:v1 } finally { Pop-Location }
 
 不要用 `down -v` 代替正常停止。配置、密钥和卷的备份/恢复关系见[运维指南](operations.md)。
 
-## 完成标志
 
-能登录三侧、搜索扩展商品、创建并模拟支付订单、处理人工咨询和模拟售后；配置模型后能明确看到真实提供商的结果或错误；MCP在线检索检查确认走到所期望的检索方式。首次环境复现需要记录机器、依赖、执行步骤及失败，不能仅引用开发机器历史报告。
+自动化测试的环境与命令见[数据与测试](testing.md)。

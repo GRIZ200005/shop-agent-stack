@@ -1,6 +1,6 @@
 # Contributing / 贡献指南
 
-感谢你愿意改进Aster Commerce。请先阅读 [README](README.md) 和 [架构说明](docs/architecture.md)，了解模块职责与支持范围。
+感谢你愿意改进ShopAgentStack。请先阅读 [README](README.md) 和 [架构说明](docs/architecture.md)，了解模块职责与支持范围。
 
 ## 提交问题
 

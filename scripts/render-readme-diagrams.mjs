@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 // Fixed coordinates keep README diagrams consistent across Markdown renderers.
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const out = path.join(root, 'docs/assets/diagrams');
+const projectName = 'ShopAgentStack';
 const esc = s => s.replaceAll('&', '&amp;').replaceAll('<', '&lt;');
 const colors = { blue: ['#eff6ff','#bfdbfe','#2563eb'], purple: ['#f5f3ff','#ddd6fe','#7c3aed'], green: ['#ecfdf5','#a7f3d0','#059669'], amber: ['#fffbeb','#fde68a','#b45309'], gray: ['#f8fafc','#e2e8f0','#475569'] };
 let parts;
@@ -12,7 +13,7 @@ function text(x,y,s,size=16,color='#475569',weight=400) { parts.push(`<text x="$
 function rect(x,y,w,h,fill,stroke='#e2e8f0',radius=16) { parts.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${radius}" fill="${fill}" stroke="${stroke}"/>`); }
 function card(x,y,w,h,title,lines,tone='gray') { const [fill,stroke,ink]=colors[tone]; rect(x,y,w,h,fill,stroke); parts.push(`<rect x="${x+18}" y="${y+21}" width="4" height="22" rx="2" fill="${ink}"/>`); text(x+34,y+39,title,20,'#172033',650); lines.forEach((s,i)=>text(x+24,y+69+i*25,s,16)); }
 function line(d,dash=false,color='#94a3b8') { parts.push(`<path d="${d}" fill="none" stroke="${color}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" ${dash?'stroke-dasharray="6 5"':''} marker-end="url(#arrow)"/>`); }
-function start(title,subtitle,h) { parts=[`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="${h}" viewBox="0 0 1200 ${h}" role="img" aria-labelledby="title desc"><title id="title">${esc(title)}</title><desc id="desc">${esc(subtitle)}</desc><defs><marker id="arrow" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M1 1 L8 4.5 L1 8 Z" fill="#94a3b8"/></marker></defs><g font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif">`]; rect(1,1,1198,h-2,'#ffffff','#e2e8f0',24); text(36,42,'ASTER COMMERCE  /  ENGINEERING',12,'#7c3aed',700); text(36,82,title,29,'#172033',700); text(36,112,subtitle,16); }
+function start(title,subtitle,h) { parts=[`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="${h}" viewBox="0 0 1200 ${h}" role="img" aria-labelledby="title desc"><title id="title">${esc(projectName)} · ${esc(title)}</title><desc id="desc">${esc(projectName)}：${esc(subtitle)}</desc><defs><marker id="arrow" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M1 1 L8 4.5 L1 8 Z" fill="#94a3b8"/></marker></defs><g font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif">`]; rect(1,1,1198,h-2,'#ffffff','#e2e8f0',24); text(36,42,`${projectName}  /  ENGINEERING`,12,'#7c3aed',700); text(36,82,title,29,'#172033',700); text(36,112,subtitle,16); }
 function save(name) { parts.push('</g></svg>'); fs.mkdirSync(out,{recursive:true}); fs.writeFileSync(path.join(out,name),parts.join('\n')+'\n'); }
 
 start('系统架构 · 业务、智能与数据的职责边界','三端协作 / 受控工具调用 / 权威业务数据 / 异步模拟退款',960);

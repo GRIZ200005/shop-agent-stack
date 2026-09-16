@@ -7,9 +7,9 @@
 | 模块 | 职责 | 修改入口 |
 |---|---|---|
 | Web | 三侧交互、表单与可观察执行状态 | [App.tsx](../apps/web/src/App.tsx)、业务页面及对应 CSS |
-| Commerce | 用户归属、角色、价格、库存、事务和审计 | [Aster 业务模块](../services/commerce/aster-after-sale/src/main/java/com/macro/mall/aster) |
-| Agent | 模型适配、有界工具循环、证据复核、上下文和 SSE | [runtime.py](../services/agent/aster_agent/runtime.py)、[app.py](../services/agent/aster_agent/app.py) |
-| MCP | 固定工具目录与短期执行授权的传递 | [tools.py](../services/agent/aster_agent/tools.py)、[mcp_server.py](../services/agent/aster_agent/mcp_server.py) |
+| Commerce | 用户归属、角色、价格、库存、事务和审计 | [ShopAgentStack 业务模块](../services/commerce/shop-agent-stack-after-sale/src/main/java/com/macro/mall/shopagentstack) |
+| Agent | 模型适配、有界工具循环、证据复核、上下文和 SSE | [runtime.py](../services/agent/shop_agent_stack/runtime.py)、[app.py](../services/agent/shop_agent_stack/app.py) |
+| MCP | 固定工具目录与短期执行授权的传递 | [tools.py](../services/agent/shop_agent_stack/tools.py)、[mcp_server.py](../services/agent/shop_agent_stack/mcp_server.py) |
 | Retrieval | 已发布政策的索引、召回、融合与重排 | [online.py](../services/retrieval/online.py) |
 | Deployment | 依赖配置、迁移、启动、数据导入 | [deploy](../deploy)、[scripts](../scripts) |
 
@@ -26,20 +26,30 @@
 
 ## 可维护性约束
 
-客户页面 `Customer.tsx` 同时承载目录、购物袋、订单和售后；`AgentWorkspace.tsx` 包含消息、事件和业务卡片。它们是组件拆分的优先位置。拆分应沿业务职责进行，保留页面测试和状态恢复行为，不以文件数量作为目标。
+客户页面 `Customer.tsx` 同时承载目录、购物袋、订单和售后；`AgentWorkspace.tsx` 包含消息、事件和业务卡片。组件变更应沿业务职责进行，并保留页面测试和状态恢复行为。
 
 部分 Java 业务查询返回 `Map<String, Object>`，SQL 列名与页面字段之间缺少编译期约束。新增或改动接口宜采用明确 DTO，并先补契约测试；统一日期格式也是这一接口收敛的一部分。
 
 检索服务依赖 Compose 挂载路径，索引 worker 为单实例；Agent 使用 SQLite 持久化。多实例部署需要重新设计任务租约、并发索引切换和持久化连接，不能只增加副本数。
 
-员工界面共享导航，业务授权由后端校验。按实际角色精简导航属于体验改进，不能替代后端鉴权。
+员工界面共享导航，业务授权由后端校验。导航展示不替代后端鉴权。
 
 ## 注释与变更
 
 注释说明“为什么需要这个边界”：锁顺序、事务提交点、幂等重放、来源校验、降级原因。避免给普通赋值逐行添加注释，也不把开发阶段编号或待办对话写成业务说明。保留上游版权、作者和修改声明。
 
-文档按已实现行为编写；测试数字保留运行条件与失败记录。功能变化应同步更新架构/API说明，运行记录不能直接覆盖为新结果。
+文档按已实现行为编写；功能变化同步更新架构、API 和对应测试。
 
-## 验证范围
+## 项目标识
 
-结构检查覆盖三侧入口、共享 API、Agent 运行与存储、证据子图、在线检索、库存、履约、人工咨询及退款关键服务。它不是全部上游模块的逐行审计，也不替代负载、安全或生产部署验证。实际页面使用及已修复问题见[展示与使用记录](showcase.md)。
+| 范围 | 标识 |
+|---|---|
+| 展示名称 / 仓库目录 | `ShopAgentStack` / `shop-agent-stack` |
+| 第一方 Java 命名空间 | `com.macro.mall.shopagentstack` |
+| Python 包 | `shop_agent_stack` |
+| 环境变量前缀 | `SHOP_AGENT_STACK_` |
+| 数据库 / 业务表前缀 | `shop_agent_stack` / `shop_agent_stack_` |
+| 业务 API 前缀 | `/shop_agent_stack/` |
+| Compose 项目 | `shop_agent_stack-p0`、`shop_agent_stack-retrieval` |
+
+上游 mall 模块名称和版权声明保留，具体来源见[第三方声明](../THIRD_PARTY_NOTICES.md)。

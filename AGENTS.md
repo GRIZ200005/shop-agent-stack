@@ -2,7 +2,7 @@
 
 ## Source, privacy and licensing
 
-- Build Aster as an independent project. Do not import private reference repositories or their Git history, company branding, internal URLs, credentials, proprietary prompts, documents, screenshots, customer data or environment metadata.
+- Build ShopAgentStack as an independent project. Do not import private reference repositories or their Git history, company branding, internal URLs, credentials, proprietary prompts, documents, screenshots, customer data or environment metadata.
 - Reimplement general mechanisms independently. Removing names from proprietary code does not grant redistribution rights.
 - Use the user's configured personal Git author metadata. Never inherit organization identities or invent author details.
 - Before committing, inspect the staged diff and file list. Before publishing, inspect the full repository history, refs, authors and generated artifacts.
@@ -54,6 +54,6 @@
 - Preserve first failures, incomplete outcomes and targeted reruns. Contract pass rates, retrieval metrics and answer accuracy are different measurements.
 - Development datasets and unrun reserved scenarios are not independently validated holdouts. Do not tune on reserved sets or infer answer accuracy from contract checks.
 - Local short tests do not demonstrate production capacity, high availability or complete upstream security review.
-- Public guides describe implemented behavior and supported limits. Keep personal learning plans in ignored local files, and dated experiment evidence in docs/records.
+- Public guides describe implemented behavior and supported limits. Keep personal learning plans in ignored local files, and run-specific outputs in ignored local files.
 
-See docs/README.md for current engineering guides and docs/records/README.md for design and verification evidence.
+See docs/README.md for current engineering guides and docs/testing.md for test methods.

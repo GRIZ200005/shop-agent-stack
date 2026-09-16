@@ -13,7 +13,7 @@
 | Agent加密密钥 | `.local/agent-encryption.key` | 必须与Agent数据一起安全备份；丢失后旧加密配置不可恢复 |
 | 索引内部授权 | `.local/policy-index.key` | Portal与worker共享，只挂载给需要的进程 |
 | 检索模型与参数 | `evaluation/retrieval-matrix.json` | 固定revision；改配置后要准备对应模型并检查索引代际 |
-| 业务连接 | `deploy/config/application-aster.yml` | 连接容器服务名，不是宿主机`localhost` |
+| 业务连接 | `deploy/config/application-shop_agent_stack.yml` | 连接容器服务名，不是宿主机`localhost` |
 
 配置文件不等同于业务数据库。更换JWT密钥会使已有登录失效；更换数据库密码文件也不会自动更新现有MySQL用户。保持配置和已初始化数据一致。
 
@@ -48,7 +48,7 @@ Invoke-RestMethod http://127.0.0.1:18030/api/agent/health
 ./scripts/stop-p0.ps1
 ```
 
-只有前端改动时，可在 `apps/web` 执行 `npm run build`；当前Web通过挂载读取`dist`。Java单独构建会停止portal/admin，记得通过启动入口恢复。不要在验收中并行重启服务和进行写入竞争测试。
+只有前端改动时，可在 `apps/web` 执行 `npm run build`；当前Web通过挂载读取`dist`。Java单独构建会停止portal/admin，记得通过启动入口恢复。故障测试与并发写入测试应分开执行。
 
 ## 故障定位
 
@@ -74,10 +74,11 @@ docker compose --env-file .env -f deploy/compose.p0.yml -f deploy/compose.p1.yml
 
 ## 数据生命周期
 
+
 - MySQL是业务权威；Agent卷保存会话与加密连接；Redis、RabbitMQ和MongoDB各有自己的命名卷。
 - Milvus及其etcd/MinIO数据卷、固定模型缓存属于独立retrieval Compose项目。向量可从权威政策重建，但不能因此随意删除其他集合或共享卷。
 - 备份需要覆盖数据库、Agent数据与对应密钥/配置；暂停写入后获得一致快照，恢复到隔离环境验证，不要直接覆盖正在演示的环境。
-- 本项目还没有提供经过恢复演练的一键备份/灾备脚本。以上是数据边界，不是“恢复已验证”的承诺。
+- 备份与恢复需自行配置，本项目不提供一键灾备脚本。
 - 数据库迁移通过启动脚本执行。初始化SQL只在空MySQL数据目录执行，修改seed文件不会自动更新现有卷。
 
-生产部署还需要单独设计TLS、认证与授权审计、网络隔离、限流、备份演练、日志脱敏、依赖更新、监控告警和容量验证；不在本机Compose就绪结论之内。
+生产部署还需要单独设计TLS、认证与授权审计、网络隔离、限流、备份演练、日志脱敏、依赖更新、监控告警和容量验证。

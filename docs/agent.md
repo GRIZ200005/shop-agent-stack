@@ -33,7 +33,7 @@ FastAPI负责请求与SSE，LangGraph组织有边界的执行与政策子图，M
 | `search_policies` | 已发布且客户可见的政策条款 |
 | `preview_after_sale` / `get_operation_status` | 后端保存预览与查询操作状态 |
 
-`submit_after_sale`属于确认后的受控路径，不向模型开放为任意可调用工具。`get_policy_source`用于宿主侧来源核验。具体名单以 [tools.py](../services/agent/aster_agent/tools.py) 和 [mcp_server.py](../services/agent/aster_agent/mcp_server.py) 为准。
+`submit_after_sale`属于确认后的受控路径，不向模型开放为任意可调用工具。`get_policy_source`用于宿主侧来源核验。具体名单以 [tools.py](../services/agent/shop_agent_stack/tools.py) 和 [mcp_server.py](../services/agent/shop_agent_stack/mcp_server.py) 为准。
 
 商品检索没有向量化商品目录；网络搜索和第三方商家MCP也尚未接入。上述工具不能让助手代替客服批准退款。
 
@@ -44,15 +44,15 @@ FastAPI负责请求与SSE，LangGraph组织有边界的执行与政策子图，M
 3. RRF按排名融合，避免直接相加不同量纲的分数。
 4. CrossEncoder精排得到有限候选，保留来源标识。
 5. 同一轮模型发出的多条政策搜索先合并、去重，再由有界 LangGraph 子流程统一评估；保留本次运行此前接受的证据，避免后一条搜索丢失前一条依据。允许预算内补充检索，必要时澄清或拒绝编造，总搜索上限仍为两次。
-6. 最终发布前重新读取来源，校验版本和内容哈希；政策变动可能使本次回答失败，而不是继续展示失效证据。
+6. 最终发布前重新读取来源，校验版本和条款内容一致性；政策变动可能使本次回答失败，而不是继续展示失效证据。
 
-模型对证据的“足够”判断仍可能错误，哈希一致也不证明答案语义完全正确。检索失败降级和证据不足必须可见。最多两次政策搜索等预算说明见[证据门控记录](records/20-p3d-policy-evidence-gate.md)。
+模型对证据的“足够”判断仍可能错误，来源一致也不证明答案语义完全正确。检索失败降级和证据不足必须可见。相关测试范围见[数据与测试](testing.md)。
 
 ## 上下文与记忆
 
 当前实现是会话内的有界历史、任务快照和宿主管理的商品引用。预算、品类、需求记录保留用户原话性质，不提升为业务事实。价格、库存、退款状态必须重新查询，不能从旧对话当作权威读出。
 
-成功运行后才提升新的上下文；失败、停止或未确认操作不应被记成成功。不同用户/会话隔离。没有跨会话长期画像、全量记忆向量库或无限历史回放；参见[上下文设计](records/21-p3e-task-context.md)和[多轮验证](records/30-multiturn-shopping-evaluation.md)。
+成功运行后才提升新的上下文；失败、停止或未确认操作不应被记成成功。不同用户/会话隔离。没有跨会话长期画像、全量记忆向量库或无限历史回放；实现见 [context.py](../services/agent/shop_agent_stack/context.py) 与 [runtime.py](../services/agent/shop_agent_stack/runtime.py)。
 
 用户可通过最近对话列表的删除按钮移除单个会话，须在弹窗中确认。`DELETE /sessions/{sid}` 校验当前账户归属，在同一事务中删除会话、运行、事件与任务记忆；不会删除 Java 侧的订单、售后或人工咨询。执行中、待确认和结果待核实的会话返回 409，须先停止或核实操作。删除与创建运行使用同一数据库写锁串行化，避免删除后继续创建消息。
 
@@ -66,4 +66,4 @@ FastAPI负责请求与SSE，LangGraph组织有边界的执行与政策子图，M
 
 按 `app.py → runtime.py → tools.py / mcp_server.py → business.py → Java` 追踪一次订单查询，再阅读 `policy_gate.py`对应的证据分支及测试。随后看 `store.py`、`preferences.py` 和 [AgentWorkspace.tsx](../apps/web/src/AgentWorkspace.tsx)，对照事件如何持久化并渲染。
 
-准确的运行参数、预算和事件名称应从代码及对应验证记录查证；文档不保证所有兼容模型都有相同token计量、停止行为或费用。
+准确的运行参数、预算和事件名称应从代码及配置查证；文档不保证所有兼容模型都有相同token计量、停止行为或费用。

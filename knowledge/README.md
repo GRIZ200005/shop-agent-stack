@@ -1,4 +1,4 @@
-# 星序知识库
+# ShopAgentStack知识库
 
 [Agent 与检索设计](../docs/agent.md) · [数据与验证](../docs/testing.md)
 
@@ -13,7 +13,6 @@
 | `handbooks/customer.md` / `handbooks/staff.md` | 可阅读手册 |
 | `catalog-v2.json` | 两类文档、条款、可见性与哈希 |
 | `manifest.json` | 客户语料规模与来源清单 |
-| `archive/v1/` | 用于复核旧实验的固定版本语料 |
 
 ## 发布与检索
 
@@ -34,6 +33,6 @@ node scripts/import-policy-library.mjs --publish
 
 ## 评测与来源
 
-检索题目与知识条款分开管理，题目不进入索引。开发题集、标签和对应结果按版本保留，参考[政策库验证记录](../docs/records/16-policy-library-v2.md)与[检索实验](../docs/records/18-hybrid-retrieval-experiments.md)。开发集表现不等于独立留出集准确率，条款 Recall 也不等于完整答案正确率。
+检索题目与知识条款分开管理，题目不进入索引。当前题集和标签与编写源同步维护，测试方法见[数据与测试](../docs/testing.md)。开发集表现不等于独立留出集准确率，条款 Recall 也不等于完整答案正确率。
 
-来源标记为 `aster-original-synthetic`。第三方材料须另行记录固定版本、许可证、原文哈希与转换关系，不得混充本店服务政策。语料扩展不自动构成独立人工质量审核。
+来源标记为 `shop_agent_stack-original-synthetic`。第三方材料须另行记录固定版本、许可证、原文哈希与转换关系，不得混充本店服务政策。语料扩展不自动构成独立人工质量审核。
