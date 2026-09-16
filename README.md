@@ -8,7 +8,7 @@
 
 MySQL · Redis · RabbitMQ · Milvus · MCP · Docker Compose
 
-[项目实现](#项目实现与个人贡献) · [产品展示](docs/showcase.md) · [快速开始](docs/getting-started.md) · [系统架构](docs/architecture.md) · [工程文档](docs/README.md)
+[项目实现](#项目实现与个人贡献) · [产品展示](docs/showcase.md) · [快速开始](docs/getting-started.md) · [系统架构](#系统架构) · [工程文档](docs/README.md)
 
 </div>
 
@@ -34,6 +34,23 @@ Aster Commerce · 星序是一个个人开发与维护、基于 [macrozheng/mall
 | 工程交付 | 新增合成数据、导入脚本、容器配置和分层验证 | 固定版本、可追溯实验记录、浏览器/API 验收与故障测试 |
 
 建议从[一次 Agent 查询](docs/agent.md)、[一次交易与异步退款](docs/architecture.md)、[验证记录](docs/testing.md)三个入口阅读，结合下方真实运行截图查看实现效果。
+
+## 系统架构
+
+[![系统架构：三端交互、业务服务、Agent 与异步退款](docs/assets/diagrams/system-architecture.svg)](docs/assets/diagrams/system-architecture.svg)
+
+图中按职责组织模块，不表示每个节点都是独立部署的微服务；退款发布器与消费者运行在 Admin 应用内。图中省略部分交叉调用，按卡片和连线说明阅读；完整请求与索引维护链路见工程文档。Java 持有业务事务，Agent 不直接修改业务数据库；检索发布链路详见[系统架构文档](docs/architecture.md)。
+
+| 层次 | 技术与职责 |
+|---|---|
+| 交互 | React、TypeScript、Vite、SSE、React Markdown |
+| 业务 | Java 17、Spring Boot、Spring Security、MyBatis、Spring JDBC |
+| Agent | Python 3.12、FastAPI、LangGraph、LangChain Core、MCP SDK |
+| 检索 | 中文 BM25、Milvus、RRF、BGE Embedding / CrossEncoder（CPU） |
+| 存储与消息 | MySQL、Redis、RabbitMQ、SQLite；MongoDB 为上游依赖 |
+| 交付与验证 | Docker Compose、Maven、pytest、Playwright、Node.js 测试 |
+
+Java 持有业务规则与权威数据，Python 处理模型编排与检索，TypeScript 呈现交互。依赖版本以 Maven、lockfile 和 Compose 配置为准。
 
 ## 产品展示
 
@@ -144,23 +161,6 @@ FastAPI 接收会话请求，LangGraph 组织有界工具循环，自建 MCP 连
 | 配送重复提交 | 订单锁、唯一配送阶段事件、客户归属检查 |
 
 退款账本与业务库共享本地事务；该实现没有连接真实支付网关。设计及限制见[系统架构](docs/architecture.md)。
-
-## 系统架构
-
-[![系统架构：三端交互、业务服务、Agent 与异步退款](docs/assets/diagrams/system-architecture.svg)](docs/assets/diagrams/system-architecture.svg)
-
-图中按职责组织模块，不表示每个节点都是独立部署的微服务；退款发布器与消费者运行在 Admin 应用内。图中省略部分交叉调用，按卡片和连线说明阅读；完整请求与索引维护链路见工程文档。Java 持有业务事务，Agent 不直接修改业务数据库；检索发布链路详见[系统架构文档](docs/architecture.md)。
-
-| 层次 | 技术与职责 |
-|---|---|
-| 交互 | React、TypeScript、Vite、SSE、React Markdown |
-| 业务 | Java 17、Spring Boot、Spring Security、MyBatis、Spring JDBC |
-| Agent | Python 3.12、FastAPI、LangGraph、LangChain Core、MCP SDK |
-| 检索 | 中文 BM25、Milvus、RRF、BGE Embedding / CrossEncoder（CPU） |
-| 存储与消息 | MySQL、Redis、RabbitMQ、SQLite；MongoDB 为上游依赖 |
-| 交付与验证 | Docker Compose、Maven、pytest、Playwright、Node.js 测试 |
-
-Java 持有业务规则与权威数据，Python 处理模型编排与检索，TypeScript 呈现交互。依赖版本以 Maven、lockfile 和 Compose 配置为准。
 
 ## 快速开始
 

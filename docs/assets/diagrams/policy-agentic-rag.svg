@@ -1,72 +1,73 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="872" viewBox="0 0 1200 872" role="img" aria-labelledby="title desc"><title id="title">政策 Agentic RAG · 从检索候选到可追溯回答</title><desc id="desc">在线问答与索引维护分开呈现 / 最多两次政策搜索 / 最终来源再次核验</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1 L7 4 L1 7" fill="none" stroke="#94a3b8" stroke-width="1.5"/></marker></defs><g font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif">
-<rect x="1" y="1" width="1198" height="870" rx="24" fill="#ffffff" stroke="#e2e8f0"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="892" viewBox="0 0 1200 892" role="img" aria-labelledby="title desc"><title id="title">政策 Agentic RAG · 从检索候选到可追溯回答</title><desc id="desc">在线问答与索引维护分开呈现 / 最多两次政策搜索 / 最终来源再次核验</desc><defs><marker id="arrow" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M1 1 L8 4.5 L1 8 Z" fill="#94a3b8"/></marker></defs><g font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif">
+<rect x="1" y="1" width="1198" height="890" rx="24" fill="#ffffff" stroke="#e2e8f0"/>
 <text x="36" y="42" font-size="12" fill="#7c3aed" font-weight="700">ASTER COMMERCE  /  ENGINEERING</text>
 <text x="36" y="82" font-size="29" fill="#172033" font-weight="700">政策 Agentic RAG · 从检索候选到可追溯回答</text>
 <text x="36" y="112" font-size="16" fill="#475569" font-weight="400">在线问答与索引维护分开呈现 / 最多两次政策搜索 / 最终来源再次核验</text>
 <rect x="36" y="146" width="1128" height="70" rx="16" fill="#f5f3ff" stroke="#ddd6fe"/>
 <text x="60" y="174" font-size="20" fill="#4c1d95" font-weight="650">用户问题 → 受控政策搜索</text>
 <text x="60" y="201" font-size="16" fill="#475569" font-weight="400">问题与当前任务进入证据子图，搜索次数受运行预算约束。</text>
-<path d="M216 216 V276" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
-<text x="36" y="254" font-size="15" fill="#2563eb" font-weight="700">01  混合召回与排序</text>
-<text x="420" y="254" font-size="15" fill="#7c3aed" font-weight="700">02  证据检查与补查</text>
-<text x="804" y="254" font-size="15" fill="#059669" font-weight="700">03  来源复核与回答</text>
-<rect x="36" y="278" width="360" height="106" rx="16" fill="#eff6ff" stroke="#bfdbfe"/>
-<rect x="54" y="299" width="4" height="22" rx="2" fill="#2563eb"/>
-<text x="70" y="317" font-size="20" fill="#172033" font-weight="650">双路召回</text>
-<text x="60" y="347" font-size="16" fill="#475569" font-weight="400">BM25 关键词 + BGE 向量检索</text>
-<text x="60" y="372" font-size="16" fill="#475569" font-weight="400">Milvus 保存政策向量索引</text>
-<rect x="36" y="418" width="360" height="100" rx="16" fill="#eff6ff" stroke="#bfdbfe"/>
-<rect x="54" y="439" width="4" height="22" rx="2" fill="#2563eb"/>
-<text x="70" y="457" font-size="20" fill="#172033" font-weight="650">RRF + BGE Rerank</text>
-<text x="60" y="487" font-size="16" fill="#475569" font-weight="400">排名融合后精排候选条款</text>
-<path d="M216 384 V416" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
-<rect x="420" y="278" width="360" height="106" rx="16" fill="#f5f3ff" stroke="#ddd6fe"/>
-<rect x="438" y="299" width="4" height="22" rx="2" fill="#7c3aed"/>
-<text x="454" y="317" font-size="20" fill="#172033" font-weight="650">合并本轮证据</text>
-<text x="444" y="347" font-size="16" fill="#475569" font-weight="400">合并同轮多条搜索结果</text>
-<text x="444" y="372" font-size="16" fill="#475569" font-weight="400">检查问题所需依据是否充分</text>
-<rect x="420" y="418" width="360" height="100" rx="16" fill="#f5f3ff" stroke="#ddd6fe"/>
-<rect x="438" y="439" width="4" height="22" rx="2" fill="#7c3aed"/>
-<text x="454" y="457" font-size="20" fill="#172033" font-weight="650">证据判断</text>
-<text x="444" y="487" font-size="16" fill="#475569" font-weight="400">足够 → 复核；需补查 → 预算检查</text>
-<path d="M600 384 V416" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
-<path d="M396 468 H408 V331 H418" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
-<rect x="804" y="278" width="360" height="106" rx="16" fill="#ecfdf5" stroke="#a7f3d0"/>
-<rect x="822" y="299" width="4" height="22" rx="2" fill="#059669"/>
-<text x="838" y="317" font-size="20" fill="#172033" font-weight="650">核验当前权威来源</text>
-<text x="828" y="347" font-size="16" fill="#475569" font-weight="400">MySQL：发布状态、可见性与版本</text>
-<text x="828" y="372" font-size="16" fill="#475569" font-weight="400">引用需对应当前有效条款</text>
-<rect x="804" y="418" width="360" height="100" rx="16" fill="#ecfdf5" stroke="#a7f3d0"/>
-<rect x="822" y="439" width="4" height="22" rx="2" fill="#059669"/>
-<text x="838" y="457" font-size="20" fill="#172033" font-weight="650">回答与可追溯引用</text>
-<text x="828" y="487" font-size="16" fill="#475569" font-weight="400">结论 + 条款标识 + 原文卡片</text>
-<path d="M984 384 V416" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
-<text x="994" y="404" font-size="12" fill="#059669" font-weight="400">通过</text>
-<path d="M780 468 H792 V331 H802" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
-<rect x="420" y="564" width="360" height="100" rx="16" fill="#fffbeb" stroke="#fde68a"/>
-<rect x="438" y="585" width="4" height="22" rx="2" fill="#b45309"/>
-<text x="454" y="603" font-size="20" fill="#172033" font-weight="650">有界补查</text>
-<text x="444" y="633" font-size="16" fill="#475569" font-weight="400">未达两次上限：补查并重新合并</text>
-<text x="444" y="658" font-size="16" fill="#475569" font-weight="400">需澄清或预算耗尽：说明缺口</text>
-<path d="M600 518 V562" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
-<rect x="804" y="564" width="360" height="100" rx="16" fill="#fffbeb" stroke="#fde68a"/>
-<rect x="822" y="585" width="4" height="22" rx="2" fill="#b45309"/>
-<text x="838" y="603" font-size="20" fill="#172033" font-weight="650">补问或说明证据缺口</text>
-<text x="828" y="633" font-size="16" fill="#475569" font-weight="400">信息不足、来源失效时不强答</text>
-<text x="828" y="658" font-size="16" fill="#475569" font-weight="400">不会因此继续执行业务写入</text>
-<path d="M780 614 H802" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
-<path d="M1164 332 H1179 V614 H1166" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
-<text x="1060" y="551" font-size="13" fill="#b45309" font-weight="400">复核未通过</text>
-<path d="M420 614 H408 V544 H24 V265 H216 V276" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
-<text x="36" y="569" font-size="14" fill="#b45309" font-weight="400">预算内补查</text>
-<rect x="36" y="704" width="1128" height="104" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
-<text x="60" y="734" font-size="16" fill="#475569" font-weight="650">索引维护 · 独立于单次问答执行</text>
-<text x="60" y="774" font-size="17" fill="#172033" font-weight="600">政策发布 / 修订 / 撤回</text>
-<path d="M297 768 H338" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
-<text x="354" y="774" font-size="17" fill="#172033" font-weight="600">MySQL + 事务 Outbox</text>
-<path d="M580 768 H618" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
-<text x="634" y="774" font-size="17" fill="#172033" font-weight="600">索引 Worker</text>
-<path d="M772 768 H810" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
-<text x="826" y="774" font-size="17" fill="#172033" font-weight="600">Milvus 代际更新</text>
-<text x="36" y="838" font-size="14" fill="#475569" font-weight="400">实线：主要处理流程    虚线：补查、异常分支或索引维护    检索不可用时明确降级为 BM25。</text>
+<path d="M216 222 V270" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<text x="60" y="254" font-size="15" fill="#2563eb" font-weight="700">01  混合召回与排序</text>
+<text x="444" y="254" font-size="15" fill="#7c3aed" font-weight="700">02  证据检查与补查</text>
+<text x="828" y="254" font-size="15" fill="#059669" font-weight="700">03  来源复核与回答</text>
+<rect x="60" y="278" width="312" height="112" rx="16" fill="#eff6ff" stroke="#bfdbfe"/>
+<rect x="78" y="299" width="4" height="22" rx="2" fill="#2563eb"/>
+<text x="94" y="317" font-size="20" fill="#172033" font-weight="650">双路召回</text>
+<text x="84" y="347" font-size="16" fill="#475569" font-weight="400">BM25 关键词 + BGE 向量检索</text>
+<text x="84" y="372" font-size="16" fill="#475569" font-weight="400">Milvus 保存政策向量索引</text>
+<rect x="60" y="434" width="312" height="112" rx="16" fill="#eff6ff" stroke="#bfdbfe"/>
+<rect x="78" y="455" width="4" height="22" rx="2" fill="#2563eb"/>
+<text x="94" y="473" font-size="20" fill="#172033" font-weight="650">RRF + BGE Rerank</text>
+<text x="84" y="503" font-size="16" fill="#475569" font-weight="400">排名融合后精排候选条款</text>
+<path d="M216 396 V426" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<rect x="444" y="278" width="312" height="112" rx="16" fill="#f5f3ff" stroke="#ddd6fe"/>
+<rect x="462" y="299" width="4" height="22" rx="2" fill="#7c3aed"/>
+<text x="478" y="317" font-size="20" fill="#172033" font-weight="650">合并本轮证据</text>
+<text x="468" y="347" font-size="16" fill="#475569" font-weight="400">合并同轮多条搜索结果</text>
+<text x="468" y="372" font-size="16" fill="#475569" font-weight="400">检查问题所需依据是否充分</text>
+<rect x="444" y="434" width="312" height="112" rx="16" fill="#f5f3ff" stroke="#ddd6fe"/>
+<rect x="462" y="455" width="4" height="22" rx="2" fill="#7c3aed"/>
+<text x="478" y="473" font-size="20" fill="#172033" font-weight="650">证据判断</text>
+<text x="468" y="503" font-size="16" fill="#475569" font-weight="400">足够：进入来源复核</text>
+<text x="468" y="528" font-size="16" fill="#475569" font-weight="400">需补查：检查剩余搜索预算</text>
+<path d="M600 396 V426" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M378 490 H396 Q408 490 408 478 V346 Q408 334 420 334 H436" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<rect x="828" y="278" width="312" height="112" rx="16" fill="#ecfdf5" stroke="#a7f3d0"/>
+<rect x="846" y="299" width="4" height="22" rx="2" fill="#059669"/>
+<text x="862" y="317" font-size="20" fill="#172033" font-weight="650">核验当前权威来源</text>
+<text x="852" y="347" font-size="16" fill="#475569" font-weight="400">MySQL：发布、可见性与版本</text>
+<text x="852" y="372" font-size="16" fill="#475569" font-weight="400">引用对应当前有效条款</text>
+<rect x="828" y="434" width="312" height="112" rx="16" fill="#ecfdf5" stroke="#a7f3d0"/>
+<rect x="846" y="455" width="4" height="22" rx="2" fill="#059669"/>
+<text x="862" y="473" font-size="20" fill="#172033" font-weight="650">回答与可追溯引用</text>
+<text x="852" y="503" font-size="16" fill="#475569" font-weight="400">结论 + 条款标识 + 原文卡片</text>
+<path d="M984 396 V426" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<text x="998" y="416" font-size="12" fill="#059669" font-weight="400">通过</text>
+<path d="M762 490 H780 Q792 490 792 478 V346 Q792 334 804 334 H820" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<rect x="444" y="602" width="312" height="112" rx="16" fill="#fffbeb" stroke="#fde68a"/>
+<rect x="462" y="623" width="4" height="22" rx="2" fill="#b45309"/>
+<text x="478" y="641" font-size="20" fill="#172033" font-weight="650">有界补查</text>
+<text x="468" y="671" font-size="16" fill="#475569" font-weight="400">未达两次上限：补查并合并</text>
+<text x="468" y="696" font-size="16" fill="#475569" font-weight="400">需澄清或预算耗尽：说明缺口</text>
+<path d="M600 552 V594" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<rect x="828" y="602" width="312" height="112" rx="16" fill="#fffbeb" stroke="#fde68a"/>
+<rect x="846" y="623" width="4" height="22" rx="2" fill="#b45309"/>
+<text x="862" y="641" font-size="20" fill="#172033" font-weight="650">补问或说明证据缺口</text>
+<text x="852" y="671" font-size="16" fill="#475569" font-weight="400">信息不足、来源失效时不强答</text>
+<text x="852" y="696" font-size="16" fill="#475569" font-weight="400">不再继续执行业务写入</text>
+<path d="M762 658 H820" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M1146 334 H1156 Q1172 334 1172 350 V642 Q1172 658 1156 658 H1148" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+<text x="1016" y="581" font-size="13" fill="#b45309" font-weight="400">复核未通过</text>
+<path d="M438 658 H420 Q408 658 408 646 V582 Q408 570 396 570 H40 Q24 570 24 554 V350 Q24 334 40 334 H52" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+<text x="60" y="596" font-size="14" fill="#b45309" font-weight="400">预算内补查 · 返回召回</text>
+<rect x="36" y="754" width="1128" height="78" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="60" y="780" font-size="15" fill="#475569" font-weight="650">索引维护 · 独立于单次问答执行</text>
+<text x="60" y="813" font-size="16" fill="#172033" font-weight="600">政策发布 / 修订 / 撤回</text>
+<path d="M285 807 H331" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+<text x="349" y="813" font-size="16" fill="#172033" font-weight="600">MySQL + 事务 Outbox</text>
+<path d="M559 807 H605" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+<text x="623" y="813" font-size="16" fill="#172033" font-weight="600">索引 Worker</text>
+<path d="M760 807 H806" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+<text x="824" y="813" font-size="16" fill="#172033" font-weight="600">Milvus 代际更新</text>
+<text x="36" y="865" font-size="14" fill="#475569" font-weight="400">实线：主要处理流程    虚线：补查、异常分支或索引维护    检索不可用时明确降级为 BM25。</text>
 </g></svg>
